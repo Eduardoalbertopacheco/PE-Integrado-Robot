@@ -7,7 +7,7 @@ Library  Collections
 
 *** Variables ***
 
-${resumo_sc}    	SC ITEM - Para PREGAO - 30/07
+${resumo_sc}    	SC LOTE - Para PREGAO - 30/07 - Eduardo
 ${URL}           https://www.homologpeintegrado.pe.gov.br/default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 

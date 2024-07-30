@@ -8,11 +8,12 @@ Resource         ../Cadastro_SC/Resource_Cadastro_SC.robot
      
 *** Variables ***
 
-${OBJETO}       Teste 30/07
+${OBJETO}       Pregão - Aberto - Lote - 30/07
 ${TITULO_PARECER}    Título do Parecer
 
 ${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
 ${CAMPO_SELECAO_MARCA}    //span[contains(@aria-owns,'dtgPesquisaItens_ctl01_ddlMarca_listbox')]
+${CAMPO_SELECAO_MARCA_LOTE}    //span[contains(@aria-owns,'dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaItens_ctl01_ddlMarca_listbox')]
 
 
 
@@ -24,18 +25,11 @@ ${CAMPO_SELECAO_MARCA}    //span[contains(@aria-owns,'dtgPesquisaItens_ctl01_ddl
 ...        JURIDICO=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]//*[@value="2"]
 
 
-
-
-${ITEM_LIST_PARECER}    //ul[@id='nCdTipoParecerMap_listbox']
-${ITEM_TEXT_PARECER}      Jurídico
-${ITEM_PARECER}        ${ITEM_LIST_PARECER}//li[text()="Jurídico"]
-
-
-
-
 ${ITEM_LIST}       //ul[@id='dtgPesquisaItens_ctl01_ddlMarca_listbox']
+${ITEM_LIST_LOTE}    //ul[@id='dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaItens_ctl01_ddlMarca_listbox']
 ${ITEM_TEXT}      12V 3AH
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
+${ITEM_LOTE}    ${ITEM_LIST_LOTE}//li[text()="12V 3AH"]
 
 
 ${CAMPO_DT_INICIAL_PROP}       //input[contains(@name,'tDtInicialProposta')]
@@ -158,6 +152,7 @@ Então preencho a Aba de Dados Gerais
     Click Element    ${UTILIZA_VERBA_FEDERAL_VALUE_NAO}
     Capture Page Screenshot
 
+
     Wait Until Element Is Visible    ${CAMPO_BOJETO}    timeout=30s
     Input Text    ${CAMPO_BOJETO}    ${OBJETO}
     Capture Page Screenshot
@@ -174,7 +169,6 @@ Então preencho a Aba de Dados Gerais
     Sleep    2
     Handle Alert    ACCEPT
     Sleep    2
-    Capture Page Screenshot
 
 
 E mostro a auditoria
@@ -266,6 +260,11 @@ E seleciono o modo de Disputa Aberto
     Capture Page Screenshot
     Click Element    ${VALOR_SELECAO.MODO_DISPUTA_ABERTO}
 
+    # Input do campo Prazo de habilitação
+    Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
+    Input Text    //input[contains(@class,'k-formatted-value k-input')]    3
+    Capture Page Screenshot
+
 
 E Seleciono o Modo de Disputa Aberto-Fechado
 
@@ -279,6 +278,11 @@ E Seleciono o Modo de Disputa Aberto-Fechado
     Click Element    ${SELECAO.MODO_DISPUTA}
     Capture Page Screenshot
     Click Element    ${VALOR_SELECAO.MODO_DISPUTA_ABERTO_FECHADO}
+
+    # Input do campo Prazo de habilitação
+    Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
+    Input Text    //input[contains(@class,'k-formatted-value k-input')]    3
+    Capture Page Screenshot
 
 
 E Seleciono o Modo de Disputa Fechado-Aberto
@@ -294,9 +298,15 @@ E Seleciono o Modo de Disputa Fechado-Aberto
     Capture Page Screenshot
     Click Element    ${VALOR_SELECAO.MODO_DISPUTA_FECHADO_ABERTO}
 
+    # Input do campo Prazo de habilitação
+    Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
+    Input Text    //input[contains(@class,'k-formatted-value k-input')]    3
+    Capture Page Screenshot
+
 
 
     # Input do campo Prazo de habilitação
+    Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
     Input Text    //input[contains(@class,'k-formatted-value k-input')]    3
     Capture Page Screenshot
 
@@ -366,7 +376,7 @@ E insiro a Comissão e Salvo
     Click Element    //input[contains(@value,'Confirmar')]
 
 
-Então incluo a SC ao Pregão
+Então incluo a SC Por Item ao Pregão
 
     Switch Window    NEW
 
@@ -418,6 +428,58 @@ Então incluo a SC ao Pregão
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
     
+
+Então incluo a SC Por Lote ao Pregão
+    Switch Window    NEW
+
+    # Clique na aba 'Itens'
+    Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
+    Click Element    //a[contains(.,'Itens')]
+
+
+    # Clique na aba Itens
+    Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
+    # Cliue no botão Incluir itens da Solicitacçao
+    Wait Until Element Is Visible    //a[contains(.,'Incluir item(ns) da solicitação')]    timeout=30s
+    Click Element    //a[contains(.,'Incluir item(ns) da solicitação')]
+
+    Log    ${resumo_sc}
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
+    Click Element    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}
+    Capture Page Screenshot
+    Sleep    2
+
+    # Clique no campo exibir
+    Wait Until Element Is Visible    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_LOTE}    timeout=30s
+    Click Element    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_LOTE}
+
+
+    # Selecionar a SC para Incluir
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    END
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    Capture Page Screenshot
+
+
+    # # Selecionar a SC para Incluir
+    # Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input    timeout=30s
+    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    # Capture Page Screenshot
+
+    # Clique no botão de Incluir SC
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
 
 E incluo um documento do tipo Edital
     Switch Window    NEW
@@ -842,7 +904,8 @@ E seleciono não para lei 123 e confirmo
     Click Element    //input[contains(@value,'Confirmar')]
     ${all_windows}=    Get Window Handles
 
-E preencho os dados do lance
+
+E preencho os dados do lance por Item
     Select Frame    ${FRAME_NEGOCIACAO}
 
     Log    Executando clique no dropdown
@@ -870,6 +933,29 @@ E preencho os dados do lance
     Capture Page Screenshot
 
 
+E preencho os dados do lance por Lote
+    Select Frame    ${FRAME_NEGOCIACAO}
+
+    Log    Executando clique no dropdown
+    Wait Until Element Is Visible    ${CAMPO_SELECAO_MARCA_LOTE}    timeout=30s
+    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+    Log    Dropdown expandido, aguardando item
+
+    Log    Aguardando a visibilidade do item na lista
+    Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
+
+    Log    Item visível, clicando no item
+    Capture Page Screenshot
+    
+    Click Element    ${ITEM_LOTE}
+    Sleep    2s
+
+    # Valor do lance
+    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[2]/td[8]/div[1]/span[3]/span[1]/input[1]    timeout=30s
+    Input Text    //table[1]/tbody[1]/tr[2]/td[8]/div[1]/span[3]/span[1]/input[1]    100
+    Capture Page Screenshot
+
+
 Então envio a proposta  
     Wait Until Element Is Visible    //a[contains(.,'Enviar proposta(s)')]    timeout=30s
     Click Element    //a[contains(.,'Enviar proposta(s)')]
@@ -894,13 +980,27 @@ E acesso todos as licitações da lista
 
 
 E seleciono a licitação da lista
-
     ${all_windows}=    Get Window Handles
-    # Clique na SC selecionada
-    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]    timeout=30s
+
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Em proposta')]
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Em proposta')]
+    END
     Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
-    Sleep    4
-    Capture Page Screenshot
+
+
+
+
+
+
+    # ${all_windows}=    Get Window Handles
+    # # Clique na SC selecionada
+    # Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]    timeout=30s
+    # Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
+    # Sleep    4
+    # Capture Page Screenshot
 
 Então abro as proposta
 
