@@ -169,6 +169,7 @@ Então preencho a Aba de Dados Gerais
     Sleep    2
     Handle Alert    ACCEPT
     Sleep    2
+    Handle Alert    ACCEPT
 
 
 E mostro a auditoria
@@ -870,8 +871,7 @@ Então faço o reagendamento
     Wait Until Element Is Visible    //input[contains(@name,'btnAgendar')]    timeout=30s
     Click Element    //input[contains(@name,'btnAgendar')]
     Sleep    2
-    # SeleniumLibrary.Close Browser
-    Handle Alert    action=accept
+    SeleniumLibrary.Close Browser
 
 
 E seleciono todos os pregões
@@ -962,6 +962,8 @@ Então envio a proposta
     Sleep    3
     Capture Page Screenshot
     Sleep    2
+    SeleniumLibrary.Close Browser
+
 
 E acesso todos as licitações da lista
     Select Frame    ${FRAME_FRM_CONTEUDO}
@@ -979,7 +981,7 @@ E acesso todos as licitações da lista
    Capture Page Screenshot
 
 
-E seleciono a licitação da lista
+E seleciono a SC Em propotas da lista
     ${all_windows}=    Get Window Handles
 
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Em proposta')]
@@ -992,15 +994,15 @@ E seleciono a licitação da lista
 
 
 
+E seleciono a licitação da lista
 
+    ${all_windows}=    Get Window Handles
+    # Clique na SC selecionada
+    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]    timeout=30s
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
+    Sleep    4
+    Capture Page Screenshot
 
-
-    # ${all_windows}=    Get Window Handles
-    # # Clique na SC selecionada
-    # Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]    timeout=30s
-    # Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
-    # Sleep    4
-    # Capture Page Screenshot
 
 Então abro as proposta
 
@@ -1055,6 +1057,31 @@ Então abros os itens
     Click Element    //input[@value='Sim']
     Sleep    2
  
+Então abros os Lotes
+
+    Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
+    Select Frame    ${FRAME_NEGOCIACAO}
+    Capture Page Screenshot
+
+
+    # Click no chekbox para marcar todos os lotes
+    Wait Until Element Is Visible    //input[contains(@name,'ckbTodos')]    timeout=30s
+    Click Element    //input[contains(@name,'ckbTodos')]
+
+
+    # clique do botão abrir lote
+    Wait Until Element Is Visible    //a[contains(.,'Abrir lote')]    timeout=30s
+    Click Element    //a[contains(.,'Abrir lote')]
+
+
+    Switch Window    NEW
+    Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]    timeout=30s
+    Input Text    //textarea[contains(@name,'tbxJustificativa')]    Justificativa
+    Capture Page Screenshot
+
+    Click Element    //input[@value='Sim']
+    Sleep    2
+
 
 Então envio o lance
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
@@ -1215,8 +1242,40 @@ Então ecerro a disputa
     Click Element    //input[contains(@name,'btnSim')]
     Sleep    2
     
+Então ecerro a disputa Por Lote
 
-Então abro Item/Lote para Lei 123
+    Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
+    Select Frame    ${FRAME_NEGOCIACAO}
+    Capture Page Screenshot
+
+
+    # # Click no chekbox para marca o item
+    # Wait Until Element Is Visible    //table[1]/tbody[1]/tr[2]/td[12]/input[1]    timeout=30s
+    # Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
+
+
+    # clique do botão abrir itens
+    Wait Until Element Is Visible    //a[contains(.,'Encerrar disputa')]   timeout=30s
+    Click Element    //a[contains(.,'Encerrar disputa')]
+    Sleep    2
+    Capture Page Screenshot
+    Sleep    2
+
+    Switch Window    NEW
+
+    # Campo justificativa
+    Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]   timeout=30s
+    Input Text    //textarea[contains(@name,'tbxJustificativa')]    Justificativa
+
+
+    # Clique do botão sim
+    Wait Until Element Is Visible    //input[contains(@name,'btnSim')]    30s
+    Capture Page Screenshot
+    Click Element    //input[contains(@name,'btnSim')]
+    Sleep    2
+
+
+Então abro Item para Lei 123
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
@@ -1248,7 +1307,7 @@ Então abro Item/Lote para Lei 123
     Sleep    2
     
     
-Então encerro Item/Lote para Lei 123
+Então encerro Item para Lei 123
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
@@ -1278,7 +1337,38 @@ Então encerro Item/Lote para Lei 123
     Capture Page Screenshot
     Click Element    //input[contains(@name,'btnSim')]
     Sleep    2
-    
+
+Então encerro Lote para Lei 123
+   Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
+    Select Frame    ${FRAME_NEGOCIACAO}
+    Capture Page Screenshot
+
+
+    # Click no chekbox para marcar todos os lotes
+    Wait Until Element Is Visible    //input[contains(@name,'ckbTodos')]    timeout=30s
+    Click Element    //input[contains(@name,'ckbTodos')]
+
+
+    # clique do botão Encerrar lote
+    Wait Until Element Is Visible    //a[contains(.,'Encerrar lote')]   timeout=30s
+    Click Element    //a[contains(.,'Encerrar lote')]
+    Sleep    2
+    Capture Page Screenshot
+    Sleep    2
+
+    Switch Window    NEW
+
+    # Campo justificativa
+    Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]   timeout=30s
+    Input Text    //textarea[contains(@name,'tbxJustificativa')]    Justificativa
+
+
+    # Clique do botão sim
+    Wait Until Element Is Visible    //input[contains(@name,'btnSim')]    30s
+    Capture Page Screenshot
+    Click Element    //input[contains(@name,'btnSim')]
+    Sleep    2
+
 
 Então faço a convocação do vencedor
 

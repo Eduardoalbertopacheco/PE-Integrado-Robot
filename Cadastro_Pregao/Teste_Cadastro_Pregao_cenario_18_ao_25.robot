@@ -18,7 +18,8 @@ Cenário 18 - Encerrar disputa
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então ecerro a disputa
+    # Então ecerro a disputa
+    Então ecerro a disputa Por Lote
     
 Cenário 19 - Abrir Item/Lote para Lei 123
     [Tags]    abrir_lei_123
@@ -27,7 +28,8 @@ Cenário 19 - Abrir Item/Lote para Lei 123
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então abro Item/Lote para Lei 123
+    # Então abro Item para Lei 123
+    Então abros os Lotes
 
 Cenário 20 - Encerrar Item/Lote para Lei 123
     [Tags]    encerrar_lei_123
@@ -36,7 +38,8 @@ Cenário 20 - Encerrar Item/Lote para Lei 123
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então encerro Item/Lote para Lei 123
+    # Então encerro Item para Lei 123
+    Então encerro Lote para Lei 123
 
 Cenário 21 - Convocar vencedor
     [Tags]    convocar_vencedor
@@ -46,6 +49,7 @@ Cenário 21 - Convocar vencedor
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
     Então faço a convocação do vencedor
+
 
 Cenário 22 - Anexar documento - Vencedor
     [Tags]    anexar_documento_vencedor

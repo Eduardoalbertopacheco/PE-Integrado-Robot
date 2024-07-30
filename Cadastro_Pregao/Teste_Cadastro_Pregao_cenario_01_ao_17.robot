@@ -81,8 +81,8 @@ Cenário 02 - Incluir SC ao Pregão
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
-    # Então incluo a SC Por Item ao Pregão
-    Então incluo a SC Por Lote ao Pregão
+    Então incluo a SC Por Item ao Pregão
+    # Então incluo a SC Por Lote ao Pregão
     E mostro a auditoria
 
 
@@ -142,9 +142,6 @@ Cenário 07 - Solicitar Autorização
     E clico no botão solicitar autorização
     Então solicito autorização central
     E mostro a auditoria
-    # E Verifico se a autorização foi solicitada
-    # E clico no btn solicitar autorização novamente
-    # Então solicito autorização central novamente
 
 
 Cenário 08 - Aprovar autorização
@@ -166,8 +163,8 @@ Cenário 09 - Agendar Pregão eletrônico
     E acesso a tela de Licitações Eletrônicas
     E seleciono a licitação para agendamento
     Então faço o reagendamento
-    E clico na licitação da lista
-    E mostro a auditoria
+    # E clico na licitação da lista
+    # E mostro a auditoria
 
 
 Cenário 10 - Envio de propostas Fornecedor 01
@@ -176,12 +173,14 @@ Cenário 10 - Envio de propostas Fornecedor 01
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
-    E seleciono a licitação da lista
+    E seleciono a SC Em propotas da lista
     E seleciono não para lei 123 e confirmo
-    # E preencho os dados do lance por Item
-    E preencho os dados do lance por Lote
+
+    E preencho os dados do lance por Item
+    # E preencho os dados do lance por Lote
+
     Então envio a proposta
-    E vejo a Auditoria
+    # E vejo a Auditoria
     
 
 Cenário 11 - Envio de propostas Fornecedor 02
@@ -192,8 +191,8 @@ Cenário 11 - Envio de propostas Fornecedor 02
     E seleciono todos os pregões
     E seleciono a licitação da lista
     E seleciono não para lei 123 e confirmo
-    # E preencho os dados do lance por Item
-    E preencho os dados do lance por Lote
+    E preencho os dados do lance por Item
+    # E preencho os dados do lance por Lote
     Então envio a proposta
     # E vejo a Auditoria
 
@@ -230,14 +229,16 @@ Cenário 14 - Iniciar disputa
     E seleciono a licitação da lista
     Então inicio a disputa
 
-Cenário 15 - Abrir itens para disputa
+Cenário 15 - Abrir Itens/Lotes para disputa
     [Tags]    abrir_itens
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
+
     Então abros os itens
+    # Então abros os Lotes
 
 
 Cenário 16 - Enviar disputa Fornecedor 01
