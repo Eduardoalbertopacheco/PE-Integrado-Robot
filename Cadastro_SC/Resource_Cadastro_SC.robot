@@ -7,17 +7,9 @@ Library  Collections
 
 *** Variables ***
 
-${resumo_sc}    	SC ITEM - Para DISPENSA - 29/07
+${resumo_sc}    	SC ITEM - Para PREGAO - 30/07
 ${URL}           https://www.homologpeintegrado.pe.gov.br/default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
-
-
-
-${TIMEOUT}   180s
-${RELOAD_INTERVAL}  5s
-${ELEMENT_XPATH}  //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
-
-
 
 
 ${CHROME_OPTIONS}    headless    disable-gpu

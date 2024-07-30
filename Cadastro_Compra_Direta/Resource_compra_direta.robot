@@ -147,6 +147,10 @@ E incluo as datas do agendamento
 
 Então preencho todos os campos da Aba Dados gerais
 
+    # Seleção para registro de preço 'SIM'
+    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[7]/td[2]/span[1]/input[1]
+    Click Element    //table[1]/tbody[1]/tr[7]/td[2]/span[1]/input[1]
+
     Wait Until Element Is Visible    ${CAMPO_OBJETO} 
     Input Text    ${CAMPO_OBJETO}     ${OBJETO_CP}
 
@@ -191,6 +195,7 @@ Então preencho todos os campos da Aba Dados gerais
     Click Element    //input[contains(@id,'_cP_COMPRA_DIRETA_x_bFlUtilizaVerbaFederal_1')]
     Capture Page Screenshot
 
+    # Clique do botão Salvar
     Wait Until Element Is Visible    //input[@name='btnSalvar']    timeout=30s
     Click Element    //input[@name='btnSalvar']
     Sleep    2

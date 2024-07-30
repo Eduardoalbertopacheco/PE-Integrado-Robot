@@ -25,7 +25,7 @@ Resource         ../Cadastro_Compra_Direta//Resource_compra_direta.robot
 
 *** Test Cases ***
 Cenário 01 - Cadastro de Compra Direta - Aba dados Gerais
-    [Tags]    criar_sc
+    [Tags]    criar_Compra
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
     E acesso a lista de todas as Compras Direta
@@ -36,7 +36,6 @@ Cenário 01 - Cadastro de Compra Direta - Aba dados Gerais
     # E seleciono o modalidade para Dispensa
     # E seleciono o modalidade para Inexigibilidade
     E seleciono o modalidade para Dispensa Emergencial
-
 
     # E seleciono Critério para LEI 14.133/2021, ART. 75, VIII - DISPENSA
     # E Seleciono Critério LEI FEDERAL Nº 14.133/2021, ART. 74 - Inexigibilidade

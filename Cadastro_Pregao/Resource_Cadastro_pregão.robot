@@ -8,7 +8,7 @@ Resource         ../Cadastro_SC/Resource_Cadastro_SC.robot
      
 *** Variables ***
 
-${OBJETO}       Pregão Aberto - Item - 25/07
+${OBJETO}       Teste 30/07
 ${TITULO_PARECER}    Título do Parecer
 
 ${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
@@ -133,6 +133,10 @@ E clico em Incluir Processo
 
 
 Então preencho a Aba de Dados Gerais
+
+    # Seleção para registro de preço 'SIM'
+    Wait Until Element Is Visible    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
+    Click Element    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
     
     # Seleção do campo 'Confição de pagamento'
     Click Element    ${SELECAO.CODICAO_PAGAMENTO}

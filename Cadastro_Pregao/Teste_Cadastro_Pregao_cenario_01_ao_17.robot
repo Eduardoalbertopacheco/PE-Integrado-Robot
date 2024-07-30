@@ -50,7 +50,7 @@ Resource         ../Cadastro_Pregao/Resource_Cadastro_pregão.robot
 
 
 *** Test Cases ***
-Cenário 01 - Criar Pregão Eletronico por Item Aberto
+Cenário 01 - Criar Pregão - Aba Dados Gerais
     [Tags]    criar_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
