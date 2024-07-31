@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource         ../Cadastro_SC/Resource_Cadastro_SC.robot
-Resource         ../Cadastro_Pregao/Resource_Cadastro_pregão.robot
+Resource         ../../Cadastro_SC/Resource_Cadastro_SC.robot
+Resource         ../../Cadastro_Pregao/Resource_Cadastro_pregão.robot
      
 
 *** Test Cases ***
@@ -18,7 +18,6 @@ Cenário 18 - Encerrar disputa
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    # Então ecerro a disputa
     Então ecerro a disputa Por Lote
     
 Cenário 19 - Abrir Item/Lote para Lei 123
@@ -28,7 +27,6 @@ Cenário 19 - Abrir Item/Lote para Lei 123
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    # Então abro Item para Lei 123
     Então abros os Lotes
 
 Cenário 20 - Encerrar Item/Lote para Lei 123
@@ -38,7 +36,6 @@ Cenário 20 - Encerrar Item/Lote para Lei 123
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    # Então encerro Item para Lei 123
     Então encerro Lote para Lei 123
 
 Cenário 21 - Convocar vencedor

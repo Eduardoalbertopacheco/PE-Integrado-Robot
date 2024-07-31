@@ -23,7 +23,6 @@ Cenário 02 - Incluir Itens na Solicitação de Compras
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     Então incluo os itens
-    # Então incluo os itens e agrupo por lote
 
 
 Cenário 03 - Incluir Documento na Solicitação de Compras
@@ -61,12 +60,6 @@ Cenário 06 - Planejamento com Solicitante
     E acesso a Lista de SC em Precificação
 
     Então faço planejamento da SC para Pregão eletronico
-    # Então faço planejamento da SC para Concorrencia - Solicitante
-    # Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
-    # Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Solicitante
-    # Então faço planejamento da SC para compra Direta - Inex. - Solicitante
-    
-
 
 Cenário 07 - Definir Natureza de despesa com o Financeiro
     [Tags]    definir_natureza
@@ -121,14 +114,7 @@ Cenário 12 - Planejamento com Ordenador
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC
-
     Então faço o planejamento para Pregão Eletrônico
-    # Então faço planejamento da SC para Concorrencia - Ordenador
-    # Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
-    # Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Ordenador
-    # Então faço planejamento da SC para compra Direta - Inex. - Ordenador
-    
-
 
 Cenário 13 - Atribuir Comissão
     [Tags]    atribuir_comissao
@@ -142,20 +128,12 @@ Cenário 13 - Atribuir Comissão
     Então atribuo a Comissão Permanente de Licitação
 
 
-    # # Fluxo para Compra Direta
-    # E faço login com usuário "planejador.110402"
-    # E acesso a tela de Planejamento de compras
-    # E pesquiso por atribuir comissão com planejador
-    # E seleciono a SC para atribuir comissão com Planejador
-    # Então atribuo a comissão de Compra Direta
-
-
-    # # Fluxo para Concorrencia Eletronica
-    # Dado que acesso o sistema
-    # E faço login com usuário "gestorlicitacaocentral.120101"
-    # E acesso a lista de SC centralizada
-    # E pesquiso por SC aguradando atribuir comissão
-    # Então atribuo a Comissão Permanente de Licitação
+    # Fluxo para Concorrencia Eletronica
+    Dado que acesso o sistema
+    E faço login com usuário "gestorlicitacaocentral.120101"
+    E acesso a lista de SC centralizada
+    E pesquiso por SC aguradando atribuir comissão
+    Então atribuo a Comissão Permanente de Licitação
 
 
 

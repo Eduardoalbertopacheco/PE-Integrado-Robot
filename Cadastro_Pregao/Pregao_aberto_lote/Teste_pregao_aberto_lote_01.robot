@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource         ../Cadastro_SC/Resource_Cadastro_SC.robot
-Resource         ../Cadastro_Pregao/Resource_Cadastro_pregão.robot
+Resource         ../../Cadastro_SC/Resource_Cadastro_SC.robot
+Resource         ../../Cadastro_Pregao/Resource_Cadastro_pregão.robot
      
 
 *** Variables ***
@@ -81,8 +81,7 @@ Cenário 02 - Incluir SC ao Pregão
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
-    Então incluo a SC Por Item ao Pregão
-    # Então incluo a SC Por Lote ao Pregão
+    Então incluo a SC Por Lote ao Pregão
     E mostro a auditoria
 
 
@@ -93,7 +92,6 @@ Cenário 03 - Incluir Documento - Edital
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
-
     E incluo um documento do tipo Edital
     E mostro a auditoria
 
@@ -175,10 +173,7 @@ Cenário 10 - Envio de propostas Fornecedor 01
     E seleciono todos os pregões
     E seleciono a SC Em propotas da lista
     E seleciono não para lei 123 e confirmo
-
-    E preencho os dados do lance por Item
-    # E preencho os dados do lance por Lote
-
+    E preencho os dados do lance por Lote
     Então envio a proposta
     # E vejo a Auditoria
     
@@ -191,8 +186,7 @@ Cenário 11 - Envio de propostas Fornecedor 02
     E seleciono todos os pregões
     E seleciono a licitação da lista
     E seleciono não para lei 123 e confirmo
-    E preencho os dados do lance por Item
-    # E preencho os dados do lance por Lote
+    E preencho os dados do lance por Lote
     Então envio a proposta
     # E vejo a Auditoria
 
@@ -236,9 +230,7 @@ Cenário 15 - Abrir Itens/Lotes para disputa
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-
-    Então abros os itens
-    # Então abros os Lotes
+    Então abros os Lotes
 
 
 Cenário 16 - Enviar disputa Fornecedor 01

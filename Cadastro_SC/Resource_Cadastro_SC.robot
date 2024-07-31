@@ -7,7 +7,7 @@ Library  Collections
 
 *** Variables ***
 
-${resumo_sc}    	SC ITEM - Para PREGAO - 30/07 - Eduardo
+${resumo_sc}    	SC Item - Para INEX - 31/07 - Eduardo
 ${URL}           https://www.homologpeintegrado.pe.gov.br/default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 
@@ -1326,16 +1326,26 @@ Então incluo os itens e agrupo por lote
     Click Element    //a[contains(.,'Incluir')]
     Sleep    5
     
-    # Item 01
-    Wait Until Element Is Visible    (//input[contains(@type,'checkbox')])[4]    timeout=30s
+    #Campo Descrição
+    Wait Until Element Is Visible    //input[contains(@name,'txtDescricao')]    timeout=30s
+    Input Text    //input[contains(@name,'txtDescricao')]    TUBO DE SILICONE
+    #Pesquisar Item
+    Click Element    //a[contains(@onclick,'AtualizarPesquisaProduto()')]
+
+
+    # Item 01 - Selecionar
+    Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[1]    timeout=30s
     Click Element    (//input[contains(@id,'ckbListProduto')])[1]
 
     # Item 02
     # Wait Until Element Is Visible    (//input[contains(@type,'checkbox')])[5]    timeout=30s
     # Click Element    (//input[contains(@id,'ckbListProduto')])[2] 
+
     Capture Page Screenshot     
 
+    # Confirmar Item
     Click Element    //*[@id="ctl00_ContentButtom_btnConfirmar"]
+
 
     # Clique para marcar o checkbox Todos
     Wait Until Element Is Visible    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]    timeout=30s
