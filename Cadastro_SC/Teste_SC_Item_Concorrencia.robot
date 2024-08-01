@@ -114,13 +114,13 @@ Cenário 12 - Planejamento com Ordenador
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC
-    Então faço o planejamento para Pregão Eletrônico
+    Então faço planejamento da SC para Concorrencia - Ordenador
 
 Cenário 13 - Atribuir Comissão
     [Tags]    atribuir_comissao
     Dado que acesso o sistema
 
-    # Fluxo para Pregão e Licitação
+    # Fluxo para Pregão e Concorrencia
     E Faço login com usuário "gestorlicitacaocentral.120101"
     E acesso a tela de Solicitação de compras centralizadas
     E pesquiso por SC aguradando atribuir comissão
@@ -128,16 +128,7 @@ Cenário 13 - Atribuir Comissão
     Então atribuo a Comissão Permanente de Licitação
 
 
-    # Fluxo para Concorrencia Eletronica
-    Dado que acesso o sistema
-    E faço login com usuário "gestorlicitacaocentral.120101"
-    E acesso a lista de SC centralizada
-    E pesquiso por SC aguradando atribuir comissão
-    Então atribuo a Comissão Permanente de Licitação
-
-
-
-# Fluxo Somente para Pregão Eletronico
+# Fluxo Somente para Pregão Eletronico e Concorrencia
 Cenário 14 - Aprovar SC com Pregoeiro Central
     [Tags]    aprovacao_pregoeiro_central
     Dado que acesso o sistema

@@ -8,7 +8,7 @@ Resource         ../Cadastro_SC/Resource_Cadastro_SC.robot
      
 *** Variables ***
 
-${OBJETO}       Pregão - Aberto - Lote - 30/07
+${OBJETO}       Pregão - Aberto-Fechado - Lote - 31/07
 ${TITULO_PARECER}    Título do Parecer
 
 ${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
@@ -981,6 +981,7 @@ E acesso todos as licitações da lista
    Capture Page Screenshot
 
 
+
 E seleciono a SC Em propotas da lista
     ${all_windows}=    Get Window Handles
 
@@ -989,6 +990,19 @@ E seleciono a SC Em propotas da lista
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Em proposta')]
+    END
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
+
+
+E seleciono a licitação em abertura de proposta da lista
+
+     ${all_windows}=    Get Window Handles
+
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
     END
     Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
 
@@ -1009,12 +1023,25 @@ Então abro as proposta
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
     Select Frame    ${FRAME_NEGOCIACAO}
 
-    Wait Until Element Is Visible    //a[contains(.,'Abrir proposta(s)')]    timeout=120s
-    Capture Page Screenshot
+
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Abrir proposta(s)')]
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Abrir proposta(s)')]
+    END
     Click Element    //a[contains(.,'Abrir proposta(s)')]
     Sleep    2
     Handle Alert    ACCEPT
     Sleep    3
+
+
+    # Wait Until Element Is Visible    //a[contains(.,'Abrir proposta(s)')]    timeout=120s
+    # Capture Page Screenshot
+    # Click Element    //a[contains(.,'Abrir proposta(s)')]
+    # Sleep    2
+    # Handle Alert    ACCEPT
+    # Sleep    3
 
 
 Então inicio a disputa
@@ -1063,16 +1090,13 @@ Então abros os Lotes
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
 
-
     # Click no chekbox para marcar todos os lotes
     Wait Until Element Is Visible    //input[contains(@name,'ckbTodos')]    timeout=30s
     Click Element    //input[contains(@name,'ckbTodos')]
 
-
     # clique do botão abrir lote
     Wait Until Element Is Visible    //a[contains(.,'Abrir lote')]    timeout=30s
     Click Element    //a[contains(.,'Abrir lote')]
-
 
     Switch Window    NEW
     Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]    timeout=30s
@@ -1100,6 +1124,41 @@ Então envio o lance
     Sleep    2
     Capture Page Screenshot
 
+Então envio o lance 01 para disputa Sigilosa
+    Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
+    Select Frame    ${FRAME_NEGOCIACAO}
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //input[@class='k-formatted-value k-input']    timeout=30s
+    Input Text    //input[@class='k-formatted-value k-input']    70
+
+
+    # Clicque do botão enviar lances
+    Wait Until Element Is Visible    //a[contains(.,'Enviar lances')]
+    Click Element    //a[contains(.,'Enviar lances')]
+    Sleep    2
+    Handle Alert    ACCEPT
+    Sleep    2
+    Capture Page Screenshot
+
+
+Então envio o lance 02 para disputa Sigilosa
+    Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
+    Select Frame    ${FRAME_NEGOCIACAO}
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //input[@class='k-formatted-value k-input']    timeout=30s
+    Input Text    //input[@class='k-formatted-value k-input']    60
+
+
+    # Clicque do botão enviar lances
+    Wait Until Element Is Visible    //a[contains(.,'Enviar lances')]
+    Click Element    //a[contains(.,'Enviar lances')]
+    Sleep    2
+    Handle Alert    ACCEPT
+    Sleep    2
+    Capture Page Screenshot
+
 
 E clico em prorrogar pregão
     Select Frame    ${FRAME_DETALHE_PREGAO}
@@ -1113,11 +1172,11 @@ E insiro as novas datas
     ${all_windows}=    Get Window Handles
     ${janela}=    Set Variable    ${all_windows}[1]
 
-    ${hora_atual+2min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=2)).strftime('%d-%m-%Y %H:%M:%S')    datetime
-    Log    ${hora_atual+2min}
-
     ${hora_atual+3min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=3)).strftime('%d-%m-%Y %H:%M:%S')    datetime
     Log    ${hora_atual+3min}
+
+    ${hora_atual+4min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=4)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+    Log    ${hora_atual+4min}
 
     Switch Window    ${janela}
 
@@ -1131,20 +1190,20 @@ E insiro as novas datas
     
     # Data final proposta
     Wait Until Element Is Visible    id=ctl00_conteudoPagina_tbxDataFinalProposta    timeout=30s
-    Input Text    id=ctl00_conteudoPagina_tbxDataFinalProposta    ${hora_atual+2min}
+    Input Text    id=ctl00_conteudoPagina_tbxDataFinalProposta    ${hora_atual+3min}
     Sleep    2
     Set Focus To Element    id=ctl00_conteudoPagina_tbxDataFinalProposta
-    Execute JavaScript    document.getElementById("ctl00_conteudoPagina_tbxDataFinalProposta").value="${hora_atual+2min}";
+    Execute JavaScript    document.getElementById("ctl00_conteudoPagina_tbxDataFinalProposta").value="${hora_atual+3min}";
     Sleep    2
     Capture Page Screenshot
 
 
     # Data Inicial Disputa
     Wait Until Element Is Visible    id=ctl00_conteudoPagina_tbxDataInicioDisputa    timeout=30s
-    Input Text    id=ctl00_conteudoPagina_tbxDataInicioDisputa    ${hora_atual+3min}
+    Input Text    id=ctl00_conteudoPagina_tbxDataInicioDisputa    ${hora_atual+4min}
     Sleep    2
     Set Focus To Element    id=ctl00_conteudoPagina_tbxDataInicioDisputa
-    Execute JavaScript    document.getElementById("ctl00_conteudoPagina_tbxDataInicioDisputa").value="${hora_atual+3min}";
+    Execute JavaScript    document.getElementById("ctl00_conteudoPagina_tbxDataInicioDisputa").value="${hora_atual+4min}";
     Sleep    2
     Capture Page Screenshot
 
@@ -1532,17 +1591,42 @@ Então não acato a intenção de recurso
     Click Element    //input[@value='Salvar e fechar']
     Sleep    2
 
+Então gravo o valor do lote
+    Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
+    Select Frame    ${FRAME_NEGOCIACAO}
+    Capture Page Screenshot
+
+
+    # clique do botão gravar
+    Wait Until Element Is Visible    //a[contains(.,'Gravar')]   timeout=60s
+    Click Element    //a[contains(.,'Gravar')]
+    Handle Alert    Accept
+    Sleep    3
+
 
 Então adjudico o pregão eletrônico
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
 
-
-    # clique do botão encerrar atapa
-    Wait Until Element Is Visible    //a[contains(.,'Adjudicar')]   timeout=60s
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
+    END
     Click Element    //a[contains(.,'Adjudicar')]
     Capture Page Screenshot
+
+
+
+
+
+
+    # # clique do botão Adjudicar
+    # Wait Until Element Is Visible    //a[contains(.,'Adjudicar')]   timeout=60s
+    # Click Element    //a[contains(.,'Adjudicar')]
+    # Capture Page Screenshot
 
     Switch Window    NEW
     

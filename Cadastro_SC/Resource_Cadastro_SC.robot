@@ -7,7 +7,7 @@ Library  Collections
 
 *** Variables ***
 
-${resumo_sc}    	SC Item - Para INEX - 31/07 - Eduardo
+${resumo_sc}    	SC LOTE - Para Pregão
 ${URL}           https://www.homologpeintegrado.pe.gov.br/default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 
@@ -56,19 +56,6 @@ E faço login com usuário "${usuario}"
     Capture Page Screenshot
 
 
-
-    # E acesso a tela de Planejamento de compras
-    # E pesquiso por atribuir comissão com planejador
-    # E seleciono a SC para atribuir comissão com Planejador
-    # Então atribuo a comissão de Compra Direta  
-   
-    
-    # E acesso a tela de Solicitação de compras centralizadas
-    # E pesquiso por SC aguradando atribuir comissão
-    # E seleciono a SC para atribuir comissão com Gestor Central
-    # Então atribuo a Comissão Permanente de Licitação
-
-
 E acesso a Tela de Lista de Solicitação de Compras
     Select Frame    xpath=//frame[contains(@name,'main')]
 
@@ -86,7 +73,7 @@ E acesso a Tela de Lista de Solicitação de Compras
     ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]    timeout=30s
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]
-    # Sleep    2
+    
     Capture Page Screenshot
     
     Wait Until Element Is Visible    

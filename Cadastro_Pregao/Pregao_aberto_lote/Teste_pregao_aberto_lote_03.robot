@@ -21,14 +21,14 @@ Cenário 26 - Não acatar intenção de recursos
     Então não acato a intenção de recurso
 
 
-Cenário 27 - Reajustar preço dos Lotes
-    [Tags]    Reajuste_Lote
+Cenário 27 - Gravar valor do Lote
+    [Tags]    gravar_Lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então faço o reajuste dos lotes
+    Então gravo o valor do lote
 
 
 Cenário 27 - Adjudicar Pregão
