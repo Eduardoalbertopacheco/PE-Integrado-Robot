@@ -3,7 +3,7 @@ Documentation    Fluxo Feliz - Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
-Resource         Resource_Cadastro_SC.robot
+Resource        ../Ressource/Resource_Cadastro_SC.robot
 
 *** Test Cases ***
 
@@ -58,7 +58,8 @@ Cenário 06 - Planejamento com Solicitante
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
-    Então faço planejamento da SC para Pregão eletronico
+
+    Então faço planejamento da SC para Concorrencia - Solicitante
    
 
 Cenário 07 - Definir Natureza de despesa com o Financeiro
@@ -114,6 +115,7 @@ Cenário 12 - Planejamento com Ordenador
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC
+
     Então faço o planejamento para Pregão Eletrônico
 
 Cenário 13 - Atribuir Comissão
@@ -126,6 +128,7 @@ Cenário 13 - Atribuir Comissão
     E pesquiso por SC aguradando atribuir comissão
     E seleciono a SC para atribuir comissão com Gestor Central
     Então atribuo a Comissão Permanente de Licitação
+    
 
 # Fluxo Somente para Pregão Eletronico
 Cenário 14 - Aprovar SC com Pregoeiro Central

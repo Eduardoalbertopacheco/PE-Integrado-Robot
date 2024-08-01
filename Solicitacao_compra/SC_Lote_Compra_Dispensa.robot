@@ -3,8 +3,7 @@ Documentation    Fluxo Feliz - Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
-Resource         Resource_Cadastro_SC.robot
-
+Resource        ../Ressource/Resource_Cadastro_SC.robot
 *** Test Cases ***
 
 Cenário 01 - Criar SC - Aba dados Gerais
@@ -22,7 +21,8 @@ Cenário 02 - Incluir Itens na Solicitação de Compras
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
-    Então incluo os itens
+    Então incluo os itens e agrupo por lote
+
 
 Cenário 03 - Incluir Documento na Solicitação de Compras
     [Tags]    incluir_documento
@@ -58,8 +58,8 @@ Cenário 06 - Planejamento com Solicitante
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
 
-    Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Solicitante
-
+    Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
+  
 
 Cenário 07 - Definir Natureza de despesa com o Financeiro
     [Tags]    definir_natureza
@@ -114,18 +114,24 @@ Cenário 12 - Planejamento com Ordenador
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC
-    Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Ordenador
+
+    Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
 
 
 Cenário 13 - Atribuir Comissão
     [Tags]    atribuir_comissao
-
     Dado que acesso o sistema
+
+
+
+    # Fluxo para Compra Direta
     E faço login com usuário "planejador.110402"
     E acesso a tela de Planejamento de compras
     E pesquiso por atribuir comissão com planejador
     E seleciono a SC para atribuir comissão com Planejador
     Então atribuo a comissão de Compra Direta
+
+
 
 
 

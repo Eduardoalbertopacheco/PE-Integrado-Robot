@@ -3,7 +3,7 @@ Documentation    Fluxo Feliz - Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
-Resource         Resource_Cadastro_SC.robot
+Resource         ../Ressource/Resource_Cadastro_SC.robot
 
 *** Test Cases ***
 
@@ -59,9 +59,8 @@ Cenário 06 - Planejamento com Solicitante
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
 
-    Então faço planejamento da SC para Concorrencia - Solicitante
-   
-
+    Então faço planejamento da SC para compra Direta - Inex. - Solicitante
+    
 Cenário 07 - Definir Natureza de despesa com o Financeiro
     [Tags]    definir_natureza
     Dado que acesso o sistema
@@ -116,28 +115,19 @@ Cenário 12 - Planejamento com Ordenador
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC
 
-    Então faço o planejamento para Pregão Eletrônico
-
+    Então faço planejamento da SC para compra Direta - Inex. - Ordenador
+    
 Cenário 13 - Atribuir Comissão
     [Tags]    atribuir_comissao
     Dado que acesso o sistema
 
-    # Fluxo para Pregão e Licitação
-    E Faço login com usuário "gestorlicitacaocentral.120101"
-    E acesso a tela de Solicitação de compras centralizadas
-    E pesquiso por SC aguradando atribuir comissão
-    E seleciono a SC para atribuir comissão com Gestor Central
-    Então atribuo a Comissão Permanente de Licitação
-    
 
-# Fluxo Somente para Pregão Eletronico
-Cenário 14 - Aprovar SC com Pregoeiro Central
-    [Tags]    aprovacao_pregoeiro_central
-    Dado que acesso o sistema
-    E faço login com usuário "pregoeiro.120101"
-    E acesso Minhas tarefas
-    E seleciono a SC para aprovação
-    Então Clique no botão Aprovar com orçamento
+    # Fluxo para Compra Direta
+    E faço login com usuário "planejador.110402"
+    E acesso a tela de Planejamento de compras
+    E pesquiso por atribuir comissão com planejador
+    E seleciono a SC para atribuir comissão com Planejador
+    Então atribuo a comissão de Compra Direta
 
 
 
