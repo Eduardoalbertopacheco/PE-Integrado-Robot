@@ -8,7 +8,7 @@ Resource         ../Ressource/Resource_Cadastro_SC.robot
      
 *** Variables ***
 
-${OBJETO}       Pregão - Aberto-Fechado - Item - 01/07
+${OBJETO}       Pregão - Fechado-Aberto - Item - 01/07
 ${TITULO_PARECER}    Título do Parecer
 
 ${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]

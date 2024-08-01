@@ -20,7 +20,6 @@ Cenário 26 - Não acatar intenção de recursos
     E seleciono a licitação da lista
     Então não acato a intenção de recurso
 
-
 Cenário 27 - Adjudicar Pregão
     [Tags]    adjudicar_pregao
     Dado que acesso o sistema

@@ -5,7 +5,7 @@ Resource         ../Ressource/Resource_Cadastro_pregão.robot
 
 
 *** Variables ***
-${OBJETO_CP}       Compra Direta - Item - DISPINSA
+${OBJETO_CP}       Compra Direta - Lote - DISPENSA
 
 ${CAMPO_OBJETO}    //input[contains(@name,'sDsObjeto')]
 
@@ -226,7 +226,39 @@ E seleciono a Compra Direta da lista
     Capture Page Screenshot
 
 
-Então incluo os itens da SC na compra Direta
+Então incluo a SC Lote na compra Direta
+
+    Switch Window    NEW
+    Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
+    Click Element    //a[contains(.,'Itens')]
+
+    # Clique em Inserir itens da solicitação
+    Wait Until Element Is Visible    //a[contains(.,'Inserir itens da solicitação')]    timeout=30s
+    Click Element    //a[contains(.,'Inserir itens da solicitação')]
+
+
+    Switch Window    NEW
+
+    # Clique no campo exibir
+    Wait Until Element Is Visible    //select[contains(@name,'ctl00$ddlVisoes')]    timeout=30s
+    Click Element    //select[contains(@name,'ctl00$ddlVisoes')]
+    Sleep    1
+    Wait Until Element Is Visible    //option[contains(@value,'7051')]
+    Click Element    //option[contains(@value,'7051')]
+
+
+    # Selecionar a SC para Incluir
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input    timeout=30s
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    Capture Page Screenshot
+    
+    # Clique em incluir
+    Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2    Capture Page Screenshot
+
+
+Então incluo a SC Item na compra Direta
 
     Switch Window    NEW
     Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
@@ -312,8 +344,64 @@ E configuro o agendamento
     Click Element    //input[@value='Agendar']
     Sleep    3
 
+E preencho os dados do segundo lance na Compra Direta por Lote
 
-E preencho os dados do lance na Compra Direta
+    Select Frame    ${FRAME_NEGOCIACAO}
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+    END
+
+    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+    Log    Aguardando a visibilidade do item na lista
+    Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
+
+    Log    Item visível, clicando no item
+    Capture Page Screenshot
+    
+    Click Element    ${ITEM_LOTE}
+    Sleep    2s
+
+
+    # Valor do lance
+    Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
+    Input Text    //input[contains(@class,'k-formatted-value k-input')]    98
+    Sleep    2
+    Capture Page Screenshot
+
+
+
+E preencho os dados do lance na Compra Direta por Lote
+
+    Select Frame    ${FRAME_NEGOCIACAO}
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+    END
+
+    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+    Log    Aguardando a visibilidade do item na lista
+    Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
+
+    Log    Item visível, clicando no item
+    Capture Page Screenshot
+    
+    Click Element    ${ITEM_LOTE}
+    Sleep    2s
+
+
+    # Valor do lance
+    Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
+    Input Text    //input[contains(@class,'k-formatted-value k-input')]    99
+    Capture Page Screenshot
+
+
+
+E preencho os dados do lance na Compra Direta por Item
 
     Select Frame    ${FRAME_NEGOCIACAO}
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
@@ -324,13 +412,6 @@ E preencho os dados do lance na Compra Direta
     END
 
     Click Element    ${CAMPO_SELECAO_MARCA}
-    
-
-
-    # Log    Executando clique no dropdown
-    # Wait Until Element Is Visible    ${SELECAO_MARCA}    timeout=30s
-    # Click Element    ${SELECAO_MARCA}
-    # Log    Dropdown expandido, aguardando item
 
     Log    Aguardando a visibilidade do item na lista
     Wait Until Element Is Visible    ${ITEM}    timeout=30s
@@ -352,7 +433,7 @@ E preencho os dados do lance na Compra Direta
     Capture Page Screenshot
 
 
-E preencho os dados do segundo lance na Compra Direta
+E preencho os dados do segundo lance na Compra Direta por item
 
     Select Frame    ${FRAME_NEGOCIACAO}
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}

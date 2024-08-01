@@ -33,26 +33,20 @@ Cenário 01 - Cadastro de Compra Direta - Aba dados Gerais
     E seleciono o filtro Todas as compras diretas
     E clico em Incluir Processo de Compra Direta
     E incluo as datas do agendamento
-
-    # E seleciono o modalidade para Dispensa
-    # E seleciono o modalidade para Inexigibilidade
-    E seleciono o modalidade para Dispensa Emergencial
-
-    # E seleciono Critério para LEI 14.133/2021, ART. 75, VIII - DISPENSA
-    # E Seleciono Critério LEI FEDERAL Nº 14.133/2021, ART. 74 - Inexigibilidade
-    E seleciono Critério LEI 14.133/2021, ART. 75, VIII - DISPENSA EMERGENCIAl
-    
+    E seleciono o modalidade para Dispensa
+    E seleciono Critério para LEI 14.133/2021, ART. 75, VIII - DISPENSA
     Então preencho todos os campos da Aba Dados gerais
 
 
-Cenário 02 - Incluir Itens da SC na Compra Direta
+Cenário 02 - Incluir SC na Compra Direta
     [Tags]    incluir_item_cp
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E clico na Compra Direta da lista
-    Então incluo os itens da SC na compra Direta
+    Então incluo a SC Lote na compra Direta
+
 
 Cenário 03 - Agendar compra Direta
     [Tags]    agendar_CP
@@ -71,8 +65,8 @@ Cenário 04 - Enviar lances com Fornecedor 01
     E faço login com usuário "29219904403.256"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Compra diretas em andamento
-    E clico na Compra Direta da lista
-    E preencho os dados do lance na Compra Direta
+    E clico na compra direta em recebimento de lances
+    E preencho os dados do lance na Compra Direta por Lote
     Então envio o lance na compra direta
 
 
@@ -82,8 +76,8 @@ Cenário 05 - Enviar lances com Fornecedor 02
     E faço login com usuário "02355633000148"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Compra diretas em andamento
-    E clico na Compra Direta da lista
-    E preencho os dados do segundo lance na Compra Direta
+    E clico na compra direta em recebimento de lances
+    E preencho os dados do segundo lance na Compra Direta por Lote
     Então envio o lance na compra direta
 
 
