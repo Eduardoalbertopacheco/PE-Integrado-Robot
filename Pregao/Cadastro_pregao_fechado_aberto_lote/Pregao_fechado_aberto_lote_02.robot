@@ -11,34 +11,34 @@ Resource         ../../Ressource/Resource_Cadastro_pregão.robot
 *** Test Cases ***
 
 # Estes cenários só pode ser rodado depois de 15min + autoencerramento
-Cenário 19 - Abrir Lote para disputa Sigilosa 5 min
-    [Tags]    abrir_item-disputa_sigilosa
-    Dado que acesso o sistema
-    E faço login com usuário "pregoeiro.120101"
-    E acesso a tela de Licitações Eletrônicas
-    E acesso todos as licitações da lista
-    E seleciono a licitação da lista
-    Então abros os Lotes
+# Cenário 19 - Abrir Lote para disputa Sigilosa 5 min
+#     [Tags]    abrir_item-disputa_sigilosa
+#     Dado que acesso o sistema
+#     E faço login com usuário "pregoeiro.120101"
+#     E acesso a tela de Licitações Eletrônicas
+#     E acesso todos as licitações da lista
+#     E seleciono a licitação da lista
+#     Então abros os Lotes
 
 
-Cenário 20 - Enviar disputa sigilosa Forn01
-    [Tags]    enviar_disputa_sigilosa01
-    Dado que acesso o sistema
-    E faço login com usuário "29219904403.256"
-    E acesso a tela de Licitações Eletrônicas
-    E seleciono todos os pregões
-    E seleciono a licitação da lista
-    Então envio o lance 01 para disputa Sigilosa
+# Cenário 20 - Enviar disputa sigilosa Forn01
+#     [Tags]    enviar_disputa_sigilosa01
+#     Dado que acesso o sistema
+#     E faço login com usuário "29219904403.256"
+#     E acesso a tela de Licitações Eletrônicas
+#     E seleciono todos os pregões
+#     E seleciono a licitação da lista
+#     Então envio o lance 01 para disputa Sigilosa
 
 
-Cenário 21 - Enviar disputa sigilosa Forn02
-    [Tags]    enviar_disputa_sigilosa02
-    Dado que acesso o sistema
-    E faço login com usuário "29219904403.256"
-    E acesso a tela de Licitações Eletrônicas
-    E seleciono todos os pregões
-    E seleciono a licitação da lista
-    Então envio o lance 02 para disputa Sigilosa
+# Cenário 21 - Enviar disputa sigilosa Forn02
+#     [Tags]    enviar_disputa_sigilosa02
+#     Dado que acesso o sistema
+#     E faço login com usuário "29219904403.256"
+#     E acesso a tela de Licitações Eletrônicas
+#     E seleciono todos os pregões
+#     E seleciono a licitação da lista
+#     Então envio o lance 02 para disputa Sigilosa
 
 
 Cenário 23 - Encerrar disputa

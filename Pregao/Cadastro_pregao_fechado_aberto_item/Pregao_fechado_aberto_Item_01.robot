@@ -201,7 +201,7 @@ Cenário 13 - Abertura das propostas
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
-    E seleciono a licitação da lista
+    E seleciono a licitação em abertura de proposta da lista
     Então abro as proposta
 
 

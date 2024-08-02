@@ -8,7 +8,7 @@ Resource         ../Ressource/Resource_Cadastro_SC.robot
      
 *** Variables ***
 
-${OBJETO}       Pregão - Fechado-Aberto - Item - 01/07
+${OBJETO}       Pregão - Fechado-Aberto - Lote - 01/07
 ${TITULO_PARECER}    Título do Parecer
 
 ${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
@@ -298,13 +298,6 @@ E Seleciono o Modo de Disputa Fechado-Aberto
     Click Element    ${SELECAO.MODO_DISPUTA}
     Capture Page Screenshot
     Click Element    ${VALOR_SELECAO.MODO_DISPUTA_FECHADO_ABERTO}
-
-    # Input do campo Prazo de habilitação
-    Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
-    Input Text    //input[contains(@class,'k-formatted-value k-input')]    3
-    Capture Page Screenshot
-
-
 
     # Input do campo Prazo de habilitação
     Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
@@ -1539,7 +1532,12 @@ Então habilito o fonecedor vencedor
     Click Element    //a[contains(.,'Habilitar')]
     Capture Page Screenshot
 
-    Switch Window    NEW
+    ${all_windows}=    Get Window Handles
+    ${janela}=    Set Variable    ${all_windows}[2]
+
+    Switch Window    ${janela}
+
+    # Switch Window    NEW
 
     Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]    30s
     Input Text    //textarea[contains(@name,'tbxJustificativa')]    Justificativa
@@ -1639,15 +1637,6 @@ Então adjudico o pregão eletrônico
     Click Element    //a[contains(.,'Adjudicar')]
     Capture Page Screenshot
 
-
-
-
-
-
-    # # clique do botão Adjudicar
-    # Wait Until Element Is Visible    //a[contains(.,'Adjudicar')]   timeout=60s
-    # Click Element    //a[contains(.,'Adjudicar')]
-    # Capture Page Screenshot
 
     Switch Window    NEW
     

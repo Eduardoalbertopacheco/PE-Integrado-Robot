@@ -2,8 +2,8 @@
 Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
 Library          SeleniumLibrary
 Library          Browser
-Library          DateTime
-Library          OperatingSystem
+# Library          DateTime
+# Library          OperatingSystem
 Resource         ../../Ressource/Resource_Cadastro_SC.robot
 Resource         ../../Ressource/Resource_Cadastro_pregão.robot
      
@@ -61,7 +61,7 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
     E Seleciono o Critério de Pregão Eletrônico
     E insiro as datas para agendamento
     E insiro a Comissão e Salvo
-    E Seleciono o Modo de Disputa Aberto-Fechado
+    E Seleciono o Modo de Disputa Fechado-Aberto
     Então preencho a Aba de Dados Gerais
     E mostro a auditoria
 

@@ -7,7 +7,7 @@ Library  Collections
 
 *** Variables ***
 
-${resumo_sc}    	SC Item - Para Pregão - 01/08
+${resumo_sc}    		SC LOTE Para Pregão
 ${URL}           https://www.homologpeintegrado.pe.gov.br/default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 
