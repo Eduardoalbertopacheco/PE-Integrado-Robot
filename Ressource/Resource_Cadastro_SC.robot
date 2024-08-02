@@ -7,7 +7,7 @@ Library  Collections
 
 *** Variables ***
 
-${resumo_sc}    		SC LOTE Para Pregão
+${resumo_sc}    		SC Lote - Para Concorrencia - 01/08
 ${URL}           https://www.homologpeintegrado.pe.gov.br/default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 

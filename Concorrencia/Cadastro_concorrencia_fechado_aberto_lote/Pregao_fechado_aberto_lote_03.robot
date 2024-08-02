@@ -2,10 +2,8 @@
 Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
 Library          SeleniumLibrary
 Library          Browser
-Library          DateTime
-Library          OperatingSystem
-Resource         ../../../Ressource/Resource_Cadastro_SC.robot
-Resource         ../../../Ressource/Resource_Cadastro_pregão.robot
+Resource         ../../Ressource/Resource_Cadastro_SC.robot
+Resource         ../../Ressource/Resource_Cadastro_pregão.robot
      
 
 *** Test Cases ***
@@ -21,14 +19,14 @@ Cenário 26 - Não acatar intenção de recursos
     Então não acato a intenção de recurso
 
 
-Cenário 27 - Reajustar preço dos Lotes
+Cenário 27 - Gravar preço dos Lotes
     [Tags]    Reajuste_Lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então faço o reajuste dos lotes
+    Então gravo o valor do lote
 
 
 Cenário 27 - Adjudicar Pregão

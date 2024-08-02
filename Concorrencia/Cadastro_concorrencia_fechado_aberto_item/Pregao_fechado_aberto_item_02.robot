@@ -4,42 +4,72 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource         ../../../Ressource/Resource_Cadastro_SC.robot
-Resource         ../../../Ressource/Resource_Cadastro_pregão.robot
+Resource         ../../Ressource/Resource_Cadastro_SC.robot
+Resource         ../../Ressource/Resource_Cadastro_pregão.robot
      
 
 *** Test Cases ***
 
-# Estes cenários só pode ser rodado depois de 15min
-Cenário 18 - Encerrar disputa
+# Estes cenários só pode ser rodado depois de 15min + Autoencerramento
+# Cenário 19 - Abrir Item para disputa Sigilosa 5 min
+#     [Tags]    abrir_item-disputa_sigilosa
+#     Dado que acesso o sistema
+#     E faço login com usuário "pregoeiro.120101"
+#     E acesso a tela de Licitações Eletrônicas
+#     E acesso todos as licitações da lista
+#     E seleciono a licitação da lista
+#     Então abro Item para Lei 123
+
+
+# Cenário 18 - Enviar disputa sigilosa Forn01
+#     [Tags]    enviar_disputa_sigilosa01
+#     Dado que acesso o sistema
+#     E faço login com usuário "29219904403.256"
+#     E acesso a tela de Licitações Eletrônicas
+#     E seleciono todos os pregões
+#     E seleciono a licitação da lista
+#     Então envio o lance 01 para disputa Sigilosa
+
+
+# Cenário 19 - Enviar disputa sigilosa Forn02
+#     [Tags]    enviar_disputa_sigilosa02
+#     Dado que acesso o sistema
+#     E faço login com usuário "29219904403.256"
+#     E acesso a tela de Licitações Eletrônicas
+#     E seleciono todos os pregões
+#     E seleciono a licitação da lista
+#     Então envio o lance 02 para disputa Sigilosa
+   
+
+Cenário 20 - Encerrar Disputa
     [Tags]    encerrar_disputa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    # Então ecerro a disputa
-    Então ecerro a disputa Por Lote
+    Então ecerro a disputa
     
-Cenário 19 - Abrir Item/Lote para Lei 123
-    [Tags]    abrir_lei_123
-    Dado que acesso o sistema
-    E faço login com usuário "pregoeiro.120101"
-    E acesso a tela de Licitações Eletrônicas
-    E acesso todos as licitações da lista
-    E seleciono a licitação da lista
-    # Então abro Item para Lei 123
-    Então abros os Lotes
 
-Cenário 20 - Encerrar Item/Lote para Lei 123
-    [Tags]    encerrar_lei_123
+Cenário 21 - Abrir Itens para Lei 123
+    [Tags]    abrir_item_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    # Então encerro Item para Lei 123
-    Então encerro Lote para Lei 123
+    Então abro Item para Lei 123
+
+
+Cenário 22 - Encerrar Itens para Lei 123
+    [Tags]    encerrar_item_lei_123
+    Dado que acesso o sistema
+    E faço login com usuário "pregoeiro.120101"
+    E acesso a tela de Licitações Eletrônicas
+    E acesso todos as licitações da lista
+    E seleciono a licitação da lista
+    Então encerro Item para Lei 123
+
 
 Cenário 21 - Convocar vencedor
     [Tags]    convocar_vencedor
