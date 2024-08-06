@@ -25,6 +25,7 @@ Resource         ../Ressource/Resource_compra_direta.robot
 
 
 *** Test Cases ***
+
 Cenário 01 - Cadastro de Compra Direta - Aba dados Gerais
     [Tags]    criar_Compra
     Dado que acesso o sistema

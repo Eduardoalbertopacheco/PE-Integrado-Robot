@@ -5,7 +5,7 @@ Resource         ../Ressource/Resource_Cadastro_pregão.robot
 
 
 *** Variables ***
-${OBJETO_CP}       Compra Direta - Lote - DISPENSA
+${OBJETO_CP}       Compra Direta - ITEM - DISPENSA 05/08
 
 ${CAMPO_OBJETO}    //input[contains(@name,'sDsObjeto')]
 
@@ -37,6 +37,26 @@ E clico em Incluir Processo de Compra Direta
     
     Wait Until Element Is Visible    //a[contains(.,'Incluir processo')]    timeout=30s
     Click Element    //a[contains(.,'Incluir processo')]
+
+
+E seleciono o filtro Compras diretas encerradas
+
+    Select Frame    xpath=//iframe[@class='ifrmConteudo']
+
+    # Clique no campo exibir
+    Wait Until Element Is Visible    //select[contains(@name,'ddlVisoes')]    timeout=30s
+    Click Element    //select[contains(@name,'ddlVisoes')]
+
+    # Seleção de todas as compras diretas
+    Wait Until Element Is Visible    //option[@value='19009'][contains(.,'Compras diretas encerradas')]    timeout=30s
+    Click Element    //option[@value='19009'][contains(.,'Compras diretas encerradas')]
+
+    # Clique do botão pesquisar
+    Wait Until Element Is Visible    //input[@value='Pesquisar']    timeout=30s
+    Click Element    //input[@value='Pesquisar']
+    Sleep    2
+    Capture Page Screenshot
+
 
 
 E seleciono o filtro Todas as compras diretas
@@ -76,6 +96,7 @@ E seleciono o filtro Compra diretas em andamento
     Sleep    2
     Capture Page Screenshot
 
+
 E seleciono o modalidade para Dispensa
     Wait Until Element Is Visible    ${SELECAO.CAMPO_MODALIDADE}    timeout=30s
     Click Element    ${SELECAO.CAMPO_MODALIDADE}
@@ -83,12 +104,14 @@ E seleciono o modalidade para Dispensa
     Click Element     ${SELECAO_VALUE.MOD_DISPENSA}
     Capture Page Screenshot
 
+
 E seleciono o modalidade para Inexigibilidade
     Wait Until Element Is Visible    ${SELECAO.CAMPO_MODALIDADE}    timeout=30s
     Click Element    ${SELECAO.CAMPO_MODALIDADE}
     Sleep    2
     Click Element     ${SELECAO_VALUE.MOD_INEXIGIBILIDADE}
     Capture Page Screenshot
+
 
 E seleciono o modalidade para Dispensa Emergencial
     Wait Until Element Is Visible    ${SELECAO.CAMPO_MODALIDADE}    timeout=30s
@@ -200,17 +223,17 @@ Então preencho todos os campos da Aba Dados gerais
     Sleep    2
     Handle Alert    ACCEPT
 
+
 E clico na compra direta em recebimento de lances
    ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='Compra Direta - Item - DISPINSA']]//td[8]//img[contains(@title,'Recebimento de lances')]
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='Compra Direta - Item - DISPINSA']]//td[8]//img[contains(@title,'Recebimento de lances')]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     END
     Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[2]//a
-
 
 
 
@@ -308,8 +331,8 @@ Então faço o agendamento da compra Direta
 E configuro o agendamento
 
     # Data inicial dos lances
-   ${hora_atual+02min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=2)).strftime('%d-%m-%Y %H:%M:%S')    datetime
-    Log    ${hora_atual+02min}
+   ${hora_atual+03min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=3)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+    Log    ${hora_atual+03min}
 
     # Data final dos lances
     ${hora_atual+300min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=300)).strftime('%d-%m-%Y %H:%M:%S')    datetime
@@ -333,7 +356,7 @@ E configuro o agendamento
 
     Wait Until Element Is Visible    //input[contains(@name,'tbxDataInicialProposta')]    timeout=30s
     # Clear Text    //input[contains(@name,'tbxDataInicialProposta')]
-    Input Text    //input[contains(@name,'tbxDataInicialProposta')]    ${hora_atual+02min}
+    Input Text    //input[contains(@name,'tbxDataInicialProposta')]    ${hora_atual+03min}
 
     
     Wait Until Element Is Visible    //input[contains(@name,'tbxDataEncerramento')]    timeout=30s
@@ -410,7 +433,6 @@ E preencho os dados do lance na Compra Direta por Item
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
     END
-
     Click Element    ${CAMPO_SELECAO_MARCA}
 
     Log    Aguardando a visibilidade do item na lista
@@ -491,8 +513,8 @@ E insiro as novas datas para prorrogar Compra Direta
     ${all_windows}=    Get Window Handles
     ${janela}=    Set Variable    ${all_windows}[1]
 
-    ${hora_atual+2min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=2)).strftime('%d-%m-%Y %H:%M:%S')    datetime
-    Log    ${hora_atual+2min}
+    ${hora_atual+3min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=3)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+    Log    ${hora_atual+3min}
 
     Switch Window    ${janela}
     Sleep    2
@@ -507,7 +529,7 @@ E insiro as novas datas para prorrogar Compra Direta
     Click Element    id=ctl00_conteudoPagina_tbxDataFinalLance
     Sleep    2
     Set Focus To Element    id=ctl00_conteudoPagina_tbxDataFinalLance
-    Execute JavaScript    document.getElementById("ctl00_conteudoPagina_tbxDataFinalLance").value="${hora_atual+2min}";
+    Execute JavaScript    document.getElementById("ctl00_conteudoPagina_tbxDataFinalLance").value="${hora_atual+3min}";
     Sleep    2
     Capture Page Screenshot
 
@@ -523,9 +545,23 @@ Então finalizo a Compra Direta
 
     Select Frame    //frame[contains(@name,'frmNegociacao')]
 
-    Wait Until Element Is Visible    //a[contains(.,'Finalizar compra direta')]    timeout=30s
+
+   ${all_windows}=    Get Window Handles
+
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
+    END
     Click Element    //a[contains(.,'Finalizar compra direta')]
     Sleep    2
+
+
+
+    # Wait Until Element Is Visible    //a[contains(.,'Finalizar compra direta')]    timeout=30s
+    # Click Element    //a[contains(.,'Finalizar compra direta')]
+    # Sleep    2
 
     ${all_windows}=    Get Window Handles
     ${janela_02}=    Set Variable    ${all_windows}[1]
@@ -540,10 +576,7 @@ Então finalizo a Compra Direta
     Wait Until Element Is Visible    //input[contains(@value,'Sim')]
     Click Element    //input[contains(@value,'Sim')]
     Sleep    4
-    Capture Page Screenshot
-    Sleep    2
-    Handle Alert    ACCEPT
-    Sleep    1
+
 
 
 Então ratifico a Compra Direta
@@ -566,10 +599,6 @@ Então ratifico a Compra Direta
     Wait Until Element Is Visible    //input[contains(@value,'Sim')]
     Click Element    //input[contains(@value,'Sim')]
     Sleep    4
-    Capture Page Screenshot
-    Sleep    2
-    Handle Alert    ACCEPT
-    Sleep    1
 
 E acesso a auditoria
 

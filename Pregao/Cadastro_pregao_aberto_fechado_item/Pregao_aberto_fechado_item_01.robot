@@ -50,6 +50,8 @@ Resource         ../../Ressource/Resource_Cadastro_pregão.robot
 
 
 *** Test Cases ***
+
+
 Cenário 01 - Criar Pregão - Aba Dados Gerais
     [Tags]    criar_pregao
     Dado que acesso o sistema

@@ -1,13 +1,15 @@
 *** Settings ***
 Documentation    
 Library          SeleniumLibrary
+Library          Browser
 Library          OperatingSystem
 Library          DateTime
 Library  Collections
+Library    Dialogs
 
 *** Variables ***
 
-${resumo_sc}    		SC Lote - Para Concorrencia - 01/08
+${resumo_sc}    		SC Tste
 ${URL}           https://www.homologpeintegrado.pe.gov.br/default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 
@@ -177,6 +179,10 @@ Então incluo os itens
 
     # Implementar aqui a quantidade do item
     Wait Until Element Is Visible    xpath=(//span[contains(@unselectable,'on')])[10]    timeout=30s
+    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
+    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
+    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
+    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
     Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
     
     #  Click no botão 'Salvar'
@@ -1358,6 +1364,10 @@ Então incluo os itens e agrupo por lote
     # Implementar aqui a quantidade do item
     # Item 01
     Wait Until Element Is Visible    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]    timeout=30s
+    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
     Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
 
     # Item 02
