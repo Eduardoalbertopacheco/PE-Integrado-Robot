@@ -7,7 +7,7 @@ Resource         ../Ressource/Resource_Cadastro_pregão.robot
 *** Variables ***
 ${OBJETO_CP}       Compra Direta - ITEM - DISPENSA 05/08
 
-${CAMPO_OBJETO}    //input[contains(@name,'sDsObjeto')]
+${CAMPO_OBJETO}    //textarea[@name='ctl00$ContentPrincipal$txtObjeto']
 
 
 *** Keywords ***
