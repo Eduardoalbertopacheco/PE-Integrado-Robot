@@ -4,7 +4,7 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource         ../Ressource/Resource_Cadastro_SC.robot
+Resource         ../Solicitacao_compra/Resource_Cadastro_SC.resource
      
 *** Variables ***
 

@@ -2,10 +2,8 @@
 Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
 Library          SeleniumLibrary
 Library          Browser
-# Library          DateTime
-# Library          OperatingSystem
-Resource         ../../Ressource/Resource_Cadastro_SC.robot
-Resource         ../../Ressource/Resource_Cadastro_pregão.robot
+Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
+Resource         ../../Pregao/Resource_Cadastro_pregão.resource
      
 
 *** Variables ***

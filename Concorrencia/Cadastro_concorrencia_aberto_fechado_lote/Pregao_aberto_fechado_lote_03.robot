@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource         ../../Ressource/Resource_Cadastro_SC.robot
-Resource         ../../Ressource/Resource_Cadastro_pregão.robot
+Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
+Resource         ../../Pregao/Resource_Cadastro_pregão.resource
      
 
 *** Test Cases ***
@@ -28,7 +28,7 @@ Cenário 27 - Reajustar preço dos Lotes
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então faço o reajuste dos lotes
+    Então gravo o valor do lote
 
 
 Cenário 27 - Adjudicar Pregão

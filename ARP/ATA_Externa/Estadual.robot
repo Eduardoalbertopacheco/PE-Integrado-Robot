@@ -7,16 +7,18 @@ Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
 Resource         ../Ressource_ARP.robot
 
 
+
 *** Test Cases ***
 
-Cenário 01 - Criar Ata Externa Municipal
+Cenário 01 - Criar Ata Externa Estadual
     [Tags]    criar_ata_municipal
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
     E clico em Incluir Ata
-    E seleciono Esfera administrativa como Municipal
-    E seleciono o município
+    E seleciono Esfera administrativa como Estadual
+    E seleciono o Estado de origem
+    E seleciono o Orgão Gestor ATA
     E preencho todos os Dados Gerais
     E configuro as datas de vigencia
     Então salvo a ARP

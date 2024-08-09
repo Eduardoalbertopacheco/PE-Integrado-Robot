@@ -5,12 +5,12 @@ Library          Browser
 Library          OperatingSystem
 Library          DateTime
 Library  Collections
-Library    Dialogs
+
 
 *** Variables ***
 
 ${resumo_sc}    		SC Tste
-${URL}           https://www.homologpeintegrado.pe.gov.br/default.aspx
+${URL}           https://www.homologpeintegrado.pe.gov.br/Portal/Default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 
 

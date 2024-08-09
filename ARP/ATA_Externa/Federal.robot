@@ -16,7 +16,8 @@ Cenário 01 - Criar Ata Externa Municipal
     E acesso a lista de Atas de Registro de preços
     E clico em Incluir Ata
     E seleciono Esfera administrativa como Municipal
-    E seleciono o município
+    # E seleciono Esfera administrativa como Estadual
+    # E seleciono Esfera administrativa como Federal
     E preencho todos os Dados Gerais
     E configuro as datas de vigencia
     Então salvo a ARP

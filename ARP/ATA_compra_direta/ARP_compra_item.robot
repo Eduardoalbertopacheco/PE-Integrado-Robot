@@ -3,10 +3,11 @@ Documentation    Fluxo feliz - Cadastro de Ata de Registro de Preço
 Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
-Resource         ../../Ressource//Resource_Cadastro_pregão.robot
-Resource         ../../Ressource//Resource_compra_direta.robot
-Resource         ../../Ressource/Ressource_ARP.robot
-     
+Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
+Resource         ../Ressource_ARP.robot
+
+       
+
 *** Test Cases ***
 
 Cenário 01 - Gerar ARP da Compra Direta
