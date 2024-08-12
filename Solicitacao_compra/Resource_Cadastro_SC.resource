@@ -9,7 +9,7 @@ Library  Collections
 
 *** Variables ***
 
-${resumo_sc}    		SC Tste
+${resumo_sc}    		SC ITEM para Pregão - Aberto
 ${URL}           https://www.homologpeintegrado.pe.gov.br/Portal/Default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 

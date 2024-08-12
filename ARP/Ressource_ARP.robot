@@ -5,7 +5,6 @@ Library          DateTime
 Library          Browser
 
 Resource        ../Compra_direta/Resource_compra_direta.resource
-Resource        ../Solicitacao_compra/Resource_Cadastro_SC.resource
 
 
 *** Variables ***

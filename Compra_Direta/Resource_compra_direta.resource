@@ -2,7 +2,6 @@
 Documentation    
 Library          SeleniumLibrary
 Resource         ../Pregao/Resource_Cadastro_pregão.resource
-Resource         ../Solicitacao_compra/Resource_Cadastro_SC.resource
 
 
 *** Variables ***
