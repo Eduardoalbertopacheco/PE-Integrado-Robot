@@ -5,8 +5,6 @@ Resource         ../Pregao/Resource_Cadastro_pregão.resource
 
 
 *** Variables ***
-${OBJETO_CP}       Compra Direta - ITEM - DISPENSA 05/08
-
 ${CAMPO_OBJETO}    //textarea[@name='ctl00$ContentPrincipal$txtObjeto']
 
 
@@ -174,7 +172,7 @@ Então preencho todos os campos da Aba Dados gerais
     Click Element    //table[1]/tbody[1]/tr[7]/td[2]/span[1]/input[1]
 
     Wait Until Element Is Visible    ${CAMPO_OBJETO} 
-    Input Text    ${CAMPO_OBJETO}     ${OBJETO_CP}
+    Input Text    ${CAMPO_OBJETO}     ${OBJETO_COMPRA}
 
     # Condição de pagamento
     Wait Until Element Is Visible    ${SELECAO.CONDICAO_PAGAMENTO}    timeout=30s
@@ -227,25 +225,25 @@ Então preencho todos os campos da Aba Dados gerais
 E clico na compra direta em recebimento de lances
    ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[8]//img[contains(@title,'Recebimento de lances')]
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[8]//img[contains(@title,'Recebimento de lances')]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     END
-    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[2]//a
+    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='$${OBJETO_COMPRA}']]//td[2]//a
 
 
 
 E clico na Compra Direta da lista
-    Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[2]//a    timeout=30s
-    Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[2]//a
+    Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a    timeout=30s
+    Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
     Capture Page Screenshot
 
 
 E seleciono a Compra Direta da lista
-    Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[10]//input    timeout=30s
-    Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_CP}']]//td[10]//input
+    Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[10]//input    timeout=30s
+    Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[10]//input
     Capture Page Screenshot
 
 

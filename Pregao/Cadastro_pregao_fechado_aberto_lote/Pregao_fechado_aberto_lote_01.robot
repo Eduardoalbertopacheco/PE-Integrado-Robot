@@ -14,7 +14,7 @@ Resource         ../Resource_Cadastro_pregão.resource
 ...    CODICAO_PAGAMENTO=//td[@id= "td_cP_PREGAO_x_nCdCondicaoPagamento"]
 ...    PRAZO_ENTREGA=//td[@id= "td_cP_PREGAO_x_nCdPrazoEntrega"]
 ...    MODO_DISPUTA=//td[@id="td_cP_PREGAO_x_nIdTipoDisputa"]
-# ...    CAMPO_EXIBIR_INCLUIR_ITEM_SC=//select[contains(@name,'ctl00$ddlVisoes')]
+...    CAMPO_EXIBIR_INCLUIR_ITEM_SC=//select[contains(@name,'ctl00$ddlVisoes')]
 
 &{VALOR_SELECAO}
 ...    MODAL_PREGAO=//li[contains(.,'Pregão Eletrônico')]

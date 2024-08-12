@@ -8,7 +8,7 @@ Resource         ../Solicitacao_compra/Resource_Cadastro_SC.resource
      
 *** Variables ***
 
-${OBJETO}       Concorrencia - Aberto - Item - 02/07
+# ${OBJETO}       Teste Edu - Pregão Aberto Fechado - Lote
 ${TITULO_PARECER}    Título do Parecer
 
 ${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
@@ -74,7 +74,7 @@ ${MENU_NEGOCIACAO}    xpath=//div[@unselectable='on'][contains(.,'Negociação')
 ...    LICITACOES_ELERONICAS=//td[@class='label'][contains(.,'Licitações eletrônicas')]
 
 
-${CAMPO_BOJETO}    //input[contains(@name,'_cP_PREGAO_x_sDsObjeto')]
+${CAMPO_OBJETO}    //input[contains(@name,'_cP_PREGAO_x_sDsObjeto')]
 
 
 &{SELECAO}
@@ -153,8 +153,8 @@ Então preencho a Aba de Dados Gerais
     Capture Page Screenshot
 
 
-    Wait Until Element Is Visible    ${CAMPO_BOJETO}    timeout=30s
-    Input Text    ${CAMPO_BOJETO}    ${OBJETO}
+    Wait Until Element Is Visible    ${CAMPO_OBJETO}    timeout=30s
+    Input Text    ${CAMPO_OBJETO}    ${OBJETO_PREGAO}
     Capture Page Screenshot
 
     
@@ -200,8 +200,8 @@ E vejo a Auditoria
     Sleep    3
     
 
-    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[9]//img[@id="imgAuditoria"]    timeout=30s
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[9]//img[@id="imgAuditoria"]
+    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[9]//img[@id="imgAuditoria"]    timeout=30s
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[9]//img[@id="imgAuditoria"]
     Capture Page Screenshot
     SeleniumLibrary.Close Browser
 
@@ -661,8 +661,8 @@ E acesso a tela com filtro todas as Licitações
 E clico na licitação da lista
 
     # Clique na SC selecionada
-    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]    timeout=30s
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
+    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]    timeout=30s
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
     Sleep    4
 
 E Clique no botão Parecer
@@ -811,8 +811,8 @@ E seleciono a licitação para agendamento
    Capture Page Screenshot
 
     # Clique na SC selecionada
-    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO}')]]//td[10]//input    timeout=30s
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO}')]]//td[10]//input
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[10]//input    timeout=30s
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[10]//input
     Sleep    4
 
     # Clique no botão agendar
@@ -978,26 +978,26 @@ E acesso todos as licitações da lista
 E seleciono a SC Em propotas da lista
     ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Em proposta')]
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Em proposta')]
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Em proposta')]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Em proposta')]
     END
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
 
 
 E seleciono a licitação em abertura de proposta da lista
 
      ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
     END
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
 
 
 
@@ -1005,30 +1005,21 @@ E seleciono a licitação em ajuste de preços da lista
 
      ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
     END
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
-
-
-
-    # ${all_windows}=    Get Window Handles
-    # # Clique na SC selecionada
-    # Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]    timeout=30s
-    # Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
-    # Sleep    4
-    # Capture Page Screenshot
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
 
 
 E seleciono a licitação da lista
 
     ${all_windows}=    Get Window Handles
     # Clique na SC selecionada
-    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]    timeout=30s
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO}')]]//td[2]
+    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]    timeout=30s
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
     Sleep    4
     Capture Page Screenshot
 
@@ -1049,14 +1040,6 @@ Então abro as proposta
     Sleep    2
     Handle Alert    ACCEPT
     Sleep    3
-
-
-    # Wait Until Element Is Visible    //a[contains(.,'Abrir proposta(s)')]    timeout=120s
-    # Capture Page Screenshot
-    # Click Element    //a[contains(.,'Abrir proposta(s)')]
-    # Sleep    2
-    # Handle Alert    ACCEPT
-    # Sleep    3
 
 
 Então inicio a disputa

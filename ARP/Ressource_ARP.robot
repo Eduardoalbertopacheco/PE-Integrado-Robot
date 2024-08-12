@@ -8,11 +8,8 @@ Resource        ../Compra_direta/Resource_compra_direta.resource
 
 
 *** Variables ***
-*** Variables ***
 
-${OBJETO_ATA}              Ata Externa Estadual Mod_Pregão
-${TITULO_ATA_EXTERNA}      Ata Externa Municipal Mod_Pregão
-
+${TITULO_ATA_EXTERNA}      Ata Externa Teste
 
 ${CAMPO_TITULO}          //input[contains(@name,'tbxTitulo')]
 ${CAMPO_OBJETO}                //textarea[contains(@name,'txtObjeto')]
@@ -76,8 +73,8 @@ E acesso a lista de Atas de Registro de preços
 E clico na Ata da Lista
 
     Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_CP}']]//a    timeout=30s
-    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_CP}']]//a
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//a    timeout=30s
+    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//a
     Sleep    2
     Capture Page Screenshot
 
@@ -93,8 +90,8 @@ E seleciono a Ata Externa da Lista
 E seleciono a Ata da Lista
 
     Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_CP}']]//td[11]//input    timeout=30s
-    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_CP}']]//td[11]//input
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[11]//input    timeout=30s
+    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[11]//input
     Sleep    2
     Capture Page Screenshot
 

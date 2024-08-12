@@ -3,7 +3,6 @@ Documentation    Fluxo Feliz - Cadastro de Compra Direta
 Library          SeleniumLibrary
 Library          Browser
 Resource         ./Resource_compra_direta.resource
-Resource         ../Solicitacao_compra/Resource_Cadastro_SC.resource
 
 *** Variables ***
 &{SELECAO}
