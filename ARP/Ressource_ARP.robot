@@ -9,6 +9,10 @@ Resource        ../Compra_direta/Resource_compra_direta.resource
 
 *** Variables ***
 
+${SELECAO_MARCA_ATA}    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlMarca_listbox')]
+${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
+${ITEM_LIST}       //ul[@id='ctl00_ContentPrincipal_ddlMarca_listbox']
+
 ${TITULO_ATA_EXTERNA}      Ata Externa Teste
 
 ${CAMPO_TITULO}          //input[contains(@name,'tbxTitulo')]
@@ -201,9 +205,6 @@ Então ativo a ARP
     Capture Page Screenshot
     
 
-
-
-*** Keywords ***
 E clico em Incluir Ata
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]    timeout=15s
@@ -293,6 +294,28 @@ E configuro as datas de vigencia
     # Nr dias para aviso de encerramento
     Wait Until Element Is Visible    //fieldset[2]/table[1]/tbody[1]/tr[1]/td[3]/span[1]/span[1]/input[1]
     Input Text    //fieldset[2]/table[1]/tbody[1]/tr[1]/td[3]/span[1]/span[1]/input[1]    10
+
+
+E seleciono o Orgão Gestor ATA Municipal
+
+   # Seleção Orgão Gestor ATA
+    Wait Until Element Is Visible    ${LUPA_GESTOR_ATA}
+    Click Element    ${LUPA_GESTOR_ATA}
+
+    # Switch Window
+    Wait Until Element Is Visible    //span[contains(.,'Selecionar Órgão Gestor da Ata')]   timeout=30s
+    Wait Until Element Is Visible    ${INPUT_PESQ_UG_ATA}
+    Input Text    ${INPUT_PESQ_UG_ATA}    GOVERNO DO PIAUÍ
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]   timeout=30s
+    Click Element    //a[contains(.,'Pesquisar')] 
+
+    Wait Until Element Is Visible    
+    ...    //input[contains(@value,'129744|GOVERNO DO PIAUÍ|0|0')]    timeout=30s
+    Click Element    //input[contains(@value,'129744|GOVERNO DO PIAUÍ|0|0')]
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+    Capture Page Screenshot
+
 
 
 E seleciono o Orgão Gestor ATA
@@ -398,24 +421,6 @@ E preencho todos os Dados Gerais
     Sleep    2
 
 
-    # # Seleção Orgão Gestor ATA
-    # Wait Until Element Is Visible    ${LUPA_GESTOR_ATA}
-    # Click Element    ${LUPA_GESTOR_ATA}
-
-    # # Switch Window
-    # Wait Until Element Is Visible    //span[contains(.,'Selecionar Órgão Gestor da Ata')]   timeout=30s
-    # Wait Until Element Is Visible    ${INPUT_PESQ_UG_ATA}
-    # Input Text    ${INPUT_PESQ_UG_ATA}    GOVERNO DO PIAUÍ
-    # Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]   timeout=30s
-    # Click Element    //a[contains(.,'Pesquisar')] 
-
-    # Wait Until Element Is Visible    
-    # ...    //input[@value='129744|GOVERNO DO PIAUÍ|0|0']    timeout=30s
-    # Click Element    //input[@value='129744|GOVERNO DO PIAUÍ|0|0']
-    # Click Element    //a[contains(.,'Confirmar')]
-    # Sleep    2
-    # Capture Page Screenshot
-
     # Permite adesão SIM
     Click Element    //input[@id='ctl00_ContentPrincipal_rbtPermiteAdesao_0']
 
@@ -445,6 +450,7 @@ E preencho todos os Dados Gerais
     Input Text    //fieldset[3]/table[1]/tbody[1]/tr[2]/td[2]/span[1]/span[1]/input[1]    30
     Capture Page Screenshot
 
+
 Então salvo a ARP
     Wait Until Element Is Visible    //a[@onclick='SalvarARP(false);']   10s
     Click Element    //a[@onclick='SalvarARP(false);']
@@ -459,8 +465,6 @@ E vejo a Auditoria da ARP
     Sleep    1
     Capture Page Screenshot
     SeleniumLibrary.Close Browser
-
-
 
 
 E clico na Ata Externa da Lista
@@ -567,4 +571,98 @@ Então Delibero a Ata Externa
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    2
     Capture Page Screenshot
+
+
+Então incluo os itens na ATA Externa
+
+    # clique de itens
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Wait Until Element Is Visible    //span[@class='k-link'][contains(.,'Itens')]    timeout=10s
+    Click Element    //span[@class='k-link'][contains(.,'Itens')]
+
+    # Clique do popup de confirmação
+    Wait Until Element Is Visible    //a[contains(.,'OK')]    timeout=20s
+    Click Element    //a[contains(.,'OK')]
+
+    # clique em Incluir
+    Wait Until Element Is Visible    //a[contains(@onclick,'incluirItem()')]    timeout=30s
+    Click Element    //a[contains(@onclick,'incluirItem()')]
+
+
+    # clique da lupa descrição
+    Wait Until Element Is Visible    //a[@onclick='AbrirJanelaPesquisarItem();']    timeout=30s
+    Click Element    //a[@onclick='AbrirJanelaPesquisarItem();']
+    
+
+    # Pesquisar produto pelo código
+    Wait Until Element Is Visible    //input[contains(@name,'txtCodigo')]    timeout=30s
+    Input Text    //input[contains(@name,'txtCodigo')]    1000241
+
+    Click Element    //a[@onclick='AtualizarPesquisaProduto()']
+
+
+    # Clique para selecionar o item
+    Wait Until Element Is Visible    //input[contains(@title,'Selecione')]    timeout=30s
+    Click Element    //input[contains(@title,'Selecione')]
+
+    Click Element    //a[contains(@onclick,'ConfirmarProduto()')]
+
+
+    # Seleção und. medida
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlUnidadeDeMedida_listbox']    timeout=30s
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlUnidadeDeMedida_listbox']
+    Sleep    2
+
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'BD 1 KG')]    timeout=30s
+    Click Element    //li[@tabindex='-1'][contains(.,'BD 1 KG')]
+
+
+    # Qauntidade registrada
+    Wait Until Element Is Visible    //form[1]/div[4]/div[4]/div[2]/div[4]/span[1]/span[1]/span[1]/span[1]/span[1]    timeout=30s
+    Sleep    2
+    Double Click Element    //form[1]/div[4]/div[4]/div[2]/div[4]/span[1]/span[1]/span[1]/span[1]/span[1]
+    Double Click Element    //form[1]/div[4]/div[4]/div[2]/div[4]/span[1]/span[1]/span[1]/span[1]/span[1]
+    Double Click Element    //form[1]/div[4]/div[4]/div[2]/div[4]/span[1]/span[1]/span[1]/span[1]/span[1]
+    Double Click Element    //form[1]/div[4]/div[4]/div[2]/div[4]/span[1]/span[1]/span[1]/span[1]/span[1]
+    Double Click Element    //form[1]/div[4]/div[4]/div[2]/div[4]/span[1]/span[1]/span[1]/span[1]/span[1]
+
+    # Seleção moeda
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlMoeda_listbox')]    timeout=30s
+    Click Element    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlMoeda_listbox')]
+    Sleep    2
+
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Real')]    timeout=30s
+    Click Element    //li[@tabindex='-1'][contains(.,'Real')]
+
+
+    # Valor unitário
+    Wait Until Element Is Visible    //form[1]/div[4]/div[4]/div[4]/div[4]/span[1]/span[1]/span[1]/span[1]/span[1]
+    Double Click Element    //form[1]/div[4]/div[4]/div[4]/div[4]/span[1]/span[1]/span[1]/span[1]/span[1]
+
+
+    # Fornecedor
+    Wait Until Element Is Visible    //a[contains(@onclick,'AbrirJanelaPesquisarFornecedor();')]
+    Click Element    //a[contains(@onclick,'AbrirJanelaPesquisarFornecedor();')]
+
+
+    # Seleção do fornecedor
+    Wait Until Element Is Visible    //input[contains(@data-scdestado,'RR')]    timeout=30s
+    Click Element    //input[contains(@data-scdestado,'RR')]
+
+    Click Element    //a[contains(@onclick,'ConfirmarEmpresa()')]
+
+
+    # Seleção Marca
+    Wait Until Element Is Visible    ${SELECAO_MARCA_ATA}   timeout=30s
+    Click Element    ${SELECAO_MARCA_ATA}
+    Wait Until Element Is Visible    ${ITEM}    timeout=30s
+    
+    Click Element    ${ITEM}
+    Sleep    2s
+    Capture Page Screenshot
+
+    Click Element    //a[contains(.,'Salvar e fechar')]
+    Sleep    3
+
 

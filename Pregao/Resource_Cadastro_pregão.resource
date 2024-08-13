@@ -413,11 +413,6 @@ Então incluo a SC Por Item ao Pregão
     Capture Page Screenshot
 
 
-    # # Selecionar a SC para Incluir
-    # Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input    timeout=30s
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
-    # Capture Page Screenshot
-
     # Clique no botão de Incluir SC
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
@@ -464,11 +459,6 @@ Então incluo a SC Por Lote ao Pregão
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
     Capture Page Screenshot
 
-
-    # # Selecionar a SC para Incluir
-    # Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input    timeout=30s
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
-    # Capture Page Screenshot
 
     # Clique no botão de Incluir SC
     Click Element    //a[contains(.,'Incluir')]
@@ -734,11 +724,6 @@ Então finalizo o parecer
     Sleep    1
     Capture Page Screenshot
     SeleniumLibrary.Close Browser
-
-
-
-  
-
 
 
 E clico no botão solicitar autorização

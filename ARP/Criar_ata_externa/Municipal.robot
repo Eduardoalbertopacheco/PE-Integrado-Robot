@@ -17,6 +17,7 @@ Cenário 01 - Criar Ata Externa Municipal
     E clico em Incluir Ata
     E seleciono Esfera administrativa como Municipal
     E seleciono o município
+    E seleciono o Orgão Gestor ATA Municipal
     E preencho todos os Dados Gerais
     E configuro as datas de vigencia
     Então salvo a ARP
@@ -68,4 +69,14 @@ Cenário 06 - Deliberar Ata
     E acesso a lista de Atas de Registro de preços
     E clico na Ata Externa da Lista
     Então Delibero a Ata Externa
+    E vejo a Auditoria da ARP
+
+
+Cenário 07 - Incluir Itens com Gestor Central de ATA
+    [Tags]    incluir_item_ata
+    Dado que acesso o sistema
+    E faço login com usuário "Gestoratacentral2.120101"
+    E acesso a lista de Atas de Registro de preços
+    E clico na Ata Externa da Lista
+    Então incluo os itens na ATA Externa
     E vejo a Auditoria da ARP

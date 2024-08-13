@@ -7,7 +7,6 @@ Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
 Resource         ../Ressource_ARP.robot
 
 
-
 *** Test Cases ***
 
 Cenário 01 - Criar Ata Externa Estadual
@@ -80,3 +79,4 @@ Cenário 07 - Incluir Itens com Gestor Central de ATA
     E acesso a lista de Atas de Registro de preços
     E clico na Ata Externa da Lista
     Então incluo os itens na ATA Externa
+    E vejo a Auditoria da ARP
