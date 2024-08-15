@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
+Documentation    Fluxo Feliz - Cadastro de Pregão Eletronico
 Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
@@ -20,29 +20,14 @@ Resource         ../Resource_Cadastro_pregão.resource
 
 &{VALOR_SELECAO}
 ...    MODAL_PREGAO=//li[contains(.,'Pregão Eletrônico')]
-# ...    MODAL_CONCORRENCIA=//li[contains(.,'Concorrência Eletrônica')]
 ...    CRIT_PREGAO_LEI_14_133=//li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
-# ...    CRIT_CONCORRENCIA_LEI_14_133_21=//li[contains(.,'LICITAÇÃO NA MODALIDADE CONCORRÊNCIA ELETRÔNICA - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
 ...    COD_PAGAMENTO_AVISTA=//li[@tabindex='-1'][contains(.,'Á vista')]
 ...    PRAZO_ENTRG_10_DIAS=//li[@tabindex='-1'][contains(.,'10 DIAS')]
-# ...    MODO_DISPUTA_ABERTO=(//li[@tabindex='-1'][contains(.,'Aberto')])[1]
-# ...    MODO_DISPUTA_ABERTO_FECHADO=//li[@tabindex='-1'][contains(.,'Aberto-fechado')]
 ...    MODO_DISPUTA_FECHADO_ABERTO=//li[@tabindex='-1'][contains(.,'Fechado-aberto')]
 ...    EXIBIR_INCLUIR_ITEM_SC_POR_ITEM=//option[contains(@value,'7053')]
-# ...    EXIBIR_INCLUIR_ITEM_SC_POR_LOTE=//option[contains(@value,'7054')]
-
 
 &{SELECAO_MENU_NEGOCIACAO}    
-# ...    SOLICITACAO_COMPRA=//td[@class='label'][contains(.,'Solicitação de compra')]
-# ...    COTACAO=//td[@class='label'][contains(.,'Cotação')]
-# ...    COMPRA_DIRETA=//td[@class='label'][contains(.,'Compra direta')]
 ...    LICITACAO=//td[@class='label'][contains(.,'Licitação')]
-
-# &{SUBMENU_SOLICITACAO_COMPRA}
-# ...    LISTA_SOLICTACAO_COMPRA=//td[@class='label'][contains(.,'Lista de solicitações de compra')]
-
-# &{SUBMENU_COTACAO}
-# ...    LISTA_COTACAO=//a[@title='Cota&#231;&#245;es'][contains(.,'Lista de cotações')]
 
 &{SUBMENU_LICITACAO}
 ...    NOVA_LICITACAO=//td[@class='label'][contains(.,'Nova licitação eletrönica')]

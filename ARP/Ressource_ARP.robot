@@ -3,11 +3,15 @@ Documentation    Fluxo feliz - Cadastro de Ata de Registro de Preço
 Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
+Library          OperatingSystem
+Library          String
 
 Resource        ../Compra_direta/Resource_compra_direta.resource
 
 
 *** Variables ***
+
+${VAR_FILE}    .variables.py
 
 ${SELECAO_MARCA_ATA}    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlMarca_listbox')]
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
@@ -203,7 +207,7 @@ Então ativo a ARP
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    2
     Capture Page Screenshot
-    
+
 
 E clico em Incluir Ata
     Select Frame    //iframe[@name='frmConteudo']
@@ -476,7 +480,7 @@ E clico na Ata Externa da Lista
     Capture Page Screenshot
 
 
-Então incluo o documento na Ata
+Então incluo e assino o documento na Ata
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -504,12 +508,12 @@ Então incluo o documento na Ata
     Handle Alert    ACCEPT
     # SeleniumLibrary.Close Browser
 
-Então assino o documento da Ata
-    Switch Window
-    Select Frame    //frame[@name='main']
+# Então assino o documento da Ata
+#     Switch Window
+#     Select Frame    //frame[@name='main']
 
-    Wait Until Element Is Visible    //li[contains(.,'Documentos do processo')]    timeout=30s
-    Click Element        //li[contains(.,'Documentos do processo')]
+#     Wait Until Element Is Visible    //li[contains(.,'Documentos do processo')]    timeout=30s
+#     Click Element        //li[contains(.,'Documentos do processo')]
 
     # Selecionar o documento
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -665,4 +669,112 @@ Então incluo os itens na ATA Externa
     Click Element    //a[contains(.,'Salvar e fechar')]
     Sleep    3
 
+
+E solicito adesão
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //a[@onclick='SolicitarConsumoAdesao();']    timeout=30s
+    Click Element    //a[@onclick='SolicitarConsumoAdesao();']
+
+E seleciono o grupo de compras
+
+    # Seleção do grupo de compras
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}
+    Click Element    ${LUPA_GRUPO_COMPRA_ATA}
+
+    # Switch Window
+    Wait Until Element Is Visible    //span[contains(.,'Selecionar grupo de compras')]   timeout=30s
+    Wait Until Element Is Visible    ${INPUT_PESQ_GRUPO_COMPRA}
+    Input Text    ${INPUT_PESQ_GRUPO_COMPRA}    CIVIL	
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]   timeout=30s
+    Click Element    //a[contains(.,'Pesquisar')] 
+
+
+    Wait Until Element Is Visible    
+    ...    //input[contains(@value,'46|Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL')]    timeout=30s
+    Click Element    //input[contains(@value,'46|Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL')]
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
+
+E confirmo a solicitação de adesão
+ 
+    Wait Until Element Is Visible    //a[@id="ctl00_ContentButtom_btnSalvar"]    timeout=30s
+    Click Element    //a[@id="ctl00_ContentButtom_btnSalvar"]
+    Sleep    3
+
+
+E seleciono itens da ARP para Adesão
+    Sleep    3
+
+    # clique de itens
+    Wait Until Element Is Visible    //span[@class='k-link'][contains(.,'Itens')]    timeout=15s
+    Scroll Element Into View    //span[@class='k-link'][contains(.,'Itens')]
+    Sleep    2
+
+    
+    ${elements}=  Get WebElements  //span[@class='k-link'][contains(.,'Itens')]
+    Click Element  ${elements}[1]  # Índice começa em 0, então [1] é o segundo elemento
+    Sleep    3
+    Click Element  ${elements}[1]
+
+    
+    # clique de selecionar item
+    Wait Until Element Is Visible    //a[@onclick='selecionarItem()'][contains(.,'Selecionar item')]    timeout=15s
+    Click Element    //a[@onclick='selecionarItem()'][contains(.,'Selecionar item')]
+
+
+    # clique para selecionar o item da lista
+    Wait Until Element Is Visible    //input[@name='ckbSelecionarItemAta']    timeout=15s
+    Click Element    //input[@name='ckbSelecionarItemAta']
+    Capture Page Screenshot
+
+    # clique para conformar
+    Wait Until Element Is Visible    //a[contains(@onclick,'confirmar();')]
+    Scroll Element Into View    //a[contains(@onclick,'confirmar();')]
+    Click Element    //a[contains(@onclick,'confirmar();')]
+    Sleep    3
+    Capture Page Screenshot
+
+
+    # Selecionar a Qtd Solicitada do item
+    Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-arrow-n')]    timeout=15s
+    Double Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
+    Double Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
+
+    Wait Until Element Is Visible    //a[@onclick='SalvarItem(this, false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
+    Click Element    //a[@onclick='SalvarItem(this, false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
+    Sleep    4
+
+
+    # Alterar valor de referencia
+    
+
+    # # Localizar a barra de rolagem horizontal
+    # ${scroll_bar}    Get WebElement    xpath=//div[@class='k-grid-content k-auto-scrollable']
+    # # Obter a largura da barra de rolagem
+    # ${width}    Execute JavaScript    return arguments[0].offsetWidth;    ${scroll_bar}
+    # # Clicar e arrastar a barra de rolagem para a direita
+    # Drag And Drop By Offset    ${scroll_bar}    ${width}    0
+
+
+    Sleep    3
+    Wait Until Element Is Visible    //img[@alt='Alterar valor de referência']    timeout=15s
+    Click Element    //img[@alt='Alterar valor de referência']
+    Click Element    //img[@alt='Alterar valor de referência']
+    Sleep    3
+
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Click Element    //input[contains(@value,'9783')]
+    Click Element    //input[contains(@value,'9108')]
+    Click Element    //input[contains(@value,'9998')]
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
+    Click Element    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
+    Sleep    3
+
+    
 

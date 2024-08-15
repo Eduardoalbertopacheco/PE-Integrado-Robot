@@ -6,6 +6,7 @@ Library          Browser
 Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
 Resource         ../Ressource_ARP.robot
 
+*** Variables ***
 
 *** Test Cases ***
 
@@ -24,23 +25,13 @@ Cenário 01 - Criar Ata Externa Estadual
     E vejo a Auditoria da ARP
 
 
-Cenário 02 - Incluir Documento
+Cenário 02 - Incluir e assinar o documento
     [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
     E clico na Ata Externa da Lista
-    Então incluo o documento na Ata
-    E vejo a Auditoria da ARP
-
-
-Cenário 03 - Assinar Documento
-    [Tags]    assinar_documento
-    Dado que acesso o sistema
-    E faço login com usuário "edu.gestorata.110402"
-    E acesso a lista de Atas de Registro de preços
-    E clico na Ata Externa da Lista
-    Então assino o documento da Ata
+    Então incluo e assino o documento na Ata
     E vejo a Auditoria da ARP
 
 

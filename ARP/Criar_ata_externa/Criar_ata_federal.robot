@@ -9,39 +9,39 @@ Resource         ../Ressource_ARP.robot
 
 *** Test Cases ***
 
-Cenário 01 - Criar Ata Externa Municipal
-    [Tags]    criar_ata_municipal
+Cenário 01 - Criar Ata Externa Federal
+    [Tags]    criar_ata_federal
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
     E clico em Incluir Ata
-    E seleciono Esfera administrativa como Municipal
-    E seleciono o município
-    E seleciono o Orgão Gestor ATA Municipal
+    E seleciono Esfera administrativa como Federal
+    E seleciono o Estado de origem
+    E seleciono o Orgão Gestor ATA
     E preencho todos os Dados Gerais
     E configuro as datas de vigencia
     Então salvo a ARP
     E vejo a Auditoria da ARP
 
 
-Cenário 02 - Incluir Documento
+Cenário 02 - Incluir Documento e assinar documento
     [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
     E clico na Ata Externa da Lista
-    Então incluo o documento na Ata
+    Então incluo e assino o documento na Ata
     E vejo a Auditoria da ARP
 
 
-Cenário 03 - Assinar Documento
-    [Tags]    assinar_documento
-    Dado que acesso o sistema
-    E faço login com usuário "edu.gestorata.110402"
-    E acesso a lista de Atas de Registro de preços
-    E clico na Ata Externa da Lista
-    Então assino o documento da Ata
-    E vejo a Auditoria da ARP
+# Cenário 03 - Assinar Documento
+#     [Tags]    assinar_documento
+#     Dado que acesso o sistema
+#     E faço login com usuário "edu.gestorata.110402"
+#     E acesso a lista de Atas de Registro de preços
+#     E clico na Ata Externa da Lista
+#     Então assino o documento da Ata
+#     E vejo a Auditoria da ARP
 
 
 Cenário 04 - Ativar ATA Externa
