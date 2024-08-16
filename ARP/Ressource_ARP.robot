@@ -11,8 +11,6 @@ Resource        ../Compra_direta/Resource_compra_direta.resource
 
 *** Variables ***
 
-${VAR_FILE}    .variables.py
-
 ${SELECAO_MARCA_ATA}    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlMarca_listbox')]
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
 ${ITEM_LIST}       //ul[@id='ctl00_ContentPrincipal_ddlMarca_listbox']
@@ -46,7 +44,6 @@ Então gero a ARP
     # Confirmar
     Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
     Click Element    //a[contains(.,'Confirmar')]
-
     
     Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
     Capture Page Screenshot
@@ -77,12 +74,19 @@ E acesso a lista de Atas de Registro de preços
     Sleep    2
     Capture Page Screenshot
 
-
-E clico na Ata da Lista
+E clico na Ata de Pregão da lista
 
     Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//a    timeout=30s
-    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//a
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[2]//a    timeout=30s
+    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[2]//a
+    Sleep    2
+    Capture Page Screenshot
+
+E clico na Ata de Compra Direta da Lista
+
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[2]//a    timeout=30s
+    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[2]//a
     Sleep    2
     Capture Page Screenshot
 
@@ -94,8 +98,15 @@ E seleciono a Ata Externa da Lista
     Sleep    2
     Capture Page Screenshot
 
+E seleciono a Ata de Pregão da Lista
 
-E seleciono a Ata da Lista
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[11]//input        timeout=30s
+    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[11]//input
+    Sleep    2
+    Capture Page Screenshot
+
+E seleciono a Ata de Compra Direta da Lista
 
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[11]//input    timeout=30s
@@ -105,6 +116,7 @@ E seleciono a Ata da Lista
 
 
 E configuro a Aba Dados Gerais
+
     ${all_windows}=    Get Window Handles
     ${second_window}=    Set Variable    ${all_windows}[0]
     Switch Window    ${all_windows}[0]
@@ -112,29 +124,37 @@ E configuro a Aba Dados Gerais
     Select Frame    //frame[@name='main']
 
     ${DATA_ATUAL}=    Evaluate    datetime.datetime.now().strftime('%d-%m-%Y')   datetime
-    Log    ${DATA_ATUAL}
-
-    ${ULTIMO_DIA_ANO}=    Evaluate    datetime.datetime(datetime.datetime.now().year, 12, 31).strftime('%d-%m-%Y')    datetime
-    Log    ${ULTIMO_DIA_ANO}
+    ${DATA_ENC}=    Evaluate    (datetime.datetime.strptime('${DATA_ATUAL}', '%d-%m-%Y') + datetime.timedelta(days=30*6)).strftime('%d-%m-%Y')    datetime
 
     # Data inicio vigencia
-    Wait Until Element Is Visible    //input[contains(@name,'tDtInicio')]    
-    Input Text    //input[contains(@name,'tDtInicio')]    ${DATA_ATUAL}
-    
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_tDtInicio    timeout=30s
+    Set Focus To Element    id=ctl00_ContentPrincipal_tDtInicio
+    Input Text    id=ctl00_ContentPrincipal_tDtInicio    ${DATA_ATUAL}
+    Sleep    2
+
+
     # Dara encerramento
-    Wait Until Element Is Visible    //input[contains(@name,'tDtEncerramento')]
-    Input Text    //input[contains(@name,'tDtEncerramento')]    ${ULTIMO_DIA_ANO}
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_tDtEncerramento    timeout=30s
+    Set Focus To Element    id=ctl00_ContentPrincipal_tDtEncerramento
+    Input Text    id=ctl00_ContentPrincipal_tDtEncerramento    ${DATA_ENC}
+    # Input Text    id=ctl00_ContentPrincipal_tDtEncerramento    ${DATA_ENC}
+    Sleep    2
+
 
     # Nr dias para aviso de encerramento
-    Wait Until Element Is Visible    //fieldset[2]/table[1]/tbody[1]/tr[1]/td[3]/span[1]/span[1]/input[1]
-    Input Text    //fieldset[2]/table[1]/tbody[1]/tr[1]/td[3]/span[1]/span[1]/input[1]    10
+    Wait Until Element Is Visible    //label[contains(text(), 'encerramento')]/following-sibling::*/descendant::span[2]//span[@class='k-icon k-i-arrow-n']
+    Double Click Element    //label[contains(text(), 'encerramento')]/following-sibling::*/descendant::span[2]//span[@class='k-icon k-i-arrow-n']
     Capture Page Screenshot
 
+    Wait Until Element Is Visible    //a[@onclick='SalvarARP(false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]    timeout=15s
+    Click Element    //a[@onclick='SalvarARP(false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
+    Sleep    4
 
 E incluo o Documento na ARP
 
     Wait Until Element Is Visible    //li[contains(.,'Documentos do processo')]    timeout=30s
     Click Element        //li[contains(.,'Documentos do processo')]
+    Sleep    2
 
     Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
     Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
@@ -776,5 +796,50 @@ E seleciono itens da ARP para Adesão
     Click Element    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
     Sleep    3
 
-    
+E acesso a lista de Licitações
+    Select Frame    //frame[@name='main']
+
+    # Clique em negociação
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
+
+    # mouse over em Licitações
+    ${elemento}    Get WebElement    
+    ...    xpath=//td[@class='label'][contains(.,'Licitação')]
+    Mouse Over    ${elemento}
+
+
+    # Clique em Licitações eletrônicas
+    Wait Until Element Is Visible    
+    ...    xpath=//td[@class='label'][contains(.,'Licitações eletrônicas')]    timeout=30s
+    Click Element    
+    ...    xpath=//td[@class='label'][contains(.,'Licitações eletrônicas')]
+    # Sleep    2
+    Capture Page Screenshot
+
+E seleciono o filtro Licitações Homologadas
+
+    Select Frame    xpath=//iframe[@class='ifrmConteudo']
+
+    # Clique no campo exibir
+    Wait Until Element Is Visible    //select[contains(@name,'ddlVisoes')]    timeout=30s
+    Click Element    //select[contains(@name,'ddlVisoes')]
+
+    # Seleção de todas as compras diretas
+    Wait Until Element Is Visible    //option[@value='18021'][contains(.,'Licitações homologados')]    timeout=30s
+    Click Element    //option[@value='18021'][contains(.,'Licitações homologados')]
+
+    # Clique do botão pesquisar
+    Wait Until Element Is Visible    //input[@value='Pesquisar']    timeout=30s
+    Click Element    //input[@value='Pesquisar']
+    Sleep    2
+    Capture Page Screenshot
+
+
+E clico no Licitação da lista para gerar ARP
+    Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[2]//a    timeout=30s
+    Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[2]//a
+    Capture Page Screenshot
+
+
 

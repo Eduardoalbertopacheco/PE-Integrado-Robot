@@ -10,6 +10,7 @@ ${CAMPO_OBJETO}    //textarea[@name='ctl00$ContentPrincipal$txtObjeto']
 
 *** Keywords ***
 
+
 E acesso a lista de todas as Compras Direta
     Select Frame    //frame[@name='main']
 
@@ -232,7 +233,6 @@ E clico na compra direta em recebimento de lances
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     END
     Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='$${OBJETO_COMPRA}']]//td[2]//a
-
 
 
 E clico na Compra Direta da lista
