@@ -209,9 +209,36 @@ E configuro a Aba Dados Gerais
     Double Click Element    //label[contains(text(), 'encerramento')]/following-sibling::*/descendant::span[2]//span[@class='k-icon k-i-arrow-n']
     Capture Page Screenshot
 
-    # Wait Until Element Is Visible    //a[@onclick='SalvarARP(false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]    timeout=15s
-    # Click Element    //a[@onclick='SalvarARP(false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
-    # Sleep    4
+
+E clico em Gestão da ata
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Wait Until Element Is Visible    //li[contains(.,'Gestão da ata')]    timeout=30s
+    Click Element        //li[contains(.,'Gestão da ata')]
+    Sleep    2
+
+Então configuro a gestão da Ata
+
+    Wait Until Element Is Visible    //a[@onclick='abrirDistribuicaoPorIntegrantes(72781, 1, null)']    timeout=20s
+    Click Element    //a[@onclick='abrirDistribuicaoPorIntegrantes(72781, 1, null)']
+  
+
+    # Selecionar a Qtd Solicitada do item
+    Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-arrow-n')]    timeout=15s
+    Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
+    # Double Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
+    # Double Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
+
+    Wait Until Element Is Visible    //a[contains(@onclick,'confirmar(this);')]    timeout=30s
+    Click Element    //a[contains(@onclick,'confirmar(this);')]
+
+
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=20s
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    4
+
+
+
 
 Então incluo o Documento na ARP
     Switch Window
@@ -1163,25 +1190,6 @@ E seleciono itens da ARP para Adesão
     Click Element    //a[@onclick='SalvarItem(this, false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
     Sleep    3
 
-
-    # Wait Until Element Is Visible    //img[@alt='Alterar valor de referência']    timeout=15s
-    # Click Element    //img[@alt='Alterar valor de referência']
-    # Click Element    //img[@alt='Alterar valor de referência']
-    # Sleep    3
-
-    # Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
-
-    # Wait Until Element Is Visible    //input[contains(@value,'9783')]
-    # Click Element    //input[contains(@value,'9783')]
-    # Wait Until Element Is Visible    //input[contains(@value,'9108')]
-    # Click Element    //input[contains(@value,'9108')]
-    # Wait Until Element Is Visible    //input[contains(@value,'9998')]
-    # Click Element    //input[contains(@value,'9998')]
-    # Capture Page Screenshot
-
-    # Wait Until Element Is Visible    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
-    # Click Element    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
-    # Sleep    3
 
 E acesso a lista de Licitações
     Select Frame    //frame[@name='main']

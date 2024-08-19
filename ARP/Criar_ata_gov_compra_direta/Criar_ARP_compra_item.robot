@@ -6,7 +6,6 @@ Library          Browser
 Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
 Resource         ../Ressource_ARP.robot
 
-
 *** Test Cases ***
 
 Cenário 01 - Gerar ARP da Compra Direta
@@ -19,7 +18,7 @@ Cenário 01 - Gerar ARP da Compra Direta
     Então gero a ARP
 
 
-Cenário 02 - Configurar Ata
+Cenário 02 - Configurar Ata - Dados Gerais
     [Tags]    configurar_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -28,7 +27,8 @@ Cenário 02 - Configurar Ata
     E configuro a Aba Dados Gerais
     Então salvo os dados
 
-Cenário 04 - Inluir Documento
+
+Cenário 03 - Inluir Documento
     [Tags]    Incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -38,7 +38,7 @@ Cenário 04 - Inluir Documento
     E vejo a Auditoria da ARP
 
 
-Cenário 05 - Assinar Documento
+Cenário 04 - Assinar Documento
     [Tags]    assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -48,10 +48,21 @@ Cenário 05 - Assinar Documento
     E vejo a Auditoria da ARP
 
 
-Cenário 03 - Ativar ARP
+Cenário 05 - Ativar ARP
     [Tags]    ativar_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
     E seleciono a Ata de Compra Direta da Lista
     Então ativo a ARP
+
+
+Cenário 06 - Configurar Gestão da Ata
+    [Tags]    configurar_gestao_ata
+    Dado que acesso o sistema
+    E faço login com usuário "edu.gestorata.110402"
+    E acesso a lista de Atas de Registro de preços
+    E clico na Ata de Compra Direta da Lista
+    E clico em Gestão da ata
+    Então configuro a gestão da Ata
+    E vejo a Auditoria da ARP
