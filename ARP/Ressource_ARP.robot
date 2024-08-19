@@ -52,6 +52,71 @@ Então gero a ARP
 
     Click Element    //a[contains(.,'Fechar')]
 
+    
+E acesso a lista de todas as solicitações de Consumo
+    Select Frame    //frame[@name='main']
+
+    # Clique em ata de registro de preços
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]
+
+    # mouse over 
+    ${elemento}    Get WebElement    
+    ...    xpath=//td[@class='label'][contains(.,'Solicitações de Consumo')]
+    Mouse Over    ${elemento}
+
+
+    Wait Until Element Is Visible    
+    ...    xpath=//td[@class='label'][contains(.,'Todas as solicitações')]    timeout=30s
+    Click Element    
+    ...    xpath=//td[@class='label'][contains(.,'Todas as solicitações')]
+    Sleep    2
+    Capture Page Screenshot
+
+
+E acesso a lista de todas as Solicitaçõe de Adesão
+    Select Frame    //frame[@name='main']
+
+    # Clique em ata de registro de preços
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]
+
+    # mouse over 
+    ${elemento}    Get WebElement    
+    ...    xpath=//td[@class='label'][contains(.,'Solicitações de adesão')]
+    Mouse Over    ${elemento}
+
+
+    Wait Until Element Is Visible    
+    ...    xpath=//td[@class='label'][contains(.,'Todas as solicitações')]    timeout=30s
+    Click Element    
+    ...    xpath=//td[@class='label'][contains(.,'Todas as solicitações')]
+    Sleep    2
+    Capture Page Screenshot
+
+
+E acesso a lista de IRPs
+
+   Select Frame    //frame[@name='main']
+
+    # Clique em ata de registro de preços
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]
+
+    # mouse over
+    ${elemento}    Get WebElement    
+    ...    xpath=//td[@class='label'][contains(.,'Intenção de Registro de Preços (IRP)')]
+    Mouse Over    ${elemento}
+
+
+    # Clique em todas as Atas
+    Wait Until Element Is Visible    
+    ...    xpath=//td[@class='label'][contains(.,'Lista de intenções de registro de preços')]    timeout=30s
+    Click Element    
+    ...    xpath=//td[@class='label'][contains(.,'Lista de intenções de registro de preços')]
+    Sleep    2
+    Capture Page Screenshot
+
 
 E acesso a lista de Atas de Registro de preços
     Select Frame    //frame[@name='main']
@@ -137,20 +202,20 @@ E configuro a Aba Dados Gerais
     Wait Until Element Is Visible    id=ctl00_ContentPrincipal_tDtEncerramento    timeout=30s
     Set Focus To Element    id=ctl00_ContentPrincipal_tDtEncerramento
     Input Text    id=ctl00_ContentPrincipal_tDtEncerramento    ${DATA_ENC}
-    # Input Text    id=ctl00_ContentPrincipal_tDtEncerramento    ${DATA_ENC}
     Sleep    2
-
 
     # Nr dias para aviso de encerramento
     Wait Until Element Is Visible    //label[contains(text(), 'encerramento')]/following-sibling::*/descendant::span[2]//span[@class='k-icon k-i-arrow-n']
     Double Click Element    //label[contains(text(), 'encerramento')]/following-sibling::*/descendant::span[2]//span[@class='k-icon k-i-arrow-n']
     Capture Page Screenshot
 
-    Wait Until Element Is Visible    //a[@onclick='SalvarARP(false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]    timeout=15s
-    Click Element    //a[@onclick='SalvarARP(false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
-    Sleep    4
+    # Wait Until Element Is Visible    //a[@onclick='SalvarARP(false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]    timeout=15s
+    # Click Element    //a[@onclick='SalvarARP(false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
+    # Sleep    4
 
-E incluo o Documento na ARP
+Então incluo o Documento na ARP
+    Switch Window
+    Select Frame    //frame[@name='main']
 
     Wait Until Element Is Visible    //li[contains(.,'Documentos do processo')]    timeout=30s
     Click Element        //li[contains(.,'Documentos do processo')]
@@ -175,10 +240,15 @@ E incluo o Documento na ARP
     Capture Page Screenshot
     Click Element    //input[@value='Anexar']
     Handle Alert    ACCEPT
-    # SeleniumLibrary.Close Browser
 
     
-E assino o documento na ARP
+Então assino o documento na ARP
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //li[contains(.,'Documentos do processo')]    timeout=30s
+    Click Element        //li[contains(.,'Documentos do processo')]
+    Sleep    2
 
     # Selecionar o documento
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -207,9 +277,10 @@ E assino o documento na ARP
     # SeleniumLibrary.Close Browser
 
 Então salvo os dados
-    Wait Until Element Is Visible    //span[contains(.,'Dados gerais')]
-    Click Element    //span[contains(.,'Dados gerais')]
-    Sleep    2
+
+    # Wait Until Element Is Visible    //span[contains(.,'Dados gerais')]
+    # Click Element    //span[contains(.,'Dados gerais')]
+    # Sleep    2
 
     Wait Until Element Is Visible    //a[contains(.,'Salvar e fechar')]
     Click Element    //a[contains(.,'Salvar e fechar')]
@@ -483,10 +554,11 @@ Então salvo a ARP
 
 
 E vejo a Auditoria da ARP
-    Sleep    2
+    Sleep    3
     Wait Until Element Is Visible    //span[contains(.,'Auditoria')]    10s
+    Sleep    2
     Click Element    //span[contains(.,'Auditoria')]
-    Sleep    1
+    Sleep    2
     Capture Page Screenshot
     SeleniumLibrary.Close Browser
 
@@ -498,6 +570,163 @@ E clico na Ata Externa da Lista
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[2]//a
     Sleep    2
     Capture Page Screenshot
+
+Então incluo e Assino os Documentos no Consumo
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //li[contains(.,'Documentos do processo')]    timeout=30s
+    Click Element        //li[contains(.,'Documentos do processo')]
+
+    Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
+    Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
+
+    
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[@name='ctl00$ContentPrincipal$objListagemDeDocumentos$autoTipoDeDocumento']    timeout=30s
+    Input Text    
+    ...    //input[@name='ctl00$ContentPrincipal$objListagemDeDocumentos$autoTipoDeDocumento']
+    ...    Termo de Aprovação do Gestor
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Termo de Aprovação do Gestor')]    timeout=30s
+    Click Element    //li[@tabindex='-1'][contains(.,'Termo de Aprovação do Gestor')]
+
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Handle Alert    ACCEPT
+    Sleep    2
+
+    # Selecionar o documento para assinar
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Aprovação do Gestor']]//td[10]//input    timeout=30s
+    Select Checkbox     //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Aprovação do Gestor']]//td[10]//input
+
+    # Clicar no botão 'Assinar Documento'
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    timeout=30s
+    Click Element    xpath=//a[contains(.,'Assinar documento')]
+
+       
+    # E Preencho os campos de assinatura
+    Sleep    2
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    timeout=30s
+
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    timeout=30s
+    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+
+    # E clico no botão assinar
+    Capture Page Screenshot
+    Click Element    xpath=//a[text()= 'Assinar']
+    Sleep    4
+
+
+Então incluo e Assino os Documentos na Adesão
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //li[contains(.,'Documentos do processo')]    timeout=30s
+    Click Element        //li[contains(.,'Documentos do processo')]
+
+    Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
+    Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
+
+    
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[@name='ctl00$ContentPrincipal$objListagemDeDocumentos$autoTipoDeDocumento']    timeout=30s
+    Input Text    
+    ...    //input[@name='ctl00$ContentPrincipal$objListagemDeDocumentos$autoTipoDeDocumento']
+    ...    Termo de Anuência do Fornecedor
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Termo de Anuência do Fornecedor')]    timeout=30s
+    Click Element    //li[@tabindex='-1'][contains(.,'Termo de Anuência do Fornecedor')]
+
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Handle Alert    ACCEPT
+    Sleep    2
+
+
+    Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
+    Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
+        
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[@name='ctl00$ContentPrincipal$objListagemDeDocumentos$autoTipoDeDocumento']    timeout=30s
+    Input Text    
+    ...    //input[@name='ctl00$ContentPrincipal$objListagemDeDocumentos$autoTipoDeDocumento']
+    ...    Termo de Anuência do Gestor
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Termo de Anuência do Gestor')]    timeout=30s
+    Click Element    //li[@tabindex='-1'][contains(.,'Termo de Anuência do Gestor')]
+
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Handle Alert    ACCEPT
+
+
+    # Selecionar o documento para assinar
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Anuência do Fornecedor']]//td[10]//input    timeout=30s
+    Select Checkbox     //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Anuência do Fornecedor']]//td[10]//input
+
+    # Clicar no botão 'Assinar Documento'
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    timeout=30s
+    Click Element    xpath=//a[contains(.,'Assinar documento')]
+
+       
+    # E Preencho os campos de assinatura
+    Sleep    2
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    timeout=30s
+
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    timeout=30s
+    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+
+    # E clico no botão assinar
+    Capture Page Screenshot
+    Click Element    xpath=//a[text()= 'Assinar']
+    Sleep    4
+
+
+   # Selecionar o documento 2 para assinar
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Anuência do Gestor']]//td[10]//input    timeout=30s
+    Sleep    2
+    Select Checkbox     //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Anuência do Gestor']]//td[10]//input
+
+    # Clicar no botão 'Assinar Documento'
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    timeout=30s
+    Click Element    xpath=//a[contains(.,'Assinar documento')]
+
+       
+    # E Preencho os campos de assinatura
+    Sleep    2
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    timeout=30s
+
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    timeout=30s
+    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+
+    # E clico no botão assinar
+    Capture Page Screenshot
+    Click Element    xpath=//a[text()= 'Assinar']
+    Sleep    3
+    Capture Page Screenshot
+
 
 
 Então incluo e assino o documento na Ata
@@ -528,13 +757,6 @@ Então incluo e assino o documento na Ata
     Handle Alert    ACCEPT
     # SeleniumLibrary.Close Browser
 
-# Então assino o documento da Ata
-#     Switch Window
-#     Select Frame    //frame[@name='main']
-
-#     Wait Until Element Is Visible    //li[contains(.,'Documentos do processo')]    timeout=30s
-#     Click Element        //li[contains(.,'Documentos do processo')]
-
     # Selecionar o documento
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
     Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Ata de Registro de Preços']]//td[10]//input    timeout=30s
@@ -561,6 +783,20 @@ Então incluo e assino o documento na Ata
     Sleep    3
     Capture Page Screenshot
 
+Então concluo a análise da Ata Externa
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //span[@class='k-link'][contains(.,'Itens')]    timeout=30s
+    Click Element    //span[@class='k-link'][contains(.,'Itens')]
+    Sleep    2
+
+    Wait Until Element Is Visible    //a[contains(.,'Concluir análise')]   10s
+    Click Element    //a[contains(.,'Concluir análise')]
+    Sleep    3
+    Capture Page Screenshot
+    
 
 Então concluo a análise da Ata
 
@@ -572,7 +808,6 @@ Então concluo a análise da Ata
     Sleep    2
     Capture Page Screenshot
     Sleep    2
-
 
 
 Então Delibero a Ata Externa
@@ -690,7 +925,7 @@ Então incluo os itens na ATA Externa
     Sleep    3
 
 
-E solicito adesão
+E solicito Consumo/Adesão
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -718,26 +953,187 @@ E seleciono o grupo de compras
     Sleep    2
 
 
-E confirmo a solicitação de adesão
+Então confirmo a solicitação de Consumo/Adesão
  
     Wait Until Element Is Visible    //a[@id="ctl00_ContentButtom_btnSalvar"]    timeout=30s
     Click Element    //a[@id="ctl00_ContentButtom_btnSalvar"]
+    Sleep    4
+    # SeleniumLibrary.Close Browser
+
+Então encaminho a Adesão para autorização
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    id:ctl00_ContentButtom_btnEncaminharParaAutorizacao    timeout=10s
+    Click Element    id:ctl00_ContentButtom_btnEncaminharParaAutorizacao
     Sleep    3
 
 
-E seleciono itens da ARP para Adesão
-    Sleep    3
+Então Delibero a Adesão e Assino o Documento com Autoridade Central
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //a[contains(.,'Deliberar')]    timeout=10s
+    Click Element    //a[contains(.,'Deliberar')]
+
+    Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtResultadoAnalise_0']    timeout=20s
+    Click Element    //input[@id='ctl00_ContentPrincipal_rbtResultadoAnalise_0']
+    
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=10s
+    Input Text    //textarea[contains(@name,'txtJustificativa')]    Deliderado Ok
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    4
+
+
+    # E Preencho os campos de assinatura
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    timeout=30s
+
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    timeout=30s
+    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+
+    # E clico no botão assinar
+    Capture Page Screenshot
+    Click Element    xpath=//a[text()= 'Assinar']
+    Sleep    4
+
+
+
+
+Então Delibero a Adesão e Assino o Documento com Gestor de Ata Central
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //a[contains(.,'Deliberar')]    timeout=10s
+    Click Element    //a[contains(.,'Deliberar')]
+
+    Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtResultadoAnalise_0']    timeout=20s
+    Click Element    //input[@id='ctl00_ContentPrincipal_rbtResultadoAnalise_0']
+    
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=10s
+    Input Text    //textarea[contains(@name,'txtJustificativa')]    Deliderado Ok
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    4
+
+    # Clique em OK do Alerta
+    Wait Until Element Is Visible    //a[contains(.,'OK')]    timeout=30s
+    Click Element    //a[contains(.,'OK')]
+    Sleep    2
+
+    Wait Until Element Is Visible    //span[contains(.,'Documentos do processo')]    timeout=30s
+    Click Element    //span[contains(.,'Documentos do processo')]
+
+
+    # Selecionar o documento para assinar
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Aprovação do Gestor']]//td[10]//input    timeout=30s
+    Select Checkbox     //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Aprovação do Gestor']]//td[10]//input
+
+    # Clicar no botão 'Assinar Documento'
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    timeout=30s
+    Click Element    xpath=//a[contains(.,'Assinar documento')]
+
+       
+    # E Preencho os campos de assinatura
+    Sleep    2
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    timeout=30s
+
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    timeout=30s
+    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+
+    # E clico no botão assinar
+    Capture Page Screenshot
+    Click Element    xpath=//a[text()= 'Assinar']
+    Sleep    4
+
+Então Delibero a Solicitação de Adesão
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //a[contains(.,'Deliberar')]    timeout=10s
+    Click Element    //a[contains(.,'Deliberar')]
+
+    Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtResultadoAnalise_0']    timeout=20s
+    Click Element    //input[@id='ctl00_ContentPrincipal_rbtResultadoAnalise_0']
+    
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=10s
+    Input Text    //textarea[contains(@name,'txtJustificativa')]    Deliderado Ok
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    4
+    
+    
+
+Então encaminho a Solicitação de Adesão
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //a[contains(@onclick,'Encaminhar();')]    timeout=10s
+    Click Element    //a[contains(@onclick,'Encaminhar();')]
+    Sleep    4
+
+Então altero o valor de referência dos itens
+    
+    Switch Window
+    Select Frame    //frame[@name='main']
 
     # clique de itens
     Wait Until Element Is Visible    //span[@class='k-link'][contains(.,'Itens')]    timeout=15s
-    Scroll Element Into View    //span[@class='k-link'][contains(.,'Itens')]
+    Click Element    //span[@class='k-link'][contains(.,'Itens')]
+    Sleep    2
+
+    Wait Until Element Is Visible    //img[@alt='Alterar valor de referência']    timeout=15s
+    Click Element    //img[@alt='Alterar valor de referência']
+    Click Element    //img[@alt='Alterar valor de referência']
+    Sleep    3
+
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    //input[contains(@value,'9783')]
+    Click Element    //input[contains(@value,'9783')]
+    Wait Until Element Is Visible    //input[contains(@value,'9108')]
+    Click Element    //input[contains(@value,'9108')]
+    Wait Until Element Is Visible    //input[contains(@value,'9998')]
+    Click Element    //input[contains(@value,'9998')]
+    Capture Page Screenshot
+
+    Sleep    3
+    Wait Until Element Is Visible    id:ctl00_ContentButtom_btnSalvarBancoManutencao    timeout=15s
+    Sleep    2
+    Set Focus To Element    id:ctl00_ContentButtom_btnSalvarBancoManutencao
+    Sleep    2
+    Click Link    id:ctl00_ContentButtom_btnSalvarBancoManutencao
+    Sleep    6
+
+
+E seleciono itens da ARP para Adesão
+    Sleep    2
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    # clique de itens
+    Wait Until Element Is Visible    //span[@class='k-link'][contains(.,'Itens')]    timeout=15s
+    Click Element    //span[@class='k-link'][contains(.,'Itens')]
     Sleep    2
 
     
-    ${elements}=  Get WebElements  //span[@class='k-link'][contains(.,'Itens')]
-    Click Element  ${elements}[1]  # Índice começa em 0, então [1] é o segundo elemento
-    Sleep    3
-    Click Element  ${elements}[1]
+    # ${elements}=  Get WebElements  //span[@class='k-link'][contains(.,'Itens')]
+    # Click Element  ${elements}[1] 
+    # Sleep    3
+    # Click Element  ${elements}[1]
 
     
     # clique de selecionar item
@@ -765,36 +1161,27 @@ E seleciono itens da ARP para Adesão
 
     Wait Until Element Is Visible    //a[@onclick='SalvarItem(this, false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
     Click Element    //a[@onclick='SalvarItem(this, false);'][contains(@id,'btnSalvar')][contains(.,'Salvar')]
-    Sleep    4
-
-
-    # Alterar valor de referencia
-    
-
-    # # Localizar a barra de rolagem horizontal
-    # ${scroll_bar}    Get WebElement    xpath=//div[@class='k-grid-content k-auto-scrollable']
-    # # Obter a largura da barra de rolagem
-    # ${width}    Execute JavaScript    return arguments[0].offsetWidth;    ${scroll_bar}
-    # # Clicar e arrastar a barra de rolagem para a direita
-    # Drag And Drop By Offset    ${scroll_bar}    ${width}    0
-
-
-    Sleep    3
-    Wait Until Element Is Visible    //img[@alt='Alterar valor de referência']    timeout=15s
-    Click Element    //img[@alt='Alterar valor de referência']
-    Click Element    //img[@alt='Alterar valor de referência']
     Sleep    3
 
-    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Click Element    //input[contains(@value,'9783')]
-    Click Element    //input[contains(@value,'9108')]
-    Click Element    //input[contains(@value,'9998')]
-    Capture Page Screenshot
+    # Wait Until Element Is Visible    //img[@alt='Alterar valor de referência']    timeout=15s
+    # Click Element    //img[@alt='Alterar valor de referência']
+    # Click Element    //img[@alt='Alterar valor de referência']
+    # Sleep    3
 
-    Wait Until Element Is Visible    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
-    Click Element    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
-    Sleep    3
+    # Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    # Wait Until Element Is Visible    //input[contains(@value,'9783')]
+    # Click Element    //input[contains(@value,'9783')]
+    # Wait Until Element Is Visible    //input[contains(@value,'9108')]
+    # Click Element    //input[contains(@value,'9108')]
+    # Wait Until Element Is Visible    //input[contains(@value,'9998')]
+    # Click Element    //input[contains(@value,'9998')]
+    # Capture Page Screenshot
+
+    # Wait Until Element Is Visible    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
+    # Click Element    //a[contains(@onclick,'SalvarAlteracaoValorReferencia()')]
+    # Sleep    3
 
 E acesso a lista de Licitações
     Select Frame    //frame[@name='main']
@@ -839,6 +1226,16 @@ E seleciono o filtro Licitações Homologadas
 E clico no Licitação da lista para gerar ARP
     Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[2]//a    timeout=30s
     Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[2]//a
+    Capture Page Screenshot
+
+
+E clico na Adesão da lista
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Select Frame    //iframe[@name='frmConteudo']
+
+    Wait Until Element Is Visible    //table[@id= "ctl00_ContentPrincipal_dtgPesquisa"]//tr[td[contains(text(), '${OBJETO_ATA}')]]//td[1]//a    timeout=30s
+    Click Element     //table[@id= "ctl00_ContentPrincipal_dtgPesquisa"]//tr[td[contains(text(), '${OBJETO_ATA}')]]//td[1]//a
     Capture Page Screenshot
 
 

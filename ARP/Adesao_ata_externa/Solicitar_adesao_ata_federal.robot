@@ -4,7 +4,7 @@ Library          SeleniumLibrary
 Resource        ../Ressource_ARP.robot
 
 *** Test Cases ***
-Cenário 01 - Solicitar Adesão de Ata Externa Estadual
+Cenário 01 - Solicitar Adesão de Ata Externa Federal
     [Tags]    solicitar_adesao
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -13,7 +13,6 @@ Cenário 01 - Solicitar Adesão de Ata Externa Estadual
     E solicito Consumo/Adesão
     E seleciono o grupo de compras
     Então confirmo a solicitação de adesão
-    E vejo a Auditoria da ARP
 
 
 Cenário 02 - Selecionar itens para adesão

@@ -1,5 +1,4 @@
 *** Settings ***
-
 Library          SeleniumLibrary
 Resource        ../Ressource_ARP.robot
 
@@ -13,7 +12,6 @@ Cenário 01 - Solicitar Adesão de Ata Externa Estadual
     E solicito Consumo/Adesão
     E seleciono o grupo de compras
     Então confirmo a solicitação de adesão
-    E vejo a Auditoria da ARP
 
 
 Cenário 02 - Selecionar itens para adesão

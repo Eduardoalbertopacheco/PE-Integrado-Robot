@@ -27,12 +27,31 @@ Cenário 02 - Configurar Ata
     E acesso a lista de Atas de Registro de preços
     E clico na Ata de Pregão da lista
     E configuro a Aba Dados Gerais
-    E incluo o Documento na ARP
-    E assino o documento na ARP
     Então salvo os dados
 
 
-Cenário 03 - Ativar ARP
+
+Cenário 03 - Inluir Documento
+    [Tags]    Incluir_documento
+    Dado que acesso o sistema
+    E faço login com usuário "edu.gestorata.110402"
+    E acesso a lista de Atas de Registro de preços
+    E clico na Ata de Pregão da lista
+    Então incluo o Documento na ARP
+    E vejo a Auditoria da ARP
+
+
+Cenário 04 - Assinar Documento
+    [Tags]    assinar_documento
+    Dado que acesso o sistema
+    E faço login com usuário "edu.gestorata.110402"
+    E acesso a lista de Atas de Registro de preços
+    E clico na Ata de Pregão da lista
+    Então assino o documento na ARP
+    E vejo a Auditoria da ARP
+
+
+Cenário 05 - Ativar ARP
     [Tags]    ativar_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"

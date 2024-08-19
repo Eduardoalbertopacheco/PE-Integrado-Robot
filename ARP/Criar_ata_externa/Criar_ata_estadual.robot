@@ -6,8 +6,6 @@ Library          Browser
 Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
 Resource         ../Ressource_ARP.robot
 
-*** Variables ***
-
 *** Test Cases ***
 
 Cenário 01 - Criar Ata Externa Estadual
