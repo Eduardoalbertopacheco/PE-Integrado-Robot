@@ -11,7 +11,7 @@ Cenário 01 - Solicitar Adesão de Ata Externa Estadual
     E clico na Ata Externa da Lista
     E solicito Consumo/Adesão
     E seleciono o grupo de compras
-    Então confirmo a solicitação de adesão
+    Então confirmo a solicitação de Consumo/Adesão
 
 
 Cenário 02 - Selecionar itens para adesão

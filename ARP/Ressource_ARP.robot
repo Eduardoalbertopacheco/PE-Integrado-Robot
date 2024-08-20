@@ -96,7 +96,6 @@ E acesso a lista de todas as Solicitaçõe de Adesão
 
 
 E acesso a lista de IRPs
-
    Select Frame    //frame[@name='main']
 
     # Clique em ata de registro de preços
@@ -107,7 +106,6 @@ E acesso a lista de IRPs
     ${elemento}    Get WebElement    
     ...    xpath=//td[@class='label'][contains(.,'Intenção de Registro de Preços (IRP)')]
     Mouse Over    ${elemento}
-
 
     # Clique em todas as Atas
     Wait Until Element Is Visible    
@@ -140,7 +138,6 @@ E acesso a lista de Atas de Registro de preços
     Capture Page Screenshot
 
 E clico na Ata de Pregão da lista
-
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[2]//a    timeout=30s
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[2]//a
@@ -148,7 +145,6 @@ E clico na Ata de Pregão da lista
     Capture Page Screenshot
 
 E clico na Ata de Compra Direta da Lista
-
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[2]//a    timeout=30s
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[2]//a
@@ -156,7 +152,6 @@ E clico na Ata de Compra Direta da Lista
     Capture Page Screenshot
 
 E seleciono a Ata Externa da Lista
-
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input    timeout=30s
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input
@@ -164,7 +159,6 @@ E seleciono a Ata Externa da Lista
     Capture Page Screenshot
 
 E seleciono a Ata de Pregão da Lista
-
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[11]//input        timeout=30s
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[11]//input
@@ -172,7 +166,6 @@ E seleciono a Ata de Pregão da Lista
     Capture Page Screenshot
 
 E seleciono a Ata de Compra Direta da Lista
-
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[11]//input    timeout=30s
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[11]//input
@@ -181,7 +174,6 @@ E seleciono a Ata de Compra Direta da Lista
 
 
 E configuro a Aba Dados Gerais
-
     ${all_windows}=    Get Window Handles
     ${second_window}=    Set Variable    ${all_windows}[0]
     Switch Window    ${all_windows}[0]
@@ -196,7 +188,6 @@ E configuro a Aba Dados Gerais
     Set Focus To Element    id=ctl00_ContentPrincipal_tDtInicio
     Input Text    id=ctl00_ContentPrincipal_tDtInicio    ${DATA_ATUAL}
     Sleep    2
-
 
     # Dara encerramento
     Wait Until Element Is Visible    id=ctl00_ContentPrincipal_tDtEncerramento    timeout=30s
@@ -218,7 +209,6 @@ E clico em Gestão da ata
     Sleep    2
 
 Então configuro a gestão da Ata
-
     Wait Until Element Is Visible    //a[@onclick='abrirDistribuicaoPorIntegrantes(72781, 1, null)']    timeout=20s
     Click Element    //a[@onclick='abrirDistribuicaoPorIntegrantes(72781, 1, null)']
   
@@ -236,8 +226,6 @@ Então configuro a gestão da Ata
     Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=20s
     Click Element    //a[contains(.,'Sim')]
     Sleep    4
-
-
 
 
 Então incluo o Documento na ARP
@@ -304,17 +292,11 @@ Então assino o documento na ARP
     # SeleniumLibrary.Close Browser
 
 Então salvo os dados
-
-    # Wait Until Element Is Visible    //span[contains(.,'Dados gerais')]
-    # Click Element    //span[contains(.,'Dados gerais')]
-    # Sleep    2
-
     Wait Until Element Is Visible    //a[contains(.,'Salvar e fechar')]
     Click Element    //a[contains(.,'Salvar e fechar')]
     Sleep    3
 
 Então ativo a ARP
-
     Wait Until Element Is Visible    //a[contains(.,'Ativar')]
     Click Element    //a[contains(.,'Ativar')]
     Capture Page Screenshot
@@ -357,7 +339,6 @@ E seleciono Esfera administrativa como Federal
     Click Element    //input[@id='ctl00_ContentPrincipal_rbtEsferaAdministrativa_2']
 
 E seleciono o município
-
     # Clique no listbox Município
     Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlMunicipio_listbox']
     Sleep    1
@@ -368,7 +349,6 @@ E seleciono o município
     Sleep    1
 
 E seleciono o Estado de origem
-    
     # Clique no listbox Município
     Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlEstado_listbox']    timeout=10s
     Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlEstado_listbox']
@@ -381,14 +361,11 @@ E seleciono o Estado de origem
 
 
 E configuro as datas de vigencia
-
     ${DATA_ATUAL}=    Evaluate    datetime.datetime.now().strftime('%d/%m/%Y')   datetime
     Log    ${DATA_ATUAL}
 
     ${ULTIMO_DIA_ANO_ATUL}=    Evaluate    datetime.datetime(datetime.datetime.now().year, 12, 31).strftime('%d/%m/%Y')    datetime
     Log    ${ULTIMO_DIA_ANO_ATUL}
-
-
 
 
     # Data inicio vigencia
@@ -399,7 +376,6 @@ E configuro as datas de vigencia
     Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_tDtInicio").value="${DATA_ATUAL}";
     Sleep    2
     Capture Page Screenshot
-
 
 
     # Dara encerramento
@@ -419,7 +395,6 @@ E configuro as datas de vigencia
 
 
 E seleciono o Orgão Gestor ATA Municipal
-
    # Seleção Orgão Gestor ATA
     Wait Until Element Is Visible    ${LUPA_GESTOR_ATA}
     Click Element    ${LUPA_GESTOR_ATA}
@@ -437,7 +412,6 @@ E seleciono o Orgão Gestor ATA Municipal
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    2
     Capture Page Screenshot
-
 
 
 E seleciono o Orgão Gestor ATA
@@ -461,7 +435,6 @@ E seleciono o Orgão Gestor ATA
 
 
 E preencho todos os Dados Gerais
-
     # Ano
     Wait Until Element Is Visible    //fieldset[1]/table[1]/tbody[1]/tr[2]/td[6]/span[1]/span[1]/input[1]
     Sleep    2
@@ -486,14 +459,11 @@ E preencho todos os Dados Gerais
     Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Pregão eletrônico')]    timeout=10
     Click Element    //li[@tabindex='-1'][contains(.,'Pregão eletrônico')]
 
-    
     Wait Until Element Is Visible    ${CAMPO_TITULO}    timeout=20s
     Input Text    ${CAMPO_TITULO}    ${TITULO_ATA_EXTERNA}
 
-    
     Wait Until Element Is Visible    ${CAMPO_OBJETO}    timeout=20s
     Input Text    ${CAMPO_OBJETO}    ${OBJETO_ATA}
-
 
     # Seleção do Tipo de Objeto
     Click Element  ${LUPA_TIPO_OBJETO_ATA}
@@ -504,7 +474,6 @@ E preencho todos os Dados Gerais
     Click Element    //input[@value='9|AQUISIÇÃO DE EQUIPAMENTOS EM GERAL']
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    2
-
 
     # Seleção do grupo de compras
     Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}
@@ -523,7 +492,6 @@ E preencho todos os Dados Gerais
     Click Element    //input[@value='17|Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO']
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    2
-
 
     # Seleção UG Demandante
     Wait Until Element Is Visible    ${LUPA_UG_DEMANDANTE_ATA}
@@ -549,7 +517,6 @@ E preencho todos os Dados Gerais
     # Necessita parecer técnico: Não
     Click Element     //input[contains(@id,'ctl00_ContentPrincipal_rbtParecerTecnico_1')]
 
-
     # numero de máximo de aderentes
     Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlNumMaximoPermitidoAderentes_listbox']    timeout=20
     Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlNumMaximoPermitidoAderentes_listbox']
@@ -564,7 +531,6 @@ E preencho todos os Dados Gerais
     Sleep    1
     Input Text    //fieldset[3]/table[1]/tbody[1]/tr[1]/td[2]/span[2]/span[1]/input[1]    50
     Sleep    1
-
 
     # Número de dias para não aceitar mais a adesão (0 a 30):
     Wait Until Element Is Visible    //fieldset[3]/table[1]/tbody[1]/tr[2]/td[2]/span[1]/span[1]/input[1]    timeout=10s
@@ -591,15 +557,14 @@ E vejo a Auditoria da ARP
 
 
 E clico na Ata Externa da Lista
-
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[2]//a    timeout=30s
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[2]//a
     Sleep    2
     Capture Page Screenshot
 
-Então incluo e Assino os Documentos no Consumo
 
+Então incluo e Assino os Documentos no Consumo
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -653,7 +618,6 @@ Então incluo e Assino os Documentos no Consumo
 
 
 Então incluo e Assino os Documentos na Adesão
-
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -681,7 +645,6 @@ Então incluo e Assino os Documentos na Adesão
     Handle Alert    ACCEPT
     Sleep    2
 
-
     Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
     Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
         
@@ -695,12 +658,10 @@ Então incluo e Assino os Documentos na Adesão
     Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Termo de Anuência do Gestor')]    timeout=30s
     Click Element    //li[@tabindex='-1'][contains(.,'Termo de Anuência do Gestor')]
 
-
     # Clique no botão 'Anexar' o arquivo
     Capture Page Screenshot
     Click Element    //input[@value='Anexar']
     Handle Alert    ACCEPT
-
 
     # Selecionar o documento para assinar
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -811,7 +772,6 @@ Então incluo e assino o documento na Ata
     Capture Page Screenshot
 
 Então concluo a análise da Ata Externa
-
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -826,7 +786,6 @@ Então concluo a análise da Ata Externa
     
 
 Então concluo a análise da Ata
-
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -860,7 +819,6 @@ Então Delibero a Ata Externa
 
 
 Então incluo os itens na ATA Externa
-
     # clique de itens
     Switch Window
     Select Frame    //frame[@name='main']
@@ -960,7 +918,6 @@ E solicito Consumo/Adesão
     Click Element    //a[@onclick='SolicitarConsumoAdesao();']
 
 E seleciono o grupo de compras
-
     # Seleção do grupo de compras
     Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}
     Click Element    ${LUPA_GRUPO_COMPRA_ATA}
@@ -981,7 +938,6 @@ E seleciono o grupo de compras
 
 
 Então confirmo a solicitação de Consumo/Adesão
- 
     Wait Until Element Is Visible    //a[@id="ctl00_ContentButtom_btnSalvar"]    timeout=30s
     Click Element    //a[@id="ctl00_ContentButtom_btnSalvar"]
     Sleep    4
@@ -1032,7 +988,6 @@ Então Delibero a Adesão e Assino o Documento com Autoridade Central
 
 
 Então Delibero a Adesão e Assino o Documento com Gestor de Ata Central
-
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -1084,7 +1039,6 @@ Então Delibero a Adesão e Assino o Documento com Gestor de Ata Central
     Sleep    4
 
 Então Delibero a Solicitação de Adesão
-
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -1104,7 +1058,6 @@ Então Delibero a Solicitação de Adesão
     
 
 Então encaminho a Solicitação de Adesão
-
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -1113,7 +1066,6 @@ Então encaminho a Solicitação de Adesão
     Sleep    4
 
 Então altero o valor de referência dos itens
-    
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -1193,7 +1145,6 @@ E seleciono itens da ARP para Adesão
 
 E acesso a lista de Licitações
     Select Frame    //frame[@name='main']
-
     # Clique em negociação
     Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
@@ -1213,9 +1164,7 @@ E acesso a lista de Licitações
     Capture Page Screenshot
 
 E seleciono o filtro Licitações Homologadas
-
     Select Frame    xpath=//iframe[@class='ifrmConteudo']
-
     # Clique no campo exibir
     Wait Until Element Is Visible    //select[contains(@name,'ddlVisoes')]    timeout=30s
     Click Element    //select[contains(@name,'ddlVisoes')]
