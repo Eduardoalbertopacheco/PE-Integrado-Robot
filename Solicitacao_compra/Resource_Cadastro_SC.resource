@@ -34,9 +34,6 @@ ${URL_SELCT_TIPO}     https://www.homologpeintegrado.pe.gov.br/Core/Pesquisa/Pro
 ${TITULO_TIPO_OBEJTO}    //*[.='Selecionar tipo de objeto']
 ${INPUT_TIPO}            //input[@field="normal"]
 ${LUPA_GRUPO_COMPRA}     (//img[@id='img'])[3]
-${MAX_ATTEMPTS}  ${TIMEOUT} / ${INTERVAL}  # Calcula o número máximo de tentativas
-${TIMEOUT}           3 min
-${INTERVAL}        5 sec
 
 
 *** Keywords ***
@@ -56,6 +53,13 @@ E faço login com usuário "${usuario}"
     Sleep    3
     Capture Page Screenshot
 
+E faço login com usuário Vencedor "${usuario}"
+    Input Text        css=input[placeholder='Login']    ${usuario}
+    Input Text        css=input[placeholder='Senha']    PE@123456
+    Capture Page Screenshot
+    Click Element     css=input[type='submit']
+    Sleep    3
+    Capture Page Screenshot
 
 E acesso a Tela de Lista de Solicitação de Compras
     Select Frame    xpath=//frame[contains(@name,'main')]
@@ -269,6 +273,7 @@ Então encaminho a Solicitação de compra para precificação
     Wait Until Element Is Visible    xpath=//a[contains(.,'Sim')]    timeout=30s
     Capture Page Screenshot
     Click Element    xpath=//a[contains(.,'Sim')]
+    Sleep    3
     SeleniumLibrary.Close Browser
     # Go Back
 
@@ -297,7 +302,7 @@ Então faço planejamento da SC para Pregão Eletronico
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
     END
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
 
@@ -365,13 +370,13 @@ Então faço planejamento da SC para Pregão Eletronico
 
 Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='$${RESUMO_SC}']]//td[9]//input
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='$${RESUMO_SC}']]//td[9]//input
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
 
 
    # Clique no botão Encaminhar
@@ -441,9 +446,9 @@ Então faço planejamento da SC para compra Direta - Inex. - Solicitante
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
 
 
    # Clique no botão Encaminhar
@@ -1065,7 +1070,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
     END
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
 

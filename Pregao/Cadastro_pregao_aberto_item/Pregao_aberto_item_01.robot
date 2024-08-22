@@ -114,7 +114,6 @@ Cenário 07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    E mostro a auditoria
 
 
 Cenário 08 - Aprovar autorização
@@ -148,7 +147,6 @@ Cenário 10 - Envio de propostas Fornecedor 01
     E seleciono todos os pregões
     E seleciono a SC Em propotas da lista
     E seleciono não para lei 123 e confirmo
-
     E preencho os dados do lance por Item
     Então envio a proposta
     # E vejo a Auditoria

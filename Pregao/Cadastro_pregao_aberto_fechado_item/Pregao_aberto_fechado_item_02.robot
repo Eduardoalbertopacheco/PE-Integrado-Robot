@@ -17,7 +17,7 @@ Cenário 19 - Abrir Item para disputa Sigilosa 5 min
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então abro Item para Lei 123
+    Então abro Item para disputa sigilosa
 
 
 Cenário 18 - Enviar disputa sigilosa Forn01
@@ -83,11 +83,12 @@ Cenário 21 - Convocar vencedor
 Cenário 22 - Anexar documento - Vencedor
     [Tags]    anexar_documento_vencedor
     Dado que acesso o sistema
-    E faço login com usuário "02355633000148"
+    E faço login com usuário Vencedor "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista
     Então anexo o documento
+
 
 Cenário 23 - Habilitar fornecedor vencedor
     [Tags]    habilitar_fornecedor
@@ -96,7 +97,8 @@ Cenário 23 - Habilitar fornecedor vencedor
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor
+    Então habilito o fonecedor vencedor (Aberto_item)
+
 
 Cenário 24 - Encerrar etapa
     [Tags]    encerrar_etapa

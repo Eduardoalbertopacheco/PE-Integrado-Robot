@@ -82,7 +82,7 @@ Cenário 26 - Convocar vencedor
 Cenário 27 - Anexar documento - Vencedor
     [Tags]    anexar_documento_vencedor
     Dado que acesso o sistema
-    E faço login com usuário "02355633000148"
+    E faço login com usuário "29219904403.256" 
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista
@@ -95,7 +95,7 @@ Cenário 28 - Habilitar fornecedor vencedor
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor
+    Então habilito o fonecedor vencedor (Aberto_item)
 
 Cenário 29 - Encerrar etapa
     [Tags]    encerrar_etapa

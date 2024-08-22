@@ -115,7 +115,6 @@ Cenário 07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    E mostro a auditoria
 
 
 Cenário 08 - Aprovar autorização
@@ -137,8 +136,6 @@ Cenário 09 - Agendar Pregão eletrônico
     E acesso a tela de Licitações Eletrônicas
     E seleciono a licitação para agendamento
     Então faço o reagendamento
-    # E clico na licitação da lista
-    # E mostro a auditoria
 
 
 Cenário 10 - Envio de propostas Fornecedor 01

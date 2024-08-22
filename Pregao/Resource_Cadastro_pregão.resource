@@ -982,6 +982,7 @@ E seleciono a licitação em abertura de proposta da lista
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
     END
+    Sleep     1
     Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
 
 
@@ -1259,13 +1260,27 @@ Então ecerro a disputa
     Capture Page Screenshot
 
 
-    # Click no chekbox para marca o item
-    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[2]/td[12]/input[1]    timeout=30s
+
+
+    ${all_windows}=    Get Window Handles
+
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+    END
     Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
 
 
+
+
+    # # Click no chekbox para marca o item
+    # Wait Until Element Is Visible    //table[1]/tbody[1]/tr[2]/td[12]/input[1]    timeout=30s
+    # Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
+
+
     # clique do botão abrir itens
-    Wait Until Element Is Visible    //a[contains(.,'Encerrar disputa')]   timeout=30s
     Click Element    //a[contains(.,'Encerrar disputa')]
     Sleep    2
     Capture Page Screenshot
@@ -1290,15 +1305,53 @@ Então ecerro a disputa Por Lote
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
 
+    ${all_windows}=    Get Window Handles
 
-    # # Click no chekbox para marca o item
-    # Wait Until Element Is Visible    //table[1]/tbody[1]/tr[2]/td[12]/input[1]    timeout=30s
-    # Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+    END
+    Click Element    //a[contains(.,'Encerrar disputa')]
+
+
+
+
+    # # clique do botão abrir itens
+    # Wait Until Element Is Visible    //a[contains(.,'Encerrar disputa')]   timeout=30s
+    # Click Element    //a[contains(.,'Encerrar disputa')]
+    Sleep    2
+    Capture Page Screenshot
+    Sleep    2
+
+    Switch Window    NEW
+
+    # Campo justificativa
+    Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]   timeout=30s
+    Input Text    //textarea[contains(@name,'tbxJustificativa')]    Justificativa
+
+
+    # Clique do botão sim
+    Wait Until Element Is Visible    //input[contains(@name,'btnSim')]    30s
+    Capture Page Screenshot
+    Click Element    //input[contains(@name,'btnSim')]
+    Sleep    2
+
+Então abro Item para disputa sigilosa
+    Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
+    Select Frame    ${FRAME_NEGOCIACAO}
+    Capture Page Screenshot
+
+
+    # Click no chekbox para marca o item
+    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[2]/td[12]/input[1]    timeout=30s
+    Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
 
 
     # clique do botão abrir itens
-    Wait Until Element Is Visible    //a[contains(.,'Encerrar disputa')]   timeout=30s
-    Click Element    //a[contains(.,'Encerrar disputa')]
+    Wait Until Element Is Visible    //a[contains(.,'Abrir item')]   timeout=30s
+    Click Element    //a[contains(.,'Abrir item')]
     Sleep    2
     Capture Page Screenshot
     Sleep    2
@@ -1483,7 +1536,7 @@ Então anexo o documento
     Capture Page Screenshot
 
 
-Então habilito o fonecedor vencedor
+Então habilito o fonecedor vencedor (Aberto_item)
     Select Frame    ${FRAME_DETALHE_PREGAO}
 
     Wait Until Element Is Visible    //a[contains(.,'Habilitação e proposta')]    30s
@@ -1506,7 +1559,6 @@ Então habilito o fonecedor vencedor
     Switch Window    ${janela}
 
     # Switch Window    NEW
-
     Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]    30s
     Input Text    //textarea[contains(@name,'tbxJustificativa')]    Justificativa
     Capture Page Screenshot
@@ -1594,6 +1646,7 @@ Então gravo o valor do lote
 Então adjudico o pregão eletrônico
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
     Select Frame    ${FRAME_NEGOCIACAO}
+    Select Frame    //frame[@name='main']
     Capture Page Screenshot
 
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
@@ -1602,6 +1655,7 @@ Então adjudico o pregão eletrônico
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
     END
+    Sleep    1
     Click Element    //a[contains(.,'Adjudicar')]
     Capture Page Screenshot
 

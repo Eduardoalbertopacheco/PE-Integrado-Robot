@@ -60,6 +60,7 @@ Cenário 22 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
+
 Cenário 23 - Habilitar fornecedor vencedor
     [Tags]    habilitar_fornecedor
     Dado que acesso o sistema
@@ -67,7 +68,9 @@ Cenário 23 - Habilitar fornecedor vencedor
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor
+    Então habilito o fonecedor vencedor (Aberto_item)
+
+
 
 Cenário 24 - Encerrar etapa
     [Tags]    encerrar_etapa

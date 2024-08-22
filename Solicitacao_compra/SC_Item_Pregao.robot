@@ -58,14 +58,13 @@ Cenário 06 - Planejamento com Solicitante
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
-
     Então faço planejamento da SC para Pregão eletronico
     
 
 Cenário 07 - Definir Natureza de despesa com o Financeiro
     [Tags]    definir_natureza
     Dado que acesso o sistema
-    E faço login com usuário "financeiro.110402"
+    E faço login com usuário "edu.financeiro.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     Então defino a natureza de despesa
 
@@ -115,7 +114,6 @@ Cenário 12 - Planejamento com Ordenador
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC
-
     Então faço o planejamento para Pregão Eletrônico
     
 
