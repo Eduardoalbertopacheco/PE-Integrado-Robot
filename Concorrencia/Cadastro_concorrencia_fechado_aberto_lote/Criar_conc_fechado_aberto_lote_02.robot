@@ -60,6 +60,7 @@ Cenário 24 - Abrir Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então abros os Lotes
 
+
 Cenário 25 - Encerrar Item/Lote para Lei 123
     [Tags]    encerrar_lei_123
     Dado que acesso o sistema
@@ -68,6 +69,7 @@ Cenário 25 - Encerrar Item/Lote para Lei 123
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
     Então encerro Lote para Lei 123
+
 
 Cenário 26 - Convocar vencedor
     [Tags]    convocar_vencedor
@@ -88,6 +90,7 @@ Cenário 27 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
+
 Cenário 28 - Habilitar fornecedor vencedor
     [Tags]    habilitar_fornecedor
     Dado que acesso o sistema
@@ -95,7 +98,8 @@ Cenário 28 - Habilitar fornecedor vencedor
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor
+    Então habilito o fonecedor vencedor (Aberto_item)
+
 
 Cenário 29 - Encerrar etapa
     [Tags]    encerrar_etapa
@@ -105,6 +109,7 @@ Cenário 29 - Encerrar etapa
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
+
 
 Cenário 30 - Registrar intenção de recursos
     [Tags]    registrar_recurso

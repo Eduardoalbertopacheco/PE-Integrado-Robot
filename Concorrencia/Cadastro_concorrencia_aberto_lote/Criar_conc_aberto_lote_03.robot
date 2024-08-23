@@ -31,7 +31,7 @@ Cenário 27 - Gravar valor do Lote
     Então gravo o valor do lote
 
 
-Cenário 27 - Adjudicar Pregão
+Cenário 27 - Adjudicar Concorrência
     [Tags]    adjudicar_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -40,7 +40,7 @@ Cenário 27 - Adjudicar Pregão
     E seleciono a licitação da lista
     Então adjudico o pregão eletrônico
 
-Cenário 28 - Homologar Pregão
+Cenário 28 - Homologar Homologar Concorrência
     [Tags]    homologar_pregao
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"

@@ -5,7 +5,7 @@ Resource         ../Pregao/Resource_Cadastro_pregão.resource
 
 
 *** Variables ***
-${CAMPO_OBJETO}    //textarea[@name='ctl00$ContentPrincipal$txtObjeto']
+${CAMPO_OBJETO_COMPRA}    //input[@name='_cP_COMPRA_DIRETA_x_sDsObjeto']
 
 
 *** Keywords ***
@@ -128,6 +128,24 @@ E seleciono Critério para LEI 14.133/2021, ART. 75, VIII - DISPENSA
     Capture Page Screenshot
 
 
+E seleciono a Comissão - TJ
+    # Comissão
+    Wait Until Element Is Visible    (//img[contains(@id,'img')])[2]    timeout=30s
+    Click Element    (//img[contains(@id,'img')])[2]
+
+    ${all_windows}=    Get Window Handles
+    ${second_window}=    Set Variable    ${all_windows}[1]
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //input[contains(@value,'17')]    timeout=30s
+    Click Element    //input[contains(@value,'17')]
+    Capture Page Screenshot
+
+    Click Element    //input[contains(@value,'Confirmar')]
+    Sleep    2
+
+
 E Seleciono Critério LEI FEDERAL Nº 14.133/2021, ART. 74 - Inexigibilidade
     Wait Until Element Is Visible    ${SELECAO.CAMPO_CRITERIO}    timeout=30s
     Click Element    ${SELECAO.CAMPO_CRITERIO}
@@ -167,13 +185,16 @@ E incluo as datas do agendamento
 
 
 Então preencho todos os campos da Aba Dados gerais
+    ${all_windows}=    Get Window Handles
+    ${second_window}=    Set Variable    ${all_windows}[1]
+    Switch Window    ${all_windows}[1]
 
     # Seleção para registro de preço 'SIM'
     Wait Until Element Is Visible    //table[1]/tbody[1]/tr[7]/td[2]/span[1]/input[1]
     Click Element    //table[1]/tbody[1]/tr[7]/td[2]/span[1]/input[1]
 
-    Wait Until Element Is Visible    ${CAMPO_OBJETO} 
-    Input Text    ${CAMPO_OBJETO}     ${OBJETO_COMPRA}
+    Wait Until Element Is Visible    ${CAMPO_OBJETO_COMPRA}    30
+    Input Text    ${CAMPO_OBJETO_COMPRA}     ${OBJETO_COMPRA}
 
     # Condição de pagamento
     Wait Until Element Is Visible    ${SELECAO.CONDICAO_PAGAMENTO}    timeout=30s
@@ -192,22 +213,24 @@ Então preencho todos os campos da Aba Dados gerais
     Capture Page Screenshot
 
 
-    # Comissão
-    Wait Until Element Is Visible    (//img[contains(@id,'img')])[2]    timeout=30s
-    Click Element    (//img[contains(@id,'img')])[2]
+    # # Comissão
+    # Wait Until Element Is Visible    (//img[contains(@id,'img')])[2]    timeout=30s
+    # Click Element    (//img[contains(@id,'img')])[2]
+
+    # ${all_windows}=    Get Window Handles
+    # ${second_window}=    Set Variable    ${all_windows}[1]
+
+    # Switch Window    NEW
+
+    # Wait Until Element Is Visible    //input[contains(@value,'344')]    timeout=30s
+    # Click Element    //input[contains(@value,'344')]
+    # Capture Page Screenshot
+
+    # Click Element    //input[contains(@value,'Confirmar')]
+    # Sleep    2
 
     ${all_windows}=    Get Window Handles
     ${second_window}=    Set Variable    ${all_windows}[1]
-
-    Switch Window    NEW
-
-    Wait Until Element Is Visible    //input[contains(@value,'344')]    timeout=30s
-    Click Element    //input[contains(@value,'344')]
-    Capture Page Screenshot
-
-    Click Element    //input[contains(@value,'Confirmar')]
-    Sleep    2
-
     Switch Window    ${all_windows}[1]
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
@@ -232,7 +255,7 @@ E clico na compra direta em recebimento de lances
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     END
-    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='$${OBJETO_COMPRA}']]//td[2]//a
+    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
 
 
 E clico na Compra Direta da lista

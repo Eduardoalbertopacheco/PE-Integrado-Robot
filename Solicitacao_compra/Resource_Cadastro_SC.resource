@@ -13,8 +13,6 @@ ${URL}           https://www.homologpeintegrado.pe.gov.br/Portal/Default.aspx
 ${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 
 
-${CHROME_OPTIONS}    headless    disable-gpu
-
 &{SELECAO}    TIPO=//*[@id="td_cORDEM_COMPRA_x_nIdTipoOrdemCompra"]
 ...           PRIORIDADE=//*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]
 ...           EMPRESA=//*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]
@@ -25,6 +23,7 @@ ${CHROME_OPTIONS}    headless    disable-gpu
 &{SELECAO_VALUE}    TIPO_AMS=//*[@id="td_cORDEM_COMPRA_x_nIdTipoOrdemCompra"]//*[@value='14']
 ...                 PRIORIDADE_MEDIA=//*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]//*[@value='2']
 ...                 EMPRESA_SEDC=//*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='20']
+...                 EMPRESA_TJ=//*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='12']
 ...                 GESTAO_AD=//*[@id="td_cORDEM_COMPRA_x_nCdGestao"]//*[@value='1']
 ...                 APLICACAO_EI=//*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]//*[@value='1']
 
@@ -39,7 +38,7 @@ ${LUPA_GRUPO_COMPRA}     (//img[@id='img'])[3]
 *** Keywords ***
 
 Dado que acesso o sistema
-    SeleniumLibrary.Open Browser    ${URL}    browser=chrome    # options=add_argument(${CHROME_OPTIONS})
+    SeleniumLibrary.Open Browser    ${URL}    browser=chrome
     Maximize Browser Window
     Capture Page Screenshot
     
@@ -91,6 +90,75 @@ E acesso a URL de criar Solicitação de compras
     # Execução indo direto para página de Criar SC
     SeleniumLibrary.Go To    ${URL_CRIAR_SC}
     Maximize Browser Window
+
+Então preencho os campos da Aba Dados gerais - TJ
+   
+    Wait Until Element Is Visible    ${SELECAO.PRIORIDADE}    timeout=30s
+    Click Element    ${SELECAO.PRIORIDADE}
+    Click Element    ${SELECAO_VALUE.PRIORIDADE_MEDIA}
+    
+    Wait Until Element Is Visible    ${SELECAO.TIPO}    timeout=30s
+    Click Element    ${SELECAO.TIPO} 
+    Click Element    ${SELECAO_VALUE.TIPO_AMS}
+    
+    Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
+
+    Click Element  ${LUPA_TIPO_OBJETO}
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
+    Wait Until Element Is Visible    ${INPUT_TIPO}    timeout=30s
+    Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
+    Click Element    //*[@id="tdPesquisar"]
+    Click Element    //input[@value="ANIMAIS VIVOS◘50"]
+    Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Switch Window
+    
+    Wait Until Element Is Visible    ${SELECAO.EMPRESA}    timeout=30s
+    Click Element    ${SELECAO.EMPRESA}
+    Wait Until Element Is Visible    ${SELECAO_VALUE.EMPRESA_TJ}    timeout=30s
+    Click Element    ${SELECAO_VALUE.EMPRESA_TJ}
+    
+    Wait Until Element Is Visible    ${SELECAO.GESTAO}     timeout=30s
+    Click Element    ${SELECAO.GESTAO} 
+    Click Element    ${SELECAO_VALUE.GESTAO_AD}
+    
+    Wait Until Element Is Visible    ${SELECAO.APLICACAO}     timeout=30s
+    Click Element    ${SELECAO.APLICACAO} 
+    Click Element    ${SELECAO_VALUE.APLICACAO_EI}
+    Capture Page Screenshot
+    
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Click Element    ${LUPA_GRUPO_COMPRA}
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
+    Input Text    ${INPUT_TIPO}    TRIBUNAL DE JUSTIÇA	
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    timeout=30s
+    Click Element    //*[@id="ctl00_btnPesquisar"]  
+
+    Wait Until Element Is Visible    
+    ...    //input[@value="Grupo de Compras Padrão - TRIBUNAL DE JUSTIÇA◘2"]    timeout=30s
+    Click Element    
+    ...    //input[@value="Grupo de Compras Padrão - TRIBUNAL DE JUSTIÇA◘2"]
+    Click Element    
+    ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+
+    Switch Window
+
+    Capture Page Screenshot
+    
+    Click Element    //*[@id="btnSalvar"]
+    Sleep    1
+    Handle Alert    ACCEPT
+    SeleniumLibrary.Close Browser
+    
+
+
+
 
 
 Então preencho os campos da Aba Dados gerais
@@ -260,12 +328,10 @@ Então assino o documento
     SeleniumLibrary.Close Browser
 
 
-    # Click no botão 'Encaminhar'
 Então encaminho a Solicitação de compra para precificação
 
     Switch Window    NEW
 
-    # Não encontra a tela para encaminhar
     Sleep    4
     Wait Until Element Is Visible    xpath=//input[@value = "Encaminhar"]    timeout=30s
     Click Element    xpath=//input[@value = "Encaminhar"]
@@ -1387,6 +1453,32 @@ Então incluo os itens e agrupo por lote
     
     Sleep    4
     SeleniumLibrary.Close Browser
+
+Então atribuo a comissão de Compra Direta - TJ
+
+    # Clique no botão 'atribuir comissão'
+    Click Element    //a[contains(.,'Atribuir comissão')]
+
+    # Switch Window
+
+    # Busca pela comissão no campo 'Descrição'
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    timeout=30s
+    Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
+    ...    COMISSÃO DE COMPRA DIRETA
+
+    # Clique no botão pesquisar
+    Click Element    //a[contains(.,'Pesquisar')]
+
+    # Clique para selecionar a comissão
+    Wait Until Element Is Visible    //input[@value='17|Comissão de Compra Direta - TJPE']    timeout=30s
+    Click Element    //input[@value='17|Comissão de Compra Direta - TJPE']
+    Capture Page Screenshot
+
+
+    # clique do botão 'Confirma'
+    Click Element    //a[contains(.,'Confirmar')]
+    SeleniumLibrary.Close Browser
+
 
 
 Então atribuo a comissão de Compra Direta

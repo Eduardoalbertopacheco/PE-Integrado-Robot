@@ -49,7 +49,7 @@ Resource         ../../Pregao/Resource_Cadastro_pregão.resource
 
 *** Test Cases ***
 Cenário 01 - Criar Pregão - Aba Dados Gerais
-    [Tags]    criar_pregao
+    [Tags]    Criar
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -65,7 +65,7 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
 
 
 Cenário 02 - Incluir SC ao Pregão
-    [Tags]    incluir_sc_pregao
+    [Tags]    incluir_SC
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -76,7 +76,7 @@ Cenário 02 - Incluir SC ao Pregão
 
 
 Cenário 03 - Incluir Documento - Edital
-    [Tags]    Incluir_doc_pregao
+    [Tags]    Incluir_doc
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -87,7 +87,7 @@ Cenário 03 - Incluir Documento - Edital
 
 
 Cenário 04 - Assinar Documento
-    [Tags]    assinar_doc_pregao
+    [Tags]    assinar_doc
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -98,7 +98,7 @@ Cenário 04 - Assinar Documento
 
 
 Cenário 05 - Solicitar Parecer para Ordenador
-    [Tags]    solicitar_parecer_pregao
+    [Tags]    Solicitar_parecer
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -109,7 +109,7 @@ Cenário 05 - Solicitar Parecer para Ordenador
 
 
 Cenário 06 - Aprovar parecer Ordenador
-    [Tags]    aprovar_parecer
+    [Tags]    Aprovar_parecer
     Dado que acesso o sistema
     E faço login com usuário "ordenador.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -121,7 +121,7 @@ Cenário 06 - Aprovar parecer Ordenador
 
 
 Cenário 07 - Solicitar Autorização
-    [Tags]    solicitar_autorizacao
+    [Tags]    Solicitar_autorizacao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -129,11 +129,10 @@ Cenário 07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    E mostro a auditoria
 
 
 Cenário 08 - Aprovar autorização
-    [Tags]    aprovar_autorizacao
+    [Tags]    Aprovar_autorizacao
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a tela de Licitações Eletrônicas
@@ -144,8 +143,8 @@ Cenário 08 - Aprovar autorização
     E mostro a auditoria
 
 
-Cenário 09 - Agendar Pregão eletrônico
-    [Tags]    agendar_pregao
+Cenário 09 - Agendar Concorrência eletrônico
+    [Tags]    Agendar
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -156,7 +155,7 @@ Cenário 09 - Agendar Pregão eletrônico
 
 
 Cenário 10 - Envio de propostas Fornecedor 01
-    [Tags]    enviar_proposta01
+    [Tags]    Enviar_proposta01
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
@@ -169,7 +168,7 @@ Cenário 10 - Envio de propostas Fornecedor 01
     
 
 Cenário 11 - Envio de propostas Fornecedor 02
-    [Tags]    enviar_proposta02
+    [Tags]    Enviar_proposta02
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
@@ -181,8 +180,8 @@ Cenário 11 - Envio de propostas Fornecedor 02
     # E vejo a Auditoria
 
 
-Cenário 12 - Prorrogar Pregão
-    [Tags]    prorrogar_pregao
+Cenário 12 - Prorrogar Concorrência
+    [Tags]    Prorrogar
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -195,7 +194,7 @@ Cenário 12 - Prorrogar Pregão
 
 
 Cenário 13 - Abertura das propostas
-    [Tags]    abrir_propostas
+    [Tags]    Abrir_proposta
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -205,7 +204,7 @@ Cenário 13 - Abertura das propostas
 
 
 Cenário 14 - Iniciar disputa
-    [Tags]    iniciar_disputa
+    [Tags]    Iniciar_disputa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -214,7 +213,7 @@ Cenário 14 - Iniciar disputa
     Então inicio a disputa
 
 Cenário 15 - Abrir Itens/Lotes para disputa
-    [Tags]    abrir_itens
+    [Tags]    Abrir_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -224,7 +223,7 @@ Cenário 15 - Abrir Itens/Lotes para disputa
 
 
 Cenário 16 - Enviar disputa Fornecedor 01
-    [Tags]    enviar_disputa01
+    [Tags]    Enviar_disputa01
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
@@ -234,7 +233,7 @@ Cenário 16 - Enviar disputa Fornecedor 01
 
 
 Cenário 17 - Enviar disputa Fornecedor 02
-    [Tags]    enviar_disputa02
+    [Tags]    Enviar_disputa02
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas

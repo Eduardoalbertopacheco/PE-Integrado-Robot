@@ -56,7 +56,6 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E clico em Incluir Processo
-
     E seleciono a modalidade para Concorrência Eletrônica
     E Seleciono o Critério de Concorrência Eletrônica
     E insiro as datas para agendamento
@@ -131,7 +130,6 @@ Cenário 07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    E mostro a auditoria
 
 
 Cenário 08 - Aprovar autorização

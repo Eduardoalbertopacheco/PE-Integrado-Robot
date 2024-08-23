@@ -49,7 +49,7 @@ Resource         ../../Pregao/Resource_Cadastro_pregão.resource
 
 
 *** Test Cases ***
-Cenário 01 - Criar Pregão - Aba Dados Gerais
+Cenário 01 - Criar Concorrência Eletrônica - Aba Dados Gerais
     [Tags]    criar_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -65,7 +65,7 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
     E mostro a auditoria
 
 
-Cenário 02 - Incluir SC ao Pregão
+Cenário 02 - Incluir SC na Concorrência
     [Tags]    incluir_sc_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -130,7 +130,6 @@ Cenário 07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    E mostro a auditoria
 
 
 Cenário 08 - Aprovar autorização
@@ -145,16 +144,14 @@ Cenário 08 - Aprovar autorização
     E mostro a auditoria
 
 
-Cenário 09 - Agendar Pregão eletrônico
+Cenário 09 - Agendar Concorrência eletrônica
     [Tags]    agendar_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E seleciono a licitação para agendamento
     Então faço o reagendamento
-    # E clico na licitação da lista
-    # E mostro a auditoria
-
+ 
 
 Cenário 10 - Envio de propostas Fornecedor 01
     [Tags]    enviar_proposta01
@@ -183,7 +180,7 @@ Cenário 11 - Envio de propostas Fornecedor 02
     # E vejo a Auditoria
 
 
-Cenário 12 - Prorrogar Pregão
+Cenário 12 - Prorrogar Concorrência
     [Tags]    prorrogar_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"

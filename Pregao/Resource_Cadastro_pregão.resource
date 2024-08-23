@@ -8,14 +8,11 @@ Resource         ../Solicitacao_compra/Resource_Cadastro_SC.resource
      
 *** Variables ***
 
-# ${OBJETO}       Teste Edu - Pregão Aberto Fechado - Lote
 ${TITULO_PARECER}    Título do Parecer
 
 ${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
 ${CAMPO_SELECAO_MARCA}    //span[contains(@aria-owns,'dtgPesquisaItens_ctl01_ddlMarca_listbox')]
 ${CAMPO_SELECAO_MARCA_LOTE}    //span[contains(@aria-owns,'dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaItens_ctl01_ddlMarca_listbox')]
-
-
 
 
 &{SELECAO_PARECER}
@@ -113,6 +110,7 @@ E acesso a tela de Licitações Eletrônicas
 
     # Clique em Nova Licitações eletronicas
     Wait Until Element Is Visible    ${SUBMENU_LICITACAO.LICITACOES_ELERONICAS}    timeout=30s
+    Sleep    1
     Click Element    ${SUBMENU_LICITACAO.LICITACOES_ELERONICAS}
     Capture Page Screenshot
 
@@ -244,6 +242,7 @@ E Seleciono o Critério de Concorrência Eletrônica
     Wait Until Element Is Visible    ${SELECAO.CRITERIO}    timeout=30s
     Click Element    ${SELECAO.CRITERIO}
     Wait Until Element Is Visible    ${VALOR_SELECAO.CRIT_CONCORRENCIA_LEI_14_133_21}    timeout=30s
+    Sleep    2
     Click Element    ${VALOR_SELECAO.CRIT_CONCORRENCIA_LEI_14_133_21}
     Capture Page Screenshot
 
@@ -982,7 +981,7 @@ E seleciono a licitação em abertura de proposta da lista
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
     END
-    Sleep     1
+    Sleep     2
     Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
 
 
@@ -1646,7 +1645,6 @@ Então gravo o valor do lote
 Então adjudico o pregão eletrônico
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
     Select Frame    ${FRAME_NEGOCIACAO}
-    Select Frame    //frame[@name='main']
     Capture Page Screenshot
 
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]

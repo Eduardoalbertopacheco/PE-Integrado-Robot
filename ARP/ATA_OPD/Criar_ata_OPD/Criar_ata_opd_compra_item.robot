@@ -1,30 +1,28 @@
 *** Settings ***
-Documentation    Fluxo Feliz - Cadastro de Ata de Registro de Preço até a ativação
+Documentation    Fluxo feliz - Cadastro de Ata de Registro de Preço
 Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
-Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
-Resource         ../Ressource_ARP.robot
-
+Resource         ../../Ressource_ARP.robot
 
 *** Test Cases ***
 
-Cenário 01 - Gerar ARP do Pregão
+Cenário 01 - Gerar ARP OPD da Compra Direta
     [Tags]    gerar_ata
     Dado que acesso o sistema
-    E faço login com usuário "edu.gestorata.110402"
-    E acesso a lista de Licitações
-    E seleciono o filtro Licitações Homologadas
-    E clico no Licitação da lista para gerar ARP
+    E faço login com usuário "gestorata.070001"
+    E acesso a lista de todas as Compras Direta
+    E seleciono o filtro Compras diretas encerradas
+    E clico na Compra Direta da lista
     Então gero a ARP
 
 
-Cenário 02 - Configurar Ata
+Cenário 02 - Configurar Ata - Dados Gerais
     [Tags]    configurar_ata
     Dado que acesso o sistema
-    E faço login com usuário "edu.gestorata.110402"
+    E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E clico na Ata de Pregão da lista
+    E clico na Ata de Compra Direta da Lista
     E configuro a Aba Dados Gerais
     Então salvo os dados
 
@@ -32,9 +30,9 @@ Cenário 02 - Configurar Ata
 Cenário 03 - Inluir Documento
     [Tags]    Incluir_documento
     Dado que acesso o sistema
-    E faço login com usuário "edu.gestorata.110402"
+    E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E clico na Ata de Pregão da lista
+    E clico na Ata de Compra Direta da Lista
     Então incluo o Documento na ARP
     E vejo a Auditoria da ARP
 
@@ -42,9 +40,9 @@ Cenário 03 - Inluir Documento
 Cenário 04 - Assinar Documento
     [Tags]    assinar_documento
     Dado que acesso o sistema
-    E faço login com usuário "edu.gestorata.110402"
+    E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E clico na Ata de Pregão da lista
+    E clico na Ata de Compra Direta da Lista
     Então assino o documento na ARP
     E vejo a Auditoria da ARP
 
@@ -52,16 +50,16 @@ Cenário 04 - Assinar Documento
 Cenário 05 - Ativar ARP
     [Tags]    ativar_ata
     Dado que acesso o sistema
-    E faço login com usuário "edu.gestorata.110402"
+    E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E seleciono a Ata de Pregão da Lista
+    E seleciono a Ata de Compra Direta da Lista
     Então ativo a ARP
 
 
 Cenário 06 - Configurar Gestão da Ata
     [Tags]    configurar_gestao_ata
     Dado que acesso o sistema
-    E faço login com usuário "edu.gestorata.110402"
+    E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
     E clico na Ata de Compra Direta da Lista
     E clico em Gestão da ata

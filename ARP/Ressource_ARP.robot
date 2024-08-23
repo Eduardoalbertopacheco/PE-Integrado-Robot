@@ -59,18 +59,20 @@ E acesso a lista de todas as solicitações de Consumo
     # Clique em ata de registro de preços
     Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]    timeout=30s
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]
+    Sleep     1
 
     # mouse over 
     ${elemento}    Get WebElement    
     ...    xpath=//td[@class='label'][contains(.,'Solicitações de Consumo')]
     Mouse Over    ${elemento}
+    Sleep     1
 
 
     Wait Until Element Is Visible    
     ...    xpath=//td[@class='label'][contains(.,'Todas as solicitações')]    timeout=30s
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Todas as solicitações')]
-    Sleep    2
+    Sleep    1
     Capture Page Screenshot
 
 
@@ -919,7 +921,7 @@ E solicito Consumo/Adesão
 
 E seleciono o grupo de compras
     # Seleção do grupo de compras
-    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}    30
     Click Element    ${LUPA_GRUPO_COMPRA_ATA}
 
     # Switch Window
@@ -1076,27 +1078,26 @@ Então altero o valor de referência dos itens
 
     Wait Until Element Is Visible    //img[@alt='Alterar valor de referência']    timeout=15s
     Click Element    //img[@alt='Alterar valor de referência']
-    Click Element    //img[@alt='Alterar valor de referência']
+    # Click Element    //img[@alt='Alterar valor de referência']
     Sleep    3
 
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    //input[contains(@value,'9783')]
-    Click Element    //input[contains(@value,'9783')]
-    Wait Until Element Is Visible    //input[contains(@value,'9108')]
-    Click Element    //input[contains(@value,'9108')]
-    Wait Until Element Is Visible    //input[contains(@value,'9998')]
-    Click Element    //input[contains(@value,'9998')]
+    ${elements}=    Get WebElements    xpath=(//input)[position() > last() - 3]
+    FOR    ${element}    IN    @{elements}
+       Wait Until Element Is Visible    ${element}
+       Click Element    ${element}
+       Sleep    2
+    END
     Capture Page Screenshot
-
     Sleep    3
-    Wait Until Element Is Visible    id:ctl00_ContentButtom_btnSalvarBancoManutencao    timeout=15s
-    Sleep    2
-    Set Focus To Element    id:ctl00_ContentButtom_btnSalvarBancoManutencao
-    Sleep    2
-    Click Link    id:ctl00_ContentButtom_btnSalvarBancoManutencao
-    Sleep    6
 
+    ${BTN}    Set Variable    id=ctl00_ContentButtom_btnSalvarBancoManutencao
+    Wait Until Element Is Visible    ${BTN}
+    Sleep   2
+    Click Link    ${BTN}
+    Sleep    3
+    
 
 E seleciono itens da ARP para Adesão
     Sleep    2

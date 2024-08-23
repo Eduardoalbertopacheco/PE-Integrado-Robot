@@ -3,18 +3,18 @@ Documentation    Fluxo feliz - Cadastro de Ata de Registro de Preço
 Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
-Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
-Resource         ../Ressource_ARP.robot
+Resource         ../../Ressource_ARP.robot
+
 
 *** Test Cases ***
 
-Cenário 01 - Criar Ata Externa Estadual
-    [Tags]    criar_ata_municipal
+Cenário 01 - Criar Ata Externa Federal
+    [Tags]    criar_ata_federal
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
     E clico em Incluir Ata
-    E seleciono Esfera administrativa como Estadual
+    E seleciono Esfera administrativa como Federal
     E seleciono o Estado de origem
     E seleciono o Orgão Gestor ATA
     E preencho todos os Dados Gerais
@@ -23,7 +23,7 @@ Cenário 01 - Criar Ata Externa Estadual
     E vejo a Auditoria da ARP
 
 
-Cenário 02 - Incluir e assinar o documento
+Cenário 02 - Incluir Documento e assinar documento
     [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -31,6 +31,16 @@ Cenário 02 - Incluir e assinar o documento
     E clico na Ata Externa da Lista
     Então incluo e assino o documento na Ata
     E vejo a Auditoria da ARP
+
+
+# Cenário 03 - Assinar Documento
+#     [Tags]    assinar_documento
+#     Dado que acesso o sistema
+#     E faço login com usuário "edu.gestorata.110402"
+#     E acesso a lista de Atas de Registro de preços
+#     E clico na Ata Externa da Lista
+#     Então assino o documento da Ata
+#     E vejo a Auditoria da ARP
 
 
 Cenário 04 - Ativar ATA Externa

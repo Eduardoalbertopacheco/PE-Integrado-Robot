@@ -3,8 +3,8 @@
 
 *** Variables ***
 
-${RESUMO_SC}        SC ITEM - Pregão Aberto-Fechado 05/08
-${OBJETO_PREGAO}    Pregão Aberto-Fechado Item - 21/08
-${OBJETO_COMPRA}    Compra Direta - Lote - DISPENSA
-${OBJETO_ATA}       Compra Direta - Lote - DISPENSA
+${RESUMO_SC}        SC ITEM - Para Compra - Dispensa
+${OBJETO_PREGAO}    Concorrencia Fechado-Aberto - Lote
+${OBJETO_COMPRA}    Compra Direta - Item - DISPENSA - OPD
+${OBJETO_ATA}       Pregão Fechado-Aberto Item - 21/08
 ${OBJETO_IRP}       Teste IRP

@@ -1,7 +1,7 @@
 *** Settings ***
 
 Library          SeleniumLibrary
-Resource        ../Ressource_ARP.robot
+Resource        ../../Ressource_ARP.robot
 
 *** Test Cases ***
 
