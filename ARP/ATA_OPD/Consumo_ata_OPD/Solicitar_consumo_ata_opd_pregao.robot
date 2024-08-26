@@ -2,7 +2,9 @@
 Documentation    Fluxo de Consumo ATA OPD - Fluxo Feliz
 
 Library          SeleniumLibrary
-Resource        ../../Ressource_ARP.robot
+Resource        ../../../Pages/Login.robot
+Resource        ../../../Pages/Ressource_ARP.robot
+
 
 *** Test Cases ***
 

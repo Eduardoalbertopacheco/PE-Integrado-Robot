@@ -3,7 +3,10 @@ Documentation    Fluxo feliz - Cadastro de Ata de Registro de Preço
 Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
-Resource         ../../Ressource_ARP.robot
+Resource        ../../../Pages/Login.robot
+Resource        ../../../Pages/Ressource_ARP.robot
+Resource        ../../../Pages/Resource_compra_direta.robot
+
 
 *** Test Cases ***
 

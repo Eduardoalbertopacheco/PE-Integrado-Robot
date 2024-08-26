@@ -2,8 +2,8 @@
 Documentation    Fluxo Feliz - Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
 Library          Browser
-Library          OperatingSystem
-Resource        ./Resource_Cadastro_SC.resource
+Resource        ../Pages/Login.robot
+Resource        ../Pages/Resource_Cadastro_SC.robot
 
 *** Test Cases ***
 

@@ -1,7 +1,10 @@
 *** Settings ***
 Documentation    
 Library          SeleniumLibrary
-Resource         ../Pregao/Resource_Cadastro_pregão.resource
+Resource        ../Variaveis.robot
+Resource        ../Pages/Resource_Cadastro_SC.robot
+Resource        ../Pages/Resource_Cadastro_pregao.robot
+
 
 
 *** Variables ***

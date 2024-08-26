@@ -2,7 +2,9 @@
 Documentation    Fluxo de Adesão ATA GOV OPD - Fluxo Feliz
 
 Library          SeleniumLibrary
-Resource        ../../Ressource_ARP.robot
+Resource        ../../../Pages/Login.robot
+Resource        ../../../Pages/Ressource_ARP.robot
+
 
 *** Test Cases ***
 
@@ -23,7 +25,7 @@ Cenário 02 - Selecionar itens para Adesão
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     E seleciono itens da ARP para Adesão
     E vejo a Auditoria da ARP
 
@@ -33,7 +35,7 @@ Cenário 03 - Alterar valor de referência dos itens
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então altero o valor de referência dos itens
     E vejo a Auditoria da ARP
 
@@ -43,7 +45,7 @@ Cenário 04 - Incluir e assinar documentos
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então incluo e Assino os Documentos na Adesão
     E vejo a Auditoria da ARP
 
@@ -53,7 +55,7 @@ Cenário 04 - Incluir e assinar documentos
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então encaminho a Solicitação de Adesão
     E vejo a Auditoria da ARP
 
@@ -63,7 +65,7 @@ Cenário 06 - Concluir análise com Gestor de Ata
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então concluo a análise da Ata Externa
 
 
@@ -72,7 +74,7 @@ Cenário 07 - Deliberar e Assianr Documento com Gestor de Ata
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Adesão e Assino o Documento
     E vejo a Auditoria da ARP
 
@@ -82,7 +84,7 @@ Cenário 08 - Deliberar e Assinar com Autoridade Competente
     Dado que acesso o sistema
     E faço login com usuário "autoridade.070001"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Adesão e Assino o Documento
     E vejo a Auditoria da ARP
 
@@ -92,7 +94,7 @@ Cenário 09 - Deliberar com Orçamento
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Solicitação de Adesão
     E vejo a Auditoria da ARP
     
@@ -102,6 +104,6 @@ Cenário 10 - Deliberar com Ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
     E acesso a lista de todas as solicitações de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Solicitação de Adesão
     E vejo a Auditoria da ARP

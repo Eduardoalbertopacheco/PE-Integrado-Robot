@@ -1,11 +1,13 @@
 *** Settings ***
 
 Library          SeleniumLibrary
-Resource        ../../Ressource_ARP.robot
+Resource        ../../../Pages/Login.robot
+Resource        ../../../Pages/Ressource_ARP.robot
+
 
 *** Test Cases ***
 
-Cenário 01 - Solicitar Consumo de Ata de Pregão
+Cenário 01 - Solicitar Consumo de Ata de Compra Direta
     [Tags]    solicitar_adesao
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -22,27 +24,27 @@ Cenário 02 - Selecionar itens para consumo
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     E seleciono itens da ARP para Adesão
     E vejo a Auditoria da ARP
 
 
 Cenário 03 - Alterar valor de referência dos itens
-    [Tags]    alterar_valor
+    [Tags]    alterar_valor_referencia
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então altero o valor de referência dos itens
     E vejo a Auditoria da ARP
 
 
 Cenário 03 - Incluir e assinar documento
-    [Tags]    incluir_assinar_documento
+    [Tags]    assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então incluo e Assino os Documentos no Consumo
     E vejo a Auditoria da ARP
 
@@ -52,7 +54,7 @@ Cenário 03 - Incluir e assinar documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então encaminho a Solicitação de Adesão
     E vejo a Auditoria da ARP
 
@@ -62,7 +64,7 @@ Cenário 05 - Deliberar com Orçamento
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Solicitação de Adesão
     E vejo a Auditoria da ARP
 
@@ -72,7 +74,7 @@ Cenário 06 - Deliberar com Ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Solicitação de Adesão
     E vejo a Auditoria da ARP
 
@@ -82,7 +84,7 @@ Cenário 07 - Concluir análise com Gestor de Ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então concluo a análise da Ata Externa
 
 
@@ -91,8 +93,8 @@ Cenário 08 - Deliberar e Assianr Documento com Gestor de Ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
-    Então Delibero a Adesão e Assino o Documento com Autoridade Central
+    E clico no Consumo/Adesão da lista
+    Então Delibero a Adesão e Assino o Documento
     E vejo a Auditoria da ARP
 
 
@@ -101,8 +103,8 @@ Cenário 09 - Deliberar com Autoridade Competente
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
     E acesso a lista de todas as solicitações de Consumo
-    E clico na Adesão da lista
-    Então Delibero a Adesão e Assino o Documento com Autoridade Central
+    E clico no Consumo/Adesão da lista
+    Então Delibero a Adesão e Assino o Documento
     E vejo a Auditoria da ARP
     
 

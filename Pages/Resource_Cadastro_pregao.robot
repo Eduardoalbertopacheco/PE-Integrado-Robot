@@ -4,7 +4,9 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource         ../Solicitacao_compra/Resource_Cadastro_SC.resource
+Resource        ../Variaveis.robot
+
+       
      
 *** Variables ***
 
@@ -461,8 +463,6 @@ Então incluo a SC Por Lote ao Pregão - OPD
     # Cliue no botão Incluir itens da Solicitacçao
     Wait Until Element Is Visible    //a[contains(.,'Incluir item(ns) da solicitação')]    timeout=30s
     Click Element    //a[contains(.,'Incluir item(ns) da solicitação')]
-
-    Log    ${resumo_sc}
 
     Switch Window    NEW
 

@@ -4,14 +4,10 @@ Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
 Library          DateTime
-Resource         ../ResourceComum.robot
-
+Resource        ../Variaveis.robot
 
 *** Variables ***
-
-${URL}           https://www.homologpeintegrado.pe.gov.br/Portal/Default.aspx
-${URL_CRIAR_SC}  https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
-
+${URL_CRIAR_SC}    https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 
 &{SELECAO}    TIPO=//*[@id="td_cORDEM_COMPRA_x_nIdTipoOrdemCompra"]
 ...           PRIORIDADE=//*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]
@@ -36,21 +32,6 @@ ${LUPA_GRUPO_COMPRA}     (//img[@id='img'])[3]
 
 
 *** Keywords ***
-
-Dado que acesso o sistema
-    SeleniumLibrary.Open Browser    ${URL}    browser=chrome
-    Maximize Browser Window
-    Capture Page Screenshot
-    
-
-E faço login com usuário "${usuario}"
-
-    Input Text        css=input[placeholder='Login']    ${usuario}
-    Input Text        css=input[placeholder='Senha']    PE@123456
-    Capture Page Screenshot
-    Click Element     css=input[type='submit']
-    Sleep    3
-    Capture Page Screenshot
 
 E faço login com usuário Vencedor "${usuario}"
     Input Text        css=input[placeholder='Login']    ${usuario}
@@ -156,10 +137,6 @@ Então preencho os campos da Aba Dados gerais - TJ
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
     
-
-
-
-
 
 Então preencho os campos da Aba Dados gerais
     
@@ -294,7 +271,6 @@ Então incluo o documento do tipo Termo Referencia
     SeleniumLibrary.Close Browser
 
 
-    # Clicar no checkbox para selecionar o documento a ser assinado
 Então assino o documento    
 
     Switch Window    NEW

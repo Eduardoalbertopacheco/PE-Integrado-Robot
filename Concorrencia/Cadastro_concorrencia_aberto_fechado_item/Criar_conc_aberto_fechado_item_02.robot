@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
-Resource         ../../Pregao/Resource_Cadastro_pregão.resource
+Resource        ../../Pages/Login.robot
+Resource        ../../Pages/Resource_Cadastro_pregao.robot
 
 *** Test Cases ***
 
@@ -96,7 +96,7 @@ Cenário 23 - Habilitar fornecedor vencedor
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor
+    Então habilito o fonecedor vencedor (Aberto_item)
 
 Cenário 24 - Encerrar etapa
     [Tags]    encerrar_etapa

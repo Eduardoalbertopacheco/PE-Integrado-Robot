@@ -4,7 +4,9 @@ Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
 Library          OperatingSystem
-Resource         ../../Ressource_ARP.robot
+Resource        ../../../Pages/Login.robot
+Resource        ../../../Pages/Ressource_ARP.robot
+
 
 *** Variables ***
 ${VAR_FILE}    ./tests/variables.py

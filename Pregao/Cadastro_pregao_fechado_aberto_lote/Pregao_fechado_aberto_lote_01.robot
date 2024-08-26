@@ -2,8 +2,8 @@
 Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
 Library          SeleniumLibrary
 Library          Browser
-Resource         ../../Solicitacao_compra/Resource_Cadastro_SC.resource
-Resource         ../Resource_Cadastro_pregão.resource
+Resource        ../../Pages/Login.robot
+Resource        ../../Pages/Resource_Cadastro_pregao.robot
      
 
 *** Variables ***

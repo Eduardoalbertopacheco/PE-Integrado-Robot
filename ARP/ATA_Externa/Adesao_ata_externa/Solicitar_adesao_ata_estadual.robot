@@ -1,6 +1,8 @@
 *** Settings ***
 Library          SeleniumLibrary
-Resource        ../../Ressource_ARP.robot
+Resource        ../../../Pages/Login.robot
+Resource        ../../../Pages/Ressource_ARP.robot
+
 
 *** Test Cases ***
 Cenário 01 - Solicitar Adesão de Ata Externa Estadual

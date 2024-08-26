@@ -1,8 +1,7 @@
 *** Settings ***
 
 Library    SeleniumLibrary
-
-Resource    ../ARP/Ressource_ARP.robot
+Resource        ../Variaveis.robot
 
 *** Keywords ***
 

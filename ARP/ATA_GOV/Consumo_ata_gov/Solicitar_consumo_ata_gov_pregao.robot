@@ -1,11 +1,13 @@
 *** Settings ***
 
 Library          SeleniumLibrary
-Resource        ../../Ressource_ARP.robot
+Resource        ../../../Pages/Login.robot
+Resource        ../../../Pages/Ressource_ARP.robot
+
 
 *** Test Cases ***
 
-Cenário 01 - Solicitar Consumo de Ata de Compra Direta
+Cenário 01 - Solicitar Consumo de Ata de Pregão
     [Tags]    solicitar_adesao
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -28,7 +30,7 @@ Cenário 02 - Selecionar itens para consumo
 
 
 Cenário 03 - Alterar valor de referência dos itens
-    [Tags]    alterar_valor_referencia
+    [Tags]    alterar_valor
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -38,7 +40,7 @@ Cenário 03 - Alterar valor de referência dos itens
 
 
 Cenário 03 - Incluir e assinar documento
-    [Tags]    assinar_documento
+    [Tags]    incluir_assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo

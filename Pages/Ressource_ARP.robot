@@ -5,8 +5,7 @@ Library          DateTime
 Library          Browser
 Library          OperatingSystem
 Library          String
-
-Resource        ../Compra_direta/Resource_compra_direta.resource
+Resource       ../Pages/Resource_compra_direta.robot
 
 
 *** Variables ***
