@@ -22,7 +22,7 @@ Cenário 02 - Configurar Ata - Dados Gerais
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E clico na Ata de Compra Direta da Lista
+    E clico na Ata de Compra Direta da Lista - OPD
     E configuro a Aba Dados Gerais
     Então salvo os dados
 
@@ -32,7 +32,7 @@ Cenário 03 - Inluir Documento
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E clico na Ata de Compra Direta da Lista
+    E clico na Ata de Compra Direta da Lista - OPD
     Então incluo o Documento na ARP
     E vejo a Auditoria da ARP
 
@@ -42,7 +42,7 @@ Cenário 04 - Assinar Documento
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E clico na Ata de Compra Direta da Lista
+    E clico na Ata de Compra Direta da Lista - OPD
     Então assino o documento na ARP
     E vejo a Auditoria da ARP
 
@@ -52,16 +52,33 @@ Cenário 05 - Ativar ARP
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E seleciono a Ata de Compra Direta da Lista
+    E seleciono a Ata de Compra Direta da Lista - OPD
     Então ativo a ARP
 
 
-Cenário 06 - Configurar Gestão da Ata
+Cenário 06 - Concluir Análise com Gestor Central de ATA OPD
+    [Tags]    Concluir_análise
+    Dado que acesso o sistema
+    E faço login com usuário "GESTORCENTRALDEATAOPD.070001"
+    E acesso a lista de Atas de Registro de preços
+    E clico na Ata de Compra Direta da Lista - OPD
+    Então concluo a análise da Ata
+
+Cenário 07 - Deliberar ATA OPD
+    [Tags]    Deliberar_ata
+    Dado que acesso o sistema
+    E faço login com usuário "GESTORCENTRALDEATAOPD.070001"
+    E acesso a lista de Atas de Registro de preços
+    E clico na Ata de Compra Direta da Lista - OPD
+    Então Delibero a Ata Externa
+
+
+Cenário 08 - Configurar Gestão da Ata
     [Tags]    configurar_gestao_ata
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
     E acesso a lista de Atas de Registro de preços
-    E clico na Ata de Compra Direta da Lista
+    E clico na Ata de Compra Direta da Lista - OPD
     E clico em Gestão da ata
     Então configuro a gestão da Ata
     E vejo a Auditoria da ARP

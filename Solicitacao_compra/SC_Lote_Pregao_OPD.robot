@@ -72,7 +72,7 @@ Cenário 07 - Definir Natureza de despesa com o Financeiro
 Cenário 08 - Aprovação orçamentária
     [Tags]    aprovacao_orcamentaria
     Dado que acesso o sistema
-    E faço login com usuário "orcamento.070001"
+    E faço login com usuário "orcamento.120101"
     E acesso Minhas tarefas
     E seleciono a SC para aprovação
     Então Clique no botão Aprovar com orçamento
@@ -81,7 +81,7 @@ Cenário 08 - Aprovação orçamentária
 Cenário 09 - Aprovação com o Ordenador
     [Tags]    aprovacao_ordenador
     Dado que acesso o sistema
-    E faço login com usuário "ordenador.070001"
+    E faço login com usuário "ordenador.120101"
     E acesso Minhas tarefas
     E seleciono a SC para aprovação
     E Clico em Ciente
@@ -114,27 +114,28 @@ Cenário 12 - Planejamento com Ordenador
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC
-    Então faço o planejamento para Pregão Eletrônico
+    Então faço o planejamento para Pregão Eletrônico - OPD
 
-Cenário 13 - Atribuir Comissão
-    [Tags]    atribuir_comissao
-    Dado que acesso o sistema
 
-    # Fluxo para Pregão e Licitação
-    E Faço login com usuário "planejador.120101"
-    E acesso a tela de Solicitação de compras centralizadas
-    E pesquiso por SC aguradando atribuir comissão
-    E seleciono a SC para atribuir comissão com Gestor Central
-    Então atribuo a Comissão Permanente de Licitação
+# Cenário 13 - Atribuir Comissão
+#     [Tags]    atribuir_comissao
+#     Dado que acesso o sistema
 
-# Fluxo Somente para Pregão Eletronico
-Cenário 14 - Aprovar SC com Pregoeiro Central
-    [Tags]    aprovacao_pregoeiro_central
-    Dado que acesso o sistema
-    E faço login com usuário "pregoeiro.120101"
-    E acesso Minhas tarefas
-    E seleciono a SC para aprovação
-    Então Clique no botão Aprovar com orçamento
+#     # Fluxo para Pregão e Licitação
+#     E Faço login com usuário "planejador.120101"
+#     E acesso a tela de Solicitação de compras centralizadas
+#     E pesquiso por SC aguradando atribuir comissão
+#     E seleciono a SC para atribuir comissão com Gestor Central
+#     Então atribuo a Comissão Permanente de Licitação
+
+# # Fluxo Somente para Pregão Eletronico
+# Cenário 14 - Aprovar SC com Pregoeiro Central
+#     [Tags]    aprovacao_pregoeiro_central
+#     Dado que acesso o sistema
+#     E faço login com usuário "pregoeiro.120101"
+#     E acesso Minhas tarefas
+#     E seleciono a SC para aprovação
+#     Então Clique no botão Aprovar com orçamento
 
 
 

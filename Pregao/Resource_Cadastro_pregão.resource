@@ -94,6 +94,7 @@ ${CAMPO_OBJETO}    //input[contains(@name,'_cP_PREGAO_x_sDsObjeto')]
 ...    MODO_DISPUTA_FECHADO_ABERTO=//li[@tabindex='-1'][contains(.,'Fechado-aberto')]
 ...    EXIBIR_INCLUIR_ITEM_SC_POR_ITEM=//option[contains(@value,'7053')]
 ...    EXIBIR_INCLUIR_ITEM_SC_POR_LOTE=//option[contains(@value,'7054')]
+...    EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD=//option[contains(@value,'7051')]
 
 
 *** Keywords ***
@@ -340,6 +341,34 @@ E insiro as datas para agendamento
     Input Text    ${CAMPO_DT_INCIAL_DISPUTA}    ${hora_atual+25min}
     Capture Page Screenshot
 
+E insiro a comissão - TJ
+
+    Wait Until Element Is Visible    ${BTN_LUPA_COMISSAO}    timeout=30s
+    Click Element    ${BTN_LUPA_COMISSAO}
+
+
+    # Busca pela comissão no campo 'Descrição'
+    Switch Window    new
+
+    Sleep    1
+    Wait Until Element Is Visible    //input[@field='normal'][contains(@id,'sDsProduto')]    timeout=30s
+    Input Text    //input[@field='normal'][contains(@id,'sDsProduto')]
+    ...    COMISSÃO PERMANENTE DE LICITAÇÃO
+
+    # Clique no botão pesquisar
+    Click Element    //input[contains(@value,'Pesquisar')]
+
+    # Clique para selecionar a comissão
+    Wait Until Element Is Visible    //input[contains(@value,'348')]    timeout=30s
+    Sleep    1
+    Click Element    //input[contains(@value,'348')]
+    Capture Page Screenshot
+
+
+    # clique do botão 'Confirma' da tela de inserir comissão
+    Click Element    //input[contains(@value,'Confirmar')]
+
+
 
 E insiro a Comissão e Salvo
 
@@ -415,7 +444,54 @@ Então incluo a SC Por Item ao Pregão
     # Clique no botão de Incluir SC
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
-    
+
+Então incluo a SC Por Lote ao Pregão - OPD
+    Switch Window    NEW
+
+    # Clique na aba 'Itens'
+    Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
+    Click Element    //a[contains(.,'Itens')]
+
+
+    # Clique na aba Itens
+    Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
+    # Cliue no botão Incluir itens da Solicitacçao
+    Wait Until Element Is Visible    //a[contains(.,'Incluir item(ns) da solicitação')]    timeout=30s
+    Click Element    //a[contains(.,'Incluir item(ns) da solicitação')]
+
+    Log    ${resumo_sc}
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
+    Click Element    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}
+    Capture Page Screenshot
+    Sleep    2
+
+    # Clique no campo exibir
+    Wait Until Element Is Visible    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD}    timeout=30s
+    Sleep    2
+    Click Element    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD}
+
+
+    # Selecionar a SC para Incluir
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    END
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    Capture Page Screenshot
+
+
+    # Clique no botão de Incluir SC
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
 
 Então incluo a SC Por Lote ao Pregão
     Switch Window    NEW
@@ -531,6 +607,75 @@ E seleciono assino o documento do tipo Edital
     Click Element    xpath=//a[text()= 'Assinar']
     Sleep    3
 
+E solicito o parecer para o Ordenador -OPD
+
+    Switch Window    NEW
+    # Clique no botão 'Parecer'
+    Wait Until Element Is Visible    //input[contains(@name,'btnParecer')]    timeout=30s
+    Click Element    //input[contains(@name,'btnParecer')]
+    Sleep    2
+    
+    ${all_windows}=    Get Window Handles
+    
+    ${janela_atual}=    Set Variable    ${all_windows}[0]
+    Switch Window    ${janela_atual}
+
+
+    Sleep    5
+    Select Frame    ${FRAME_MAIN}
+    Select Frame    ${FRAME_FRM_CONTEUDO}
+    Select Frame    ${FRAME_PARECER}
+    
+
+    Wait Until Element Is Visible    //li[contains(@onclick,'OpenWindowUsuarioLookup()')]    timeout=30s
+    Click Element    //li[contains(@onclick,'OpenWindowUsuarioLookup()')]
+    
+
+    Sleep    2
+    Wait Until Element Is Visible    //input[@id='tbxPesquisar']    timeout=30s
+    Input Text    //input[@id='tbxPesquisar']    Ordenador
+    Sleep    1
+
+    Click Element    //span[contains(@onclick,'Pesquisar();')]
+
+    Wait Until Element Is Visible    //td[contains(.,'Ordenador da UG 070001 (TRIBUNAL DE JUSTIÇA)')]    timeout=30s
+    Click Element    //td[contains(.,'Ordenador da UG 070001 (TRIBUNAL DE JUSTIÇA)')]
+    Sleep    1
+    
+
+    Wait Until Element Is Visible    //button[@type='button'][contains(.,'OK')]    timeout=30s
+    Click Element    //button[@type='button'][contains(.,'OK')]
+
+
+    # # Clique na seleção tipo do Parecer
+    Wait Until Element Is Visible  ${DROPDOWN_TPO_PARECER}    timeout=30s
+    Click Element  ${DROPDOWN_TPO_PARECER}
+
+
+    # Implementar aqui o tipo do paracer para Jurídico
+
+    Sleep    10
+
+
+    Wait Until Element Is Visible    //input[@name='sDsTitulo']    timeout=30s
+    Input Text    //input[@name='sDsTitulo']    ${TITULO_PARECER}
+
+
+    Wait Until Element Is Visible    ${XPATH}    timeout=30s
+    Input Text    ${XPATH}    Descrição parecer
+
+
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+    Sleep    2
+
+    Capture Page Screenshot
+    Wait Until Element Is Visible    ${BTN_SALVAR}    timeout=30s
+    Sleep    2
+    Click Element    ${BTN_SALVAR}
+    Capture Page Screenshot
+
+
+
 
 E solicito o parecer para o Ordenador
 
@@ -566,6 +711,7 @@ E solicito o parecer para o Ordenador
     Wait Until Element Is Visible    //td[contains(.,'Ordenador da UG 120101 (SECRETARIA DE ADMINISTRAÇÃO)')]    timeout=30s
     Click Element    //td[contains(.,'Ordenador da UG 120101 (SECRETARIA DE ADMINISTRAÇÃO)')]
     Sleep    1
+    
 
     Wait Until Element Is Visible    //button[@type='button'][contains(.,'OK')]    timeout=30s
     Click Element    //button[@type='button'][contains(.,'OK')]

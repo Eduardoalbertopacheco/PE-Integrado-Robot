@@ -20,7 +20,7 @@ Cenário 02 - Selecionar itens para adesão
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     E seleciono itens da ARP para Adesão
     E vejo a Auditoria da ARP
 
@@ -30,7 +30,7 @@ Cenário 03 - Alterar valor de referência dos itens
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então altero o valor de referência dos itens
     E vejo a Auditoria da ARP
 
@@ -40,7 +40,7 @@ Cenário 03 - Incluir e assinar documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então incluo e Assino os Documentos na Adesão
     E vejo a Auditoria da ARP
 
@@ -50,7 +50,7 @@ Cenário 03 - Incluir e assinar documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então encaminho a Solicitação de Adesão
     E vejo a Auditoria da ARP
 
@@ -60,7 +60,7 @@ Cenário 05 - Deliberar com Orçamento
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Solicitação de Adesão
     E vejo a Auditoria da ARP
 
@@ -69,7 +69,7 @@ Cenário 06 - Deliberar com Ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Solicitação de Adesão
     E vejo a Auditoria da ARP
 
@@ -78,7 +78,7 @@ Cenário 07 - Concluir análise com Gestor Central
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então concluo a análise da Ata Externa
 
 Cenário 08 - Deliberar e Assianr Documento com Gestor Central
@@ -86,7 +86,7 @@ Cenário 08 - Deliberar e Assianr Documento com Gestor Central
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então Delibero a Adesão e Assino o Documento com Gestor de Ata Central
     E vejo a Auditoria da ARP
 
@@ -95,7 +95,7 @@ Cenário 09 - Encaminhar para autorização
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
+    E clico no Consumo/Adesão da lista
     Então encaminho a Adesão para autorização
 
 
@@ -104,8 +104,8 @@ Cenário 10 - Deliberar com Autoridade Central
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a lista de todas as Solicitaçõe de Adesão
-    E clico na Adesão da lista
-    Então Delibero a Adesão e Assino o Documento com Autoridade Central
+    E clico no Consumo/Adesão da lista
+    Então Delibero a Adesão e Assino o Documento
     E vejo a Auditoria da ARP
     
 

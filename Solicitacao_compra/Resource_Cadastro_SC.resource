@@ -1030,6 +1030,69 @@ E seleciono a SC
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[8]//input
 
 
+Então faço o planejamento para Pregão Eletrônico - OPD
+
+    # Clique no botão Encaminhar
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Click Element    xpath=//a[contains(.,'Encaminhar')]
+
+    ${all_windows}=    Get Window Handles
+    ${second_window}=    Set Variable    ${all_windows}[0]
+
+    Switch Window    ${all_windows}[0]
+
+    Select Frame    //frame[contains(@name,'main')]
+
+
+    # Seleção Modalidade pregão eletronico
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
+    Sleep    1
+    Wait Until Element Is Visible    //li[contains(.,'Pregao Eletronico')]
+    Click Element    //li[contains(.,'Pregao Eletronico')]
+
+
+    # Seleção critério  - Pregão eletronico LEI FEDERAL 14.133/21
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[3]/td[2]/span[1]/span[1]/span[1]    timeout=30s
+    Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[3]/td[2]/span[1]/span[1]/span[1]
+    Sleep    1
+    Wait Until Element Is Visible    //li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]    timeout=30s
+    Click Element    //li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
+
+
+    # clique em NÂO para pedido de descentralização
+    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    timeout=30s
+    Click Element    //input[@value='0'][contains(@id,'Nao')]
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //input[contains(@value,'Salvar e fechar')]
+    Click Element    //input[contains(@value,'Salvar e fechar')]
+    Sleep    2
+
+
+    # Clique no botão de confirmação
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+    Capture Page Screenshot
+    Sleep    1
+
+        # Campo justificativa
+    # Switch Window
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
+    Capture Page Screenshot
+
+
+    # Clique no botão confirmar justificativa
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    4
+    Capture Page Screenshot
+    Sleep    1
+    SeleniumLibrary.Close Browser
+ 
+
 Então faço o planejamento para Pregão Eletrônico
 
     # Clique no botão Encaminhar

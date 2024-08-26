@@ -52,6 +52,28 @@ Então gero a ARP
 
     Click Element    //a[contains(.,'Fechar')]
 
+E acesso a lista de todas as solicitações de Adesão
+    Select Frame    //frame[@name='main']
+
+    # Clique em ata de registro de preços
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Ata de Registro de Preços')]
+    Sleep     1
+
+    # mouse over 
+    ${elemento}    Get WebElement    
+    ...    xpath=//td[@class='label'][contains(.,'Solicitações de adesão')]
+    Mouse Over    ${elemento}
+    Sleep     1
+
+
+    Wait Until Element Is Visible    
+    ...    xpath=//td[@class='label'][contains(.,'Todas as solicitações')]    timeout=30s
+    Click Element    
+    ...    xpath=//td[@class='label'][contains(.,'Todas as solicitações')]
+    Sleep    1
+    Capture Page Screenshot
+
     
 E acesso a lista de todas as solicitações de Consumo
     Select Frame    //frame[@name='main']
@@ -146,6 +168,15 @@ E clico na Ata de Pregão da lista
     Sleep    2
     Capture Page Screenshot
 
+
+E clico na Ata de Compra Direta da Lista - OPD
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[2]//a    timeout=30s
+    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[2]//a
+    Sleep    2
+    Capture Page Screenshot
+
+
 E clico na Ata de Compra Direta da Lista
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_COMPRA}']]//td[2]//a    timeout=30s
@@ -164,6 +195,14 @@ E seleciono a Ata de Pregão da Lista
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[11]//input        timeout=30s
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[11]//input
+    Sleep    2
+    Capture Page Screenshot
+
+
+E seleciono a Ata de Compra Direta da Lista - OPD
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input    timeout=30s
+    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input
     Sleep    2
     Capture Page Screenshot
 
@@ -217,9 +256,9 @@ Então configuro a gestão da Ata
 
     # Selecionar a Qtd Solicitada do item
     Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-arrow-n')]    timeout=15s
-    Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
-    # Double Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
-    # Double Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
+    # Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
+    Double Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
+    Double Click Element    //span[contains(@class,'k-icon k-i-arrow-n')]
 
     Wait Until Element Is Visible    //a[contains(@onclick,'confirmar(this);')]    timeout=30s
     Click Element    //a[contains(@onclick,'confirmar(this);')]
@@ -919,6 +958,45 @@ E solicito Consumo/Adesão
     Wait Until Element Is Visible    //a[@onclick='SolicitarConsumoAdesao();']    timeout=30s
     Click Element    //a[@onclick='SolicitarConsumoAdesao();']
 
+E seleciono o grupo de compras - TJ
+   # Seleção do grupo de compras
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}    30
+    Click Element    ${LUPA_GRUPO_COMPRA_ATA}
+
+    # Switch Window
+    Wait Until Element Is Visible    //span[contains(.,'Selecionar grupo de compras')]   timeout=30s
+    Wait Until Element Is Visible    ${INPUT_PESQ_GRUPO_COMPRA}
+    Input Text    ${INPUT_PESQ_GRUPO_COMPRA}    TRIBUNAL DE JUSTIÇA	
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]   timeout=30s
+    Click Element    //a[contains(.,'Pesquisar')] 
+
+
+    Wait Until Element Is Visible    
+    ...    //input[contains(@value,'2|Grupo de Compras Padrão - TRIBUNAL DE JUSTIÇA')]    timeout=30s
+    Click Element    //input[contains(@value,'2|Grupo de Compras Padrão - TRIBUNAL DE JUSTIÇA')]
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
+
+E seleciono o grupo de compras - SDS
+    # Seleção do grupo de compras
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}    30
+    Click Element    ${LUPA_GRUPO_COMPRA_ATA}
+
+    # Switch Window
+    Wait Until Element Is Visible    //span[contains(.,'Selecionar grupo de compras')]   timeout=30s
+    Wait Until Element Is Visible    ${INPUT_PESQ_GRUPO_COMPRA}
+    Input Text    ${INPUT_PESQ_GRUPO_COMPRA}    CORPO DE BOMBEIROS	
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]   timeout=30s
+    Click Element    //a[contains(.,'Pesquisar')] 
+
+
+    Wait Until Element Is Visible    
+    ...    //input[contains(@value,'4|Grupo de Compras Padrão - CORPO DE BOMBEIROS - SDS')]    timeout=30s
+    Click Element    //input[contains(@value,'4|Grupo de Compras Padrão - CORPO DE BOMBEIROS - SDS')]
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
 E seleciono o grupo de compras
     # Seleção do grupo de compras
     Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}    30
@@ -954,7 +1032,7 @@ Então encaminho a Adesão para autorização
     Sleep    3
 
 
-Então Delibero a Adesão e Assino o Documento com Autoridade Central
+Então Delibero a Adesão e Assino o Documento
     Switch Window
     Select Frame    //frame[@name='main']
 
@@ -1078,7 +1156,7 @@ Então altero o valor de referência dos itens
 
     Wait Until Element Is Visible    //img[@alt='Alterar valor de referência']    timeout=15s
     Click Element    //img[@alt='Alterar valor de referência']
-    # Click Element    //img[@alt='Alterar valor de referência']
+    Click Element    //img[@alt='Alterar valor de referência']
     Sleep    3
 
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -1095,6 +1173,8 @@ Então altero o valor de referência dos itens
     ${BTN}    Set Variable    id=ctl00_ContentButtom_btnSalvarBancoManutencao
     Wait Until Element Is Visible    ${BTN}
     Sleep   2
+    Click Link    ${BTN}
+    Sleep    3
     Click Link    ${BTN}
     Sleep    3
     
@@ -1187,7 +1267,7 @@ E clico no Licitação da lista para gerar ARP
     Capture Page Screenshot
 
 
-E clico na Adesão da lista
+E clico no Consumo/Adesão da lista
     Switch Window
     Select Frame    //frame[@name='main']
     Select Frame    //iframe[@name='frmConteudo']

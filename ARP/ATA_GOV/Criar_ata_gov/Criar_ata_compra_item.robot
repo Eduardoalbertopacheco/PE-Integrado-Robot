@@ -10,7 +10,7 @@ Resource         ../../Ressource_ARP.robot
 Cenário 01 - Gerar ARP da Compra Direta
     [Tags]    gerar_ata
     Dado que acesso o sistema
-    E faço login com usuário "gestorata.120101"
+    E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Compras diretas encerradas
     E clico na Compra Direta da lista

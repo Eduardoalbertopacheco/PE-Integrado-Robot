@@ -213,21 +213,21 @@ Então preencho todos os campos da Aba Dados gerais
     Capture Page Screenshot
 
 
-    # # Comissão
-    # Wait Until Element Is Visible    (//img[contains(@id,'img')])[2]    timeout=30s
-    # Click Element    (//img[contains(@id,'img')])[2]
+    # Comissão
+    Wait Until Element Is Visible    (//img[contains(@id,'img')])[2]    timeout=30s
+    Click Element    (//img[contains(@id,'img')])[2]
 
-    # ${all_windows}=    Get Window Handles
-    # ${second_window}=    Set Variable    ${all_windows}[1]
+    ${all_windows}=    Get Window Handles
+    ${second_window}=    Set Variable    ${all_windows}[1]
 
-    # Switch Window    NEW
+    Switch Window    NEW
 
-    # Wait Until Element Is Visible    //input[contains(@value,'344')]    timeout=30s
-    # Click Element    //input[contains(@value,'344')]
-    # Capture Page Screenshot
+    Wait Until Element Is Visible    //input[contains(@value,'344')]    timeout=30s
+    Click Element    //input[contains(@value,'344')]
+    Capture Page Screenshot
 
-    # Click Element    //input[contains(@value,'Confirmar')]
-    # Sleep    2
+    Click Element    //input[contains(@value,'Confirmar')]
+    Sleep    2
 
     ${all_windows}=    Get Window Handles
     ${second_window}=    Set Variable    ${all_windows}[1]
@@ -255,6 +255,7 @@ E clico na compra direta em recebimento de lances
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     END
+    Sleep    3
     Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
 
 
