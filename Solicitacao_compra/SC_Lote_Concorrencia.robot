@@ -3,12 +3,14 @@ Documentation    Fluxo Feliz - Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
-Resource        ../Pages/Login.robot
-Resource        ../Pages/Resource_Cadastro_SC.robot
+Resource        ../Resources/Resource_login.robot
+Resource        ../Resources/Resource_Cadastro_SC.robot
 
 *** Test Cases ***
 
 Cenário 01 - Criar SC - Aba dados Gerais
+    Configurar Variáveis de SC
+
     [Tags]    criar_sc
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -18,6 +20,8 @@ Cenário 01 - Criar SC - Aba dados Gerais
 
 
 Cenário 02 - Incluir Itens na Solicitação de Compras
+    Configurar Variáveis de SC
+
     [Tags]    incluir_itens
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -27,6 +31,8 @@ Cenário 02 - Incluir Itens na Solicitação de Compras
 
 
 Cenário 03 - Incluir Documento na Solicitação de Compras
+    Configurar Variáveis de SC
+
     [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -36,6 +42,8 @@ Cenário 03 - Incluir Documento na Solicitação de Compras
 
 
 Cenário 04 - Assinar documento
+    Configurar Variáveis de SC
+
     [Tags]    assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -45,6 +53,8 @@ Cenário 04 - Assinar documento
 
 
 Cenário 05 - Encaminhar SC para precificação
+    Configurar Variáveis de SC
+
     [Tags]    encaminhar_SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -54,6 +64,8 @@ Cenário 05 - Encaminhar SC para precificação
     
 
 Cenário 06 - Planejamento com Solicitante
+    Configurar Variáveis de SC
+
     [Tags]    planejamento_solicitante
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -63,6 +75,8 @@ Cenário 06 - Planejamento com Solicitante
    
 
 Cenário 07 - Definir Natureza de despesa com o Financeiro
+    Configurar Variáveis de SC
+
     [Tags]    definir_natureza
     Dado que acesso o sistema
     E faço login com usuário "financeiro.110402"
@@ -71,6 +85,8 @@ Cenário 07 - Definir Natureza de despesa com o Financeiro
 
 
 Cenário 08 - Aprovação orçamentária
+    Configurar Variáveis de SC
+
     [Tags]    aprovacao_orcamentaria
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
@@ -80,6 +96,8 @@ Cenário 08 - Aprovação orçamentária
     
 
 Cenário 09 - Aprovação com o Ordenador
+    Configurar Variáveis de SC
+
     [Tags]    aprovacao_ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
@@ -90,6 +108,8 @@ Cenário 09 - Aprovação com o Ordenador
 
 
 Cenário 10 - Liberar SC com autoridade central
+    Configurar Variáveis de SC
+
     [Tags]    liberacao_autoridade
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
@@ -99,6 +119,8 @@ Cenário 10 - Liberar SC com autoridade central
 
 
 Cenário 11 - Deliberar SC com autoridade da UG
+    Configurar Variáveis de SC
+
     [Tags]    deliberar_autoridade_ug
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
@@ -109,6 +131,8 @@ Cenário 11 - Deliberar SC com autoridade da UG
 
 
 Cenário 12 - Planejamento com Ordenador
+    Configurar Variáveis de SC
+
     [Tags]    planejar_ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
@@ -118,10 +142,10 @@ Cenário 12 - Planejamento com Ordenador
     Então faço planejamento da SC para Concorrencia - Ordenador
 
 Cenário 13 - Atribuir Comissão
+    Configurar Variáveis de SC
+
     [Tags]    atribuir_comissao
     Dado que acesso o sistema
-
-    # Fluxo para Pregão e Licitação
     E Faço login com usuário "gestorlicitacaocentral.120101"
     E acesso a tela de Solicitação de compras centralizadas
     E pesquiso por SC aguradando atribuir comissão
@@ -129,8 +153,9 @@ Cenário 13 - Atribuir Comissão
     Então atribuo a Comissão Permanente de Licitação
     
 
-# Fluxo Somente para Pregão Eletronico
 Cenário 14 - Aprovar SC com Pregoeiro Central
+    Configurar Variáveis de SC
+    
     [Tags]    aprovacao_pregoeiro_central
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"

@@ -1,7 +1,8 @@
 *** Settings ***
 Documentation    Cadastro de uma SC oriunda de uma IRP por Item - Fluxo Feliz
 
-Resource    ../IRP/Resource_IRP.robot
+Resource    ../Resources/Resource_IRP.robot
+Resource    ../Resources/Resource_login.robot
 
 *** Keywords ***
 

@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource        ../../Pages/Login.robot
-Resource        ../../Pages/Resource_Cadastro_pregao.robot
+Resource        ../../Resources/Resource_login.robot
+Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
@@ -83,7 +83,7 @@ Cenário 21 - Convocar vencedor
 Cenário 22 - Anexar documento - Vencedor
     [Tags]    anexar_documento_vencedor
     Dado que acesso o sistema
-    E faço login com usuário Vencedor "29219904403.256"
+    E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista

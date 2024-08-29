@@ -2,26 +2,8 @@
 Documentation    Fluxo Feliz - Cadastro de Compra Direta
 Library          SeleniumLibrary
 Library          Browser
-Resource        ../Pages/Login.robot
-Resource        ../Pages/Resource_compra_direta.robot
-
-
-*** Variables ***
-&{SELECAO}
-...    CAMPO_MODALIDADE=//td[@id="td_cP_COMPRA_DIRETA_x_nCdModalidade"]
-...    CAMPO_CRITERIO=//td[@id="td_cP_COMPRA_DIRETA_x_nCdCriterio"]
-...    CONDICAO_PAGAMENTO=//td[@id="td_cP_COMPRA_DIRETA_x_nCdCondicaoPagamento"]
-...    PRAZO_ENTREGA=//td[@id="td_cP_COMPRA_DIRETA_x_nCdPrazoEntrega"]
-
-&{SELECAO_VALUE}
-# ...    MOD_DISPENSA=(//li[@tabindex='-1'][contains(.,'Dispensa')])[1]
-# ...    MOD_INEXIGIBILIDADE=//li[contains(.,'Inexigibilidade')]
-...    MOD_DISPENSA_EMERGENCIAL=//li[contains(.,'Dispensa Emergencial')]
-# ...    CRITERIO_DISPENSA=//li[@tabindex='-1'][contains(.,'LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA')]
-# ...    CRITERIO_INEXIGIBILIDADE=//li[text() = "LEI FEDERAL Nº 14.133/2021, ART. 74, CAPUT - INEXIGIBILIDADE QUANDO INVIÁVEL A COMPETIÇÃO"]
-...    CRITERIO_DISPENSA_EMERGENCIAL=//li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
-...    CONDICAO_PAGAMENTO_A_VISTA=//li[@tabindex='-1'][contains(.,'Á vista')]
-...    PRAZO_ENTREGA_10_DIAS=//li[@tabindex='-1'][contains(.,'10 DIAS')]
+Resource        ../Resources/Resource_login.robot
+Resource        ../Resources/Resource_compra_direta.robot
 
 
 *** Test Cases ***

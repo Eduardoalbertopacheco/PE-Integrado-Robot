@@ -3,12 +3,14 @@ Documentation    Fluxo Feliz - Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
-Resource        ../Pages/Login.robot
-Resource        ../Pages/Resource_Cadastro_SC.robot
+Resource        ../Resources/Resource_login.robot
+Resource        ../Resources/Resource_Cadastro_SC.robot
 
 *** Test Cases ***
 
 Cenário 01 - Criar SC - Aba dados Gerais
+    Configurar Variáveis de SC
+    
     [Tags]    criar_sc
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"

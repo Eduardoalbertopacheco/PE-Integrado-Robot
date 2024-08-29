@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
 Library          OperatingSystem
-Resource        ../../../Pages/Login.robot
-Resource        ../../../Pages/Ressource_ARP.robot
+Resource       ../../../Resources/Resource_login.robot
+Resource        ../../../Resources/Resource_ARP.robot
 
 
 *** Variables ***

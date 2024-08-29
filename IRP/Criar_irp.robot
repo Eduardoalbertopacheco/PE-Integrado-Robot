@@ -1,8 +1,9 @@
 *** Settings ***
 Documentation    Cadastro de IRP - Fluxo feliz
 Library          SeleniumLibrary
-Resource         ../ARP/Ressource_ARP.robot
-Resource         ./Resource_IRP.robot
+Resource         ../Resources/Resource_ARP.robot
+Resource         ../Resources/Resource_IRP.robot
+Resource         ../Resources/Resource_login.robot
 
 
 *** Test Cases ***

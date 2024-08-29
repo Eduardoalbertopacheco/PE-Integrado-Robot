@@ -4,9 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource        ../../Pages/Login.robot
-Resource        ../../Pages/Resource_Cadastro_pregao.robot
-     
+Resource        ../../Resources/Resource_login.robot
+Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 

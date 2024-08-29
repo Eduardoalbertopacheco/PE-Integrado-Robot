@@ -5,36 +5,23 @@ Library          Browser
 Library          DateTime
 Library          OperatingSystem
 Resource        ../Variaveis.robot
-
-       
-     
+   
 *** Variables ***
 
 ${TITULO_PARECER}    Título do Parecer
-
 ${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
 ${CAMPO_SELECAO_MARCA}    //span[contains(@aria-owns,'dtgPesquisaItens_ctl01_ddlMarca_listbox')]
 ${CAMPO_SELECAO_MARCA_LOTE}    //span[contains(@aria-owns,'dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaItens_ctl01_ddlMarca_listbox')]
-
-
-&{SELECAO_PARECER}
-...        CAMPO_TIPO_PARECER=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
-
-&{VALOR_TIPO_PARECER}
-...        JURIDICO=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]//*[@value="2"]
-
-
+${CAMPO_TIPO_PARECER}    //span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
+${JURIDICO}    //span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]//*[@value="2"]
 ${ITEM_LIST}       //ul[@id='dtgPesquisaItens_ctl01_ddlMarca_listbox']
 ${ITEM_LIST_LOTE}    //ul[@id='dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaItens_ctl01_ddlMarca_listbox']
 ${ITEM_TEXT}      12V 3AH
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
 ${ITEM_LOTE}    ${ITEM_LIST_LOTE}//li[text()="12V 3AH"]
-
-
 ${CAMPO_DT_INICIAL_PROP}       //input[contains(@name,'tDtInicialProposta')]
 ${CAMPO_DT_FINAL_PROP}        id=_cP_PREGAO_x_tDtFinalProposta
 ${CAMPO_DT_INCIAL_DISPUTA}     //input[contains(@name,'tDtInicialDisputa')]
-
 ${FRAME_NEGOCIACAO}    //frame[@name='frmNegociacao']
 ${FRAME_MAIN}=    //frame[@name='main']
 ${FRAME_FRM_CONTEUDO}    //iframe[contains(@name,'frmConteudo')]
@@ -44,59 +31,53 @@ ${BTN_SALVAR}     css=#btnSalvarParecer
 ${TEXTAREA_NAME}    sDsParecer
 ${XPATH}    //textarea[contains(@name,'sDsParecer')]
 ${SELECT_XPATH}    //select[@id='nCdTipoParecerMap']
-
-
 ${URL}    https://www.homologpeintegrado.pe.gov.br/default.aspx
 ${BTN_LUPA_COMISSAO}    (//img[contains(@id,'img')])[2]
 ${UTILIZA_VERBA_FEDERAL_VALUE_NAO}    //table[2]/tbody[1]/tr[16]/td[2]/span[1]/input[2]
-
-${MENU_NEGOCIACAO}    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
-
-
-&{SELECAO_MENU_NEGOCIACAO}    
-...    SOLICITACAO_COMPRA=//td[@class='label'][contains(.,'Solicitação de compra')]
-...    COTACAO=//td[@class='label'][contains(.,'Cotação')]
-...    COMPRA_DIRETA=//td[@class='label'][contains(.,'Compra direta')]
-...    LICITACAO=//td[@class='label'][contains(.,'Licitação')]
-
-
-&{SUBMENU_SOLICITACAO_COMPRA}
-...    LISTA_SOLICTACAO_COMPRA=//td[@class='label'][contains(.,'Lista de solicitações de compra')]
-
-
-&{SUBMENU_COTACAO}
-...    LISTA_COTACAO=//a[@title='Cota&#231;&#245;es'][contains(.,'Lista de cotações')]
-
-
-&{SUBMENU_LICITACAO}
-...    NOVA_LICITACAO=//td[@class='label'][contains(.,'Nova licitação eletrönica')]
-...    LICITACOES_ELERONICAS=//td[@class='label'][contains(.,'Licitações eletrônicas')]
-
-
+${MENU_NEGOCIACAO}    xpath=//div[@unselectable='on'][contains(.,'Negociação')]  
+${SOLICITACAO_COMPRA}    //td[@class='label'][contains(.,'Solicitação de compra')]
+${COTACAO}    //td[@class='label'][contains(.,'Cotação')]
+${COMPRA_DIRETA}    //td[@class='label'][contains(.,'Compra direta')]
+${LICITACAO}    //td[@class='label'][contains(.,'Licitação')]
+&{LISTA_SOLICTACAO_COMPRA}    //td[@class='label'][contains(.,'Lista de solicitações de compra')]
+&{LISTA_COTACAO}    //a[@title='Cota&#231;&#245;es'][contains(.,'Lista de cotações')]
+&{NOVA_LICITACAO}    //td[@class='label'][contains(.,'Nova licitação eletrönica')]
+${LICITACOES_ELERONICAS}    //td[@class='label'][contains(.,'Licitações eletrônicas')]
 ${CAMPO_OBJETO}    //input[contains(@name,'_cP_PREGAO_x_sDsObjeto')]
+${MODALIDADE}    //td[@id= "td_cP_PREGAO_x_nCdModalidade"]
+${CRITERIO}    //td[@id= "td_cP_PREGAO_x_nCdCriterio"]
+${CODICAO_PAGAMENTO}    //td[@id= "td_cP_PREGAO_x_nCdCondicaoPagamento"]
+${PRAZO_ENTREGA}    //td[@id= "td_cP_PREGAO_x_nCdPrazoEntrega"]
+${MODO_DISPUTA}    //td[@id="td_cP_PREGAO_x_nIdTipoDisputa"]
+${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    //select[contains(@name,'ctl00$ddlVisoes')]
+${MODAL_PREGAO}    //li[contains(.,'Pregão Eletrônico')]
+${MODAL_CONCORRENCIA}    //li[contains(.,'Concorrência Eletrônica')]
+${CRIT_PREGAO_LEI_14_133}    //li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
+${CRIT_CONCORRENCIA_LEI_14_133_21}    //li[contains(.,'LICITAÇÃO NA MODALIDADE CONCORRÊNCIA ELETRÔNICA - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
+${COD_PAGAMENTO_AVISTA}    //li[@tabindex='-1'][contains(.,'Á vista')]
+${PRAZO_ENTRG_10_DIAS}    //li[@tabindex='-1'][contains(.,'10 DIAS')]
+${MODO_DISPUTA_ABERTO}    (//li[@tabindex='-1'][contains(.,'Aberto')])[1]
+${MODO_DISPUTA_ABERTO_FECHADO}    //li[@tabindex='-1'][contains(.,'Aberto-fechado')]
+${MODO_DISPUTA_FECHADO_ABERTO}    //li[@tabindex='-1'][contains(.,'Fechado-aberto')]
+${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    //option[contains(@value,'7053')]
+${EXIBIR_INCLUIR_ITEM_SC_POR_LOTE}    //option[contains(@value,'7054')]
+${EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD}    //option[contains(@value,'7051')]
+${MODALIDADE}    //td[@id= "td_cP_PREGAO_x_nCdModalidade"]
+${CRITERIO}    //td[@id= "td_cP_PREGAO_x_nCdCriterio"]
+${CODICAO_PAGAMENTO}    //td[@id= "td_cP_PREGAO_x_nCdCondicaoPagamento"]
+${PRAZO_ENTREGA}    //td[@id= "td_cP_PREGAO_x_nCdPrazoEntrega"]
+${MODO_DISPUTA}    //td[@id="td_cP_PREGAO_x_nIdTipoDisputa"]
+${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    //select[contains(@name,'ctl00$ddlVisoes')]
+${MODAL_PREGAO}    //li[contains(.,'Pregão Eletrônico')]
+${CRIT_PREGAO_LEI_14_133}    //li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
+${COD_PAGAMENTO_AVISTA}    //li[@tabindex='-1'][contains(.,'Á vista')]
+${PRAZO_ENTRG_10_DIAS}    //li[@tabindex='-1'][contains(.,'10 DIAS')]
+${MODO_DISPUTA_ABERTO}    (//li[@tabindex='-1'][contains(.,'Aberto')])[1]
+${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    //option[contains(@value,'7053')]
+${SELECAO_MENU_NEGOCIACAO}    LICITACAO=//td[@class='label'][contains(.,'Licitação')]
+&{NOVA_LICITACAO}    //td[@class='label'][contains(.,'Nova licitação eletrönica')]
+${LICITACOES_ELERONICAS}    //td[@class='label'][contains(.,'Licitações eletrônicas')]
 
-
-&{SELECAO}
-...    MODALIDADE=//td[@id= "td_cP_PREGAO_x_nCdModalidade"]
-...    CRITERIO=//td[@id= "td_cP_PREGAO_x_nCdCriterio"]
-...    CODICAO_PAGAMENTO=//td[@id= "td_cP_PREGAO_x_nCdCondicaoPagamento"]
-...    PRAZO_ENTREGA=//td[@id= "td_cP_PREGAO_x_nCdPrazoEntrega"]
-...    MODO_DISPUTA=//td[@id="td_cP_PREGAO_x_nIdTipoDisputa"]
-...    CAMPO_EXIBIR_INCLUIR_ITEM_SC=//select[contains(@name,'ctl00$ddlVisoes')]
-
-&{VALOR_SELECAO}
-...    MODAL_PREGAO=//li[contains(.,'Pregão Eletrônico')]
-...    MODAL_CONCORRENCIA=//li[contains(.,'Concorrência Eletrônica')]
-...    CRIT_PREGAO_LEI_14_133=//li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
-...    CRIT_CONCORRENCIA_LEI_14_133_21=//li[contains(.,'LICITAÇÃO NA MODALIDADE CONCORRÊNCIA ELETRÔNICA - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
-...    COD_PAGAMENTO_AVISTA=//li[@tabindex='-1'][contains(.,'Á vista')]
-...    PRAZO_ENTRG_10_DIAS=//li[@tabindex='-1'][contains(.,'10 DIAS')]
-...    MODO_DISPUTA_ABERTO=(//li[@tabindex='-1'][contains(.,'Aberto')])[1]
-...    MODO_DISPUTA_ABERTO_FECHADO=//li[@tabindex='-1'][contains(.,'Aberto-fechado')]
-...    MODO_DISPUTA_FECHADO_ABERTO=//li[@tabindex='-1'][contains(.,'Fechado-aberto')]
-...    EXIBIR_INCLUIR_ITEM_SC_POR_ITEM=//option[contains(@value,'7053')]
-...    EXIBIR_INCLUIR_ITEM_SC_POR_LOTE=//option[contains(@value,'7054')]
-...    EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD=//option[contains(@value,'7051')]
 
 
 *** Keywords ***
@@ -108,13 +89,13 @@ E acesso a tela de Licitações Eletrônicas
 
     # mouse over em Licitações
     ${elemento}    Get WebElement    
-    ...    ${SELECAO_MENU_NEGOCIACAO.LICITACAO}
+    ...    ${LICITACAO}
     Mouse Over    ${elemento}
 
     # Clique em Nova Licitações eletronicas
-    Wait Until Element Is Visible    ${SUBMENU_LICITACAO.LICITACOES_ELERONICAS}    timeout=30s
+    Wait Until Element Is Visible    ${LICITACOES_ELERONICAS}    timeout=30s
     Sleep    1
-    Click Element    ${SUBMENU_LICITACAO.LICITACOES_ELERONICAS}
+    Click Element    ${LICITACOES_ELERONICAS}
     Capture Page Screenshot
 
     ${all_windows}=    Get Window Handles
@@ -134,17 +115,17 @@ Então preencho a Aba de Dados Gerais
     Click Element    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
     
     # Seleção do campo 'Confição de pagamento'
-    Click Element    ${SELECAO.CODICAO_PAGAMENTO}
-    Wait Until Element Is Visible    ${VALOR_SELECAO.COD_PAGAMENTO_AVISTA}    timeout=30s
+    Click Element    ${CODICAO_PAGAMENTO}
+    Wait Until Element Is Visible    ${COD_PAGAMENTO_AVISTA}    timeout=30s
     Capture Page Screenshot
-    Click Element    ${VALOR_SELECAO.COD_PAGAMENTO_AVISTA}
+    Click Element    ${COD_PAGAMENTO_AVISTA}
 
 
     # Seleção do campo 'Prazo de entrega'
-    Click Element    ${SELECAO.PRAZO_ENTREGA}
-    Wait Until Element Is Visible    ${VALOR_SELECAO.PRAZO_ENTRG_10_DIAS}    timeout=30s
+    Click Element    ${PRAZO_ENTREGA}
+    Wait Until Element Is Visible    ${PRAZO_ENTRG_10_DIAS}    timeout=30s
     Capture Page Screenshot
-    Click Element    ${VALOR_SELECAO.PRAZO_ENTRG_10_DIAS}
+    Click Element    ${PRAZO_ENTRG_10_DIAS}
 
     Sleep    2
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -212,41 +193,41 @@ E seleciono a modalidade para Pregão Eletrônico
     #Seleção do campo 'Modalidade'
     Switch Window    NEW
     Maximize Browser Window
-    Wait Until Element Is Visible    ${SELECAO.MODALIDADE}    timeout=30s
-    Click Element    ${SELECAO.MODALIDADE}
-    Wait Until Element Is Visible    ${VALOR_SELECAO.MODAL_PREGAO}    timeout=30s
+    Wait Until Element Is Visible    ${MODALIDADE}    timeout=30s
+    Click Element    ${MODALIDADE}
+    Wait Until Element Is Visible    ${MODAL_PREGAO}    timeout=30s
     Capture Page Screenshot
-    Click Element    ${VALOR_SELECAO.MODAL_PREGAO}
+    Click Element    ${MODAL_PREGAO}
 
 E seleciono a modalidade para Concorrência Eletrônica
 
     #Seleção do campo 'Modalidade'
     Switch Window    NEW
     Maximize Browser Window
-    Wait Until Element Is Visible    ${SELECAO.MODALIDADE}    timeout=30s
-    Click Element    ${SELECAO.MODALIDADE}
-    Wait Until Element Is Visible    ${VALOR_SELECAO.MODAL_PREGAO}    timeout=30s
+    Wait Until Element Is Visible    ${MODALIDADE}    timeout=30s
+    Click Element    ${MODALIDADE}
+    Wait Until Element Is Visible    ${MODAL_PREGAO}    timeout=30s
     Capture Page Screenshot
-    Click Element    ${VALOR_SELECAO.MODAL_CONCORRENCIA}
+    Click Element    ${MODAL_CONCORRENCIA}
 
 
 
 E Seleciono o Critério de Pregão Eletrônico
 
     # Seleção do campo 'Critério'
-    Wait Until Element Is Visible    ${SELECAO.CRITERIO}    timeout=30s
-    Click Element    ${SELECAO.CRITERIO}
+    Wait Until Element Is Visible    ${CRITERIO}    timeout=30s
+    Click Element    ${CRITERIO}
     Capture Page Screenshot
-    Click Element    ${VALOR_SELECAO.CRIT_PREGAO_LEI_14_133}
+    Click Element    ${CRIT_PREGAO_LEI_14_133}
 
 E Seleciono o Critério de Concorrência Eletrônica
 
     # Seleção do campo 'Critério'
-    Wait Until Element Is Visible    ${SELECAO.CRITERIO}    timeout=30s
-    Click Element    ${SELECAO.CRITERIO}
-    Wait Until Element Is Visible    ${VALOR_SELECAO.CRIT_CONCORRENCIA_LEI_14_133_21}    timeout=30s
+    Wait Until Element Is Visible    ${CRITERIO}    timeout=30s
+    Click Element    ${CRITERIO}
+    Wait Until Element Is Visible    ${CRIT_CONCORRENCIA_LEI_14_133_21}    timeout=30s
     Sleep    2
-    Click Element    ${VALOR_SELECAO.CRIT_CONCORRENCIA_LEI_14_133_21}
+    Click Element    ${CRIT_CONCORRENCIA_LEI_14_133_21}
     Capture Page Screenshot
 
 
@@ -258,10 +239,10 @@ E seleciono o modo de Disputa Aberto
 
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    ${SELECAO.MODO_DISPUTA}    timeout=30s
-    Click Element    ${SELECAO.MODO_DISPUTA}
+    Wait Until Element Is Visible    ${MODO_DISPUTA}    timeout=30s
+    Click Element    ${MODO_DISPUTA}
     Capture Page Screenshot
-    Click Element    ${VALOR_SELECAO.MODO_DISPUTA_ABERTO}
+    Click Element    ${MODO_DISPUTA_ABERTO}
 
     # Input do campo Prazo de habilitação
     Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
@@ -277,10 +258,10 @@ E Seleciono o Modo de Disputa Aberto-Fechado
 
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    ${SELECAO.MODO_DISPUTA}    timeout=30s
-    Click Element    ${SELECAO.MODO_DISPUTA}
+    Wait Until Element Is Visible    ${MODO_DISPUTA}    timeout=30s
+    Click Element    ${MODO_DISPUTA}
     Capture Page Screenshot
-    Click Element    ${VALOR_SELECAO.MODO_DISPUTA_ABERTO_FECHADO}
+    Click Element    ${MODO_DISPUTA_ABERTO_FECHADO}
 
     # Input do campo Prazo de habilitação
     Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
@@ -296,10 +277,10 @@ E Seleciono o Modo de Disputa Fechado-Aberto
 
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    ${SELECAO.MODO_DISPUTA}    timeout=30s
-    Click Element    ${SELECAO.MODO_DISPUTA}
+    Wait Until Element Is Visible    ${MODO_DISPUTA}    timeout=30s
+    Click Element    ${MODO_DISPUTA}
     Capture Page Screenshot
-    Click Element    ${VALOR_SELECAO.MODO_DISPUTA_FECHADO_ABERTO}
+    Click Element    ${MODO_DISPUTA_FECHADO_ABERTO}
 
     # Input do campo Prazo de habilitação
     Wait Until Element Is Visible    //input[contains(@class,'k-formatted-value k-input')]    timeout=30s
@@ -422,21 +403,21 @@ Então incluo a SC Por Item ao Pregão
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}
+    Wait Until Element Is Visible    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
+    Click Element    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}
     Capture Page Screenshot
     Sleep    2
 
     # Clique no campo exibir
-    Wait Until Element Is Visible    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    timeout=30s
-    Click Element    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}
+    Wait Until Element Is Visible    ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    timeout=30s
+    Click Element    ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}
 
 
     # Selecionar a SC para Incluir
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+        Sleep    10 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
     END
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
@@ -466,15 +447,15 @@ Então incluo a SC Por Lote ao Pregão - OPD
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}
+    Wait Until Element Is Visible    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
+    Click Element    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}
     Capture Page Screenshot
     Sleep    2
 
     # Clique no campo exibir
-    Wait Until Element Is Visible    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD}    timeout=30s
+    Wait Until Element Is Visible    ${EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD}    timeout=30s
     Sleep    2
-    Click Element    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD}
+    Click Element    ${EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD}
 
 
     # Selecionar a SC para Incluir
@@ -514,14 +495,14 @@ Então incluo a SC Por Lote ao Pregão
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_EXIBIR_INCLUIR_ITEM_SC}
+    Wait Until Element Is Visible    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
+    Click Element    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}
     Capture Page Screenshot
     Sleep    2
 
     # Clique no campo exibir
-    Wait Until Element Is Visible    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_LOTE}    timeout=30s
-    Click Element    ${VALOR_SELECAO.EXIBIR_INCLUIR_ITEM_SC_POR_LOTE}
+    Wait Until Element Is Visible    ${EXIBIR_INCLUIR_ITEM_SC_POR_LOTE}    timeout=30s
+    Click Element    ${EXIBIR_INCLUIR_ITEM_SC_POR_LOTE}
 
 
     # Selecionar a SC para Incluir

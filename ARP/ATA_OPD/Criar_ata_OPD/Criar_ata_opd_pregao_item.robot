@@ -3,8 +3,8 @@ Documentation    Fluxo Feliz - Cadastro de Ata de Registro de Preço até a ativ
 Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
-Resource        ../../../Pages/Login.robot
-Resource        ../../../Pages/Ressource_ARP.robot
+Resource       ../../../Resources/Resource_login.robot
+Resource        ../../../Resources/Resource_ARP.robot
 
 
 

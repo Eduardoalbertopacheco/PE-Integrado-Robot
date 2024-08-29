@@ -4,37 +4,9 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource        ../../Pages/Login.robot
-Resource        ../../Pages/Resource_Cadastro_pregao.robot
+Resource        ../../Resources/Resource_login.robot
+Resource        ../../Resources/Resource_cadastro_pregao.robot
      
-
-*** Variables ***
-
-&{SELECAO}
-...    MODALIDADE=//td[@id= "td_cP_PREGAO_x_nCdModalidade"]
-...    CRITERIO=//td[@id= "td_cP_PREGAO_x_nCdCriterio"]
-...    CODICAO_PAGAMENTO=//td[@id= "td_cP_PREGAO_x_nCdCondicaoPagamento"]
-...    PRAZO_ENTREGA=//td[@id= "td_cP_PREGAO_x_nCdPrazoEntrega"]
-...    MODO_DISPUTA=//td[@id="td_cP_PREGAO_x_nIdTipoDisputa"]
-...    CAMPO_EXIBIR_INCLUIR_ITEM_SC=//select[contains(@name,'ctl00$ddlVisoes')]
-
-&{VALOR_SELECAO}
-...    MODAL_PREGAO=//li[contains(.,'Pregão Eletrônico')]
-...    CRIT_PREGAO_LEI_14_133=//li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
-...    COD_PAGAMENTO_AVISTA=//li[@tabindex='-1'][contains(.,'Á vista')]
-...    PRAZO_ENTRG_10_DIAS=//li[@tabindex='-1'][contains(.,'10 DIAS')]
-...    MODO_DISPUTA_ABERTO=(//li[@tabindex='-1'][contains(.,'Aberto')])[1]
-...    MODO_DISPUTA_ABERTO_FECHADO=//li[@tabindex='-1'][contains(.,'Aberto-fechado')]
-...    EXIBIR_INCLUIR_ITEM_SC_POR_ITEM=//option[contains(@value,'7053')]
-
-&{SELECAO_MENU_NEGOCIACAO}    
-...    LICITACAO=//td[@class='label'][contains(.,'Licitação')]
-
-&{SUBMENU_LICITACAO}
-...    NOVA_LICITACAO=//td[@class='label'][contains(.,'Nova licitação eletrönica')]
-...    LICITACOES_ELERONICAS=//td[@class='label'][contains(.,'Licitações eletrônicas')]
-
-
 *** Test Cases ***
 Cenário 01 - Criar Pregão - Aba Dados Gerais
     [Tags]    criar_pregao
@@ -117,7 +89,6 @@ Cenário 07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    E mostro a auditoria
 
 
 Cenário 08 - Aprovar autorização
@@ -188,6 +159,7 @@ Cenário 13 - Abertura das propostas
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
+    Sleep    60
     E seleciono a licitação em abertura de proposta da lista
     Então abro as proposta
 

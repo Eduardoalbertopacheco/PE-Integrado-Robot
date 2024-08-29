@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource        ../../Pages/Login.robot
-Resource        ../../Pages/Resource_Cadastro_pregao.robot
+Resource        ../../Resources/Resource_login.robot
+Resource        ../../Resources/Resource_cadastro_pregao.robot
      
 
 *** Test Cases ***
@@ -17,6 +17,7 @@ Cenário 26 - Não acatar intenção de recursos
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
+    Sleep    1
     E seleciono a licitação da lista
     Então não acato a intenção de recurso
 

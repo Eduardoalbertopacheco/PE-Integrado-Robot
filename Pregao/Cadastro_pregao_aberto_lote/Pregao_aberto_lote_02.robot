@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource        ../../Pages/Login.robot
-Resource        ../../Pages/Resource_Cadastro_pregao.robot
+Resource        ../../Resources/Resource_login.robot
+Resource        ../../Resources/Resource_cadastro_pregao.robot
      
 
 *** Test Cases ***
@@ -38,6 +38,7 @@ Cenário 20 - Encerrar Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então encerro Lote para Lei 123
 
+
 Cenário 21 - Convocar vencedor
     [Tags]    convocar_vencedor
     Dado que acesso o sistema
@@ -57,6 +58,7 @@ Cenário 22 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
+
 Cenário 23 - Habilitar fornecedor vencedor
     [Tags]    habilitar_fornecedor
     Dado que acesso o sistema
@@ -66,6 +68,7 @@ Cenário 23 - Habilitar fornecedor vencedor
     E seleciono a licitação da lista
     Então habilito o fonecedor vencedor (Aberto_item)
 
+
 Cenário 24 - Encerrar etapa
     [Tags]    encerrar_etapa
     Dado que acesso o sistema
@@ -74,6 +77,7 @@ Cenário 24 - Encerrar etapa
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
+
 
 Cenário 25 - Registrar intenção de recursos
     [Tags]    registrar_recurso

@@ -7,22 +7,19 @@ Library          DateTime
 Resource        ../Variaveis.robot
 
 *** Variables ***
+
 ${URL_CRIAR_SC}    https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
-
-&{SELECAO}    TIPO=//*[@id="td_cORDEM_COMPRA_x_nIdTipoOrdemCompra"]
-...           PRIORIDADE=//*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]
-...           EMPRESA=//*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]
-...           GESTAO=//*[@id="td_cORDEM_COMPRA_x_nCdGestao"]
-...           APLICACAO=//*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]
-
-
-&{SELECAO_VALUE}    TIPO_AMS=//*[@id="td_cORDEM_COMPRA_x_nIdTipoOrdemCompra"]//*[@value='14']
-...                 PRIORIDADE_MEDIA=//*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]//*[@value='2']
-...                 EMPRESA_SEDC=//*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='20']
-...                 EMPRESA_TJ=//*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='12']
-...                 GESTAO_AD=//*[@id="td_cORDEM_COMPRA_x_nCdGestao"]//*[@value='1']
-...                 APLICACAO_EI=//*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]//*[@value='1']
-
+${APLICACAO}    //*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]
+${GESTAO}    //*[@id="td_cORDEM_COMPRA_x_nCdGestao"]
+${EMPRESA}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]
+${TIPO}    //*[@id="td_cORDEM_COMPRA_x_nIdTipoOrdemCompra"]
+${TIPO_AMS}    //*[@id="td_cORDEM_COMPRA_x_nIdTipoOrdemCompra"]//*[@value='14']
+${PRIORIDADE}    //*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]
+${PRIORIDADE_MEDIA}    //*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]//*[@value='2']
+${EMPRESA_SEDC}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='20']
+${EMPRESA_TJ}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='12']
+${GESTAO_AD}    //*[@id="td_cORDEM_COMPRA_x_nCdGestao"]//*[@value='1']
+${APLICACAO_EI}    //*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]//*[@value='1']
 ${CAMPO_RESUMO}             css=textarea[id="_cORDEM_COMPRA_x_sDsOrdemCompra"]
 ${LUPA_TIPO_OBJETO}        (//*[@id="img"])[1]
 ${URL_SELCT_TIPO}     https://www.homologpeintegrado.pe.gov.br/Core/Pesquisa/ProcurarTipoObjetoCompra.aspx
@@ -61,8 +58,8 @@ E acesso a Tela de Lista de Solicitação de Compras
     
     Capture Page Screenshot
     
-    Wait Until Element Is Visible    
-    ...    xpath=//span[contains(.,'Solicitações de compra')]    timeout=30s
+    # Wait Until Element Is Visible    
+    # ...    xpath=//span[contains(.,'Solicitações de compra')]    timeout=30s
     Sleep    1
 
 
@@ -73,14 +70,16 @@ E acesso a URL de criar Solicitação de compras
     Maximize Browser Window
 
 Então preencho os campos da Aba Dados gerais - TJ
-   
-    Wait Until Element Is Visible    ${SELECAO.PRIORIDADE}    timeout=30s
-    Click Element    ${SELECAO.PRIORIDADE}
-    Click Element    ${SELECAO_VALUE.PRIORIDADE_MEDIA}
+
+    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Click Element    ${PRIORIDADE}
+    Sleep    2
+    Click Element    ${PRIORIDADE_MEDIA}
     
-    Wait Until Element Is Visible    ${SELECAO.TIPO}    timeout=30s
-    Click Element    ${SELECAO.TIPO} 
-    Click Element    ${SELECAO_VALUE.TIPO_AMS}
+    Wait Until Element Is Visible    ${TIPO}    timeout=30s
+    Click Element    ${TIPO}
+    Sleep    2
+    Click Element    ${TIPO_AMS}
     
     Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
 
@@ -95,18 +94,18 @@ Então preencho os campos da Aba Dados gerais - TJ
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Switch Window
     
-    Wait Until Element Is Visible    ${SELECAO.EMPRESA}    timeout=30s
-    Click Element    ${SELECAO.EMPRESA}
-    Wait Until Element Is Visible    ${SELECAO_VALUE.EMPRESA_TJ}    timeout=30s
-    Click Element    ${SELECAO_VALUE.EMPRESA_TJ}
+    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Click Element    ${EMPRESA}
+    Wait Until Element Is Visible    ${EMPRESA_TJ}    timeout=30s
+    Click Element    ${EMPRESA_TJ}
     
-    Wait Until Element Is Visible    ${SELECAO.GESTAO}     timeout=30s
-    Click Element    ${SELECAO.GESTAO} 
-    Click Element    ${SELECAO_VALUE.GESTAO_AD}
+    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Click Element    ${GESTAO} 
+    Click Element    ${GESTAO_AD}
     
-    Wait Until Element Is Visible    ${SELECAO.APLICACAO}     timeout=30s
-    Click Element    ${SELECAO.APLICACAO} 
-    Click Element    ${SELECAO_VALUE.APLICACAO_EI}
+    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Click Element    ${APLICACAO} 
+    Click Element    ${APLICACAO_EI}
     Capture Page Screenshot
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -136,17 +135,20 @@ Então preencho os campos da Aba Dados gerais - TJ
     Sleep    1
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
-    
+
+
 
 Então preencho os campos da Aba Dados gerais
+
+    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Click Element    ${PRIORIDADE}
+    Sleep    2
+    Click Element    ${PRIORIDADE_MEDIA}
     
-    Wait Until Element Is Visible    ${SELECAO.PRIORIDADE}    timeout=30s
-    Click Element    ${SELECAO.PRIORIDADE}
-    Click Element    ${SELECAO_VALUE.PRIORIDADE_MEDIA}
-    
-    Wait Until Element Is Visible    ${SELECAO.TIPO}    timeout=30s
-    Click Element    ${SELECAO.TIPO} 
-    Click Element    ${SELECAO_VALUE.TIPO_AMS}
+    Wait Until Element Is Visible    ${TIPO}    timeout=30s
+    Click Element    ${TIPO}
+    Sleep    2
+    Click Element    ${TIPO_AMS}
     
     Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
 
@@ -161,23 +163,25 @@ Então preencho os campos da Aba Dados gerais
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Switch Window
     
-    Wait Until Element Is Visible    ${SELECAO.EMPRESA}    timeout=30s
-    Click Element    ${SELECAO.EMPRESA}
-    Wait Until Element Is Visible    ${SELECAO_VALUE.EMPRESA_SEDC}    timeout=30s
-    Click Element    ${SELECAO_VALUE.EMPRESA_SEDC}
+    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Click Element    ${EMPRESA}
+    Wait Until Element Is Visible    ${EMPRESA_SEDC}    timeout=30s
+    Click Element    ${EMPRESA_SEDC}
     
-    Wait Until Element Is Visible    ${SELECAO.GESTAO}     timeout=30s
-    Click Element    ${SELECAO.GESTAO} 
-    Click Element    ${SELECAO_VALUE.GESTAO_AD}
+    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Click Element    ${GESTAO} 
+    Click Element    ${GESTAO_AD}
     
-    Wait Until Element Is Visible    ${SELECAO.APLICACAO}     timeout=30s
-    Click Element    ${SELECAO.APLICACAO} 
-    Click Element    ${SELECAO_VALUE.APLICACAO_EI}
+    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Click Element    ${APLICACAO}
+    Sleep    2
+    Click Element    ${APLICACAO_EI}
     Capture Page Screenshot
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
     Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Sleep    2
     Click Element    ${LUPA_GRUPO_COMPRA}
 
     Switch Window    NEW
@@ -340,11 +344,11 @@ E acesso a Lista de SC em Precificação
 
 Então faço planejamento da SC para Pregão Eletronico
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     END
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
 
@@ -611,7 +615,7 @@ Então faço planejamento da SC para Concorrencia - Solicitante
         Sleep    5 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
 
 
    # Clique no botão Encaminhar
@@ -737,8 +741,8 @@ Então defino a natureza de despesa
     Sleep    2
     Execute JavaScript    window.location.reload()
 
-    Wait Until Element Is Visible    //a[text()= "${resumo_sc}"]    timeout=30s
-    Click Element    //a[text()= "${resumo_sc}"]
+    Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    timeout=30s
+    Click Element    //a[text()= "${RESUMO_SC}"]
     Sleep    1
 
     # Clicque na aba 'Itens'
@@ -801,9 +805,9 @@ E seleciono a SC para aprovação
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //*[contains(text(), '${resumo_sc}')]
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //*[contains(text(), '${RESUMO_SC}')]
     END
-    Click Element    //*[contains(text(), '${resumo_sc}')]
+    Click Element    //*[contains(text(), '${RESUMO_SC}')]
 
 
 Então Clique no botão Aprovar com orçamento
@@ -997,13 +1001,13 @@ E seleciono o filtro SC em Planejamento - Ordenador
 
 E seleciono a SC
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[8]//input
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[8]//input
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[8]//input
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
 
 
 Então faço o planejamento para Pregão Eletrônico - OPD
@@ -1171,13 +1175,13 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Orde
 
 Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Solicitante
     
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
 
 
     # Clique no botão Encaminhar
@@ -1363,13 +1367,13 @@ E seleciono a SC para atribuir comissão com Gestor Central
 
     # Select Frame    //iframe[contains(@name,'frmConteudo')]
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
 
     Capture Page Screenshot
 
@@ -1378,13 +1382,13 @@ E seleciono a SC para atribuir comissão com Planejador
 
     # Select Frame    //iframe[contains(@name,'frmConteudo')]
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[8]//input
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
         Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[8]//input
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[8]//input
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
 
     Capture Page Screenshot
 
@@ -1415,9 +1419,11 @@ Então atribuo a Comissão Permanente de Licitação
 
 E seleciono a SC da lista
     Select Frame    //iframe[contains(@name,'frmConteudo')]
-    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[2]    timeout=30s
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[2]
-
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]    timeout=30s
+    Sleep    2
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]
+    Sleep    2
+ 
 
 Então incluo os itens e agrupo por lote
     Switch Window    NEW

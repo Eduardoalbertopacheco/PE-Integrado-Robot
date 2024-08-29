@@ -2,17 +2,27 @@
 Documentation    
 Library          SeleniumLibrary
 Resource        ../Variaveis.robot
-Resource        ../Pages/Resource_Cadastro_SC.robot
-Resource        ../Pages/Resource_Cadastro_pregao.robot
-
+Resource        ../Resources/Resource_Cadastro_SC.robot
+Resource        ../Resources/Resource_cadastro_pregao.robot
 
 
 *** Variables ***
 ${CAMPO_OBJETO_COMPRA}    //input[@name='_cP_COMPRA_DIRETA_x_sDsObjeto']
+${CAMPO_MODALIDADE}    //td[@id="td_cP_COMPRA_DIRETA_x_nCdModalidade"]
+${CAMPO_CRITERIO}    //td[@id="td_cP_COMPRA_DIRETA_x_nCdCriterio"]
+${CONDICAO_PAGAMENTO}    //td[@id="td_cP_COMPRA_DIRETA_x_nCdCondicaoPagamento"]
+${PRAZO_ENTREGA}    //td[@id="td_cP_COMPRA_DIRETA_x_nCdPrazoEntrega"]
+${MOD_DISPENSA_EMERGENCIAL}    //li[contains(.,'Dispensa Emergencial')]
+${CRITERIO_DISPENSA_EMERGENCIAL}    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
+${CONDICAO_PAGAMENTO_A_VISTA}    //li[@tabindex='-1'][contains(.,'Á vista')]
+${PRAZO_ENTREGA_10_DIAS}    //li[@tabindex='-1'][contains(.,'10 DIAS')]
+${MOD_DISPENSA}    (//li[@tabindex='-1'][contains(.,'Dispensa')])[1]
+${MOD_INEXIGIBILIDADE}     //li[contains(.,'Inexigibilidade')]
+${CRITERIO_DISPENSA}   //li[@tabindex='-1'][contains(.,'LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA')]
+${CRITERIO_INEXIGIBILIDADE}    //li[text() = "LEI FEDERAL Nº 14.133/2021, ART. 74, CAPUT - INEXIGIBILIDADE QUANDO INVIÁVEL A COMPETIÇÃO"]
 
 
 *** Keywords ***
-
 
 E acesso a lista de todas as Compras Direta
     Select Frame    //frame[@name='main']
@@ -100,34 +110,34 @@ E seleciono o filtro Compra diretas em andamento
 
 
 E seleciono o modalidade para Dispensa
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_MODALIDADE}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_MODALIDADE}
+    Wait Until Element Is Visible    ${CAMPO_MODALIDADE}    timeout=30s
+    Click Element    ${CAMPO_MODALIDADE}
     Sleep    2
-    Click Element     ${SELECAO_VALUE.MOD_DISPENSA}
+    Click Element     ${MOD_DISPENSA}
     Capture Page Screenshot
 
 
 E seleciono o modalidade para Inexigibilidade
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_MODALIDADE}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_MODALIDADE}
+    Wait Until Element Is Visible    ${CAMPO_MODALIDADE}    timeout=30s
+    Click Element    ${CAMPO_MODALIDADE}
     Sleep    2
-    Click Element     ${SELECAO_VALUE.MOD_INEXIGIBILIDADE}
+    Click Element     ${MOD_INEXIGIBILIDADE}
     Capture Page Screenshot
 
 
 E seleciono o modalidade para Dispensa Emergencial
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_MODALIDADE}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_MODALIDADE}
+    Wait Until Element Is Visible    ${CAMPO_MODALIDADE}    timeout=30s
+    Click Element    ${CAMPO_MODALIDADE}
     Sleep    2
-    Click Element     ${SELECAO_VALUE.MOD_DISPENSA_EMERGENCIAL}
+    Click Element     ${MOD_DISPENSA_EMERGENCIAL}
     Capture Page Screenshot
 
 
 E seleciono Critério para LEI 14.133/2021, ART. 75, VIII - DISPENSA
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_CRITERIO}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_CRITERIO}
+    Wait Until Element Is Visible    ${CAMPO_CRITERIO}    timeout=30s
+    Click Element    ${CAMPO_CRITERIO}
     Sleep    2
-    Click Element     ${SELECAO_VALUE.CRITERIO_DISPENSA}
+    Click Element     ${CRITERIO_DISPENSA}
     Capture Page Screenshot
 
 
@@ -150,18 +160,18 @@ E seleciono a Comissão - TJ
 
 
 E Seleciono Critério LEI FEDERAL Nº 14.133/2021, ART. 74 - Inexigibilidade
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_CRITERIO}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_CRITERIO}
+    Wait Until Element Is Visible    ${CAMPO_CRITERIO}    timeout=30s
+    Click Element    ${CAMPO_CRITERIO}
     Sleep    2
-    Click Element     ${SELECAO_VALUE.CRITERIO_INEXIGIBILIDADE}
+    Click Element     ${CRITERIO_INEXIGIBILIDADE}
     Capture Page Screenshot
 
 
 E seleciono Critério LEI 14.133/2021, ART. 75, VIII - DISPENSA EMERGENCIAl
-    Wait Until Element Is Visible    ${SELECAO.CAMPO_CRITERIO}    timeout=30s
-    Click Element    ${SELECAO.CAMPO_CRITERIO}
+    Wait Until Element Is Visible    ${CAMPO_CRITERIO}    timeout=30s
+    Click Element    ${CAMPO_CRITERIO}
     Sleep    2
-    Click Element     ${SELECAO_VALUE.CRITERIO_DISPENSA_EMERGENCIAL}
+    Click Element     ${CRITERIO_DISPENSA_EMERGENCIAL}
     Capture Page Screenshot
 
 
@@ -200,19 +210,19 @@ Então preencho todos os campos da Aba Dados gerais
     Input Text    ${CAMPO_OBJETO_COMPRA}     ${OBJETO_COMPRA}
 
     # Condição de pagamento
-    Wait Until Element Is Visible    ${SELECAO.CONDICAO_PAGAMENTO}    timeout=30s
-    Click Element    ${SELECAO.CONDICAO_PAGAMENTO}
+    Wait Until Element Is Visible    ${CONDICAO_PAGAMENTO}    timeout=30s
+    Click Element    ${CONDICAO_PAGAMENTO}
     Sleep    2
-    Wait Until Element Is Visible    ${SELECAO_VALUE.CONDICAO_PAGAMENTO_A_VISTA}    timeout=30s
-    Click Element    ${SELECAO_VALUE.CONDICAO_PAGAMENTO_A_VISTA}
+    Wait Until Element Is Visible    ${CONDICAO_PAGAMENTO_A_VISTA}    timeout=30s
+    Click Element    ${CONDICAO_PAGAMENTO_A_VISTA}
 
 
     # Prazo de entrega
-    Wait Until Element Is Visible    ${SELECAO.PRAZO_ENTREGA}    timeout=30s
-    Click Element    ${SELECAO.PRAZO_ENTREGA}
+    Wait Until Element Is Visible    ${PRAZO_ENTREGA}    timeout=30s
+    Click Element    ${PRAZO_ENTREGA}
     Sleep    2
-    Wait Until Element Is Visible    ${SELECAO_VALUE.PRAZO_ENTREGA_10_DIAS}    timeout=30s
-    Click Element    ${SELECAO_VALUE.PRAZO_ENTREGA_10_DIAS}
+    Wait Until Element Is Visible    ${PRAZO_ENTREGA_10_DIAS}    timeout=30s
+    Click Element    ${PRAZO_ENTREGA_10_DIAS}
     Capture Page Screenshot
 
 
@@ -255,10 +265,10 @@ E clico na compra direta em recebimento de lances
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+        Sleep    10 sec
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
     END
-    Sleep    3
+    Sleep    30
     Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
 
 

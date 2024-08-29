@@ -5,7 +5,7 @@ Library          DateTime
 Library          Browser
 Library          OperatingSystem
 Library          String
-Resource       ../Pages/Resource_compra_direta.robot
+Resource         ../Resources/Resource_compra_direta.robot
 
 
 *** Variables ***
@@ -13,9 +13,7 @@ Resource       ../Pages/Resource_compra_direta.robot
 ${SELECAO_MARCA_ATA}    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlMarca_listbox')]
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
 ${ITEM_LIST}       //ul[@id='ctl00_ContentPrincipal_ddlMarca_listbox']
-
 ${TITULO_ATA_EXTERNA}      Ata Externa Teste
-
 ${CAMPO_TITULO}          //input[contains(@name,'tbxTitulo')]
 ${CAMPO_OBJETO}                //textarea[contains(@name,'txtObjeto')]
 ${LUPA_TIPO_OBJETO_ATA}        //a[@onclick='AbrirJanelaTipoObjetoCompra();']

@@ -1,9 +1,8 @@
 *** Settings ***
 
 Library          SeleniumLibrary
-Resource        ../../../Pages/Login.robot
-Resource        ../../../Pages/Ressource_ARP.robot
-
+Resource       ../../../Resources/Resource_login.robot
+Resource        ../../../Resources/Resource_ARP.robot
 
 *** Test Cases ***
 
