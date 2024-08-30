@@ -262,14 +262,35 @@ Então preencho todos os campos da Aba Dados gerais
 E clico na compra direta em recebimento de lances
    ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    10 sec
+   ${timeout}=    Set Variable    150    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
+        Sleep    30
+        Run Keyword If    ${element_found}    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Sleep    30
-    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    10 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
+    # END
+    # Sleep    30
+    # Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
 
 
 E clico na Compra Direta da lista
@@ -405,14 +426,37 @@ E configuro o agendamento
 E preencho os dados do segundo lance na Compra Direta por Lote
 
     Select Frame    ${FRAME_NEGOCIACAO}
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
-    END
 
-    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+       ${timeout}=    Set Variable    150    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+        Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    END
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+    # END
+    # Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+
+
+
     Log    Aguardando a visibilidade do item na lista
     Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
 
@@ -430,18 +474,39 @@ E preencho os dados do segundo lance na Compra Direta por Lote
     Capture Page Screenshot
 
 
-
 E preencho os dados do lance na Compra Direta por Lote
 
     Select Frame    ${FRAME_NEGOCIACAO}
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
-    END
+   ${timeout}=    Set Variable    150    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
 
-    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+    FOR    ${i}    IN RANGE    ${timeout}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+        Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    END
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
+    # END
+    # Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
+
+
     Log    Aguardando a visibilidade do item na lista
     Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
 
@@ -462,13 +527,35 @@ E preencho os dados do lance na Compra Direta por Lote
 E preencho os dados do lance na Compra Direta por Item
 
     Select Frame    ${FRAME_NEGOCIACAO}
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+
+   ${timeout}=    Set Variable    150    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+        Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA}
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    ${CAMPO_SELECAO_MARCA}
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+    # END
+    # Click Element    ${CAMPO_SELECAO_MARCA}
 
     Log    Aguardando a visibilidade do item na lista
     Wait Until Element Is Visible    ${ITEM}    timeout=30s
@@ -493,13 +580,34 @@ E preencho os dados do lance na Compra Direta por Item
 E preencho os dados do segundo lance na Compra Direta por item
 
     Select Frame    ${FRAME_NEGOCIACAO}
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+
+    ${timeout}=    Set Variable    150    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+        Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA}
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    ${CAMPO_SELECAO_MARCA}
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+    # END
+    # Click Element    ${CAMPO_SELECAO_MARCA}
 
 
     # Log    Executando clique no dropdown
@@ -582,14 +690,35 @@ Então finalizo a Compra Direta
 
 
    ${all_windows}=    Get Window Handles
+    ${timeout}=    Set Variable    150    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
+        Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Finalizar compra direta')]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //a[contains(.,'Finalizar compra direta')]
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
+
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
+    # END
+    # Click Element    //a[contains(.,'Finalizar compra direta')]
     Sleep    2
 
 

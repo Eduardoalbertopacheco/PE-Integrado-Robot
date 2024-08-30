@@ -6,6 +6,8 @@ Library          OperatingSystem
 Resource        ../Resources/Resource_login.robot
 Resource        ../Resources/Resource_Cadastro_SC.robot
 
+Resource        ../Resources/exempo.robot
+
 *** Test Cases ***
 
 Cenário 01 - Criar SC - Aba dados Gerais
@@ -72,8 +74,7 @@ Cenário 06 - Planejamento com Solicitante
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
     Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
-    
-
+   
 
 Cenário 07 - Definir Natureza de despesa com o Financeiro
     Configurar Variáveis de SC

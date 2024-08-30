@@ -414,14 +414,35 @@ Então incluo a SC Por Item ao Pregão
 
 
     # Selecionar a SC para Incluir
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    10 sec
+   ${timeout}=    Set Variable    300    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+        Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    10 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    # END
+    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    # Capture Page Screenshot
 
 
     # Clique no botão de Incluir SC
@@ -459,14 +480,35 @@ Então incluo a SC Por Lote ao Pregão - OPD
 
 
     # Selecionar a SC para Incluir
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
-    WHILE    ${element_found} == False
+   ${timeout}=    Set Variable    300    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+        Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+        Run Keyword If    ${element_found}    Exit For Loop
+        
         Execute JavaScript    window.location.reload()
-        Sleep    5 sec
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    # END
+    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    # Capture Page Screenshot
 
 
     # Clique no botão de Incluir SC
@@ -506,14 +548,36 @@ Então incluo a SC Por Lote ao Pregão
 
 
     # Selecionar a SC para Incluir
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+   ${timeout}=    Set Variable    300   
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+        Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
+
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    # END
+    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+    # Capture Page Screenshot
 
 
     # Clique no botão de Incluir SC
@@ -656,8 +720,6 @@ E solicito o parecer para o Ordenador -OPD
     Capture Page Screenshot
 
 
-
-
 E solicito o parecer para o Ordenador
 
     Switch Window    NEW
@@ -721,8 +783,6 @@ E solicito o parecer para o Ordenador
 
    
 
-
-
     # Implementar aqui o tipo do paracer para Jurídico
 
 
@@ -778,13 +838,13 @@ E clico na licitação da lista
 
     # Clique na SC selecionada
     Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]    timeout=30s
+    Sleep    1
     Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
     Sleep    4
 
 E Clique no botão Parecer
 
     ${all_windows}=    Get Window Handles
-    
     ${segunda_janela}=    Set Variable    ${all_windows}[1]
     Switch Window    ${segunda_janela}
     
@@ -794,7 +854,6 @@ E Clique no botão Parecer
     Sleep    2
     
     ${all_windows}=    Get Window Handles
-    
     ${janela_atual}=    Set Variable    ${all_windows}[0]
     Switch Window    ${janela_atual}
 
@@ -854,7 +913,6 @@ Então finalizo o parecer
 
 E clico no botão solicitar autorização
     ${all_windows}=    Get Window Handles
-    
     ${segunda_janela}=    Set Variable    ${all_windows}[1]
     Switch Window    ${segunda_janela}
     
@@ -875,7 +933,6 @@ Então solicito autorização central
 
 E clico em Deliberar
     ${all_windows}=    Get Window Handles
-    
     ${segunda_janela}=    Set Variable    ${all_windows}[1]
     Switch Window    ${segunda_janela}
     
@@ -932,7 +989,7 @@ E seleciono a licitação para agendamento
 
 Então faço o reagendamento
 
-    ${hora_atual+3min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=3)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+    ${hora_atual+3min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=4)).strftime('%d-%m-%Y %H:%M:%S')    datetime
     Log    ${hora_atual+3min}
 
     ${hora_atual+300min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=300)).strftime('%d-%m-%Y %H:%M:%S')    datetime
@@ -952,7 +1009,6 @@ Então faço o reagendamento
 
     ${all_windows}=    Get Window Handles
     ${janela}=    Set Variable    ${all_windows}[1]
-
     Switch Window    ${janela}
 
     # Data inicial de propostas
@@ -1084,46 +1140,128 @@ E acesso todos as licitações da lista
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
-
-
 E seleciono a SC Em propotas da lista
     ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Em proposta')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+   ${timeout}=    Set Variable    300   
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Em proposta')]
+        Run Keyword If    ${element_found}    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Em proposta')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Em proposta')]
+    # END
+    # Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
 
 
 E seleciono a licitação em abertura de proposta da lista
 
-     ${all_windows}=    Get Window Handles
+    ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+   ${timeout}=    Set Variable    300   
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
+        Sleep    50
+        Run Keyword If    ${element_found}    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Sleep     2
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
+
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
+    # END
+    # Sleep     2
+    # Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
 
 
 
 E seleciono a licitação em ajuste de preços da lista
 
-     ${all_windows}=    Get Window Handles
+    ${all_windows}=    Get Window Handles
+   ${timeout}=    Set Variable    300   
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
+        Run Keyword If    ${element_found}    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
+    # END
+    # Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
+
+E clico na licitação em Adjudicação da lista
+   ${timeout}=    Set Variable    300   
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//img[contains(@title,'Em adjudicação')]
+        Run Keyword If    ${element_found}    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    END
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
 
 E seleciono a licitação da lista
@@ -1141,17 +1279,40 @@ Então abro as proposta
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
     Select Frame    ${FRAME_NEGOCIACAO}
 
+   ${timeout}=    Set Variable    300   
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Abrir proposta(s)')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Abrir proposta(s)')]
+        Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Abrir proposta(s)')]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //a[contains(.,'Abrir proposta(s)')]
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Sleep    2
     Handle Alert    ACCEPT
     Sleep    3
+
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Abrir proposta(s)')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Abrir proposta(s)')]
+    # END
+    # Click Element    //a[contains(.,'Abrir proposta(s)')]
+    # Sleep    2
+    # Handle Alert    ACCEPT
+    # Sleep    3
 
 
 Então inicio a disputa
@@ -1385,20 +1546,35 @@ Então ecerro a disputa
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
 
-
-
-
+    ${all_windows}=    Get Window Handles
+   ${timeout}=    Set Variable    300   
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
     ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+        Run Keyword If    ${element_found}    Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
 
 
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+    # END
+    # Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
 
 
     # # Click no chekbox para marca o item
@@ -1432,14 +1608,34 @@ Então ecerro a disputa Por Lote
     Capture Page Screenshot
 
     ${all_windows}=    Get Window Handles
+   ${timeout}=    Set Variable    300  
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+        Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Encerrar disputa')]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Click Element    //a[contains(.,'Encerrar disputa')]
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
+    # END
+    # Click Element    //a[contains(.,'Encerrar disputa')]
 
 
 
@@ -1774,14 +1970,35 @@ Então adjudico o pregão eletrônico
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
 
-    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
-    WHILE    ${element_found} == False
-        Execute JavaScript    window.location.reload()
-        Sleep    5 sec
+   ${timeout}=    Set Variable    300  
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
+        Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Adjudicar')]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Sleep    1
-    Click Element    //a[contains(.,'Adjudicar')]
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
+
+
+    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
+    # WHILE    ${element_found} == False
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    5 sec
+    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
+    # END
+    # Sleep    1
+    # Click Element    //a[contains(.,'Adjudicar')]
     Capture Page Screenshot
 
 

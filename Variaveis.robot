@@ -2,11 +2,9 @@
 Library    String
 
 *** Variables ***
-${RESUMO_SC}=       None
-${OBJETO_PREGAO}    None
 
-# ${RESUMO_SC}        SC_Item_Pregao
-# ${OBJETO_PREGAO}    Pregão-Aberto - Lote - 27/08
+${RESUMO_SC}        SC_Item_Pregao
+${OBJETO_PREGAO}    Pregao_fechado_aberto_item_01
 ${OBJETO_COMPRA}    Compra Direta - Lote - INEX 28/08
 ${OBJETO_ATA}       Pregão-Aberto - Lote - OPD 26/08
 ${OBJETO_IRP}       Teste IRP
