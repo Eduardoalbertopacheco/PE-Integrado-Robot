@@ -262,14 +262,14 @@ Então preencho todos os campos da Aba Dados gerais
 E clico na compra direta em recebimento de lances
    ${all_windows}=    Get Window Handles
 
-   ${timeout}=    Set Variable    150    
+   ${timeout}=    Set Variable    300    
     ${interval}=   Set Variable    5     
     ${start_time}=    Get Time    epoch
     ${all_windows}=    Get Window Handles
 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
-        Sleep    30
+        Sleep    20
         Run Keyword If    ${element_found}    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
         Run Keyword If    ${element_found}    Exit For Loop
         
@@ -283,17 +283,30 @@ E clico na compra direta em recebimento de lances
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
 
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    10 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
-    # END
-    # Sleep    30
-    # Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
+E clico na Compra Direta da lista Aguardando ratificação
+
+   ${timeout}=    Set Variable    300    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Aguardando ratificação')]
+        Run Keyword If    ${element_found}    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    END
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
 
 E clico na Compra Direta da lista
+
     Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a    timeout=30s
     Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
     Capture Page Screenshot
@@ -355,6 +368,7 @@ Então incluo a SC Item na compra Direta
     Click Element    //select[contains(@name,'ctl00$ddlVisoes')]
     Sleep    1
     Wait Until Element Is Visible    //option[contains(@value,'7000')]
+    Sleep    1
     Click Element    //option[contains(@value,'7000')]
 
 
@@ -690,7 +704,7 @@ Então finalizo a Compra Direta
 
 
    ${all_windows}=    Get Window Handles
-    ${timeout}=    Set Variable    150    
+    ${timeout}=    Set Variable    300   
     ${interval}=   Set Variable    5     
     ${start_time}=    Get Time    epoch
     ${all_windows}=    Get Window Handles

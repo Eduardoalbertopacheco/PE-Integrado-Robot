@@ -12,6 +12,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 # Estes cenários só pode ser rodado depois de 15min
 Cenário 18 - Encerrar disputa
+    Configurar variável aberto_lote
+
     [Tags]    encerrar_disputa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -21,6 +23,8 @@ Cenário 18 - Encerrar disputa
     Então ecerro a disputa Por Lote
     
 Cenário 19 - Abrir Item/Lote para Lei 123
+    Configurar variável aberto_lote
+
     [Tags]    abrir_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -30,6 +34,8 @@ Cenário 19 - Abrir Item/Lote para Lei 123
     Então abros os Lotes
 
 Cenário 20 - Encerrar Item/Lote para Lei 123
+    Configurar variável aberto_lote
+
     [Tags]    encerrar_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -40,6 +46,8 @@ Cenário 20 - Encerrar Item/Lote para Lei 123
 
 
 Cenário 21 - Convocar vencedor
+    Configurar variável aberto_lote
+
     [Tags]    convocar_vencedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -50,6 +58,8 @@ Cenário 21 - Convocar vencedor
 
 
 Cenário 22 - Anexar documento - Vencedor
+    Configurar variável aberto_lote
+
     [Tags]    anexar_documento_vencedor
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
@@ -60,6 +70,8 @@ Cenário 22 - Anexar documento - Vencedor
 
 
 Cenário 23 - Habilitar fornecedor vencedor
+    Configurar variável aberto_lote
+
     [Tags]    habilitar_fornecedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -70,6 +82,8 @@ Cenário 23 - Habilitar fornecedor vencedor
 
 
 Cenário 24 - Encerrar etapa
+    Configurar variável aberto_lote
+
     [Tags]    encerrar_etapa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -80,6 +94,8 @@ Cenário 24 - Encerrar etapa
 
 
 Cenário 25 - Registrar intenção de recursos
+    Configurar variável aberto_lote
+    
     [Tags]    registrar_recurso
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"

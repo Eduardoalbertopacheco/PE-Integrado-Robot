@@ -11,6 +11,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 # Estes cenários só pode ser rodado depois de 15min
 Cenário 18 - Encerrar disputa
+    Configurar variável aberto_lote_OPD
+
     [Tags]    encerrar_disputa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -20,6 +22,8 @@ Cenário 18 - Encerrar disputa
     Então ecerro a disputa Por Lote
     
 Cenário 19 - Abrir Item/Lote para Lei 123
+    Configurar variável aberto_lote_OPD
+
     [Tags]    abrir_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -29,6 +33,8 @@ Cenário 19 - Abrir Item/Lote para Lei 123
     Então abros os Lotes
 
 Cenário 20 - Encerrar Item/Lote para Lei 123
+    Configurar variável aberto_lote_OPD
+
     [Tags]    encerrar_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -38,6 +44,8 @@ Cenário 20 - Encerrar Item/Lote para Lei 123
     Então encerro Lote para Lei 123
 
 Cenário 21 - Convocar vencedor
+    Configurar variável aberto_lote_OPD
+
     [Tags]    convocar_vencedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -48,6 +56,8 @@ Cenário 21 - Convocar vencedor
 
 
 Cenário 22 - Anexar documento - Vencedor
+    Configurar variável aberto_lote_OPD
+
     [Tags]    anexar_documento_vencedor
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
@@ -57,6 +67,8 @@ Cenário 22 - Anexar documento - Vencedor
     Então anexo o documento
 
 Cenário 23 - Habilitar fornecedor vencedor
+    Configurar variável aberto_lote_OPD
+
     [Tags]    habilitar_fornecedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -66,6 +78,8 @@ Cenário 23 - Habilitar fornecedor vencedor
     Então habilito o fonecedor vencedor (Aberto_item)
 
 Cenário 24 - Encerrar etapa
+    Configurar variável aberto_lote_OPD
+
     [Tags]    encerrar_etapa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -75,6 +89,8 @@ Cenário 24 - Encerrar etapa
     Então encerro a etapa de pregão eletrônico
 
 Cenário 25 - Registrar intenção de recursos
+    Configurar variável aberto_lote_OPD
+    
     [Tags]    registrar_recurso
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"

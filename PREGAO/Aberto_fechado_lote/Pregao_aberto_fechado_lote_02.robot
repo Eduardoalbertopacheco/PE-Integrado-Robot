@@ -11,6 +11,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 # Estes cenários só pode ser rodado depois de 15min + autoencerramento
 Cenário 19 - Abrir Lote para disputa Sigilosa 5 min
+    Configurar variável aberto_fechado_lote
+
     [Tags]    abrir_item-disputa_sigilosa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -21,6 +23,8 @@ Cenário 19 - Abrir Lote para disputa Sigilosa 5 min
 
 
 Cenário 20 - Enviar disputa sigilosa Forn01
+    Configurar variável aberto_fechado_lote
+
     [Tags]    enviar_disputa_sigilosa01
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
@@ -31,6 +35,8 @@ Cenário 20 - Enviar disputa sigilosa Forn01
 
 
 Cenário 21 - Enviar disputa sigilosa Forn02
+    Configurar variável aberto_fechado_lote
+
     [Tags]    enviar_disputa_sigilosa02
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
@@ -41,6 +47,8 @@ Cenário 21 - Enviar disputa sigilosa Forn02
 
 
 Cenário 23 - Encerrar disputa
+    Configurar variável aberto_fechado_lote
+
     [Tags]    encerrar_disputa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -51,6 +59,8 @@ Cenário 23 - Encerrar disputa
     
 
 Cenário 24 - Abrir Item/Lote para Lei 123
+    Configurar variável aberto_fechado_lote
+
     [Tags]    abrir_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -60,6 +70,8 @@ Cenário 24 - Abrir Item/Lote para Lei 123
     Então abros os Lotes
 
 Cenário 25 - Encerrar Item/Lote para Lei 123
+    Configurar variável aberto_fechado_lote
+
     [Tags]    encerrar_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -69,6 +81,8 @@ Cenário 25 - Encerrar Item/Lote para Lei 123
     Então encerro Lote para Lei 123
 
 Cenário 26 - Convocar vencedor
+    Configurar variável aberto_fechado_lote
+
     [Tags]    convocar_vencedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -79,6 +93,8 @@ Cenário 26 - Convocar vencedor
 
 
 Cenário 27 - Anexar documento - Vencedor
+    Configurar variável aberto_fechado_lote
+
     [Tags]    anexar_documento_vencedor
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256" 
@@ -88,6 +104,8 @@ Cenário 27 - Anexar documento - Vencedor
     Então anexo o documento
 
 Cenário 28 - Habilitar fornecedor vencedor
+    Configurar variável aberto_fechado_lote
+
     [Tags]    habilitar_fornecedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -97,6 +115,8 @@ Cenário 28 - Habilitar fornecedor vencedor
     Então habilito o fonecedor vencedor (Aberto_item)
 
 Cenário 29 - Encerrar etapa
+    Configurar variável aberto_fechado_lote
+
     [Tags]    encerrar_etapa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -106,6 +126,8 @@ Cenário 29 - Encerrar etapa
     Então encerro a etapa de pregão eletrônico
 
 Cenário 30 - Registrar intenção de recursos
+    Configurar variável aberto_fechado_lote
+    
     [Tags]    registrar_recurso
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"

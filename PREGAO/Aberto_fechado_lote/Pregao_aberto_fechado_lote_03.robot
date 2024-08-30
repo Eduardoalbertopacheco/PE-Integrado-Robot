@@ -12,6 +12,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 # Estes cenários só podem ser rodados após 10min
 Cenário 26 - Não acatar intenção de recursos
+    Configurar variável aberto_fechado_lote
+
     [Tags]    nao_acatar_recurso
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -22,6 +24,8 @@ Cenário 26 - Não acatar intenção de recursos
 
 
 Cenário 27 - Reajustar preço dos Lotes
+    Configurar variável aberto_fechado_lote
+
     [Tags]    Reajuste_Lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -32,6 +36,8 @@ Cenário 27 - Reajustar preço dos Lotes
 
 
 Cenário 27 - Adjudicar Pregão
+    Configurar variável aberto_fechado_lote
+
     [Tags]    adjudicar_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -41,6 +47,8 @@ Cenário 27 - Adjudicar Pregão
     Então adjudico o pregão eletrônico
 
 Cenário 28 - Homologar Pregão
+    Configurar variável aberto_fechado_lote
+    
     [Tags]    homologar_pregao
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"

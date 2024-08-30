@@ -12,6 +12,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 # Estes cenários só pode ser rodado depois de 15min + Autoencerramento
 Cenário 20 - Encerrar Disputa
+    Configurar variável fechado_aberto_item
+
     [Tags]    encerrar_disputa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -22,6 +24,8 @@ Cenário 20 - Encerrar Disputa
     
 
 Cenário 21 - Abrir Itens para Lei 123
+    Configurar variável fechado_aberto_item
+
     [Tags]    abrir_item_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -32,6 +36,8 @@ Cenário 21 - Abrir Itens para Lei 123
 
 
 Cenário 22 - Encerrar Itens para Lei 123
+    Configurar variável fechado_aberto_item
+
     [Tags]    encerrar_item_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -42,6 +48,8 @@ Cenário 22 - Encerrar Itens para Lei 123
 
 
 Cenário 23 - Convocar vencedor
+    Configurar variável fechado_aberto_item
+
     [Tags]    convocar_vencedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -52,6 +60,8 @@ Cenário 23 - Convocar vencedor
 
 
 Cenário 24 - Anexar documento - Vencedor
+    Configurar variável fechado_aberto_item
+
     [Tags]    anexar_documento_vencedor
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
@@ -61,6 +71,8 @@ Cenário 24 - Anexar documento - Vencedor
     Então anexo o documento
 
 Cenário 25 - Habilitar fornecedor vencedor
+    Configurar variável fechado_aberto_item
+
     [Tags]    habilitar_fornecedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -70,6 +82,8 @@ Cenário 25 - Habilitar fornecedor vencedor
     Então habilito o fonecedor vencedor (Aberto_item)
 
 Cenário 26 - Encerrar etapa
+    Configurar variável fechado_aberto_item
+
     [Tags]    encerrar_etapa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -79,6 +93,8 @@ Cenário 26 - Encerrar etapa
     Então encerro a etapa de pregão eletrônico
 
 Cenário 27 - Registrar intenção de recursos
+    Configurar variável fechado_aberto_item
+    
     [Tags]    registrar_recurso
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"

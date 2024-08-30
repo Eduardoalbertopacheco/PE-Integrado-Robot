@@ -7,6 +7,8 @@ Resource        ../Resources/Resource_compra_direta.robot
 
 *** Test Cases ***
 Cenário 01 - Cadastro de Compra Direta - Aba dados Gerais
+    Configurar Variáveis Compra Direta
+
     [Tags]    criar_Compra
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
@@ -20,6 +22,9 @@ Cenário 01 - Cadastro de Compra Direta - Aba dados Gerais
 
 
 Cenário 02 - Incluir Itens da SC na Compra Direta
+    Configurar Variáveis Compra Direta
+    Usar SC_Item_Compra_Inex
+
     [Tags]    incluir_item_cp
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
@@ -29,6 +34,8 @@ Cenário 02 - Incluir Itens da SC na Compra Direta
     Então incluo a SC Item na compra Direta
 
 Cenário 03 - Agendar compra Direta
+    Configurar Variáveis Compra Direta
+
     [Tags]    agendar_CP
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
@@ -40,6 +47,8 @@ Cenário 03 - Agendar compra Direta
 
 
 Cenário 04 - Enviar lances com Fornecedor 01
+    Configurar Variáveis Compra Direta
+
     [Tags]    enviar_lance_01
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
@@ -51,6 +60,8 @@ Cenário 04 - Enviar lances com Fornecedor 01
 
 
 Cenário 05 - Enviar lances com Fornecedor 02
+    Configurar Variáveis Compra Direta
+
     [Tags]    enviar_lance_02
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
@@ -62,6 +73,8 @@ Cenário 05 - Enviar lances com Fornecedor 02
 
 
 Cenário 06 - Prorrogar Compra direta
+    Configurar Variáveis Compra Direta
+
     [Tags]    prorrogar_compra_direta
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
@@ -74,6 +87,8 @@ Cenário 06 - Prorrogar Compra direta
 
 
 Cenário 07 - Finalizar Compra Direta
+    Configurar Variáveis Compra Direta
+
   [Tags]    finalizar_compra_direta
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
@@ -84,11 +99,13 @@ Cenário 07 - Finalizar Compra Direta
 
 
 Cenário 08 - Ratificar compra Direta
+    Configurar Variáveis Compra Direta
+
   [Tags]    ratificar_compra_direta
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
-    E clico na Compra Direta da lista
+    E clico na Compra Direta da lista Aguardando ratificação
     Então ratifico a Compra Direta
     # Resource_compra_direta.E acesso a auditoria

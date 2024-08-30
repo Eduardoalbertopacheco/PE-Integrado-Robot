@@ -10,6 +10,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 Cenário 23 - Encerrar disputa
+    Configurar variável fechado_aberto_lote
+
     [Tags]    encerrar_disputa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -20,6 +22,8 @@ Cenário 23 - Encerrar disputa
     
 
 Cenário 24 - Abrir Item/Lote para Lei 123
+    Configurar variável fechado_aberto_lote
+
     [Tags]    abrir_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -30,6 +34,8 @@ Cenário 24 - Abrir Item/Lote para Lei 123
 
 
 Cenário 25 - Encerrar Item/Lote para Lei 123
+    Configurar variável fechado_aberto_lote
+
     [Tags]    encerrar_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -40,6 +46,8 @@ Cenário 25 - Encerrar Item/Lote para Lei 123
 
 
 Cenário 26 - Convocar vencedor
+    Configurar variável fechado_aberto_lote
+
     [Tags]    convocar_vencedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -50,6 +58,8 @@ Cenário 26 - Convocar vencedor
 
 
 Cenário 27 - Anexar documento - Vencedor
+    Configurar variável fechado_aberto_lote
+
     [Tags]    anexar_documento_vencedor
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
@@ -60,6 +70,8 @@ Cenário 27 - Anexar documento - Vencedor
 
 
 Cenário 28 - Habilitar fornecedor vencedor
+    Configurar variável fechado_aberto_lote
+
     [Tags]    habilitar_fornecedor
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -70,6 +82,8 @@ Cenário 28 - Habilitar fornecedor vencedor
 
 
 Cenário 29 - Encerrar etapa
+    Configurar variável fechado_aberto_lote
+
     [Tags]    encerrar_etapa
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -80,6 +94,8 @@ Cenário 29 - Encerrar etapa
 
 
 Cenário 30 - Registrar intenção de recursos
+    Configurar variável fechado_aberto_lote
+    
     [Tags]    registrar_recurso
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
