@@ -1,7 +1,7 @@
 *** Settings ***
 Documentation    
 Library          SeleniumLibrary
-Resource        ../Variaveis.robot
+Resource         ../Resources/Variaveis.robot
 Resource        ../Resources/Resource_Cadastro_SC.robot
 Resource        ../Resources/Resource_cadastro_pregao.robot
 
@@ -401,7 +401,7 @@ Então faço o agendamento da compra Direta
 E configuro o agendamento
 
     # Data inicial dos lances
-   ${hora_atual+03min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=3)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+   ${hora_atual+03min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=4)).strftime('%d-%m-%Y %H:%M:%S')    datetime
     Log    ${hora_atual+03min}
 
     # Data final dos lances
@@ -670,7 +670,7 @@ E insiro as novas datas para prorrogar Compra Direta
     ${all_windows}=    Get Window Handles
     ${janela}=    Set Variable    ${all_windows}[1]
 
-    ${hora_atual+3min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=3)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+    ${hora_atual+3min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=4)).strftime('%d-%m-%Y %H:%M:%S')    datetime
     Log    ${hora_atual+3min}
 
     Switch Window    ${janela}

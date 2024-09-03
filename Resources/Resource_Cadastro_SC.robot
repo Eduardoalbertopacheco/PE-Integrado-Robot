@@ -4,7 +4,7 @@ Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
 Library          DateTime
-Resource        ../Variaveis.robot
+Resource         ./Variaveis.robot
 
 *** Variables ***
 
@@ -58,8 +58,6 @@ E acesso a Tela de Lista de Solicitação de Compras
     
     Capture Page Screenshot
     
-    # Wait Until Element Is Visible    
-    # ...    xpath=//span[contains(.,'Solicitações de compra')]    timeout=30s
     Sleep    1
 
 
@@ -811,10 +809,6 @@ Então defino a natureza de despesa
     # Sleep    60
     Select Frame    //iframe[contains(@name,'frmConteudo')]
 
-    Execute JavaScript    window.location.reload()
-    Sleep    2
-    Execute JavaScript    window.location.reload()
-
     Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    timeout=30s
     Click Element    //a[text()= "${RESUMO_SC}"]
     Sleep    1
@@ -826,33 +820,33 @@ Então defino a natureza de despesa
     Capture Page Screenshot
 
 
-    # Clique no campo 'Nat. de despesa'
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
+    # # Clique no campo 'Nat. de despesa'
+    # ${timeout}=    Set Variable    300    
+    # ${interval}=   Set Variable    5     
+    # ${start_time}=    Get Time    epoch
+    # ${all_windows}=    Get Window Handles
 
-    FOR    ${i}    IN RANGE    ${timeout}
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
-        Run Keyword If    ${element_found}    Click Element    (//span[contains(.,'Selecione')])[3]
-        
-        Execute JavaScript    window.location.reload()
-        Sleep    ${interval} sec
-
-        ${current_time}=    Get Time    epoch
-        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
-        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-    END
-    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
+    # FOR    ${i}    IN RANGE    ${timeout}
     #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
+    #     Run Keyword If    ${element_found}    Click Element    (//span[contains(.,'Selecione')])[3]
+        
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    ${interval} sec
+
+    #     ${current_time}=    Get Time    epoch
+    #     ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+    #     Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     # END
-    # Click Element    (//span[contains(.,'Selecione')])[3]
+    # Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+
+
+    ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
+    END
+    Click Element    (//span[contains(.,'Selecione')])[3]
 
 
     # Clique para selecionar a natureza de despesa da seleção
@@ -943,7 +937,7 @@ Então Clique no botão Aprovar com orçamento
 
     # clique no botão salvar
     Click Element    //input[contains(@value,'Salvar')]
-    Sleep    1
+    Sleep    2
     SeleniumLibrary.Close Browser
 
 
@@ -1025,10 +1019,11 @@ E pesquiso por SC aguardando liberação
 
 Então seleciono a SC e aprovo
 
-    Wait Until Element Is Visible    (//table)[15]//tr[1]//td[9]//input[1]    timeout=30s
-    Click Element    (//table)[15]//tr[1]//td[9]//input[1]
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input    timeout=30s
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     Capture Page Screenshot
     Click Element    //a[contains(.,'Aprovar')]
+    Sleep    3
     SeleniumLibrary.Close Browser
 
 
@@ -1607,6 +1602,7 @@ Então atribuo a Comissão Permanente de Licitação
 
     # clique do botão 'Confirma'
     Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
     SeleniumLibrary.Close Browser
 
 

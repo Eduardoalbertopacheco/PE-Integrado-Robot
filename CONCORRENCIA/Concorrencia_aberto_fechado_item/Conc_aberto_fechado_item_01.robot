@@ -1,15 +1,14 @@
 *** Settings ***
-Documentation    Fluxo Feliz - Cadastro de Pregão Eletronico
+Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
 Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
 Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_cadastro_pregao.robot
-     
 
 *** Test Cases ***
-Cenário 01 - Criar Pregão - Aba Dados Gerais
+Cenário 01 - Criar Concorrência Aberto-Fechado Por Item - Aba Dados Gerais
     Configurar Variáveis de Pregão
 
     [Tags]    criar_pregao
@@ -17,18 +16,19 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E clico em Incluir Processo
-    E seleciono a modalidade para Pregão Eletrônico
-    E Seleciono o Critério de Pregão Eletrônico
+    E seleciono a modalidade para Concorrência Eletrônica
+    E Seleciono o Critério de Concorrência Eletrônica
     E insiro as datas para agendamento
     E insiro a Comissão e Salvo
-    E Seleciono o Modo de Disputa Fechado-Aberto
+    E Seleciono o Modo de Disputa Aberto-Fechado
     Então preencho a Aba de Dados Gerais
     E mostro a auditoria
 
 
 Cenário 02 - Incluir SC ao Pregão
     Configurar Variáveis de Pregão
-    usar SC_Item_Pregao_fechado_aberto
+    Usar SC_Item_Concorrencia_aberto_fechado
+
 
     [Tags]    incluir_sc_pregao
     Dado que acesso o sistema
@@ -104,6 +104,7 @@ Cenário 07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
+    E mostro a auditoria
 
 
 Cenário 08 - Aprovar autorização
@@ -117,7 +118,7 @@ Cenário 08 - Aprovar autorização
     E clico na licitação da lista
     E clico em Deliberar
     Então aprovo a autorização
-    # E mostro a auditoria
+    E mostro a auditoria
 
 
 Cenário 09 - Agendar Pregão eletrônico
@@ -186,7 +187,7 @@ Cenário 13 - Abertura das propostas
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
-    E seleciono a licitação em abertura de proposta da lista
+    E seleciono a licitação da lista
     Então abro as proposta
 
 

@@ -27,6 +27,8 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
 
 Cenário 02 - Incluir SC ao Pregão
     Configurar Variáveis de Pregão
+    Usar SC_Lote_Pregao_fechado_aberto
+
 
     [Tags]    incluir_sc_pregao
     Dado que acesso o sistema

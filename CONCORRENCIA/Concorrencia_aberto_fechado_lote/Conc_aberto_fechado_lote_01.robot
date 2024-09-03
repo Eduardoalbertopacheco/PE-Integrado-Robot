@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Fluxo Feliz - Cadastro de Pregão Eletronico
+Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
 Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
@@ -17,18 +17,18 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E clico em Incluir Processo
-    E seleciono a modalidade para Pregão Eletrônico
-    E Seleciono o Critério de Pregão Eletrônico
+    E seleciono a modalidade para Concorrência Eletrônica
+    E Seleciono o Critério de Concorrência Eletrônica
     E insiro as datas para agendamento
     E insiro a Comissão e Salvo
-    E Seleciono o Modo de Disputa Fechado-Aberto
+    E Seleciono o Modo de Disputa Aberto-Fechado
     Então preencho a Aba de Dados Gerais
     E mostro a auditoria
 
 
 Cenário 02 - Incluir SC ao Pregão
     Configurar Variáveis de Pregão
-    usar SC_Item_Pregao_fechado_aberto
+    Usar SC_Lote_Concorrencia_aberto_fechado
 
     [Tags]    incluir_sc_pregao
     Dado que acesso o sistema
@@ -36,7 +36,7 @@ Cenário 02 - Incluir SC ao Pregão
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
-    Então incluo a SC Por Item ao Pregão
+    Então incluo a SC Por Lote ao Pregão
     E mostro a auditoria
 
 
@@ -104,6 +104,7 @@ Cenário 07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
+    E mostro a auditoria
 
 
 Cenário 08 - Aprovar autorização
@@ -117,7 +118,7 @@ Cenário 08 - Aprovar autorização
     E clico na licitação da lista
     E clico em Deliberar
     Então aprovo a autorização
-    # E mostro a auditoria
+    E mostro a auditoria
 
 
 Cenário 09 - Agendar Pregão eletrônico
@@ -143,7 +144,7 @@ Cenário 10 - Envio de propostas Fornecedor 01
     E seleciono todos os pregões
     E seleciono a SC Em propotas da lista
     E seleciono não para lei 123 e confirmo
-    E preencho os dados do lance por Item
+    E preencho os dados do lance por Lote
     Então envio a proposta
     # E vejo a Auditoria
     
@@ -158,7 +159,7 @@ Cenário 11 - Envio de propostas Fornecedor 02
     E seleciono todos os pregões
     E seleciono a licitação da lista
     E seleciono não para lei 123 e confirmo
-    E preencho os dados do lance por Item
+    E preencho os dados do lance por Lote
     Então envio a proposta
     # E vejo a Auditoria
 
@@ -210,7 +211,7 @@ Cenário 15 - Abrir Itens/Lotes para disputa
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então abros os itens
+    Então abros os Lotes
 
 
 Cenário 16 - Enviar disputa Fornecedor 01

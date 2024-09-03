@@ -6,6 +6,7 @@ Library          Browser
 Library          OperatingSystem
 Library          String
 Resource         ../Resources/Resource_compra_direta.robot
+Resource         ../Resources/Variaveis.robot
 
 
 *** Variables ***

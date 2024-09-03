@@ -4,7 +4,7 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource        ../Variaveis.robot
+Resource         ../Resources/Variaveis.robot
    
 *** Variables ***
 

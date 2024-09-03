@@ -9,6 +9,8 @@ Resource        ../../../Resources/Resource_ARP.robot
 *** Test Cases ***
 
 Cenário 01 - Solicitar Adesão de Ata de Compra Direta
+    Configurar Variável de Adesão
+
     [Tags]    solicitar_adesao
     Dado que acesso o sistema
     E faço login com usuário "Solicitante.390601"
