@@ -2,14 +2,21 @@
 Documentation    Recursos do Módulo de Almoxarifado
 Library          SeleniumLibrary
 Library          DateTime
+Library           OperatingSystem
 
 *** Variables ***
 
 ${NOME_ALMOX}    Almoxarifado Teste 01
 @{CODIGOS_PRODUTOS}    1000241    1000268
+${current_date}    Get Current Date    result_format=%Y/%m/%d
+
 
 
 *** Keywords ***
+Definir Data Atual
+    ${current_date}    Get Current Date    result_format=%Y/%m/%d
+    Set Test Variable    ${current_date}
+
 
 Então incluo a Máscara de Endereço
     Switch Window    
@@ -369,7 +376,16 @@ E acesso a lista de Recebimento
     Capture Page Screenshot
 
 
-Então incluo um novo Recebimento
+Então incluo um novo Recebimento    
+
+    [Arguments]    ${date}
+    ${year}        Evaluate    '${date}'.split('/')[0]
+    ${month}       Evaluate    int('${date}'.split('/')[1])
+    ${day}         Evaluate    int('${date}'.split('/')[2])
+
+    ${month}       Evaluate    int('${date}'.split('/')[1]) - 1
+    ${DATA_VALUE}  Set Variable    ${year}/${month}/${day}
+
 
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[@onclick='IncluirRecebimento();']    30
@@ -452,17 +468,23 @@ Então incluo um novo Recebimento
     Wait Until Element Is Visible    //input[@id='tbxSerieDocumento_0']    20
     Input Text    //input[@id='tbxSerieDocumento_0']    123456
 
-    # Datas
+    # Data da nota fiscal
     ${Icones}    Get WebElements    //span[@class='k-icon k-i-calendar']
     ${Icone2}    Set Variable    ${Icones}[1]
-    
     Wait Until Element Is Visible    ${Icone2}
-    Click Element    ${Icone2}
-    Wait Until Element Is Visible    //a[contains(@data-value,'2024/8/4')]
     Sleep    1
-    Click Element    //a[contains(@data-value,'2024/8/4')]
+    Click Element    ${Icone2}
+    
+    Sleep    1
+    
+    ${data_xpath}  Set Variable    xpath=//a[@data-value='${DATA_VALUE}']
+    
+    Wait Until Element Is Visible    ${data_xpath}
+    Sleep    1
+    Click Element    ${data_xpath}
+    Capture Page Screenshot
 
-
+ 
     Wait Until Element Is Visible    //input[@id='tbxNumeroDocumento_1']    20
     Input Text    //input[@id='tbxNumeroDocumento_1']    123456
     Wait Until Element Is Visible    //input[contains(@id,'tbxSerieDocumento_1')]    20
@@ -471,10 +493,15 @@ Então incluo um novo Recebimento
     ${Icones1}    Get WebElements    //span[@class='k-icon k-i-calendar']
     ${Icone3}    Set Variable    ${Icones1}[2]
     Wait Until Element Is Visible    ${Icone3}
-    Click Element    ${Icone3}
-    Wait Until Element Is Visible    //a[contains(@data-value,'2024/8/4')]
     Sleep    1
-    Click Element    //a[contains(@data-value,'2024/8/4')]
+    Click Element    ${Icone3}
+
+
+    ${data_xpath}  Set Variable    xpath=//a[@data-value='${DATA_VALUE}']
+    
+    Wait Until Element Is Visible    ${data_xpath}
+    Sleep    2
+    Click Element    ${data_xpath}
     Capture Page Screenshot
 
 

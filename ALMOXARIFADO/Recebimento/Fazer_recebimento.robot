@@ -8,11 +8,13 @@ Resource    ../../Resources/Resource_Almoxarifado.robot
 *** Test Cases ***
 
 Cenário 01 - Fazer um Novo recebimento do Almoxarifado
+    Definir Data Atual
     [Tags]    Incluir
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
     E acesso a lista de Recebimento
-    Então incluo um novo Recebimento
+    Definir Data Atual
+    Então incluo um novo Recebimento    ${current_date}
 
 
 Cenário 02 - Incluir itens para recebimento
