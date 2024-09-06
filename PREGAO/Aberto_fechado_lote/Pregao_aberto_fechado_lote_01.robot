@@ -114,7 +114,7 @@ Cenário 08 - Aprovar autorização
     E faço login com usuário "autoridadecentral"
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
-    E clico na licitação da lista
+    E clico na licitação Aguardando autorização da Lista
     E clico em Deliberar
     Então aprovo a autorização
     E mostro a auditoria

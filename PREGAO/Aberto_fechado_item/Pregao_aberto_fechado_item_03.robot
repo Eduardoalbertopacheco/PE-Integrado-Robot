@@ -31,7 +31,6 @@ Cenário 27 - Adjudicar Pregão
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E clico na licitação em Adjudicação da lista
-    # E seleciono a licitação da lista
     Então adjudico o pregão eletrônico
 
 Cenário 28 - Homologar Pregão

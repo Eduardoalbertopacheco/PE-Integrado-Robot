@@ -1,0 +1,33 @@
+   
+   # Exemplo 01
+   ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+    WHILE    ${element_found} == False
+        Execute JavaScript    window.location.reload()
+        Sleep    5 sec
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+    END
+    Click Element    ${CAMPO_SELECAO_MARCA}
+
+
+
+
+    # Exemplo 01
+    ${timeout}=    Set Variable    150    
+    ${interval}=   Set Variable    5     
+    ${start_time}=    Get Time    epoch
+    ${all_windows}=    Get Window Handles
+
+    FOR    ${i}    IN RANGE    ${timeout}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
+        Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA}
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    END
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot

@@ -257,6 +257,7 @@ Então preencho todos os campos da Aba Dados gerais
     Click Element    //input[@name='btnSalvar']
     Sleep    2
     Handle Alert    ACCEPT
+    SeleniumLibrary.Close Browser
 
 
 E clico na compra direta em recebimento de lances
@@ -348,6 +349,7 @@ Então incluo a SC Lote na compra Direta
     Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2    Capture Page Screenshot
+    SeleniumLibrary.Close Browser
 
 
 Então incluo a SC Item na compra Direta
@@ -381,22 +383,14 @@ Então incluo a SC Item na compra Direta
     Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2    Capture Page Screenshot
+    SeleniumLibrary.Close Browser
+
 
 Então faço o agendamento da compra Direta
     Wait Until Element Is Visible    //a[contains(.,'Agendar')]    timeout=30s
     Click Element    //a[contains(.,'Agendar')]
-
-
-    # Switch Window    NEW
-    # Maximize Browser Window
-    # Sleep    2
-    # Capture Page Screenshot
-
-    # # Clique do borão Sim 
-    # Click Element    //input[contains(@value,'Sim')]
-    # Sleep    3
-
-
+    Sleep    2
+ 
 
 E configuro o agendamento
 
@@ -436,12 +430,13 @@ E configuro o agendamento
 
     Click Element    //input[@value='Agendar']
     Sleep    3
+    SeleniumLibrary.Close Browser
 
 E preencho os dados do segundo lance na Compra Direta por Lote
 
     Select Frame    ${FRAME_NEGOCIACAO}
 
-       ${timeout}=    Set Variable    150    
+    ${timeout}=    Set Variable    150    
     ${interval}=   Set Variable    5     
     ${start_time}=    Get Time    epoch
     ${all_windows}=    Get Window Handles
@@ -459,17 +454,6 @@ E preencho os dados do segundo lance na Compra Direta por Lote
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
-    # END
-    # Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
-
-
 
     Log    Aguardando a visibilidade do item na lista
     Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
@@ -509,17 +493,6 @@ E preencho os dados do lance na Compra Direta por Lote
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
-    # END
-    # Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
-
 
     Log    Aguardando a visibilidade do item na lista
     Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
@@ -561,15 +534,6 @@ E preencho os dados do lance na Compra Direta por Item
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
-    # END
-    # Click Element    ${CAMPO_SELECAO_MARCA}
 
     Log    Aguardando a visibilidade do item na lista
     Wait Until Element Is Visible    ${ITEM}    timeout=30s
@@ -615,19 +579,6 @@ E preencho os dados do segundo lance na Compra Direta por item
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
 
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
-    # END
-    # Click Element    ${CAMPO_SELECAO_MARCA}
-
-
-    # Log    Executando clique no dropdown
-    # Wait Until Element Is Visible    ${SELECAO_MARCA}    timeout=30s
-    # Click Element    ${SELECAO_MARCA}
-    # Log    Dropdown expandido, aguardando item
 
     Log    Aguardando a visibilidade do item na lista
     Wait Until Element Is Visible    ${ITEM}    timeout=30s
@@ -656,6 +607,8 @@ Então envio o lance na compra direta
     Click Element    //a[contains(.,'Enviar lances')]
     Sleep    3
     Capture Page Screenshot
+    SeleniumLibrary.Close Browser
+
 
 E clico em prorrogar pregão na compra Direta
     Select Frame    //frame[@name='frmDetalheCompraDireta']
@@ -696,12 +649,12 @@ Então faço o prorrogamento da compra direta
     Sleep    2
     Handle Alert    ACCEPT
     Sleep    2
+    SeleniumLibrary.Close Browser
 
 
 Então finalizo a Compra Direta
 
     Select Frame    //frame[contains(@name,'frmNegociacao')]
-
 
    ${all_windows}=    Get Window Handles
     ${timeout}=    Set Variable    300   
@@ -724,22 +677,7 @@ Então finalizo a Compra Direta
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
 
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
-    # END
-    # Click Element    //a[contains(.,'Finalizar compra direta')]
     Sleep    2
-
-
-
-    # Wait Until Element Is Visible    //a[contains(.,'Finalizar compra direta')]    timeout=30s
-    # Click Element    //a[contains(.,'Finalizar compra direta')]
-    # Sleep    2
 
     ${all_windows}=    Get Window Handles
     ${janela_02}=    Set Variable    ${all_windows}[1]
@@ -754,6 +692,7 @@ Então finalizo a Compra Direta
     Wait Until Element Is Visible    //input[contains(@value,'Sim')]
     Click Element    //input[contains(@value,'Sim')]
     Sleep    4
+    SeleniumLibrary.Close Browser
 
 
 
@@ -777,6 +716,8 @@ Então ratifico a Compra Direta
     Wait Until Element Is Visible    //input[contains(@value,'Sim')]
     Click Element    //input[contains(@value,'Sim')]
     Sleep    4
+    SeleniumLibrary.Close Browser
+
 
 E acesso a auditoria
 
@@ -788,6 +729,7 @@ E acesso a auditoria
     Click Element    //a[contains(.,'Auditoria')]
     Sleep    2
     Capture Page Screenshot
+    SeleniumLibrary.Close Browser
 
 
 

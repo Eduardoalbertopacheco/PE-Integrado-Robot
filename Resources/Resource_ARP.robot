@@ -664,7 +664,7 @@ Então incluo e Assino os Documentos na Adesão
     Click Element        //li[contains(.,'Documentos do processo')]
 
     Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
-    Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
 
     
     # Clique e escrevo no campo 'Tipo do documento'
@@ -685,7 +685,7 @@ Então incluo e Assino os Documentos na Adesão
     Sleep    2
 
     Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
-    Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
         
     # Clique e escrevo no campo 'Tipo do documento'
     Wait Until Element Is Visible    

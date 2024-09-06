@@ -27,7 +27,7 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
 
 Cenário 02 - Incluir SC ao Pregão
     Configurar Variáveis de Pregão
-    SC_Item_Pregao_aberto
+    Usar SC_Item_Pregao_aberto
 
     [Tags]    incluir_sc_pregao
     Dado que acesso o sistema
@@ -113,7 +113,7 @@ Cenário 08 - Aprovar autorização
     E faço login com usuário "autoridadecentral"
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
-    E clico na licitação da lista
+    E clico na licitação Aguardando autorização da Lista
     E clico em Deliberar
     Então aprovo a autorização
     E mostro a auditoria

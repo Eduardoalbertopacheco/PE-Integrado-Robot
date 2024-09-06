@@ -116,7 +116,7 @@ Cenário 08 - Aprovar autorização
     E faço login com usuário "autoridadecentral"
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
-    E clico na licitação da lista
+    E clico na licitação Aguardando autorização da Lista
     E clico em Deliberar
     Então aprovo a autorização
     E mostro a auditoria
@@ -188,7 +188,7 @@ Cenário 13 - Abertura das propostas
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
-    E seleciono a licitação da lista
+    E seleciono a licitação em abertura de proposta da lista
     Então abro as proposta
 
 
@@ -202,6 +202,7 @@ Cenário 14 - Iniciar disputa
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
     Então inicio a disputa
+
 
 Cenário 15 - Abrir Itens/Lotes para disputa
     Configurar Variáveis de Pregão

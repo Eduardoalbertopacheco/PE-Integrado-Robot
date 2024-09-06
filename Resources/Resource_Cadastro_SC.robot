@@ -252,7 +252,10 @@ Então incluo o documento do tipo Termo Referencia
     Click Element        xpath=//a[contains(.,'Documentos do processo')]
 
     Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
-    Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+
+
+    
 
     
     # Clique e escrevo no campo 'Tipo do documento'

@@ -59,7 +59,6 @@ Configurar variável aberto_lote_OPD
 
 
 
-
 Configurar variável Conc_aberto_fechado_item
     Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_fechado_item_01
 
@@ -89,10 +88,6 @@ Configurar variável Compra_direta_disp_lote
 
 Configurar Variável de Adesão
     Set Global Variable    ${OBJETO_ATA}    Compra_direta_disp_item    
-
-
-
-
 
 
 

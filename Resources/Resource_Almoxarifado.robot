@@ -201,6 +201,18 @@ Então incluo o Endereço de Entrada
     Capture Page Screenshot
 
 
+E acesso a lista de requisições
+    Select Frame    xpath=//frame[contains(@name,'main')]
+
+    # Clique em Almoxarifado
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]
+
+    # Mouse over em requisições
+    ${Requisicoes}    Get WebElement    //td[@class='label'][contains(.,'Requisições')]
+    Mouse Over    ${Requisicoes}
+
+
 E acesso a lista de Almoxarifados
     Select Frame    xpath=//frame[contains(@name,'main')]
 
@@ -654,7 +666,7 @@ Então incluo a nota fiscal
     Select Frame    //iframe[contains(@name,'ifrAnexo')]
     Sleep    2
     Wait Until Element Is Visible    css=input[type="file"]    10
-    Choose File    css=input[type="file"]    C:\\Users\\Basis\\Downloads\\shareFile.pdf
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
 
     Click Element    //input[@value='Anexar']
     Capture Page Screenshot
