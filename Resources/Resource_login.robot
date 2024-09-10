@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation    Ações e Elementos da Página de Login
 Library    SeleniumLibrary
 
 *** Variables ***

@@ -13,8 +13,8 @@ Cenário 01 - Fazer um Novo recebimento do Almoxarifado
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
     E acesso a lista de Recebimento
-    Definir Data Atual
-    Então incluo um novo Recebimento    ${current_date}
+    # Definir Data Atual
+    Então incluo um novo Recebimento    ${data_atual}
 
 
 Cenário 02 - Incluir itens para recebimento

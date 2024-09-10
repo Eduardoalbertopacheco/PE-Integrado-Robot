@@ -8,6 +8,7 @@ Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
+
 Cenário 01 - Criar Concorrência Aberto-Fechado Por Item - Aba Dados Gerais
     Configurar Variáveis de Pregão
 

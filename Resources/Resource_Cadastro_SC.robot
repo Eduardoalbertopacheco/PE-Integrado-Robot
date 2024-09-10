@@ -1,10 +1,12 @@
 *** Settings ***
-Documentation    
+Documentation    Ações e Elementos do Módulo de Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
 Library          DateTime
 Resource         ./Variaveis.robot
+# Suite Teardown    Run Keyword If Test Failed    Abort Execution
+
 
 *** Variables ***
 
@@ -26,6 +28,10 @@ ${URL_SELCT_TIPO}     https://www.homologpeintegrado.pe.gov.br/Core/Pesquisa/Pro
 ${TITULO_TIPO_OBEJTO}    //*[.='Selecionar tipo de objeto']
 ${INPUT_TIPO}            //input[@field="normal"]
 ${LUPA_GRUPO_COMPRA}     (//img[@id='img'])[3]
+
+${timeout}       150    
+${interval}      5     
+${start_time}    Get Time    epoch
 
 
 *** Keywords ***
@@ -345,11 +351,6 @@ E acesso a Lista de SC em Precificação
 
 Então faço planejamento da SC para Pregão Eletronico
 
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -363,18 +364,6 @@ Então faço planejamento da SC para Pregão Eletronico
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-
-
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # END
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-
 
    # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
@@ -438,11 +427,6 @@ Então faço planejamento da SC para Pregão Eletronico
 
 
 Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
-
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -522,11 +506,6 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
 
 Então faço planejamento da SC para compra Direta - Inex. - Solicitante
 
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -540,16 +519,6 @@ Então faço planejamento da SC para compra Direta - Inex. - Solicitante
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # END
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-
 
    # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
@@ -663,12 +632,6 @@ Então faço planejamento da SC para compra Direta - Inex. - Ordenador
 
 Então faço planejamento da SC para Concorrencia - Solicitante
 
-
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -682,16 +645,6 @@ Então faço planejamento da SC para Concorrencia - Solicitante
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # END
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-
 
    # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
@@ -724,7 +677,7 @@ Então faço planejamento da SC para Concorrencia - Solicitante
     Capture Page Screenshot
 
 
-       # Clique do botão salvar e Fechar
+    # Clique do botão salvar e Fechar
     Wait Until Element Is Visible    //input[@value='Salvar e fechar']
     Click Element    //input[@value='Salvar e fechar']
 
@@ -822,13 +775,6 @@ Então defino a natureza de despesa
     Click Element    //a[contains(.,'Itens')]
     Capture Page Screenshot
 
-
-    # # Clique no campo 'Nat. de despesa'
-    # ${timeout}=    Set Variable    300    
-    # ${interval}=   Set Variable    5     
-    # ${start_time}=    Get Time    epoch
-    # ${all_windows}=    Get Window Handles
-
     # FOR    ${i}    IN RANGE    ${timeout}
     #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
     #     Run Keyword If    ${element_found}    Click Element    (//span[contains(.,'Selecione')])[3]
@@ -887,16 +833,14 @@ E acesso Minhas tarefas
 
 E seleciono a SC para aprovação
 
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
+    ${timeout}   Set Variable    150    
+    ${interval}   Set Variable   5     
+    ${start_time}    Get Time    epoch
 
     Select Frame    //iframe[contains(@name,'frmConteudo')]
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //*[contains(text(), '${RESUMO_SC}')]
-        Run Keyword If    ${element_found}    Click Element    //*[contains(text(), '${RESUMO_SC}')]
-        Run Keyword If    ${element_found}    Exit For Loop
+        Run Keyword If    ${element_found}    Click Element    //*[contains(text(), '${RESUMO_SC}')]    AND    Exit For Loop
         
         Execute JavaScript    window.location.reload()
         Sleep    ${interval} sec
@@ -909,17 +853,21 @@ E seleciono a SC para aprovação
 
 
 
-    # # Clique na SC com o resumo
-    # Select Frame    //iframe[contains(@name,'frmConteudo')]
 
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
+
+    # FOR    ${i}    IN RANGE    ${timeout}
     #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //*[contains(text(), '${RESUMO_SC}')]
-    # END
-    # Click Element    //*[contains(text(), '${RESUMO_SC}')]
+    #     Run Keyword If    ${element_found}    Click Element    //*[contains(text(), '${RESUMO_SC}')]
+    #     Run Keyword If    ${element_found}    Exit For Loop
+        
+    #     Execute JavaScript    window.location.reload()
+    #     Sleep    ${interval} sec
 
+    #     ${current_time}=    Get Time    epoch
+    #     ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+    #     Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    # END
+    # Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
 
 Então Clique no botão Aprovar com orçamento
@@ -1114,11 +1062,6 @@ E seleciono o filtro SC em Planejamento - Ordenador
 
 E seleciono a SC
 
-   ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
@@ -1132,17 +1075,6 @@ E seleciono a SC
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
-    # END
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
-
 
 Então faço o planejamento para Pregão Eletrônico - OPD
 
@@ -1309,12 +1241,6 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Orde
 
 Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Solicitante
 
-
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -1328,16 +1254,6 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # END
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-
 
     # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
@@ -1520,11 +1436,6 @@ E pesquiso por atribuir comissão com planejador
 
 E seleciono a SC para atribuir comissão com Gestor Central
 
-   ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -1540,22 +1451,8 @@ E seleciono a SC para atribuir comissão com Gestor Central
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
 
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # END
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
-    # Capture Page Screenshot
-
-
+ 
 E seleciono a SC para atribuir comissão com Planejador
-
-   ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
-    ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
@@ -1571,18 +1468,6 @@ E seleciono a SC para atribuir comissão com Planejador
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
-
-
-    # ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
-    # WHILE    ${element_found} == False
-    #     Execute JavaScript    window.location.reload()
-    #     Sleep    5 sec
-    #     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
-    # END
-    # Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
-
-    # Capture Page Screenshot
-
 
 Então atribuo a Comissão Permanente de Licitação
     

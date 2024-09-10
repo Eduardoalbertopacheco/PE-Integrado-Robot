@@ -1,21 +1,23 @@
 *** Settings ***
-Documentation    Recursos do Módulo de Almoxarifado
+Documentation    Recursos, Ações e Elementos do Módulo de Almoxarifado
 Library          SeleniumLibrary
 Library          DateTime
 Library           OperatingSystem
 
 *** Variables ***
 
-${NOME_ALMOX}    Almoxarifado Teste 01
+${NOME_ALMOX}    Almoxarifado 10/09 - Teste 02
 @{CODIGOS_PRODUTOS}    1000241    1000268
-${current_date}    Get Current Date    result_format=%Y/%m/%d
+${data_atual}    Get Current Date    result_format=%Y/%m/%d
+${INPUT_REQ}    //*[@id="ctl00_ContentPrincipal_tbxNumero"]
+${NUM_REQ}    ${EMPTY}
 
 
 
 *** Keywords ***
 Definir Data Atual
-    ${current_date}    Get Current Date    result_format=%Y/%m/%d
-    Set Test Variable    ${current_date}
+    ${data_atual}     Get Current Date    result_format=%Y/%m/%d
+    Set Test Variable    ${data_atual}
 
 
 Então incluo a Máscara de Endereço
@@ -76,6 +78,7 @@ Então incluo a Máscara de Endereço
     Click Element    //a[@onclick='SalvarMascara(true);']
     Sleep    3
     Capture Page Screenshot 
+    Close Browser
 
 
 Então incluo um requisitante
@@ -122,15 +125,6 @@ Então incluo um requisitante
     Close Browser
 
 
-
-
-
-
-
-
-
-
-
 Então incluo o Endereço de Estoque
 
     Switch Window    
@@ -164,7 +158,8 @@ Então incluo o Endereço de Estoque
     Wait Until Element Is Visible    //a[@onclick='SalvarEnderecoEstoqueDadosGerais(true);']    10
     Click Element    //a[@onclick='SalvarEnderecoEstoqueDadosGerais(true);']
     Sleep    3
-    Capture Page Screenshot  
+    Capture Page Screenshot
+    Close Browser
 
 
 Então incluo o Endereço de Entrada
@@ -199,6 +194,7 @@ Então incluo o Endereço de Entrada
     Click Element    //a[@onclick='SalvarEnderecoEstoqueDadosGerais(true);']
     Sleep    3
     Capture Page Screenshot
+    Close Browser
 
 
 E acesso a lista de requisições
@@ -211,6 +207,13 @@ E acesso a lista de requisições
     # Mouse over em requisições
     ${Requisicoes}    Get WebElement    //td[@class='label'][contains(.,'Requisições')]
     Mouse Over    ${Requisicoes}
+
+    # Clique de Lista de requisições
+    Wait Until Element Is Visible    //td[@class='label'][contains(.,'Lista de requisições de material')]    20
+    Sleep    1
+    Click Element    //td[@class='label'][contains(.,'Lista de requisições de material')]
+    Sleep    2
+    Capture Page Screenshot
 
 
 E acesso a lista de Almoxarifados
@@ -291,6 +294,7 @@ E vejo a Auditoria do almoxarifado
     Click Element    //span[contains(.,'Auditoria')]
     Sleep       2
     Capture Page Screenshot
+    Close Browser
 
 
 E pesquiso pelo Almoxarifado
@@ -522,6 +526,7 @@ Então incluo um novo Recebimento
     Sleep    3
     Close Browser
 
+
 E clico no recebimento da lista
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td[text()='${NOME_ALMOX}']]//td[1]//a    20
@@ -597,6 +602,8 @@ Então incluo os Itens para recebimento
     Click Element    //span[contains(.,'Itens')]
     Sleep    3
     Capture Page Screenshot
+    Close Browser
+
 
 Então faço o encaminhamento do Recebimento
     Switch Window    
@@ -606,12 +613,15 @@ Então faço o encaminhamento do Recebimento
     Wait Until Element Is Visible    //a[contains(.,'Encaminhar')]    20
     Click Element    //a[contains(.,'Encaminhar')]
     Sleep    3
+    Close Browser
+
 
 E clico no registro em Recebimento da lista
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td[text()='${NOME_ALMOX}'] and td[8]//img[contains(@title,'Em recebimento')]]//td[1]//a   20
     Click Element    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td[text()='${NOME_ALMOX}'] and td[8]//img[contains(@title,'Em recebimento')]]//td[1]//a
     Capture Page Screenshot
+
 
 Então realizo o atestado técnico
     Switch Window    
@@ -642,6 +652,8 @@ Então realizo o atestado técnico
     Wait Until Element Is Visible    //a[contains(.,'Salvar e fechar')]    10
     Click Element    //a[contains(.,'Salvar e fechar')]
     Sleep    3
+    Close Browser
+
 
 Então incluo a nota fiscal
     Switch Window
@@ -671,7 +683,7 @@ Então incluo a nota fiscal
     Click Element    //input[@value='Anexar']
     Capture Page Screenshot
     Sleep    2
-    Close Window
+    Close Browser
 
 
 Então respondo a avaliação de conformidade
@@ -774,6 +786,7 @@ Então aprovo o recebimento provisório
     Sleep    3
     Close Browser
 
+
 Então aprovo o recebimento definitivo
     Switch Window
     Select Frame    //frame[contains(@name,'main')]
@@ -787,6 +800,7 @@ Então aprovo o recebimento definitivo
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Close Browser
+
 
 E seleciono no filtro exibir todos os produtos
 
@@ -860,4 +874,286 @@ Então movimento os itens para estoque
         Click Element    //a[contains(.,'Fechar')]
         Sleep    2
     END
+
+
+Então incluo uma nova riquisição
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //a[contains(.,'Incluir')]    30
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Capture Page Screenshot
+
+    # Tipo de movimentação
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlTipoMovimentacao_listbox']    20
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlTipoMovimentacao_listbox']
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Requisição de material de consumo')]    10
+    Sleep    1
+    Click Element    //li[@tabindex='-1'][contains(.,'Requisição de material de consumo')]
+    Sleep    1
+
+
+    # Almoxarifado
+    Wait Until Element Is Visible    //a[contains(@onclick,'AbrirJanelaPesquisarAlmoxarifado();')]    20
+    Sleep    1
+    Click Element    //a[contains(@onclick,'AbrirJanelaPesquisarAlmoxarifado();')]
+    Sleep    2
+
+    Wait Until Element Is Visible    //input[@name='ctl00$ContentPrincipal$tbxDsAlmoxarifado']    20
+    Input Text    //input[@name='ctl00$ContentPrincipal$tbxDsAlmoxarifado']    ${NOME_ALMOX}
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
+
+    Wait Until Element Is Visible    (//input[contains(@id,'rbList')])[last()]    20
+    Click Element    (//input[contains(@id,'rbList')])[last()] 
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    20
+    Click Element    //a[contains(.,'Confirmar')]
+
+    Wait Until Element Is Visible    //input[contains(@name,'autUnidadeAdministrativa')]    20
+    Input Text    //input[contains(@name,'autUnidadeAdministrativa')]    SECRETARIA DE ADMINISTRAÇÃO
+    Sleep    3
+    Wait Until Element Is Visible    //li[contains(.,'[P]-SECRETARIA DE ADMINISTRAÇÃO')]    20
+    Sleep    1
+    Click Element    //li[contains(.,'[P]-SECRETARIA DE ADMINISTRAÇÃO')]
+    Sleep    1
+
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlEnderecoEntrega_listbox']    20
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlEnderecoEntrega_listbox']
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'AVENIDA ANTONIO DE GOES, 194, PINA - RECIFE - PE - BRASIL')]    10
+    Click Element    //li[@tabindex='-1'][contains(.,'AVENIDA ANTONIO DE GOES, 194, PINA - RECIFE - PE - BRASIL')]
+    Sleep    1
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[@id='ctl00_ContentButtom_btnSalvar']    10
+    Click Element    //a[@id='ctl00_ContentButtom_btnSalvar']
+    Sleep    3
+
+  
+  # Esperar até que o campo de input tenha um valor preenchido
+    Wait Until Keyword Succeeds    10 times    2 seconds    Valor Do Input Deve Ser Preenchido
+
+    # Capturar o valor do campo depois que ele for preenchido
+    ${NUM_REQ}    Get Element Attribute    ${INPUT_REQ}    value
+    Log    O valor do input é: ${NUM_REQ} 
+    Close Browser
+
+
+Valor Do Input Deve Ser Preenchido
+    ${NUM_REQ}    Get Element Attribute    ${INPUT_REQ}     value
+    Should Not Be Empty    ${NUM_REQ}
+    Log    O valor do input é: ${NUM_REQ}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/numero_requisicao.txt    ${NUM_REQ}
+
+
+
+E pesquiso pela Requisição
+    Select Frame    //iframe[@name='frmConteudo']
+
+    ${NUM_REQ}    Get File    ${EXECDIR}/test/numero_requisicao.txt
+    Log    O valor lido é: ${NUM_REQ}
+
+    Wait Until Element Is Visible    //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl01$edtCampo_2']    30
+    Input Text        //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl01$edtCampo_2']    ${NUM_REQ}
+    Sleep    2
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    15
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
+    Capture Page Screenshot
+
+
+E clico na requisição da lista
+    ${NUM_REQ}    Get File    ${EXECDIR}/test/numero_requisicao.txt
+    Wait Until Element Is Visible    //a[@class='link-action'][contains(.,'${NUM_REQ}')]    15
+    Sleep    1
+    Click Element    //a[@class='link-action'][contains(.,'${NUM_REQ}')]
+    Sleep    2
+
+Então incluo os itens para Requisição
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+
+    # Clique em Itens
+    Wait Until Element Is Visible    //span[contains(.,'Itens')]    15
+    Click Element    //span[contains(.,'Itens')]
+    Sleep    1
+    
+    # Clique em Incluir dentro da aba 'Itens'
+    Wait Until Element Is Visible    //a[contains(.,'Incluir')]    10
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    1
+
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+
+   # Clique para marcar todos
+   Wait Until Element Is Visible    //input[contains(@name,'ckbTodosPesquisa')]    10
+   Click Element    //input[contains(@name,'ckbTodosPesquisa')]
+   Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    sleep    10
+
+    Switch Window
+    Select Frame    //frame[contains(@name,'main')]
+
+    Sleep    2
+    ${elementos1}    Get WebElements    //span[contains(@class,'k-icon k-i-arrow-n')]
+    ${elemento1}    Set Variable    ${elementos1}[0]
+    Double Click Element    ${elemento1}
+    Double Click Element    ${elemento1}
+    Click Element    //span[contains(.,'Itens')]
+    Sleep    4
+
+    ${elementos2}    Get WebElements    //span[contains(@class,'k-icon k-i-arrow-n')]
+    ${elemento1}    Set Variable    ${elementos2}[1]
+    Double Click Element    ${elemento1}
+    Double Click Element    ${elemento1}
+    Double Click Element    ${elemento1}
+    Click Element    //span[contains(.,'Itens')]
+    Sleep    4
+    Capture Page Screenshot
+    Close Browser
+
+
+Então Encaminho a Requisição
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+
+    Capture Page Screenshot
+    Wait Until Element Is Visible    //a[contains(.,'Encaminhar')]    10
+    Click Element    //a[contains(.,'Encaminhar')]
+    Sleep    3
+    Close Browser
+
+
+Então encaminho para preparação
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Select Frame    //iframe[contains(@name,'frmConteudo')]
+
+    # Marcar todos os itens
+    Wait Until Element Is Visible    //input[@title='Selecionar todos']    10
+    Click Element    //input[@title='Selecionar todos']
+
+    Capture Page Screenshot
+    Wait Until Element Is Visible    //a[@onclick='Encaminhar()']    10
+    Click Element    //a[@onclick='Encaminhar()']
+    Sleep    6
+    Capture Page Screenshot
+
+    # Clique para não acessar a tela de preparação
+    Wait Until Element Is Visible    //a[contains(.,'Não')]    15
+    Click Element    //a[contains(.,'Não')]
+
+
+E acesso a tela de Guias de Remessa
+    Select Frame    xpath=//frame[contains(@name,'main')]
+
+    # Clique em Almoxarifado
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]
+
+
+    # Clique de Preparação
+    Wait Until Element Is Visible    //td[@class='label'][contains(.,'Guias de remessa')]    20
+    Sleep    1
+
+    #Mouse over em Guia de remessa
+    Mouse Over    //td[@class='label'][contains(.,'Guias de remessa')]
+    Sleep    2
+    Capture Page Screenshot
+
+    # Clique de Guias de remessa do meu almoxarifadp
+    Wait Until Element Is Visible    //td[@class='label'][contains(.,'Guias de remessa do meu almoxarifado')]    15
+    Click Element    //td[@class='label'][contains(.,'Guias de remessa do meu almoxarifado')]
+    Sleep    1
+
+
+
+
+E acesso a tela de preparação
+    Select Frame    xpath=//frame[contains(@name,'main')]
+
+    # Clique em Almoxarifado
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]
+
+
+    # Clique de Preparação
+    Wait Until Element Is Visible    //td[@class='label'][contains(.,'Preparação')]    20
+    Sleep    1
+    Click Element    //td[@class='label'][contains(.,'Preparação')]
+    Sleep    2
+    Capture Page Screenshot
+
+
+E pesquiso pela Requisição dos Itens
+   Select Frame    //iframe[@name='frmConteudo']
+
+    ${NUM_REQ}    Get File    ${EXECDIR}/test/numero_requisicao.txt
+    Log    O valor lido é: ${NUM_REQ}
+
+    Wait Until Element Is Visible    //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl02$edtCampo_3']    30
+    Input Text        //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl02$edtCampo_3']     ${NUM_REQ}
+    Sleep    2
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    15
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
+    Capture Page Screenshot
+
+Então encaminho para Expedição
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Select Frame    //iframe[contains(@name,'frmConteudo')]
+
+    # Clique de selecionar todos
+    Wait Until Element Is Visible    //input[@title='Selecionar todos']    20
+    Click Element    //input[@title='Selecionar todos']
+    Capture Page Screenshot
+
+    # Clique de encaminhar para expedição
+    Wait Until Element Is Visible    //a[contains(.,'Encaminhar itens para a expedição')]    20
+    Click Element    //a[contains(.,'Encaminhar itens para a expedição')]
+
+    # Clique sim no popup
+
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Capture Page Screenshot
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+    # Clique não no popup
+    Wait Until Element Is Visible    //a[contains(.,'Não')]    10
+    Capture Page Screenshot
+    Click Element    //a[contains(.,'Não')]
+
+Então aprovo a Guia de Remessa
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Select Frame    //iframe[contains(@name,'frmConteudo')]
+
+    Wait Until Element Is Visible    xpath=(//input[contains(@id,'ckbList_nCdGuia')])[last()]
+    Click Element    xpath=(//input[contains(@id,'ckbList_nCdGuia')])[last()]
+    Sleep    1
+
+    Wait Until Element Is Visible    //a[contains(.,'Aprovar')]    10
+    Click Element    //a[contains(.,'Aprovar')]
+    Sleep    1
+    Capture Page Screenshot
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+    Close Browser
+
+
+
 

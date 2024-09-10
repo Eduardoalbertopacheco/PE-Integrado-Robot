@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    
+Documentation    Ações e Elementos do Móduo de Cadastro de Compra Direta
 Library          SeleniumLibrary
 Resource         ../Resources/Variaveis.robot
 Resource        ../Resources/Resource_Cadastro_SC.robot
@@ -257,6 +257,7 @@ Então preencho todos os campos da Aba Dados gerais
     Click Element    //input[@name='btnSalvar']
     Sleep    2
     Handle Alert    ACCEPT
+    Sleep    2
     SeleniumLibrary.Close Browser
 
 

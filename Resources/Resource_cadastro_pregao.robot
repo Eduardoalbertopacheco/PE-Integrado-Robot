@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
+Documentation    Ações e Elementos do Módulo de Pregão e Concorrencia Eletrônica
 Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
@@ -677,7 +677,6 @@ E solicito o parecer para o Ordenador
     Sleep    2
     
     ${all_windows}=    Get Window Handles
-    
     ${janela_atual}=    Set Variable    ${all_windows}[0]
     Switch Window    ${janela_atual}
 
@@ -692,50 +691,54 @@ E solicito o parecer para o Ordenador
     Sleep    2
     Wait Until Element Is Visible    //input[@id='tbxPesquisar']    timeout=30s
     Input Text    //input[@id='tbxPesquisar']    Ordenador
-    Sleep    1
+    Sleep    2
 
     Click Element    //span[contains(@onclick,'Pesquisar();')]
+    Sleep    2
 
     Wait Until Element Is Visible    //td[contains(.,'Ordenador da UG 120101 (SECRETARIA DE ADMINISTRAÇÃO)')]    timeout=30s
     Click Element    //td[contains(.,'Ordenador da UG 120101 (SECRETARIA DE ADMINISTRAÇÃO)')]
-    Sleep    1
+    Sleep    2
     
     Wait Until Element Is Visible    //button[@type='button'][contains(.,'OK')]    timeout=30s
     Click Element    //button[@type='button'][contains(.,'OK')]
 
-    # # Clique na seleção tipo do Parecer
+    #Clique na seleção tipo do Parecer
     Wait Until Element Is Visible  ${DROPDOWN_TPO_PARECER}    timeout=30s
     Click Element  ${DROPDOWN_TPO_PARECER}
 
+    # EXEMPLO 01
+    # Wait Until Element Is Visible    xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]    10
+    # Click Element    xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
+    # Sleep    2
+    # Wait Until Element Is Visible    xpath=(//ul[@id='nCdTipoParecerMap_listbox']//li[@tabindex='-1'][contains(.,'Jurídico')])[1]    10
+    # Sleep    2
+    # Click Element    xpath=(//ul[@id='nCdTipoParecerMap_listbox']//li[@tabindex='-1'][contains(.,'Jurídico')])[1]
 
-    # Execute JavaScript    window.scrollTo(0, document.body.scrollHeight / 2)
+
+    # # EXEMPLO 02
+    # Wait Until Element Is Visible    xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]    10
+    # Sleep    2
+    # Click Element    xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
+    # Sleep    2
+    # Execute JavaScript    Array.from(document.querySelectorAll('ul#nCdTipoParecerMap_listbox li')).find(li => li.textContent.trim() === 'Jurídico').click();
+    # Sleep    2
+    # Execute JavaScript    Array.from(document.querySelectorAll('span.k-input')).find(span => span.textContent.trim() === 'Jurídico')
+    # Sleep    2
+    # # Click Element    xpath=//span[contains(text(),'Jurídico')]
+    # Click Element    //legend[contains(.,'Solicitar parecer')]
 
 
-
-    # # Use JavaScript para clicar no dropdown e expandir a lista
-    # Execute JavaScript    document.querySelector("span.k-widget.k-dropdown.k-header").click()
-    # # Aguarde um pouco para garantir que a lista seja carregada
-    # Sleep    2s
-    # # Use JavaScript para garantir que o item "Jurídico" seja clicado
-    # Execute JavaScript    var list = document.querySelector("ul[id$='nCdTipoParecerMap_listbox']"); if (list) { var items = list.querySelectorAll("li"); for (var i = 0; i < items.length; i++) { if (items[i].textContent.trim() === 'Jurídico') { items[i].scrollIntoView(); items[i].click(); break; } } }
-    # # Verifique se o item foi realmente selecionado
-    # Sleep    1s
-    # # Verifique o texto selecionado (opcional)
-    # ${selected_text}=    SeleniumLibrary.Get Text    //span[@class='k-input']
-    # Should Be Equal As Strings    ${selected_text}    Jurídico
-
-   
+    
 
     # Implementar aqui o tipo do paracer para Jurídico
-
-
 
     Sleep    10
 
 
+
     Wait Until Element Is Visible    //input[@name='sDsTitulo']    timeout=30s
     Input Text    //input[@name='sDsTitulo']    ${TITULO_PARECER}
-
 
     Wait Until Element Is Visible    ${XPATH}    timeout=30s
     Input Text    ${XPATH}    Descrição parecer

@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation    Ações e Elementos do Módulo de IRP
 
 Library    SeleniumLibrary
 Resource        ./Variaveis.robot

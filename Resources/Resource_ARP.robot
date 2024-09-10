@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Fluxo feliz - Cadastro de Ata de Registro de Preço
+Documentation    Ações e Elementos do Módulo de Ata de Registro de preços ARP
 Library          SeleniumLibrary
 Library          DateTime
 Library          Browser
