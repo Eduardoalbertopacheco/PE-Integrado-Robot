@@ -11,7 +11,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 # Estes cenários só podem ser rodados após 10min
-Cenário 26 - Não acatar intenção de recursos
+CT26 - Não acatar intenção de recursos
     [Tags]    nao_acatar_recurso
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -21,7 +21,7 @@ Cenário 26 - Não acatar intenção de recursos
     Então não acato a intenção de recurso
 
 
-Cenário 27 - Gravar valor do Lote
+CT27 - Gravar valor do Lote
     [Tags]    gravar_Lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -32,7 +32,7 @@ Cenário 27 - Gravar valor do Lote
     Então gravo o valor do lote
 
 
-Cenário 27 - Adjudicar Pregão
+CT27 - Adjudicar Pregão
     [Tags]    adjudicar_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -41,7 +41,7 @@ Cenário 27 - Adjudicar Pregão
     E clico na licitação em Adjudicação da lista
     Então adjudico o pregão eletrônico
 
-Cenário 28 - Homologar Pregão
+CT28 - Homologar Pregão
     [Tags]    homologar_pregao
     Dado que acesso o sistema
     E faço login com usuário "autoridade.070001"

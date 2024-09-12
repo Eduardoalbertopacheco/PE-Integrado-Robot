@@ -78,8 +78,8 @@ ${SELECAO_MENU_NEGOCIACAO}    LICITACAO=//td[@class='label'][contains(.,'Licita�
 &{NOVA_LICITACAO}    //td[@class='label'][contains(.,'Nova licitação eletrönica')]
 ${LICITACOES_ELERONICAS}    //td[@class='label'][contains(.,'Licitações eletrônicas')]
 
-${timeout}=    Set Variable    300    
-${interval}=   Set Variable    5     
+${timeout}=        300    
+${interval}=       5     
 ${start_time}=    Get Time    epoch
 
 
@@ -143,7 +143,6 @@ Então preencho a Aba de Dados Gerais
     Input Text    ${CAMPO_OBJETO}    ${OBJETO_PREGAO}
     Capture Page Screenshot
 
-    
     ${all_windows}=    Get Window Handles
     ${second_window}=    Set Variable    ${all_windows}[1]
     Switch Window    ${second_window}
@@ -223,6 +222,7 @@ E Seleciono o Critério de Pregão Eletrônico
     Click Element    ${CRITERIO}
     Capture Page Screenshot
     Click Element    ${CRIT_PREGAO_LEI_14_133}
+
 
 E Seleciono o Critério de Concorrência Eletrônica
 
@@ -386,7 +386,6 @@ E insiro a Comissão e Salvo
 
 
 Então incluo a SC Por Item ao Pregão
-
     Switch Window    NEW
 
     # Clique na aba 'Itens'
@@ -416,8 +415,9 @@ Então incluo a SC Por Item ao Pregão
     Wait Until Element Is Visible    ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    timeout=30s
     Click Element    ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}
 
-
     # Selecionar a SC para Incluir
+    ${start_time}    Get Time    epoch
+    
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
@@ -468,6 +468,7 @@ Então incluo a SC Por Lote ao Pregão - OPD
 
 
     # Selecionar a SC para Incluir
+    ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[9]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
@@ -505,8 +506,6 @@ Então incluo a SC Por Lote ao Pregão
     Wait Until Element Is Visible    //a[contains(.,'Incluir item(ns) da solicitação')]    timeout=30s
     Click Element    //a[contains(.,'Incluir item(ns) da solicitação')]
 
-    Log    ${resumo_sc}
-
     Switch Window    NEW
 
     Wait Until Element Is Visible    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
@@ -520,6 +519,7 @@ Então incluo a SC Por Lote ao Pregão
 
 
     # Selecionar a SC para Incluir
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
@@ -783,6 +783,7 @@ E acesso a tela com filtro todas as Licitações
 
 E clico na licitação Aguardando autorização da Lista
 
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Aguardando autorização')]
         Run Keyword If    ${element_found}    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
@@ -1107,6 +1108,7 @@ E acesso todos as licitações da lista
 
 E seleciono a SC Em propotas da lista
 
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Em proposta')]
         Run Keyword If    ${element_found}    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
@@ -1125,6 +1127,7 @@ E seleciono a SC Em propotas da lista
 
 E seleciono a licitação em abertura de proposta da lista
 
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Abertura de propostas')]
         Sleep    90
@@ -1145,6 +1148,7 @@ E seleciono a licitação em abertura de proposta da lista
 
 E seleciono a licitação em ajuste de preços da lista
 
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[8]//img[contains(@title,'Ajuste de preços')]
         Run Keyword If    ${element_found}    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
@@ -1164,7 +1168,7 @@ E seleciono a licitação em ajuste de preços da lista
 
 E clico na licitação em Adjudicação da lista
 
-
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//img[contains(@title,'Em adjudicação')]
         Run Keyword If    ${element_found}    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
@@ -1195,6 +1199,7 @@ Então abro as proposta
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s
     Select Frame    ${FRAME_NEGOCIACAO}
 
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Abrir proposta(s)')]
         Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Abrir proposta(s)')]
@@ -1443,6 +1448,7 @@ Então ecerro a disputa
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
 
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
         Run Keyword If    ${element_found}    Click Element    //table[1]/tbody[1]/tr[2]/td[12]/input[1]
@@ -1484,7 +1490,7 @@ Então ecerro a disputa Por Lote
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
 
-
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar disputa')]
         Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Encerrar disputa')]
@@ -1826,6 +1832,7 @@ Então adjudico o pregão eletrônico
     Select Frame    ${FRAME_NEGOCIACAO}
     Capture Page Screenshot
 
+    ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Adjudicar')]
         Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Adjudicar')]

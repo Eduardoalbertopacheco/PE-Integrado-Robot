@@ -7,7 +7,7 @@ Resource        ../../Resources/Resource_Cadastro_SC.robot
 
 *** Test Cases ***
 
-Cenário 01 - Criar SC - Aba dados Gerais
+CT01 - Criar SC - Aba dados Gerais
     Configurar Variáveis de SC
 
     [Tags]    criar_sc
@@ -18,7 +18,7 @@ Cenário 01 - Criar SC - Aba dados Gerais
     Então preencho os campos da Aba Dados gerais
 
 
-Cenário 02 - Incluir Itens na Solicitação de Compras
+CT02 - Incluir Itens na Solicitação de Compras
     Configurar Variáveis de SC
 
     [Tags]    incluir_itens
@@ -29,7 +29,7 @@ Cenário 02 - Incluir Itens na Solicitação de Compras
     Então incluo os itens
 
 
-Cenário 03 - Incluir Documento na Solicitação de Compras
+CT03 - Incluir Documento na Solicitação de Compras
     Configurar Variáveis de SC
 
     [Tags]    incluir_documento
@@ -40,7 +40,7 @@ Cenário 03 - Incluir Documento na Solicitação de Compras
     Então incluo o documento do tipo Termo Referencia
 
 
-Cenário 04 - Assinar documento
+CT04 - Assinar documento
     Configurar Variáveis de SC
 
     [Tags]    assinar_documento
@@ -51,7 +51,7 @@ Cenário 04 - Assinar documento
     Então assino o documento
 
 
-Cenário 05 - Encaminhar SC para precificação
+CT05 - Encaminhar SC para precificação
     Configurar Variáveis de SC
 
     [Tags]    encaminhar_SC
@@ -62,7 +62,7 @@ Cenário 05 - Encaminhar SC para precificação
     Então encaminho a Solicitação de compra para precificação
     
 
-Cenário 06 - Planejamento com Solicitante
+CT06 - Planejamento com Solicitante
     Configurar Variáveis de SC
 
     [Tags]    planejamento_solicitante
@@ -74,7 +74,7 @@ Cenário 06 - Planejamento com Solicitante
     
 
 
-Cenário 07 - Definir Natureza de despesa com o Financeiro
+CT07 - Definir Natureza de despesa com o Financeiro
     Configurar Variáveis de SC
 
     [Tags]    definir_natureza
@@ -84,7 +84,7 @@ Cenário 07 - Definir Natureza de despesa com o Financeiro
     Então defino a natureza de despesa
 
 
-Cenário 08 - Aprovação orçamentária
+CT08 - Aprovação orçamentária
     Configurar Variáveis de SC
 
     [Tags]    aprovacao_orcamentaria
@@ -95,7 +95,7 @@ Cenário 08 - Aprovação orçamentária
     Então Clique no botão Aprovar com orçamento
     
 
-Cenário 09 - Aprovação com o Ordenador
+CT09 - Aprovação com o Ordenador
     Configurar Variáveis de SC
 
     [Tags]    aprovacao_ordenador
@@ -107,7 +107,7 @@ Cenário 09 - Aprovação com o Ordenador
     Então Clique no botão Aprovar com ordenador
 
 
-Cenário 10 - Liberar SC com autoridade central
+CT10 - Liberar SC com autoridade central
     Configurar Variáveis de SC
 
     [Tags]    liberacao_autoridade
@@ -118,7 +118,7 @@ Cenário 10 - Liberar SC com autoridade central
     Então seleciono a SC e aprovo
 
 
-Cenário 11 - Deliberar SC com autoridade da UG
+CT11 - Deliberar SC com autoridade da UG
     Configurar Variáveis de SC
 
     [Tags]    deliberar_autoridade_ug
@@ -130,7 +130,7 @@ Cenário 11 - Deliberar SC com autoridade da UG
     Então faço a deliberação da SC
 
 
-Cenário 12 - Planejamento com Ordenador
+CT12 - Planejamento com Ordenador
     Configurar Variáveis de SC
 
     [Tags]    planejar_ordenador
@@ -142,7 +142,7 @@ Cenário 12 - Planejamento com Ordenador
     Então faço planejamento da SC para compra Direta - Inex. - Ordenador
     
 
-Cenário 13 - Atribuir Comissão
+CT13 - Atribuir Comissão
     Configurar Variáveis de SC
 
     [Tags]    atribuir_comissao

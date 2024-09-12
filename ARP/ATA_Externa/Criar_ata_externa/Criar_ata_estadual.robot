@@ -9,7 +9,7 @@ Resource        ../../../Resources/Resource_ARP.robot
 
 *** Test Cases ***
 
-Cenário 01 - Criar Ata Externa Estadual
+CT01 - Criar Ata Externa Estadual
     [Tags]    criar_ata_municipal
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -24,7 +24,7 @@ Cenário 01 - Criar Ata Externa Estadual
     E vejo a Auditoria da ARP
 
 
-Cenário 02 - Incluir e assinar o documento
+CT02 - Incluir e assinar o documento
     [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -34,7 +34,7 @@ Cenário 02 - Incluir e assinar o documento
     E vejo a Auditoria da ARP
 
 
-Cenário 04 - Ativar ATA Externa
+CT04 - Ativar ATA Externa
     [Tags]    ativar_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -43,7 +43,7 @@ Cenário 04 - Ativar ATA Externa
     Então ativo a ARP
     # E vejo a Auditoria da ARP
 
-Cenário 05 - Concluir Análise com Gestor Ata Central
+CT05 - Concluir Análise com Gestor Ata Central
     [Tags]    concluir_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
@@ -52,7 +52,7 @@ Cenário 05 - Concluir Análise com Gestor Ata Central
     Então concluo a análise da Ata
 
 
-Cenário 06 - Deliberar Ata
+CT06 - Deliberar Ata
     [Tags]    deliberar_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
@@ -62,7 +62,7 @@ Cenário 06 - Deliberar Ata
     E vejo a Auditoria da ARP
 
 
-Cenário 07 - Incluir Itens com Gestor Central de ATA
+CT07 - Incluir Itens com Gestor Central de ATA
     [Tags]    incluir_item_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"

@@ -9,7 +9,7 @@ Resource        ../../../Resources/Resource_ARP.robot
 
 *** Test Cases ***
 
-Cenário 01 - Gerar ARP da Compra Direta
+CT01 - Gerar ARP da Compra Direta
     Configurar variável Compra_direta_disp_item
 
     [Tags]    gerar_ata
@@ -21,7 +21,7 @@ Cenário 01 - Gerar ARP da Compra Direta
     Então gero a ARP
 
 
-Cenário 02 - Configurar Ata - Dados Gerais
+CT02 - Configurar Ata - Dados Gerais
     Configurar variável Compra_direta_disp_item
 
     [Tags]    configurar_ata
@@ -33,7 +33,7 @@ Cenário 02 - Configurar Ata - Dados Gerais
     Então salvo os dados
 
 
-Cenário 03 - Inluir Documento
+CT03 - Inluir Documento
     Configurar variável Compra_direta_disp_item
 
     [Tags]    Incluir_documento
@@ -45,7 +45,7 @@ Cenário 03 - Inluir Documento
     E vejo a Auditoria da ARP
 
 
-Cenário 04 - Assinar Documento
+CT04 - Assinar Documento
     Configurar variável Compra_direta_disp_item
 
     [Tags]    assinar_documento
@@ -57,7 +57,7 @@ Cenário 04 - Assinar Documento
     E vejo a Auditoria da ARP
 
 
-Cenário 05 - Ativar ARP
+CT05 - Ativar ARP
     Configurar variável Compra_direta_disp_item
 
     [Tags]    ativar_ata
@@ -68,7 +68,7 @@ Cenário 05 - Ativar ARP
     Então ativo a ARP
 
 
-Cenário 06 - Configurar Gestão da Ata
+CT06 - Configurar Gestão da Ata
     Configurar variável Compra_direta_disp_item
 
     [Tags]    configurar_gestao_ata

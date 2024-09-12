@@ -7,7 +7,7 @@ Resource        ../../Resources/Resource_compra_direta.robot
 
 
 *** Test Cases ***
-Cenário 01 - Cadastro de Compra Direta - Aba dados Gerais
+CT01 - Cadastro de Compra Direta - Aba dados Gerais
     Configurar Variáveis Compra Direta
 
     [Tags]    criar_Compra
@@ -22,7 +22,7 @@ Cenário 01 - Cadastro de Compra Direta - Aba dados Gerais
     Então preencho todos os campos da Aba Dados gerais
 
 
-Cenário 02 - Incluir SC na Compra Direta
+CT02 - Incluir SC na Compra Direta
     Configurar Variáveis Compra Direta
     Usar SC_Lote_Compra_Disp_Emerg
 
@@ -35,7 +35,7 @@ Cenário 02 - Incluir SC na Compra Direta
     Então incluo a SC Lote na compra Direta
 
 
-Cenário 03 - Agendar compra Direta
+CT03 - Agendar compra Direta
     Configurar Variáveis Compra Direta
 
     [Tags]    agendar_CP
@@ -48,7 +48,7 @@ Cenário 03 - Agendar compra Direta
     E configuro o agendamento
 
 
-Cenário 04 - Enviar lances com Fornecedor 01
+CT04 - Enviar lances com Fornecedor 01
     Configurar Variáveis Compra Direta
 
     [Tags]    enviar_lance_01
@@ -61,7 +61,7 @@ Cenário 04 - Enviar lances com Fornecedor 01
     Então envio o lance na compra direta
 
 
-Cenário 05 - Enviar lances com Fornecedor 02
+CT05 - Enviar lances com Fornecedor 02
     Configurar Variáveis Compra Direta
 
     [Tags]    enviar_lance_02
@@ -74,7 +74,7 @@ Cenário 05 - Enviar lances com Fornecedor 02
     Então envio o lance na compra direta
 
 
-Cenário 06 - Prorrogar Compra direta
+CT06 - Prorrogar Compra direta
     Configurar Variáveis Compra Direta
 
     [Tags]    prorrogar_compra_direta
@@ -88,7 +88,7 @@ Cenário 06 - Prorrogar Compra direta
     Então faço o prorrogamento da compra direta
 
 
-Cenário 07 - Finalizar Compra Direta
+CT07 - Finalizar Compra Direta
     Configurar Variáveis Compra Direta
 
   [Tags]    finalizar_compra_direta
@@ -100,7 +100,7 @@ Cenário 07 - Finalizar Compra Direta
     Então finalizo a Compra Direta
 
 
-Cenário 08 - Ratificar compra Direta
+CT08 - Ratificar compra Direta
     Configurar Variáveis Compra Direta
     
   [Tags]    ratificar_compra_direta

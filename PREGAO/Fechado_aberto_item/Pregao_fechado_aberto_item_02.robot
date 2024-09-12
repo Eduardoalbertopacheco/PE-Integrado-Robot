@@ -11,7 +11,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 # Estes cenários só pode ser rodado depois de 15min + Autoencerramento
-Cenário 20 - Encerrar Disputa
+CT20 - Encerrar Disputa
     Configurar variável fechado_aberto_item
 
     [Tags]    encerrar_disputa
@@ -23,7 +23,7 @@ Cenário 20 - Encerrar Disputa
     Então ecerro a disputa
     
 
-Cenário 21 - Abrir Itens para Lei 123
+CT21 - Abrir Itens para Lei 123
     Configurar variável fechado_aberto_item
 
     [Tags]    abrir_item_lei_123
@@ -35,7 +35,7 @@ Cenário 21 - Abrir Itens para Lei 123
     Então abro Item para Lei 123
 
 
-Cenário 22 - Encerrar Itens para Lei 123
+CT22 - Encerrar Itens para Lei 123
     Configurar variável fechado_aberto_item
 
     [Tags]    encerrar_item_lei_123
@@ -47,7 +47,7 @@ Cenário 22 - Encerrar Itens para Lei 123
     Então encerro Item para Lei 123
 
 
-Cenário 23 - Convocar vencedor
+CT23 - Convocar vencedor
     Configurar variável fechado_aberto_item
 
     [Tags]    convocar_vencedor
@@ -59,7 +59,7 @@ Cenário 23 - Convocar vencedor
     Então faço a convocação do vencedor
 
 
-Cenário 24 - Anexar documento - Vencedor
+CT24 - Anexar documento - Vencedor
     Configurar variável fechado_aberto_item
 
     [Tags]    anexar_documento_vencedor
@@ -70,7 +70,7 @@ Cenário 24 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
-Cenário 25 - Habilitar fornecedor vencedor
+CT25 - Habilitar fornecedor vencedor
     Configurar variável fechado_aberto_item
 
     [Tags]    habilitar_fornecedor
@@ -81,7 +81,7 @@ Cenário 25 - Habilitar fornecedor vencedor
     E seleciono a licitação da lista
     Então habilito o fonecedor vencedor (Aberto_item)
 
-Cenário 26 - Encerrar etapa
+CT26 - Encerrar etapa
     Configurar variável fechado_aberto_item
 
     [Tags]    encerrar_etapa
@@ -92,7 +92,7 @@ Cenário 26 - Encerrar etapa
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
 
-Cenário 27 - Registrar intenção de recursos
+CT27 - Registrar intenção de recursos
     Configurar variável fechado_aberto_item
     
     [Tags]    registrar_recurso

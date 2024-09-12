@@ -8,7 +8,7 @@ Resource        ../../../Resources/Resource_ARP.robot
 
 *** Test Cases ***
 
-Cenário 01 - Gerar ARP OPD da Compra Direta
+CT01 - Gerar ARP OPD da Compra Direta
     [Tags]    gerar_ata
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
@@ -18,7 +18,7 @@ Cenário 01 - Gerar ARP OPD da Compra Direta
     Então gero a ARP
 
 
-Cenário 02 - Configurar Ata - Dados Gerais
+CT02 - Configurar Ata - Dados Gerais
     [Tags]    configurar_ata
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
@@ -28,7 +28,7 @@ Cenário 02 - Configurar Ata - Dados Gerais
     Então salvo os dados
 
 
-Cenário 03 - Inluir Documento
+CT03 - Inluir Documento
     [Tags]    Incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
@@ -38,7 +38,7 @@ Cenário 03 - Inluir Documento
     E vejo a Auditoria da ARP
 
 
-Cenário 04 - Assinar Documento
+CT04 - Assinar Documento
     [Tags]    assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
@@ -48,7 +48,7 @@ Cenário 04 - Assinar Documento
     E vejo a Auditoria da ARP
 
 
-Cenário 05 - Ativar ARP
+CT05 - Ativar ARP
     [Tags]    ativar_ata
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"
@@ -57,7 +57,7 @@ Cenário 05 - Ativar ARP
     Então ativo a ARP
 
 
-Cenário 06 - Concluir Análise com Gestor Central de ATA OPD
+CT06 - Concluir Análise com Gestor Central de ATA OPD
     [Tags]    Concluir_análise
     Dado que acesso o sistema
     E faço login com usuário "GESTORCENTRALDEATAOPD.070001"
@@ -65,7 +65,7 @@ Cenário 06 - Concluir Análise com Gestor Central de ATA OPD
     E clico na Ata de Compra Direta da Lista - OPD
     Então concluo a análise da Ata
 
-Cenário 07 - Deliberar ATA OPD
+CT07 - Deliberar ATA OPD
     [Tags]    Deliberar_ata
     Dado que acesso o sistema
     E faço login com usuário "GESTORCENTRALDEATAOPD.070001"
@@ -74,7 +74,7 @@ Cenário 07 - Deliberar ATA OPD
     Então Delibero a Ata Externa
 
 
-Cenário 08 - Configurar Gestão da Ata
+CT08 - Configurar Gestão da Ata
     [Tags]    configurar_gestao_ata
     Dado que acesso o sistema
     E faço login com usuário "gestorata.070001"

@@ -13,7 +13,7 @@ ${VAR_FILE}    ./tests/variables.py
 
 *** Test Cases ***
 
-Cenário 01 - Criar Ata Externa Municipal
+CT01 - Criar Ata Externa Municipal
     [Tags]    criar_ata_municipal
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -28,7 +28,7 @@ Cenário 01 - Criar Ata Externa Municipal
     E vejo a Auditoria da ARP
 
 
-Cenário 02 - Incluir e Assinar Documento
+CT02 - Incluir e Assinar Documento
     [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -38,7 +38,7 @@ Cenário 02 - Incluir e Assinar Documento
     E vejo a Auditoria da ARP
 
 
-# Cenário 03 - Assinar Documento
+# CT03 - Assinar Documento
 #     [Tags]    assinar_documento
 #     Dado que acesso o sistema
 #     E faço login com usuário "edu.gestorata.110402"
@@ -48,7 +48,7 @@ Cenário 02 - Incluir e Assinar Documento
 #     E vejo a Auditoria da ARP
 
 
-Cenário 04 - Ativar ATA Externa
+CT04 - Ativar ATA Externa
     [Tags]    ativar_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -57,7 +57,7 @@ Cenário 04 - Ativar ATA Externa
     Então ativo a ARP
     # E vejo a Auditoria da ARP
 
-Cenário 05 - Concluir Análise com Gestor Ata Central
+CT05 - Concluir Análise com Gestor Ata Central
     [Tags]    concluir_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
@@ -66,7 +66,7 @@ Cenário 05 - Concluir Análise com Gestor Ata Central
     Então concluo a análise da Ata
 
 
-Cenário 06 - Deliberar Ata
+CT06 - Deliberar Ata
     [Tags]    deliberar_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
@@ -76,7 +76,7 @@ Cenário 06 - Deliberar Ata
     E vejo a Auditoria da ARP
 
 
-Cenário 07 - Incluir Itens com Gestor Central de ATA
+CT07 - Incluir Itens com Gestor Central de ATA
     [Tags]    incluir_item_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"

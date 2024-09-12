@@ -7,7 +7,7 @@ Resource    ../../Resources/Resource_Almoxarifado.robot
 
 *** Test Cases ***
 
-Cenário 01 - Fazer um Novo recebimento do Almoxarifado
+CT01 - Fazer um Novo recebimento do Almoxarifado
     Definir Data Atual
     [Tags]    Incluir
     Dado que acesso o sistema
@@ -17,7 +17,7 @@ Cenário 01 - Fazer um Novo recebimento do Almoxarifado
     Então incluo um novo Recebimento    ${data_atual}
 
 
-Cenário 02 - Incluir itens para recebimento
+CT02 - Incluir itens para recebimento
     [Tags]    Incluir_itens
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -26,7 +26,7 @@ Cenário 02 - Incluir itens para recebimento
     Então incluo os Itens para recebimento
 
 
-Cenário 03 - Encaminhar Recebimento
+CT03 - Encaminhar Recebimento
     [Tags]    Encaminhar
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -35,7 +35,7 @@ Cenário 03 - Encaminhar Recebimento
     Então faço o encaminhamento do Recebimento
 
 
-Cenário 04 - Realizar atestado Técnico
+CT04 - Realizar atestado Técnico
     [Tags]    Aprovar_atestado
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -44,7 +44,7 @@ Cenário 04 - Realizar atestado Técnico
     Então realizo o atestado técnico
 
 
-Cenário 05 - Incluir Nota Fiscal
+CT05 - Incluir Nota Fiscal
     [Tags]    Incluir_nota
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -53,7 +53,7 @@ Cenário 05 - Incluir Nota Fiscal
     Então incluo a nota fiscal
 
 
-Cenário 06 - Responder avaliação de Conformidade
+CT06 - Responder avaliação de Conformidade
     [Tags]    Responder_conformidade
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -62,7 +62,7 @@ Cenário 06 - Responder avaliação de Conformidade
     Então respondo a avaliação de conformidade
 
 
-Cenário 07 - Aprovar Recebimento Provisório
+CT07 - Aprovar Recebimento Provisório
     [Tags]    Aprovar
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -71,7 +71,7 @@ Cenário 07 - Aprovar Recebimento Provisório
     Então aprovo o recebimento provisório
 
 
-Cenário 08 - Aprovar Recebimento Definitivo
+CT08 - Aprovar Recebimento Definitivo
     [Tags]    Aprovar
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -80,7 +80,7 @@ Cenário 08 - Aprovar Recebimento Definitivo
     Então aprovo o recebimento definitivo
 
 
-Cenário 09 - Fazer estocagem dos Itens
+CT09 - Fazer estocagem dos Itens
     [Tags]    Estocar
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"

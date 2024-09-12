@@ -9,7 +9,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
-Cenário 23 - Encerrar disputa
+CT23 - Encerrar disputa
     Configurar variável fechado_aberto_lote
 
     [Tags]    encerrar_disputa
@@ -21,7 +21,7 @@ Cenário 23 - Encerrar disputa
     Então ecerro a disputa Por Lote
     
 
-Cenário 24 - Abrir Item/Lote para Lei 123
+CT24 - Abrir Item/Lote para Lei 123
     Configurar variável fechado_aberto_lote
 
     [Tags]    abrir_lei_123
@@ -33,7 +33,7 @@ Cenário 24 - Abrir Item/Lote para Lei 123
     Então abros os Lotes
 
 
-Cenário 25 - Encerrar Item/Lote para Lei 123
+CT25 - Encerrar Item/Lote para Lei 123
     Configurar variável fechado_aberto_lote
 
     [Tags]    encerrar_lei_123
@@ -45,7 +45,7 @@ Cenário 25 - Encerrar Item/Lote para Lei 123
     Então encerro Lote para Lei 123
 
 
-Cenário 26 - Convocar vencedor
+CT26 - Convocar vencedor
     Configurar variável fechado_aberto_lote
 
     [Tags]    convocar_vencedor
@@ -57,7 +57,7 @@ Cenário 26 - Convocar vencedor
     Então faço a convocação do vencedor
 
 
-Cenário 27 - Anexar documento - Vencedor
+CT27 - Anexar documento - Vencedor
     Configurar variável fechado_aberto_lote
 
     [Tags]    anexar_documento_vencedor
@@ -69,7 +69,7 @@ Cenário 27 - Anexar documento - Vencedor
     Então anexo o documento
 
 
-Cenário 28 - Habilitar fornecedor vencedor
+CT28 - Habilitar fornecedor vencedor
     Configurar variável fechado_aberto_lote
 
     [Tags]    habilitar_fornecedor
@@ -81,7 +81,7 @@ Cenário 28 - Habilitar fornecedor vencedor
     Então habilito o fonecedor vencedor (Aberto_item)
 
 
-Cenário 29 - Encerrar etapa
+CT29 - Encerrar etapa
     Configurar variável fechado_aberto_lote
 
     [Tags]    encerrar_etapa
@@ -93,7 +93,7 @@ Cenário 29 - Encerrar etapa
     Então encerro a etapa de pregão eletrônico
 
 
-Cenário 30 - Registrar intenção de recursos
+CT30 - Registrar intenção de recursos
     Configurar variável fechado_aberto_lote
     
     [Tags]    registrar_recurso

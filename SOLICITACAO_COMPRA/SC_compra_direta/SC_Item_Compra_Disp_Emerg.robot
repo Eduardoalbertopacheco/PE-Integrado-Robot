@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Cenário Fluxo Feliz - Cadastro de Solicitação de Compras
+Documentation    CTFluxo Feliz - Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
 Library          Browser
 Resource        ../../Resources/Resource_login.robot
@@ -7,7 +7,6 @@ Resource        ../../Resources/Resource_Cadastro_SC.robot
 
 *** Test Cases ***
 
-# Cenário - Criar uma SC por Item para Pregão - Fluxo Feliz
 CT01 - Criar SC - Aba dados Gerais
     Configurar Variáveis de SC
 

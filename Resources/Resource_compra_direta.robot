@@ -20,6 +20,8 @@ ${MOD_DISPENSA}    (//li[@tabindex='-1'][contains(.,'Dispensa')])[1]
 ${MOD_INEXIGIBILIDADE}     //li[contains(.,'Inexigibilidade')]
 ${CRITERIO_DISPENSA}   //li[@tabindex='-1'][contains(.,'LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA')]
 ${CRITERIO_INEXIGIBILIDADE}    //li[text() = "LEI FEDERAL Nº 14.133/2021, ART. 74, CAPUT - INEXIGIBILIDADE QUANDO INVIÁVEL A COMPETIÇÃO"]
+${timeout}=        300    
+${interval}=       5 
 
 
 *** Keywords ***
@@ -262,13 +264,8 @@ Então preencho todos os campos da Aba Dados gerais
 
 
 E clico na compra direta em recebimento de lances
-   ${all_windows}=    Get Window Handles
 
-   ${timeout}=    Set Variable    300    
-    ${interval}=   Set Variable    5     
     ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
         Sleep    20
@@ -286,12 +283,8 @@ E clico na compra direta em recebimento de lances
 
 
 E clico na Compra Direta da lista Aguardando ratificação
-
-   ${timeout}=    Set Variable    300    
-    ${interval}=   Set Variable    5     
+   
     ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Aguardando ratificação')]
         Run Keyword If    ${element_found}    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
@@ -435,13 +428,8 @@ E configuro o agendamento
 
 E preencho os dados do segundo lance na Compra Direta por Lote
 
-    Select Frame    ${FRAME_NEGOCIACAO}
-
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
+    Select Frame    ${FRAME_NEGOCIACAO} 
     ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
         Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
@@ -475,12 +463,8 @@ E preencho os dados do segundo lance na Compra Direta por Lote
 
 E preencho os dados do lance na Compra Direta por Lote
 
-    Select Frame    ${FRAME_NEGOCIACAO}
-   ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
+    Select Frame    ${FRAME_NEGOCIACAO}  
     ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA_LOTE}
         Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA_LOTE}
@@ -514,13 +498,8 @@ E preencho os dados do lance na Compra Direta por Lote
 
 E preencho os dados do lance na Compra Direta por Item
 
-    Select Frame    ${FRAME_NEGOCIACAO}
-
-   ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
+    Select Frame    ${FRAME_NEGOCIACAO}   
     ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
         Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA}
@@ -558,13 +537,8 @@ E preencho os dados do lance na Compra Direta por Item
 
 E preencho os dados do segundo lance na Compra Direta por item
 
-    Select Frame    ${FRAME_NEGOCIACAO}
-
-    ${timeout}=    Set Variable    150    
-    ${interval}=   Set Variable    5     
+    Select Frame    ${FRAME_NEGOCIACAO}   
     ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
         Run Keyword If    ${element_found}    Click Element    ${CAMPO_SELECAO_MARCA}
@@ -655,14 +629,8 @@ Então faço o prorrogamento da compra direta
 
 Então finalizo a Compra Direta
 
-    Select Frame    //frame[contains(@name,'frmNegociacao')]
-
-   ${all_windows}=    Get Window Handles
-    ${timeout}=    Set Variable    300   
-    ${interval}=   Set Variable    5     
+    Select Frame    //frame[contains(@name,'frmNegociacao')]   
     ${start_time}=    Get Time    epoch
-    ${all_windows}=    Get Window Handles
-
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Finalizar compra direta')]
         Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Finalizar compra direta')]

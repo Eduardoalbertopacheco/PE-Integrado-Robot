@@ -10,7 +10,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 # Estes cenários só pode ser rodado depois de 15min
-Cenário 18 - Encerrar disputa
+CT18 - Encerrar disputa
     Configurar variável aberto_lote_OPD
 
     [Tags]    encerrar_disputa
@@ -21,7 +21,7 @@ Cenário 18 - Encerrar disputa
     E seleciono a licitação da lista
     Então ecerro a disputa Por Lote
     
-Cenário 19 - Abrir Item/Lote para Lei 123
+CT19 - Abrir Item/Lote para Lei 123
     Configurar variável aberto_lote_OPD
 
     [Tags]    abrir_lei_123
@@ -32,7 +32,7 @@ Cenário 19 - Abrir Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então abros os Lotes
 
-Cenário 20 - Encerrar Item/Lote para Lei 123
+CT20 - Encerrar Item/Lote para Lei 123
     Configurar variável aberto_lote_OPD
 
     [Tags]    encerrar_lei_123
@@ -43,7 +43,7 @@ Cenário 20 - Encerrar Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então encerro Lote para Lei 123
 
-Cenário 21 - Convocar vencedor
+CT21 - Convocar vencedor
     Configurar variável aberto_lote_OPD
 
     [Tags]    convocar_vencedor
@@ -55,7 +55,7 @@ Cenário 21 - Convocar vencedor
     Então faço a convocação do vencedor
 
 
-Cenário 22 - Anexar documento - Vencedor
+CT22 - Anexar documento - Vencedor
     Configurar variável aberto_lote_OPD
 
     [Tags]    anexar_documento_vencedor
@@ -66,7 +66,7 @@ Cenário 22 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
-Cenário 23 - Habilitar fornecedor vencedor
+CT23 - Habilitar fornecedor vencedor
     Configurar variável aberto_lote_OPD
 
     [Tags]    habilitar_fornecedor
@@ -77,7 +77,7 @@ Cenário 23 - Habilitar fornecedor vencedor
     E seleciono a licitação da lista
     Então habilito o fonecedor vencedor (Aberto_item)
 
-Cenário 24 - Encerrar etapa
+CT24 - Encerrar etapa
     Configurar variável aberto_lote_OPD
 
     [Tags]    encerrar_etapa
@@ -88,7 +88,7 @@ Cenário 24 - Encerrar etapa
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
 
-Cenário 25 - Registrar intenção de recursos
+CT25 - Registrar intenção de recursos
     Configurar variável aberto_lote_OPD
     
     [Tags]    registrar_recurso

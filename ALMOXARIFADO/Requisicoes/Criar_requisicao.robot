@@ -38,7 +38,7 @@ CT03 - Encaminhar Requisição
     Então Encaminho a Requisição
 
 
-CT03 - Encaminhar Requisição para Preparação
+CT04 - Encaminhar Requisição para Preparação
     [Tags]    Encaminhar_preparacao
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -48,7 +48,7 @@ CT03 - Encaminhar Requisição para Preparação
     Então encaminho para preparação
 
 
-CT04 - Encaminhar Itens para Expedição
+CT05 - Encaminhar Itens para Expedição
     [Tags]    Encaminhar_expedicao
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -57,7 +57,7 @@ CT04 - Encaminhar Itens para Expedição
     Então encaminho para Expedição
 
 
-CT05 - Aprovar a Guia De remessa
+CT06 - Aprovar a Guia De remessa
     [Tags]    Aprovar_guia
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"

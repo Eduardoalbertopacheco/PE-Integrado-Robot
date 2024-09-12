@@ -8,7 +8,7 @@ Resource         ../Resources/Resource_login.robot
 
 *** Test Cases ***
 
-Cenário 01 - Criar IRP - Aba Dados Gerais
+CT01 - Criar IRP - Aba Dados Gerais
     [Tags]    criar_irp
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -19,7 +19,7 @@ Cenário 01 - Criar IRP - Aba Dados Gerais
     Então salvo a IRP
     E vejo a Auditoria da IRP
 
-Cenário 02 - Incluir Itens na IRP
+CT02 - Incluir Itens na IRP
     [Tags]    Incluir_itens_IRP
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -28,7 +28,7 @@ Cenário 02 - Incluir Itens na IRP
     Então incluo os Itens na IRP
     E vejo a Auditoria da IRP
 
-Cenário 03 - Agendar IRP
+CT03 - Agendar IRP
     [Tags]    Agendar_IRP
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -36,7 +36,7 @@ Cenário 03 - Agendar IRP
     E clico na IRP da Lista
     Então faço o Agendamento da IRP
 
-Cenário 04 - Manifestar interesse com Gestor de Compras
+CT04 - Manifestar interesse com Gestor de Compras
     [Tags]    Manifestar_Interesse
     Dado que acesso o sistema
     E faço login com usuário "gestorcompra.120101"
@@ -45,7 +45,7 @@ Cenário 04 - Manifestar interesse com Gestor de Compras
     Então faço a manifestação de interesse
     E vejo a Auditoria da IRP
 
-Cenário 05 - Aprovar Manifestação de Interesse
+CT05 - Aprovar Manifestação de Interesse
     [Tags]    Aprovar_Manifestação
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -55,7 +55,7 @@ Cenário 05 - Aprovar Manifestação de Interesse
     E vejo a Auditoria da IRP
 
 
-Cenário 06 - Encerrar Etapa
+CT06 - Encerrar Etapa
     [Tags]    Encerrar_Etapa
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"

@@ -9,7 +9,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 # Estes cenários só podem ser rodados após 10min
-Cenário 26 - Não acatar intenção de recursos
+CT26 - Não acatar intenção de recursos
     Configurar variável fechado_aberto_lote
 
     [Tags]    nao_acatar_recurso
@@ -21,7 +21,7 @@ Cenário 26 - Não acatar intenção de recursos
     Então não acato a intenção de recurso
 
 
-Cenário 27 - Gravar preço dos Lotes
+CT27 - Gravar preço dos Lotes
     Configurar variável fechado_aberto_lote
 
     [Tags]    Reajuste_Lote
@@ -33,7 +33,7 @@ Cenário 27 - Gravar preço dos Lotes
     Então gravo o valor do lote
 
 
-Cenário 27 - Adjudicar Pregão
+CT27 - Adjudicar Pregão
     Configurar variável fechado_aberto_lote
 
     [Tags]    adjudicar_pregao
@@ -44,7 +44,7 @@ Cenário 27 - Adjudicar Pregão
     E clico na licitação em Adjudicação da lista
     Então adjudico o pregão eletrônico
 
-Cenário 28 - Homologar Pregão
+CT28 - Homologar Pregão
     Configurar variável fechado_aberto_lote
     
     [Tags]    homologar_pregao

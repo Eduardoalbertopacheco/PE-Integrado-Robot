@@ -9,7 +9,7 @@ Resource    ../../Resources/Resource_Almoxarifado.robot
 
 *** Test Cases ***
 
-Cenário 01 - Incluir um Novo Almoxarifado
+CT01 - Incluir um Novo Almoxarifado
     [Tags]    Incluir
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -18,7 +18,7 @@ Cenário 01 - Incluir um Novo Almoxarifado
     E vejo a Auditoria do almoxarifado
 
 
-Cenário 02 - Incluir Mascaras de Endereço
+CT02 - Incluir Mascaras de Endereço
     [Tags]    Mascara
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -28,7 +28,7 @@ Cenário 02 - Incluir Mascaras de Endereço
     Então incluo a Máscara de Endereço
 
 
-Cenário 03 - Incluir Endereço de Entrada
+CT03 - Incluir Endereço de Entrada
     [Tags]    Teste
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -38,7 +38,7 @@ Cenário 03 - Incluir Endereço de Entrada
     Então incluo o Endereço de Entrada
 
 
-Cenário 03 - Incluir Endereço de Estoque
+CT03 - Incluir Endereço de Estoque
     [Tags]    Teste
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -48,7 +48,7 @@ Cenário 03 - Incluir Endereço de Estoque
     Então incluo o Endereço de Estoque
 
 
-Cenário 4 - Incluir Requisitante
+CT4 - Incluir Requisitante
     [Tags]    Incluir_requisitante
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
@@ -58,7 +58,7 @@ Cenário 4 - Incluir Requisitante
     Então incluo um requisitante
 
 
-Cenário 05 - Incluir Itens no Almoxarifado
+CT05 - Incluir Itens no Almoxarifado
     [Tags]    Incluir_itens
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"

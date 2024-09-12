@@ -11,7 +11,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 # Estes cenários só pode ser rodado depois de 15min
-Cenário 18 - Encerrar disputa
+CT18 - Encerrar disputa
     Configurar Variáveis de Pregão
 
     [Tags]    encerrar_disputa
@@ -23,7 +23,7 @@ Cenário 18 - Encerrar disputa
     Então ecerro a disputa
     
     
-Cenário 19 - Abrir Item/Lote para Lei 123
+CT19 - Abrir Item/Lote para Lei 123
     Configurar Variáveis de Pregão
 
     [Tags]    abrir_lei_123
@@ -35,7 +35,7 @@ Cenário 19 - Abrir Item/Lote para Lei 123
     Então abro Item para Lei 123
     
 
-Cenário 20 - Encerrar Item/Lote para Lei 123
+CT20 - Encerrar Item/Lote para Lei 123
     Configurar Variáveis de Pregão
 
     [Tags]    encerrar_lei_123
@@ -47,7 +47,7 @@ Cenário 20 - Encerrar Item/Lote para Lei 123
     Então encerro Item para Lei 123
    
 
-Cenário 21 - Convocar vencedor
+CT21 - Convocar vencedor
     Configurar Variáveis de Pregão
 
     [Tags]    convocar_vencedor
@@ -59,7 +59,7 @@ Cenário 21 - Convocar vencedor
     Então faço a convocação do vencedor
 
 
-Cenário 22 - Anexar documento - Vencedor
+CT22 - Anexar documento - Vencedor
     Configurar Variáveis de Pregão
 
     [Tags]    anexar_documento_vencedor
@@ -70,7 +70,7 @@ Cenário 22 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
-Cenário 23 - Habilitar fornecedor vencedor
+CT23 - Habilitar fornecedor vencedor
     Configurar Variáveis de Pregão
 
     [Tags]    habilitar_fornecedor
@@ -81,7 +81,7 @@ Cenário 23 - Habilitar fornecedor vencedor
     E seleciono a licitação da lista
     Então habilito o fonecedor vencedor (Aberto_item)
 
-Cenário 24 - Encerrar etapa
+CT24 - Encerrar etapa
     Configurar Variáveis de Pregão
 
     [Tags]    encerrar_etapa
@@ -92,7 +92,7 @@ Cenário 24 - Encerrar etapa
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
 
-Cenário 25 - Registrar intenção de recursos
+CT25 - Registrar intenção de recursos
     Configurar Variáveis de Pregão
     
     [Tags]    registrar_recurso

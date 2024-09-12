@@ -21,7 +21,7 @@ Então Gero a SC da IRP
 
 *** Test Cases ***
 
-Cenário 01 - Gerar SC por Item de Uma IRP
+CT01 - Gerar SC por Item de Uma IRP
     [Tags]    criar_sc
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"

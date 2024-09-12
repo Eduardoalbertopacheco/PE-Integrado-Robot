@@ -6,7 +6,7 @@ Resource        ../../../Resources/Resource_ARP.robot
 
 *** Test Cases ***
 
-Cenário 01 - Solicitar Consumo de Ata de Compra Direta
+CT01 - Solicitar Consumo de Ata de Compra Direta
     [Tags]    solicitar_adesao
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -18,7 +18,7 @@ Cenário 01 - Solicitar Consumo de Ata de Compra Direta
     # E vejo a Auditoria da ARP
 
 
-Cenário 02 - Selecionar itens para consumo
+CT02 - Selecionar itens para consumo
     [Tags]    selecionar_itens
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -28,7 +28,7 @@ Cenário 02 - Selecionar itens para consumo
     E vejo a Auditoria da ARP
 
 
-Cenário 03 - Alterar valor de referência dos itens
+CT03 - Alterar valor de referência dos itens
     [Tags]    alterar_valor_referencia
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -38,7 +38,7 @@ Cenário 03 - Alterar valor de referência dos itens
     E vejo a Auditoria da ARP
 
 
-Cenário 03 - Incluir e assinar documento
+CT03 - Incluir e assinar documento
     [Tags]    assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -48,7 +48,7 @@ Cenário 03 - Incluir e assinar documento
     E vejo a Auditoria da ARP
 
 
- Cenário 04 - Encaminhar Adesao
+ CT04 - Encaminhar Adesao
     [Tags]    encaminhar_adesao
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -58,7 +58,7 @@ Cenário 03 - Incluir e assinar documento
     E vejo a Auditoria da ARP
 
 
-Cenário 05 - Deliberar com Orçamento
+CT05 - Deliberar com Orçamento
     [Tags]    Deliberar_adesao
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
@@ -68,7 +68,7 @@ Cenário 05 - Deliberar com Orçamento
     E vejo a Auditoria da ARP
 
 
-Cenário 06 - Deliberar com Ordenador
+CT06 - Deliberar com Ordenador
     [Tags]    Deliberar_adesao_ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
@@ -78,7 +78,7 @@ Cenário 06 - Deliberar com Ordenador
     E vejo a Auditoria da ARP
 
 
-Cenário 07 - Concluir análise com Gestor de Ata
+CT07 - Concluir análise com Gestor de Ata
     [Tags]    Concluir_analise
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -87,7 +87,7 @@ Cenário 07 - Concluir análise com Gestor de Ata
     Então concluo a análise da Ata Externa
 
 
-Cenário 08 - Deliberar e Assianr Documento com Gestor de Ata
+CT08 - Deliberar e Assianr Documento com Gestor de Ata
     [Tags]    Deliberar_adesao_gestor_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -97,7 +97,7 @@ Cenário 08 - Deliberar e Assianr Documento com Gestor de Ata
     E vejo a Auditoria da ARP
 
 
-Cenário 09 - Deliberar com Autoridade Competente
+CT09 - Deliberar com Autoridade Competente
     [Tags]    Deliberar_autoridade_central
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"

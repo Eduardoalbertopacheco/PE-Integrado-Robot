@@ -10,7 +10,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 
-Cenário 01 - Criar Pregão - Aba Dados Gerais
+CT01 - Criar Pregão - Aba Dados Gerais
     Configurar Variáveis de Pregão
 
     [Tags]    criar_pregao
@@ -27,7 +27,7 @@ Cenário 01 - Criar Pregão - Aba Dados Gerais
     E mostro a auditoria
 
 
-Cenário 02 - Incluir SC ao Pregão
+CT02 - Incluir SC ao Pregão
     Configurar Variáveis de Pregão
     Usar SC_Item_Pregao_aberto_fechado
 
@@ -41,7 +41,7 @@ Cenário 02 - Incluir SC ao Pregão
     E mostro a auditoria
 
 
-Cenário 03 - Incluir Documento - Edital
+CT03 - Incluir Documento - Edital
     Configurar Variáveis de Pregão
 
     [Tags]    Incluir_doc_pregao
@@ -54,7 +54,7 @@ Cenário 03 - Incluir Documento - Edital
     E mostro a auditoria
 
 
-Cenário 04 - Assinar Documento
+CT04 - Assinar Documento
     Configurar Variáveis de Pregão
 
     [Tags]    assinar_doc_pregao
@@ -67,7 +67,7 @@ Cenário 04 - Assinar Documento
     E mostro a auditoria
 
 
-Cenário 05 - Solicitar Parecer para Ordenador
+CT05 - Solicitar Parecer para Ordenador
     Configurar Variáveis de Pregão
 
     [Tags]    solicitar_parecer_pregao
@@ -80,7 +80,7 @@ Cenário 05 - Solicitar Parecer para Ordenador
     Então encaminho o Parecer para o ordenador
 
 
-Cenário 06 - Aprovar parecer Ordenador
+CT06 - Aprovar parecer Ordenador
     Configurar Variáveis de Pregão
 
     [Tags]    aprovar_parecer
@@ -94,7 +94,7 @@ Cenário 06 - Aprovar parecer Ordenador
     Então finalizo o parecer
 
 
-Cenário 07 - Solicitar Autorização
+CT07 - Solicitar Autorização
     Configurar Variáveis de Pregão
 
     [Tags]    solicitar_autorizacao
@@ -108,7 +108,7 @@ Cenário 07 - Solicitar Autorização
     # E mostro a auditoria
 
 
-Cenário 08 - Aprovar autorização
+CT08 - Aprovar autorização
     Configurar Variáveis de Pregão
 
     [Tags]    aprovar_autorizacao
@@ -122,7 +122,7 @@ Cenário 08 - Aprovar autorização
     E mostro a auditoria
 
 
-Cenário 09 - Agendar Pregão eletrônico
+CT09 - Agendar Pregão eletrônico
     Configurar Variáveis de Pregão
 
     [Tags]    agendar_pregao
@@ -135,7 +135,7 @@ Cenário 09 - Agendar Pregão eletrônico
     # E mostro a auditoria
 
 
-Cenário 10 - Envio de propostas Fornecedor 01
+CT10 - Envio de propostas Fornecedor 01
     Configurar Variáveis de Pregão
 
     [Tags]    enviar_proposta01
@@ -150,7 +150,7 @@ Cenário 10 - Envio de propostas Fornecedor 01
     # E vejo a Auditoria
     
 
-Cenário 11 - Envio de propostas Fornecedor 02
+CT11 - Envio de propostas Fornecedor 02
     Configurar Variáveis de Pregão
 
     [Tags]    enviar_proposta02
@@ -165,7 +165,7 @@ Cenário 11 - Envio de propostas Fornecedor 02
     # E vejo a Auditoria
 
 
-Cenário 12 - Prorrogar Pregão
+CT12 - Prorrogar Pregão
     Configurar Variáveis de Pregão
 
     [Tags]    prorrogar_pregao
@@ -180,7 +180,7 @@ Cenário 12 - Prorrogar Pregão
     # E Acesso a Auditoria
 
 
-Cenário 13 - Abertura das propostas
+CT13 - Abertura das propostas
     Configurar Variáveis de Pregão
 
     [Tags]    abrir_propostas
@@ -192,7 +192,7 @@ Cenário 13 - Abertura das propostas
     Então abro as proposta
 
 
-Cenário 14 - Iniciar disputa
+CT14 - Iniciar disputa
     Configurar Variáveis de Pregão
 
     [Tags]    iniciar_disputa
@@ -204,7 +204,7 @@ Cenário 14 - Iniciar disputa
     Então inicio a disputa
 
 
-Cenário 15 - Abrir Itens/Lotes para disputa
+CT15 - Abrir Itens/Lotes para disputa
     Configurar Variáveis de Pregão
 
     [Tags]    abrir_itens
@@ -216,7 +216,7 @@ Cenário 15 - Abrir Itens/Lotes para disputa
     Então abros os itens
 
 
-Cenário 16 - Enviar disputa Fornecedor 01
+CT16 - Enviar disputa Fornecedor 01
     Configurar Variáveis de Pregão
 
     [Tags]    enviar_disputa01
@@ -228,7 +228,7 @@ Cenário 16 - Enviar disputa Fornecedor 01
     Então envio o lance
 
 
-Cenário 17 - Enviar disputa Fornecedor 02
+CT17 - Enviar disputa Fornecedor 02
     Configurar Variáveis de Pregão
     
     [Tags]    enviar_disputa02
