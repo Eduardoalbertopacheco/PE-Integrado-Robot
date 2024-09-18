@@ -3,11 +3,6 @@ Library    SeleniumLibrary
 Resource    ../../Resources/Resource_login.robot
 Resource    ../../Resources/Resource_Almoxarifado.robot
 
-*** Variables ***
-
-*** Keywords ***
-
-
 *** Test Cases ***
 
 CT01 - Criar Nova Requisição

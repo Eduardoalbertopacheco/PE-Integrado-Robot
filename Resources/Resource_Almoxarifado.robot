@@ -11,6 +11,8 @@ ${NOME_ALMOX}    Almoxarifado 10/09 - Teste 02
 ${data_atual}    Get Current Date    result_format=%Y/%m/%d
 ${INPUT_REQ}    //*[@id="ctl00_ContentPrincipal_tbxNumero"]
 ${NUM_REQ}    ${EMPTY}
+${NUM_TRANSF}    ${EMPTY}
+${INPUT_TRANSF}    //*[@id="ctl00_ContentPrincipal_tbxNumero"]
 
 
 
@@ -195,6 +197,29 @@ Então incluo o Endereço de Entrada
     Sleep    3
     Capture Page Screenshot
     Close Browser
+
+E acesso a lista de Transferências
+    Select Frame    xpath=//frame[contains(@name,'main')]
+
+    # Clique em Almoxarifado
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]
+
+    # Mouse over em movimentações
+    ${Requisicoes}    Get WebElement    //td[@class='label'][contains(.,'Movimentações')]
+    Mouse Over    ${Requisicoes}
+
+    # Mouse over em transferencia
+    ${Transferencia}    Get WebElement    //td[@class='label'][contains(.,'Transferências')]
+    Mouse Over    ${Transferencia}
+
+    # Clique de Lista de Transferencias
+    Wait Until Element Is Visible    //td[@class='label'][contains(.,'Lista de transferências')]    20
+    Sleep    1
+    Click Element    //td[@class='label'][contains(.,'Lista de transferências')]
+    Sleep    2
+    Capture Page Screenshot
+
 
 
 E acesso a lista de requisições
@@ -876,6 +901,112 @@ Então movimento os itens para estoque
     END
 
 
+Então incluo uma nova Transferências
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //a[contains(.,'Incluir')]    30
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Capture Page Screenshot
+
+
+    # Tipo de movimentação - Interna
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlTipoMovimentacao_listbox']    20
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlTipoMovimentacao_listbox']
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Requisição de transferência interna de material')]    10
+    Sleep    1
+    Click Element    //li[@tabindex='-1'][contains(.,'Requisição de transferência interna de material')]
+    Sleep    1
+
+
+    # Almoxarifado Origem
+    Wait Until Element Is Visible    //a[contains(@onclick,'AbrirJanelaPesquisarAlmoxarifado(true);')]    20
+    Sleep    1
+    Click Element    //a[contains(@onclick,'AbrirJanelaPesquisarAlmoxarifado(true);')]
+    Sleep    2
+
+    Wait Until Element Is Visible    //input[@name='ctl00$ContentPrincipal$tbxDsAlmoxarifado']    20
+    Input Text    //input[@name='ctl00$ContentPrincipal$tbxDsAlmoxarifado']    ${NOME_ALMOX}
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
+
+    Wait Until Element Is Visible    (//input[contains(@id,'rbList')])[last()]    20
+    Click Element    (//input[contains(@id,'rbList')])[last()] 
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    20
+    Click Element    //a[contains(.,'Confirmar')]
+
+
+    # Unidade Gestora Destino
+    Sleep    1
+    Wait Until Element Is Visible    //a[contains(@onclick,'AbrirJanelaPesquisarUnidadeGestora(false);')]
+    Sleep    1
+    Click Element    //a[contains(@onclick,'AbrirJanelaPesquisarUnidadeGestora(false);')]
+    Sleep    1
+    Wait Until Element Is Visible    //input[contains(@name,'txtNome')]    15
+    Input Text    //input[contains(@name,'txtNome')]    SECRETARIA DE ADMINISTRAÇÃO
+    Sleep    1
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    10
+    Sleep    1
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    1
+    Wait Until Element Is Visible    //input[@value='3|SECRETARIA DE ADMINISTRAÇÃO|1|0']    10
+    Click Element    //input[@value='3|SECRETARIA DE ADMINISTRAÇÃO|1|0']
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+
+
+    # Almoxarifado de Destino
+    Sleep    2
+    Wait Until Element Is Visible    //input[contains(@name,'ctl00$ContentPrincipal$autAlmoxarifadoDestino')]
+    Sleep    1
+    Scroll Element Into View    //input[contains(@name,'ctl00$ContentPrincipal$autAlmoxarifadoDestino')]
+    Sleep    1
+    Input Text    //input[contains(@name,'ctl00$ContentPrincipal$autAlmoxarifadoDestino')]    SAD
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'ALMOXARIFADO - SAD')]
+    Sleep    1
+    Click Element    //li[@tabindex='-1'][contains(.,'ALMOXARIFADO - SAD')]
+
+    #Endereço
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlEnderecoEntrega_listbox']    15
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlEnderecoEntrega_listbox']
+    Sleep    1
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'AVENIDA ANTONIO DE GOES, 194, PINA - RECIFE - PE - BRASIL')]    15
+    Click Element    //li[@tabindex='-1'][contains(.,'AVENIDA ANTONIO DE GOES, 194, PINA - RECIFE - PE - BRASIL')]
+    Sleep    1
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[@onclick='SalvarRequisicao(false);']    15
+    Click Element    //a[@onclick='SalvarRequisicao(false);']
+    Sleep    4
+
+    # Esperar até que o campo de input tenha um valor preenchido
+    Wait Until Keyword Succeeds    10 times    2 seconds    Valor Do Input TRANSF Deve Ser Preenchido
+
+    # Capturar o valor do campo depois que ele for preenchido
+    ${NUM_TRANSF}    Get Element Attribute    ${INPUT_TRANSF}    value
+    Log    O valor do input é: ${NUM_TRANSF} 
+
+
+Valor Do Input TRANSF Deve Ser Preenchido
+    ${NUM_TRANSF}    Get Element Attribute    ${INPUT_TRANSF}     value
+    Should Not Be Empty    ${NUM_TRANSF}
+    Log    O valor do input é: ${NUM_TRANSF}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/numero_transferencia.txt    ${NUM_TRANSF}
+
+
+
+    Close Browser
+
+
 Então incluo uma nova riquisição
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]    30
@@ -936,15 +1067,14 @@ Então incluo uma nova riquisição
 
   
   # Esperar até que o campo de input tenha um valor preenchido
-    Wait Until Keyword Succeeds    10 times    2 seconds    Valor Do Input Deve Ser Preenchido
+    Wait Until Keyword Succeeds    10 times    2 seconds    Valor Do Input REQ Deve Ser Preenchido
 
     # Capturar o valor do campo depois que ele for preenchido
     ${NUM_REQ}    Get Element Attribute    ${INPUT_REQ}    value
     Log    O valor do input é: ${NUM_REQ} 
-    Close Browser
 
 
-Valor Do Input Deve Ser Preenchido
+Valor Do Input REQ Deve Ser Preenchido
     ${NUM_REQ}    Get Element Attribute    ${INPUT_REQ}     value
     Should Not Be Empty    ${NUM_REQ}
     Log    O valor do input é: ${NUM_REQ}

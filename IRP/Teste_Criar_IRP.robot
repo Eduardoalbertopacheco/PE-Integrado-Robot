@@ -9,6 +9,8 @@ Resource         ../Resources/Resource_login.robot
 *** Test Cases ***
 
 CT01 - Criar IRP - Aba Dados Gerais
+    Configurar Variáveis de IRP
+
     [Tags]    criar_irp
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -20,6 +22,8 @@ CT01 - Criar IRP - Aba Dados Gerais
     E vejo a Auditoria da IRP
 
 CT02 - Incluir Itens na IRP
+    Configurar Variáveis de IRP
+
     [Tags]    Incluir_itens_IRP
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -29,6 +33,8 @@ CT02 - Incluir Itens na IRP
     E vejo a Auditoria da IRP
 
 CT03 - Agendar IRP
+    Configurar Variáveis de IRP
+
     [Tags]    Agendar_IRP
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -37,6 +43,8 @@ CT03 - Agendar IRP
     Então faço o Agendamento da IRP
 
 CT04 - Manifestar interesse com Gestor de Compras
+    Configurar Variáveis de IRP
+
     [Tags]    Manifestar_Interesse
     Dado que acesso o sistema
     E faço login com usuário "gestorcompra.120101"
@@ -46,6 +54,8 @@ CT04 - Manifestar interesse com Gestor de Compras
     E vejo a Auditoria da IRP
 
 CT05 - Aprovar Manifestação de Interesse
+    Configurar Variáveis de IRP
+
     [Tags]    Aprovar_Manifestação
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -56,6 +66,8 @@ CT05 - Aprovar Manifestação de Interesse
 
 
 CT06 - Encerrar Etapa
+    Configurar Variáveis de IRP
+
     [Tags]    Encerrar_Etapa
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -66,6 +78,8 @@ CT06 - Encerrar Etapa
 
 
 Cenárrio 07 - Finalizar IRP
+    Configurar Variáveis de IRP
+    
     [Tags]    Finalizar_IRP
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"

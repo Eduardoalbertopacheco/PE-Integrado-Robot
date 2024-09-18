@@ -1326,7 +1326,7 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
-    Sleep    1
+    Sleep    2
     SeleniumLibrary.Close Browser
 
 
@@ -1570,6 +1570,7 @@ Então atribuo a comissão de Compra Direta - TJ
 
     # clique do botão 'Confirma'
     Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
     SeleniumLibrary.Close Browser
 
 
@@ -1594,4 +1595,5 @@ Então atribuo a comissão de Compra Direta
 
     # clique do botão 'Confirma'
     Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
     SeleniumLibrary.Close Browser

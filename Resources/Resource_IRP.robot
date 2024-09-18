@@ -245,3 +245,14 @@ Então Finalizo a IRP
     Click Element    id=idBtSegundo_ctl00_ContentPrincipal_mbxDadosGerais
     Sleep    7
 
+Então Gero a SC da IRP
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //a[contains(.,'Gerar SC')]    30
+    Click Element    //a[contains(.,'Gerar SC')]
+
+    # confirmação do popup
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3

@@ -9,7 +9,7 @@ if (Test-Path $foldersPath) {
 
     foreach ($testFile in $testFiles) {
         Write-Host "Executando teste: $($testFile.FullName)"
-        robot --exitonfailure -d ./logs $testFile.FullName
+        robot --exitonfailure -d ./Relatorio/Compra_Dispensa $testFile.FullName
     }
 } else {
     Write-Host "O caminho das pastas não existe: $foldersPath"
