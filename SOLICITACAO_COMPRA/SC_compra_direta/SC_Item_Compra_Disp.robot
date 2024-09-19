@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Fluxo Feliz - Cadastro de Solicitação de Compras
+Documentation    Cenário: Criar Um Solicitação de Compras Por Item e Encaminhar Para Compra Direta - Dispensa - Fluxo Feliz
 Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem

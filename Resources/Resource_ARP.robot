@@ -182,12 +182,15 @@ E clico na Ata de Compra Direta da Lista
     Sleep    2
     Capture Page Screenshot
 
+
 E seleciono a Ata Externa da Lista
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input    timeout=30s
+    Sleep    1
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input
     Sleep    2
     Capture Page Screenshot
+
 
 E seleciono a Ata de Pregão da Lista
     Select Frame    //iframe[@name='frmConteudo']
@@ -203,6 +206,7 @@ E seleciono a Ata de Compra Direta da Lista - OPD
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input
     Sleep    2
     Capture Page Screenshot
+
 
 E seleciono a Ata de Compra Direta da Lista
     Select Frame    //iframe[@name='frmConteudo']
@@ -563,6 +567,7 @@ E preencho todos os Dados Gerais
     Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'2')]    timeout=15
     Sleep    2
     Click Element    //li[@tabindex='-1'][contains(.,'2')]
+    Sleep    1
 
 
     # Número máximo permitido por item para cada adesão (%):
@@ -934,15 +939,18 @@ Então incluo os itens na ATA Externa
     Click Element    //input[contains(@data-scdestado,'RR')]
 
     Click Element    //a[contains(@onclick,'ConfirmarEmpresa()')]
+    Sleep    2
 
 
     # Seleção Marca
     Wait Until Element Is Visible    ${SELECAO_MARCA_ATA}   timeout=30s
+    Sleep    1
     Click Element    ${SELECAO_MARCA_ATA}
+    Sleep    2
     Wait Until Element Is Visible    ${ITEM}    timeout=30s
-    
+    Sleep    1
     Click Element    ${ITEM}
-    Sleep    2s
+    Sleep    2
     Capture Page Screenshot
 
     Click Element    //a[contains(.,'Salvar e fechar')]

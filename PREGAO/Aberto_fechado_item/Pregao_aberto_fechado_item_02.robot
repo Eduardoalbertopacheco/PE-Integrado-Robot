@@ -115,7 +115,8 @@ CT23 - Habilitar fornecedor vencedor
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor (Aberto_item)
+    Então habilito o fonecedor vencedor (Aberto_Fechado_item)
+
 
 
 CT24 - Encerrar etapa

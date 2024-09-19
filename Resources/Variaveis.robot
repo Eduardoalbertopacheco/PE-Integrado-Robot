@@ -43,6 +43,14 @@ Configurar Variáveis de IRP
     Set Global Variable    ${OBJETO_IRP}
 
 
+Configurar Variáveis de ARP
+    ${nome_arquivo}=    Set Variable    ${SUITE_SOURCE}
+    ${arquivo}=    Split String    ${nome_arquivo}    ${/}
+    ${arquivo}=    Set Variable    ${arquivo}[-1] 
+    ${OBJETO_ATA}=    Replace String    ${arquivo}    .robot    ${EMPTY}
+    Set Global Variable    ${OBJETO_ATA}
+
+
 
 Configurar variável fechado_aberto_item
     Set Global Variable    ${OBJETO_PREGAO}    	Pregao_fechado_aberto_item_01

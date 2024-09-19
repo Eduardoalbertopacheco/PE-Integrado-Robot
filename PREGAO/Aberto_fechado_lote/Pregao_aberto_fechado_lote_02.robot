@@ -46,7 +46,7 @@ CT21 - Enviar disputa sigilosa Forn02
     Então envio o lance 02 para disputa Sigilosa
 
 
-CT23 - Encerrar disputa
+CT22 - Encerrar disputa
     Configurar variável aberto_fechado_lote
 
     [Tags]    encerrar_disputa
@@ -58,7 +58,7 @@ CT23 - Encerrar disputa
     Então ecerro a disputa Por Lote
     
 
-CT24 - Abrir Item/Lote para Lei 123
+CT23 - Abrir Item/Lote para Lei 123
     Configurar variável aberto_fechado_lote
 
     [Tags]    abrir_lei_123
@@ -69,7 +69,7 @@ CT24 - Abrir Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então abros os Lotes
 
-CT25 - Encerrar Item/Lote para Lei 123
+CT24 - Encerrar Item/Lote para Lei 123
     Configurar variável aberto_fechado_lote
 
     [Tags]    encerrar_lei_123
@@ -80,7 +80,7 @@ CT25 - Encerrar Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então encerro Lote para Lei 123
 
-CT26 - Convocar vencedor
+CT25 - Convocar vencedor
     Configurar variável aberto_fechado_lote
 
     [Tags]    convocar_vencedor
@@ -92,7 +92,7 @@ CT26 - Convocar vencedor
     Então faço a convocação do vencedor
 
 
-CT27 - Anexar documento - Vencedor
+CT26 - Anexar documento - Vencedor
     Configurar variável aberto_fechado_lote
 
     [Tags]    anexar_documento_vencedor
@@ -103,7 +103,7 @@ CT27 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
-CT28 - Habilitar fornecedor vencedor
+CT27 - Habilitar fornecedor vencedor
     Configurar variável aberto_fechado_lote
 
     [Tags]    habilitar_fornecedor
@@ -112,9 +112,10 @@ CT28 - Habilitar fornecedor vencedor
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor (Aberto_item)
+    Então habilito o fonecedor vencedor (Aberto_Fechado_item)
 
-CT29 - Encerrar etapa
+
+CT28 - Encerrar etapa
     Configurar variável aberto_fechado_lote
 
     [Tags]    encerrar_etapa
@@ -125,7 +126,7 @@ CT29 - Encerrar etapa
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
 
-CT30 - Registrar intenção de recursos
+CT29 - Registrar intenção de recursos
     Configurar variável aberto_fechado_lote
     
     [Tags]    registrar_recurso

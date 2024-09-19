@@ -644,7 +644,6 @@ Então finalizo a Compra Direta
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-    Capture Page Screenshot
 
     Sleep    2
 

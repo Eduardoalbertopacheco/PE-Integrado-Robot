@@ -1719,6 +1719,41 @@ Então anexo o documento
     Sleep    2
     Capture Page Screenshot
 
+Então habilito o fonecedor vencedor (Aberto_Fechado_item)
+    Select Frame    ${FRAME_DETALHE_PREGAO}
+
+    Wait Until Element Is Visible    //a[contains(.,'Habilitação e proposta')]    30s
+    Click Element    //a[contains(.,'Habilitação e proposta')]
+    Capture Page Screenshot
+    Sleep    2
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[1]/td[8]/input[1]    30s
+    Click Element    //table[1]/tbody[1]/tr[1]/td[8]/input[1]
+
+    Wait Until Element Is Visible    //a[contains(.,'Habilitar')]    30s
+    Click Element    //a[contains(.,'Habilitar')]
+    Capture Page Screenshot
+
+    # ${all_windows}=    Get Window Handles
+    # # ${janela}=    Set Variable    ${all_windows}[2]
+    # ${janela}=    Set Variable    ${all_windows}[0]
+
+    # Switch Window    ${janela}
+
+    Sleep    2
+    Switch Window    NEW
+    Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]    30s
+    Input Text    //textarea[contains(@name,'tbxJustificativa')]    Justificativa
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //input[@value='Habilitar']    30s
+    Click Element    //input[@value='Habilitar']
+    Sleep    2
+    Handle Alert    ACCEPT
+    Sleep    2
+
 
 Então habilito o fonecedor vencedor (Aberto_item)
     Select Frame    ${FRAME_DETALHE_PREGAO}
@@ -1739,9 +1774,9 @@ Então habilito o fonecedor vencedor (Aberto_item)
 
     ${all_windows}=    Get Window Handles
     ${janela}=    Set Variable    ${all_windows}[2]
-
     Switch Window    ${janela}
 
+    Sleep    1
     # Switch Window    NEW
     Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativa')]    30s
     Input Text    //textarea[contains(@name,'tbxJustificativa')]    Justificativa

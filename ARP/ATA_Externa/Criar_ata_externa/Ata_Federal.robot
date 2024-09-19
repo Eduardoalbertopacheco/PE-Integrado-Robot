@@ -11,6 +11,8 @@ Resource        ../../../Resources/Resource_ARP.robot
 *** Test Cases ***
 
 CT01 - Criar Ata Externa Federal
+    Configurar Variáveis de ARP
+
     [Tags]    criar_ata_federal
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -26,6 +28,8 @@ CT01 - Criar Ata Externa Federal
 
 
 CT02 - Incluir Documento e assinar documento
+    Configurar Variáveis de ARP
+
     [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -35,17 +39,9 @@ CT02 - Incluir Documento e assinar documento
     E vejo a Auditoria da ARP
 
 
-# CT03 - Assinar Documento
-#     [Tags]    assinar_documento
-#     Dado que acesso o sistema
-#     E faço login com usuário "edu.gestorata.110402"
-#     E acesso a lista de Atas de Registro de preços
-#     E clico na Ata Externa da Lista
-#     Então assino o documento da Ata
-#     E vejo a Auditoria da ARP
-
-
 CT04 - Ativar ATA Externa
+    Configurar Variáveis de ARP
+
     [Tags]    ativar_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
@@ -54,7 +50,10 @@ CT04 - Ativar ATA Externa
     Então ativo a ARP
     # E vejo a Auditoria da ARP
 
+
 CT05 - Concluir Análise com Gestor Ata Central
+    Configurar Variáveis de ARP
+
     [Tags]    concluir_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
@@ -64,6 +63,8 @@ CT05 - Concluir Análise com Gestor Ata Central
 
 
 CT06 - Deliberar Ata
+    Configurar Variáveis de ARP
+
     [Tags]    deliberar_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
@@ -74,6 +75,8 @@ CT06 - Deliberar Ata
 
 
 CT07 - Incluir Itens com Gestor Central de ATA
+    Configurar Variáveis de ARP
+    
     [Tags]    incluir_item_ata
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
