@@ -32,7 +32,7 @@ CT27 - Gravar valor do Lote
     Então gravo o valor do lote
 
 
-CT27 - Adjudicar Pregão
+CT28 - Adjudicar Pregão
     [Tags]    adjudicar_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
@@ -41,7 +41,7 @@ CT27 - Adjudicar Pregão
     E clico na licitação em Adjudicação da lista
     Então adjudico o pregão eletrônico
 
-CT28 - Homologar Pregão
+CT29 - Homologar Pregão
     [Tags]    homologar_pregao
     Dado que acesso o sistema
     E faço login com usuário "autoridade.070001"

@@ -37,7 +37,7 @@ CT27 - Gravar valor do Lote
     Então gravo o valor do lote
 
 
-CT27 - Adjudicar Pregão
+CT28 - Adjudicar Pregão
     Configurar variável aberto_lote
 
     [Tags]    adjudicar_pregao
@@ -49,7 +49,7 @@ CT27 - Adjudicar Pregão
     Então adjudico o pregão eletrônico
 
 
-CT28 - Homologar Pregão
+CT29 - Homologar Pregão
     Configurar variável aberto_lote
     
     [Tags]    homologar_pregao

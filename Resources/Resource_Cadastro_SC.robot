@@ -854,7 +854,7 @@ Então Clique no botão Aprovar com orçamento
 
     # clique no botão salvar
     Click Element    //input[contains(@value,'Salvar')]
-    Sleep    2
+    Sleep    3
     SeleniumLibrary.Close Browser
 
 
@@ -1463,7 +1463,7 @@ Então atribuo a Comissão Permanente de Licitação
 
     # clique do botão 'Confirma'
     Click Element    //a[contains(.,'Confirmar')]
-    Sleep    2
+    Sleep    3
     SeleniumLibrary.Close Browser
 
 

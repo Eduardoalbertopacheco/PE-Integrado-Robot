@@ -11,7 +11,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 # Estes cenários só pode ser rodado depois de 15min + Autoencerramento
-CT20 - Encerrar Disputa
+CT18 - Encerrar Disputa
     Configurar variável fechado_aberto_item
 
     [Tags]    encerrar_disputa
@@ -23,7 +23,7 @@ CT20 - Encerrar Disputa
     Então ecerro a disputa
     
 
-CT21 - Abrir Itens para Lei 123
+CT19 - Abrir Itens para Lei 123
     Configurar variável fechado_aberto_item
 
     [Tags]    abrir_item_lei_123
@@ -35,7 +35,7 @@ CT21 - Abrir Itens para Lei 123
     Então abro Item para Lei 123
 
 
-CT22 - Encerrar Itens para Lei 123
+CT20 - Encerrar Itens para Lei 123
     Configurar variável fechado_aberto_item
 
     [Tags]    encerrar_item_lei_123
@@ -47,7 +47,7 @@ CT22 - Encerrar Itens para Lei 123
     Então encerro Item para Lei 123
 
 
-CT23 - Convocar vencedor
+CT21 - Convocar vencedor
     Configurar variável fechado_aberto_item
 
     [Tags]    convocar_vencedor
@@ -59,7 +59,7 @@ CT23 - Convocar vencedor
     Então faço a convocação do vencedor
 
 
-CT24 - Anexar documento - Vencedor
+CT22 - Anexar documento - Vencedor
     Configurar variável fechado_aberto_item
 
     [Tags]    anexar_documento_vencedor
@@ -70,7 +70,7 @@ CT24 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
-CT25 - Habilitar fornecedor vencedor
+CT23 - Habilitar fornecedor vencedor
     Configurar variável fechado_aberto_item
 
     [Tags]    habilitar_fornecedor
@@ -81,7 +81,7 @@ CT25 - Habilitar fornecedor vencedor
     E seleciono a licitação da lista
     Então habilito o fonecedor vencedor (Aberto_item)
 
-CT26 - Encerrar etapa
+CT24 - Encerrar etapa
     Configurar variável fechado_aberto_item
 
     [Tags]    encerrar_etapa
@@ -92,7 +92,7 @@ CT26 - Encerrar etapa
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
 
-CT27 - Registrar intenção de recursos
+CT25 - Registrar intenção de recursos
     Configurar variável fechado_aberto_item
     
     [Tags]    registrar_recurso

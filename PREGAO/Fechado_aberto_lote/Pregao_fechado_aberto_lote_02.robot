@@ -9,7 +9,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
-CT23 - Encerrar disputa
+CT18 - Encerrar disputa
     Configurar variável fechado_aberto_lote
 
     [Tags]    encerrar_disputa
@@ -21,7 +21,7 @@ CT23 - Encerrar disputa
     Então ecerro a disputa Por Lote
     
 
-CT24 - Abrir Item/Lote para Lei 123
+CT19 - Abrir Item/Lote para Lei 123
     Configurar variável fechado_aberto_lote
 
     [Tags]    abrir_lei_123
@@ -33,7 +33,7 @@ CT24 - Abrir Item/Lote para Lei 123
     Então abros os Lotes
 
 
-CT25 - Encerrar Item/Lote para Lei 123
+CT20 - Encerrar Item/Lote para Lei 123
     Configurar variável fechado_aberto_lote
 
     [Tags]    encerrar_lei_123
@@ -45,7 +45,7 @@ CT25 - Encerrar Item/Lote para Lei 123
     Então encerro Lote para Lei 123
 
 
-CT26 - Convocar vencedor
+CT21 - Convocar vencedor
     Configurar variável fechado_aberto_lote
 
     [Tags]    convocar_vencedor
@@ -57,7 +57,7 @@ CT26 - Convocar vencedor
     Então faço a convocação do vencedor
 
 
-CT27 - Anexar documento - Vencedor
+CT22 - Anexar documento - Vencedor
     Configurar variável fechado_aberto_lote
 
     [Tags]    anexar_documento_vencedor
@@ -69,7 +69,7 @@ CT27 - Anexar documento - Vencedor
     Então anexo o documento
 
 
-CT28 - Habilitar fornecedor vencedor
+CT23 - Habilitar fornecedor vencedor
     Configurar variável fechado_aberto_lote
 
     [Tags]    habilitar_fornecedor
@@ -81,7 +81,7 @@ CT28 - Habilitar fornecedor vencedor
     Então habilito o fonecedor vencedor (Aberto_item)
 
 
-CT29 - Encerrar etapa
+CT24 - Encerrar etapa
     Configurar variável fechado_aberto_lote
 
     [Tags]    encerrar_etapa
@@ -93,7 +93,7 @@ CT29 - Encerrar etapa
     Então encerro a etapa de pregão eletrônico
 
 
-CT30 - Registrar intenção de recursos
+CT25 - Registrar intenção de recursos
     Configurar variável fechado_aberto_lote
     
     [Tags]    registrar_recurso

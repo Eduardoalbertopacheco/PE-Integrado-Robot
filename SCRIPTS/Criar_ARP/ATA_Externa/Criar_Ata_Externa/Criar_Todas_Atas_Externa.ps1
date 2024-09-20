@@ -1,6 +1,6 @@
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\COMPRA_DIRETA"
+$foldersPath = "${EXECDIR}\test\ATA_Externa\Criar_ata_externa"
 
 if (Test-Path $foldersPath) {
     $testFiles = Get-ChildItem -Path "$foldersPath\*.robot"
@@ -8,7 +8,7 @@ if (Test-Path $foldersPath) {
 
     foreach ($testFile in $testFiles) {
         Write-Host "Executando teste: $($testFile.FullName)"
-        robot --exitonfailure -d ./Relatorio/Todas_Compras $testFile.FullName
+        robot --exitonfailure -d ./Relatorio/ARP/Todas_Atas_Externas $testFile.FullName
     }
 } else {
     Write-Host "O caminho das pastas não existe: $foldersPath"

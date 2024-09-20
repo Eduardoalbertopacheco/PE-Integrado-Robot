@@ -12,6 +12,9 @@ ${URL}     https://www.homologpeintegrado.pe.gov.br/default.aspx
 *** Keywords ***
 Dado que acesso o sistema
     SeleniumLibrary.Open Browser    ${URL}    browser=chrome
+    # SeleniumLibrary.Open Browser    ${URL}    chrome    options=--headless
+
+
     Maximize Browser Window
     Capture Page Screenshot
     

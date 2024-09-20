@@ -198,6 +198,22 @@ Então incluo o Endereço de Entrada
     Capture Page Screenshot
     Close Browser
 
+E acesso a lista de preparação
+    Select Frame    xpath=//frame[contains(@name,'main')]
+
+    # Clique em Almoxarifado
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Almoxarifado')]
+
+    # Clique de Preparação
+    Wait Until Element Is Visible    //td[@class='label'][contains(.,'Preparação')]    20
+    Sleep    1
+    Click Element    //td[@class='label'][contains(.,'Preparação')]
+    Sleep    2
+    Capture Page Screenshot
+
+
+
 E acesso a lista de Transferências
     Select Frame    xpath=//frame[contains(@name,'main')]
 
@@ -1003,10 +1019,6 @@ Valor Do Input TRANSF Deve Ser Preenchido
     Create File    ${EXECDIR}/test/numero_transferencia.txt    ${NUM_TRANSF}
 
 
-
-    Close Browser
-
-
 Então incluo uma nova riquisição
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]    30
@@ -1284,6 +1296,20 @@ Então aprovo a Guia de Remessa
     Sleep    3
     Close Browser
 
+E Pesquiso pela TRN
+    Select Frame    //iframe[@name='frmConteudo']
+
+    ${NUM_TRANSF}    Get File    ${EXECDIR}/test/numero_transferencia.txt
+    Log    O valor lido é: ${NUM_TRANSF}
+
+    Wait Until Element Is Visible    //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl02$edtCampo_3']    30
+    Input Text        //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl02$edtCampo_3']    ${NUM_TRANSF}
+    Sleep    2
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    15
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
+    Capture Page Screenshot
+
 
 E pesquiso pela Transferência
     Select Frame    //iframe[@name='frmConteudo']
@@ -1299,6 +1325,14 @@ E pesquiso pela Transferência
     Sleep    2
     Capture Page Screenshot
 
+
+E seleciono a transferência da lista
+    ${NUM_TRANSF}    Get File    ${EXECDIR}/test/numero_transferencia.txt
+    Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td/a[text()='${NUM_TRANSF}']]//td[9]//input    15
+    Sleep    1
+    Click Element    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td/a[text()='${NUM_TRANSF}']]//td[9]//input
+    Sleep    2
+    Capture Page Screenshot
 
 
 E clico na Transferência da lista

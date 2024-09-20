@@ -10,7 +10,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 # Estes cenários só pode ser rodado depois de 15min + autoencerramento
-CT19 - Abrir Lote para disputa Sigilosa 5 min
+CT18 - Abrir Lote para disputa Sigilosa 5 min
     Configurar variável aberto_fechado_lote
 
     [Tags]    abrir_item-disputa_sigilosa
@@ -22,7 +22,7 @@ CT19 - Abrir Lote para disputa Sigilosa 5 min
     Então abros os Lotes
 
 
-CT20 - Enviar disputa sigilosa Forn01
+CT19 - Enviar disputa sigilosa Forn01
     Configurar variável aberto_fechado_lote
 
     [Tags]    enviar_disputa_sigilosa01
@@ -34,7 +34,7 @@ CT20 - Enviar disputa sigilosa Forn01
     Então envio o lance 01 para disputa Sigilosa
 
 
-CT21 - Enviar disputa sigilosa Forn02
+CT20 - Enviar disputa sigilosa Forn02
     Configurar variável aberto_fechado_lote
 
     [Tags]    enviar_disputa_sigilosa02
@@ -46,7 +46,7 @@ CT21 - Enviar disputa sigilosa Forn02
     Então envio o lance 02 para disputa Sigilosa
 
 
-CT22 - Encerrar disputa
+CT21 - Encerrar disputa
     Configurar variável aberto_fechado_lote
 
     [Tags]    encerrar_disputa
@@ -58,7 +58,7 @@ CT22 - Encerrar disputa
     Então ecerro a disputa Por Lote
     
 
-CT23 - Abrir Item/Lote para Lei 123
+CT22 - Abrir Item/Lote para Lei 123
     Configurar variável aberto_fechado_lote
 
     [Tags]    abrir_lei_123
@@ -69,7 +69,7 @@ CT23 - Abrir Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então abros os Lotes
 
-CT24 - Encerrar Item/Lote para Lei 123
+CT23 - Encerrar Item/Lote para Lei 123
     Configurar variável aberto_fechado_lote
 
     [Tags]    encerrar_lei_123
@@ -80,7 +80,7 @@ CT24 - Encerrar Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então encerro Lote para Lei 123
 
-CT25 - Convocar vencedor
+CT24 - Convocar vencedor
     Configurar variável aberto_fechado_lote
 
     [Tags]    convocar_vencedor
@@ -92,7 +92,7 @@ CT25 - Convocar vencedor
     Então faço a convocação do vencedor
 
 
-CT26 - Anexar documento - Vencedor
+CT25 - Anexar documento - Vencedor
     Configurar variável aberto_fechado_lote
 
     [Tags]    anexar_documento_vencedor
@@ -103,7 +103,7 @@ CT26 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
-CT27 - Habilitar fornecedor vencedor
+CT26 - Habilitar fornecedor vencedor
     Configurar variável aberto_fechado_lote
 
     [Tags]    habilitar_fornecedor
@@ -115,7 +115,7 @@ CT27 - Habilitar fornecedor vencedor
     Então habilito o fonecedor vencedor (Aberto_Fechado_item)
 
 
-CT28 - Encerrar etapa
+CT27 - Encerrar etapa
     Configurar variável aberto_fechado_lote
 
     [Tags]    encerrar_etapa
@@ -126,7 +126,7 @@ CT28 - Encerrar etapa
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
 
-CT29 - Registrar intenção de recursos
+CT28 - Registrar intenção de recursos
     Configurar variável aberto_fechado_lote
     
     [Tags]    registrar_recurso
