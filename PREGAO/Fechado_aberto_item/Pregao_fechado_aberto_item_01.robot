@@ -171,7 +171,7 @@ CT12 - Prorrogar Pregão
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
-    E seleciono a licitação da lista
+    E clico na licitação da lista
     E clico em prorrogar pregão
     E insiro as novas datas
     Então faço o prorrogamento

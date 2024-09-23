@@ -9,7 +9,8 @@ Resource         ../Resources/Variaveis.robot
 *** Variables ***
 
 ${TITULO_PARECER}    Título do Parecer
-${DROPDOWN_TPO_PARECER}  xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
+
+${DROPDOWN_TPO_PARECER}    //span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
 ${CAMPO_SELECAO_MARCA}    //span[contains(@aria-owns,'dtgPesquisaItens_ctl01_ddlMarca_listbox')]
 ${CAMPO_SELECAO_MARCA_LOTE}    //span[contains(@aria-owns,'dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaItens_ctl01_ddlMarca_listbox')]
 ${CAMPO_TIPO_PARECER}    //span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
@@ -605,7 +606,7 @@ E seleciono assino o documento do tipo Edital
     # E clico no botão assinar
     Capture Page Screenshot
     Click Element    xpath=//a[text()= 'Assinar']
-    Sleep    3
+    Sleep    4
 
 E solicito o parecer para o Ordenador -OPD
 
@@ -704,38 +705,23 @@ E solicito o parecer para o Ordenador
     Click Element    //button[@type='button'][contains(.,'OK')]
 
     #Clique na seleção tipo do Parecer
+    Log    Executando clique no dropdown
     Wait Until Element Is Visible  ${DROPDOWN_TPO_PARECER}    timeout=30s
     Click Element  ${DROPDOWN_TPO_PARECER}
 
-    # EXEMPLO 01
-    # Wait Until Element Is Visible    xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]    10
-    # Click Element    xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
-    # Sleep    2
-    # Wait Until Element Is Visible    xpath=(//ul[@id='nCdTipoParecerMap_listbox']//li[@tabindex='-1'][contains(.,'Jurídico')])[1]    10
-    # Sleep    2
-    # Click Element    xpath=(//ul[@id='nCdTipoParecerMap_listbox']//li[@tabindex='-1'][contains(.,'Jurídico')])[1]
+    ${ELEMENTOS}    Get WebElements    //ul[@id='nCdTipoParecerMap_listbox']
+    ${ITEM_LIST_PARECER}    Set Variable    ${ELEMENTOS}[1]
 
+    ${elementos}    Get WebElements    //li[@tabindex='-1'][contains(.,'Jurídico')]
+    ${ITEM_PARECER}    Set Variable    ${elementos}[1]
 
-    # # EXEMPLO 02
-    # Wait Until Element Is Visible    xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]    10
-    # Sleep    2
-    # Click Element    xpath=//span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]
-    # Sleep    2
-    # Execute JavaScript    Array.from(document.querySelectorAll('ul#nCdTipoParecerMap_listbox li')).find(li => li.textContent.trim() === 'Jurídico').click();
-    # Sleep    2
-    # Execute JavaScript    Array.from(document.querySelectorAll('span.k-input')).find(span => span.textContent.trim() === 'Jurídico')
-    # Sleep    2
-    # # Click Element    xpath=//span[contains(text(),'Jurídico')]
-    # Click Element    //legend[contains(.,'Solicitar parecer')]
+    Sleep    1
+    Wait Until Element Is Visible    ${ITEM_PARECER}    timeout=30s
+    Capture Page Screenshot
 
-
-    
-
-    # Implementar aqui o tipo do paracer para Jurídico
-
-    Sleep    10
-
-
+    Sleep    2
+    Click Element    ${ITEM_PARECER}
+    Sleep    1
 
     Wait Until Element Is Visible    //input[@name='sDsTitulo']    timeout=30s
     Input Text    //input[@name='sDsTitulo']    ${TITULO_PARECER}

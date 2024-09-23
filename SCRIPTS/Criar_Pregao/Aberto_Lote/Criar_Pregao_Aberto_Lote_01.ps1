@@ -13,3 +13,4 @@ if (Test-Path $testFilePath) {
 } else {
     Write-Host "O arquivo .robot não existe: $testFilePath"
 }
+
