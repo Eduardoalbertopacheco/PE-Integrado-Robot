@@ -8,9 +8,7 @@ if (Test-Path $foldersPath) {
     Write-Host "Arquivos .robot encontrados em: $($testFiles | ForEach-Object { $_.FullName })"
 
     foreach ($testFile in $testFiles) {
-        # Extrair o nome do arquivo sem extensão
         $testFileName = [System.IO.Path]::GetFileNameWithoutExtension($testFile.FullName)
-        # Definir o diretório de log baseado no nome do arquivo
         $logDir = "./Relatorio/Solicitacao_Compra/Todas_SCs_Pregao/$testFileName"
         
         Write-Host "Executando teste: $($testFile.FullName)"
@@ -22,6 +20,4 @@ if (Test-Path $foldersPath) {
 } else {
     Write-Host "O caminho das pastas não existe: $foldersPath"
 }
-
-
 

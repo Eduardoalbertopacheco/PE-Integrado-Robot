@@ -145,6 +145,13 @@ Então preencho os campos da Aba Dados gerais - TJ
 
 Então preencho os campos da Aba Dados gerais
 
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //a[contains(.,'Incluir')]
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
+    Switch Window    NEW
+
     Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
     Click Element    ${PRIORIDADE}
     Sleep    1
@@ -158,6 +165,10 @@ Então preencho os campos da Aba Dados gerais
     Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
 
     Click Element  ${LUPA_TIPO_OBJETO}
+    
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+
     Switch Window    NEW
 
     Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
@@ -166,7 +177,7 @@ Então preencho os campos da Aba Dados gerais
     Click Element    //*[@id="tdPesquisar"]
     Click Element    //input[@value="ANIMAIS VIVOS◘50"]
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
-    Switch Window
+    Switch Window    ${Janela01}
     
     Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
     Click Element    ${EMPRESA}
@@ -189,6 +200,9 @@ Então preencho os campos da Aba Dados gerais
     Sleep    1
     Click Element    ${LUPA_GRUPO_COMPRA}
 
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+
     Switch Window    NEW
 
     Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
@@ -203,7 +217,7 @@ Então preencho os campos da Aba Dados gerais
     Click Element    
     ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
 
-    Switch Window
+    Switch Window    ${Janela01}
 
     Capture Page Screenshot
     

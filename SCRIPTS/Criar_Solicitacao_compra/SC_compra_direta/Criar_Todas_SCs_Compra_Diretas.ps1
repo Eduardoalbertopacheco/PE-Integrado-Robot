@@ -12,7 +12,7 @@ if (Test-Path $foldersPath) {
         # Extrair o nome do arquivo sem extensão
         $testFileName = [System.IO.Path]::GetFileNameWithoutExtension($testFile.FullName)
         # Definir o diretório de log baseado no nome do arquivo
-        $logDir = "./Relatorio/Solicitacao_Compra/Todas_SCs_Compras_Diretas/$testFileName"
+        $logDir = "./Relatorio/Solicitacao_Compra/Todas_SCs/$testFileName"
         
         Write-Host "Executando teste: $($testFile.FullName)"
         Write-Host "Salvando log em: $logDir"

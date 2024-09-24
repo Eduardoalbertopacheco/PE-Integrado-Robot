@@ -1,22 +1,26 @@
 
 
-
-
 $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\SOLICITACAO_COMPRA"
 
 if (Test-Path $foldersPath) {
-    $testFiles = Get-ChildItem -Path "$foldersPath\*.robot"
-    Write-Host "Arquivos .robot encontrados em: $($testFiles | ForEach-Object { $_.FullName })"
+    # Usar -Recurse para buscar arquivos em todas as subpastas
+    $testFiles = Get-ChildItem -Path "$foldersPath" -Recurse -Filter "*.robot"
+    Write-Host "Arquivos .robot encontrados: $($testFiles | ForEach-Object { $_.FullName })"
 
     foreach ($testFile in $testFiles) {
         # Extrair o nome do arquivo sem extensão
         $testFileName = [System.IO.Path]::GetFileNameWithoutExtension($testFile.FullName)
-        # Definir o diretório de log baseado no nome do arquivo
-        $logDir = "./Relatorio/Solicitacao_Compra/Todas_SCs/$testFileName"
+        # Definir o diretório de log baseado no nome do arquivo e garantir que seja absoluto
+        $logDir = "${EXECDIR}\Relatorio\Solicitacao_Compra\Todas_SCs\$testFileName"
         
         Write-Host "Executando teste: $($testFile.FullName)"
         Write-Host "Salvando log em: $logDir"
+
+        # Criar o diretório de log, se não existir
+        if (-not (Test-Path $logDir)) {
+            New-Item -Path $logDir -ItemType Directory
+        }
 
         # Executar o teste e salvar o log no diretório correspondente
         robot --exitonfailure -d $logDir $testFile.FullName
@@ -24,22 +28,3 @@ if (Test-Path $foldersPath) {
 } else {
     Write-Host "O caminho das pastas não existe: $foldersPath"
 }
-
-
-
-
-
-
-
-
-
-# $EXECDIR = (Get-Location).Path  # Define o diretório raiz do projeto
-# $folders = Get-ChildItem -Directory -Path "${EXECDIR}\test\SOLICITACAO_COMPRA"
-
-# foreach ($folder in $folders) {
-#     $testFiles = Get-ChildItem -Path "$($folder.FullName)\*.robot"
-#     foreach ($testFile in $testFiles) {
-#         robot --exitonfailure -d ./logs $testFile.FullName
-#     }
-# }
-
