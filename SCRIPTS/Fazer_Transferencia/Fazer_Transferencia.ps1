@@ -1,15 +1,15 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\COMPRA_DIRETA\Inexgibilidade"
+$foldersPath = "${EXECDIR}\test\ALMOXARIFADO\Movimentacoes"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "Compra_direta_inex_lote.robot"
+$testFileName = "Solicitar_tranferencia_interna.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 if (Test-Path $testFilePath) {
     Write-Host "Executando teste: $testFilePath"
-    robot --exitonfailure -d ./Relatorio/Compras_Diretas/Compra_inex_lote $testFilePath
+    robot --exitonfailure -d ./Relatorio/Almoxarifado $testFilePath
 } else {
     Write-Host "O arquivo .robot não existe: $testFilePath"
 }

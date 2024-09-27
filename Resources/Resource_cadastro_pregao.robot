@@ -851,7 +851,7 @@ Então finalizo o parecer
     Click Element    //button[@type='button'][contains(.,'Finalizar parecer')]
 
     
-    Wait Until Element Is Visible    //textarea[contains(@name,'sDsJustificativa')]
+    Wait Until Element Is Visible    //textarea[contains(@name,'sDsJustificativa')]    30
     Input Text    //textarea[contains(@name,'sDsJustificativa')]    justificativa
     Capture Page Screenshot
 

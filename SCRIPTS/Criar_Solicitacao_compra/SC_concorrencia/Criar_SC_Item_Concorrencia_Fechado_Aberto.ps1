@@ -11,7 +11,5 @@ $testFilePath = "${foldersPath}\$testFileName"
 if (Test-Path $testFilePath) {
     Write-Host "Executando teste: $testFilePath"
     robot --exitonfailure -d ./Relatorio/Solicitacao_Compra/SC_Item_Concorrencia_fechado_aberto $testFilePath
-} else {
-    Write-Host "O arquivo .robot não existe: $testFilePath"
 }
 

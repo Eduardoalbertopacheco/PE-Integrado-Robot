@@ -1438,7 +1438,7 @@ E seleciono a SC para atribuir comissão com Gestor Central
 
  
 E seleciono a SC para atribuir comissão com Planejador
-
+    
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input

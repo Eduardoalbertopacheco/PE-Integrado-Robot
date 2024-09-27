@@ -16,7 +16,6 @@ CT01 - Criar SC - Aba dados Gerais
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
-    E acesso a URL de criar Solicitação de compras
     Então preencho os campos da Aba Dados gerais
 
 

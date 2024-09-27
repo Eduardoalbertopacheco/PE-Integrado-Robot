@@ -570,7 +570,9 @@ E preencho os dados do segundo lance na Compra Direta por item
 
 
     # Valor do lance
-    Wait Until Element Is Visible    //form[1]/table[1]/tbody[1]/tr[3]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/div[1]/span[2]/span[1]/input[1]    timeout=30s
+    Sleep    2s
+    Wait Until Element Is Visible    //form[1]/table[1]/tbody[1]/tr[3]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/div[1]/span[2]/span[1]/input[1]    30
+    Sleep    2s
     Input Text    //form[1]/table[1]/tbody[1]/tr[3]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/div[1]/span[2]/span[1]/input[1]    99
     Capture Page Screenshot
 

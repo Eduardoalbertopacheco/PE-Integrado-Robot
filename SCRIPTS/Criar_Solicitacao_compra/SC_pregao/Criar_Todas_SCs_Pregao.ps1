@@ -11,13 +11,8 @@ if (Test-Path $foldersPath) {
         $testFileName = [System.IO.Path]::GetFileNameWithoutExtension($testFile.FullName)
         $logDir = "./Relatorio/Solicitacao_Compra/Todas_SCs_Pregao/$testFileName"
         
-        Write-Host "Executando teste: $($testFile.FullName)"
-        Write-Host "Salvando log em: $logDir"
-
         # Executar o teste e salvar o log no diretório correspondente
         robot --exitonfailure -d $logDir $testFile.FullName
     }
-} else {
-    Write-Host "O caminho das pastas não existe: $foldersPath"
 }
 

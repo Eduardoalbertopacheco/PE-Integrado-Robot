@@ -12,11 +12,8 @@ if (Test-Path $foldersPath) {
         # Extrair o nome do arquivo sem extensão
         $testFileName = [System.IO.Path]::GetFileNameWithoutExtension($testFile.FullName)
         # Definir o diretório de log baseado no nome do arquivo e garantir que seja absoluto
-        $logDir = "${EXECDIR}\Relatorio\Compras_Diretas\$testFileName"
+        $logDir = "${EXECDIR}\Relatorio\Compras_Diretas\Todas_Compras\$testFileName"
         
-        Write-Host "Executando teste: $($testFile.FullName)"
-        Write-Host "Salvando log em: $logDir"
-
         # Criar o diretório de log, se não existir
         if (-not (Test-Path $logDir)) {
             New-Item -Path $logDir -ItemType Directory
@@ -25,6 +22,4 @@ if (Test-Path $foldersPath) {
         # Executar o teste e salvar o log no diretório correspondente
         robot --exitonfailure -d $logDir $testFile.FullName
     }
-} else {
-    Write-Host "O caminho das pastas não existe: $foldersPath"
 }
