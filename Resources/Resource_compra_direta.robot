@@ -153,8 +153,8 @@ E seleciono a Comissão - TJ
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    //input[contains(@value,'17')]    timeout=30s
-    Click Element    //input[contains(@value,'17')]
+    Wait Until Element Is Visible    //input[@name='rdbList']    timeout=30s
+    Click Element    //input[@name='rdbList']
     Capture Page Screenshot
 
     Click Element    //input[contains(@value,'Confirmar')]
@@ -237,8 +237,8 @@ Então preencho todos os campos da Aba Dados gerais
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    //input[contains(@value,'344')]    timeout=30s
-    Click Element    //input[contains(@value,'344')]
+    Wait Until Element Is Visible    //input[@name='rdbList']    timeout=30s
+    Click Element    //input[@name='rdbList']
     Capture Page Screenshot
 
     Click Element    //input[contains(@value,'Confirmar')]

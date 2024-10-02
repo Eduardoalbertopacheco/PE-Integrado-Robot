@@ -13,7 +13,7 @@ if (Test-Path $foldersPath) {
         $testFileName = [System.IO.Path]::GetFileNameWithoutExtension($testFile.FullName)
         
         # Definir o diretório de log baseado no nome do arquivo
-        $logDir = "./Relatorio/Compras_Diretas/Todas_Compras_Diretas/$testFileName"
+        $logDir = "./Relatorio/Compras_Diretas/Todas_Compras/$testFileName"
         
         # Executar o teste e salvar o log no diretório correspondente
         robot --exitonfailure -d $logDir $testFile.FullName
