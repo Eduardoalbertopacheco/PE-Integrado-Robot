@@ -4,6 +4,12 @@ Library          SeleniumLibrary
 Resource        ../Resources/Resource_login.robot
 Resource        ../Resources/Resource_Cotacao.robot
 
+*** Keywords ***
+
+
+
+
+
 *** Test Cases ***
 
 CT01 - Criar uma nova cotação
@@ -34,6 +40,26 @@ CT03 - Agendar Cotação
     E seleciono o filtro todas a cotações
     E seleciono a cotação da lista
     Então agendo a cotação
+
+
+CT04 - Fazer Representação
+
+    Dado que acesso o sistema
+    E faço login com usuário "cotador.110402"
+    E acesso a lista de cotações
+    E seleciono o filtro todas a cotações
+    E clico na cotação da lista
+    Então faço a representação
+
+
+CT05 - Encerrar Cotação
+
+    Dado que acesso o sistema
+    E faço login com usuário "cotador.110402"
+    E acesso a lista de cotações
+    E seleciono o filtro todas a cotações
+    E clico na cotação da lista
+    Então encerro a cotação
 
 
 

@@ -4,7 +4,7 @@ $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\ALMOXARIFADO\Requisicoes"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "Criar_requisicao
+$testFileName = "Nova_requisicao_Teste_Auto.robot
 .robot"
 $testFilePath = "${foldersPath}\$testFileName"
 

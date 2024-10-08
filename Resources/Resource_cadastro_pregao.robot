@@ -118,6 +118,12 @@ Então preencho a Aba de Dados Gerais
     # Seleção para registro de preço 'SIM'
     Wait Until Element Is Visible    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
     Click Element    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
+
+
+    # # Seleção para registro de preço 'Não'
+    # Wait Until Element Is Visible    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_1"]
+    # Click Element    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_1"]
+
     
     # Seleção do campo 'Confição de pagamento'
     Click Element    ${CODICAO_PAGAMENTO}
@@ -606,7 +612,7 @@ E seleciono assino o documento do tipo Edital
     # E clico no botão assinar
     Capture Page Screenshot
     Click Element    xpath=//a[text()= 'Assinar']
-    Sleep    4
+    Sleep    5
 
 E solicito o parecer para o Ordenador -OPD
 

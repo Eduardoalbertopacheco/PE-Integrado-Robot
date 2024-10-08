@@ -4,7 +4,7 @@ $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\ALMOXARIFADO\Movimentacoes"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "Solicitar_tranferencia_interna.robot"
+$testFileName = "Nova_tranferencia_interna_Teste_Auto.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 if (Test-Path $testFilePath) {

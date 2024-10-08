@@ -4,7 +4,7 @@ $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\ARP\ATA_Externa\Adesao_ata_externa"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "Solicitar_adesao_ata_estadual.robot"
+$testFileName = "Nova_adesao_ata_estadual_Teste_Auto.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 if (Test-Path $testFilePath) {

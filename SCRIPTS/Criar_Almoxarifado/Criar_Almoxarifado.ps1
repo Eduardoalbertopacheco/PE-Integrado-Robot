@@ -4,7 +4,7 @@ $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\ALMOXARIFADO\Almoxarifado"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "Criar_almoxarifado.robot"
+$testFileName = "Novo_almoxarifado_Teste_Auto.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 if (Test-Path $testFilePath) {

@@ -4,7 +4,7 @@ $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\ARP\ATA_OPD\Consumo_ata_OPD"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "Solicitar_consumo_ata_opd_compra_direta.robot"
+$testFileName = "Novo_consumo_ata_opd_compra_direta_Teste_Auto.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 if (Test-Path $testFilePath) {

@@ -350,6 +350,7 @@ Então incluo os itens
     # Click Element    (//input[contains(@id,'ckbListProduto')])[2]
 
     Click Element    //*[@id="ctl00_ContentButtom_btnConfirmar"]
+    Sleep    3
 
 
     # Implementar aqui a quantidade do item
@@ -498,12 +499,13 @@ Então faço o planejamento da SC para Cotação
     Sleep    1
     Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Cotação')]
     Click Element    //li[@tabindex='-1'][contains(.,'Cotação')]
+    Sleep    2
 
 
     # Clique no botão 'Salvar e Fechar'
     Wait Until Element Is Visible    //input[contains(@value,'Salvar e fechar')]
     Click Element    //input[contains(@value,'Salvar e fechar')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
     Sleep    2
 
@@ -525,7 +527,7 @@ Então faço o planejamento da SC para Cotação
     # Clique no botão confirmar justificativa
     Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
     Click Element    //a[contains(.,'Confirmar')]
-    Sleep    4
+    Sleep    5
     Capture Page Screenshot
     Sleep    1
     SeleniumLibrary.Close Browser
@@ -1657,9 +1659,9 @@ E seleciono a SC da lista
     Sleep    1
     Select Frame    //iframe[contains(@name,'frmConteudo')]
     Sleep    2
-    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]    timeout=30s
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a    timeout=30s
     Sleep    2
-    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a
     Sleep    2
  
 

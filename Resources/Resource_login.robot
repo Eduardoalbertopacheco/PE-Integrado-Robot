@@ -14,9 +14,6 @@ Dado que acesso o sistema
     SeleniumLibrary.Open Browser    ${URL}    browser=chrome
     # SeleniumLibrary.Open Browser    ${URL}    chrome    options=--headless
     Maximize Browser Window
-
-    Execute Javascript    window.moveTo(800, 100);  # Ajuste a posição conforme necessário
-
     Capture Page Screenshot
     
 
