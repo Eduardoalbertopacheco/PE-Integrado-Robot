@@ -548,71 +548,90 @@ Então incluo a SC Por Lote ao Pregão
 
 
 E incluo um documento do tipo Edital
-    Switch Window    NEW
 
+    Switch Window    NEW
     # Clique na aba documentos
     Wait Until Element Is Visible    //a[contains(.,'Documentos do processo')]    timeout=30s
     Click Element    //a[contains(.,'Documentos do processo')]
 
+    FOR    ${index}    IN RANGE    2
+   
+        # Clique do botão 'Escolher Arquivo'
+        Wait Until Element Is Visible    //input[contains(@type,'file')]    timeout=30s
+        Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
 
-    # Clique do botão 'Escolher Arquivo'
-    Wait Until Element Is Visible    //input[contains(@type,'file')]    timeout=30s
-    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+        # Switch Window
+        Sleep    1
 
-    # Switch Window
+        # Clique e escrevo no campo 'Tipo do documento'
+        Wait Until Element Is Visible    
+        ...    css=input[id="ctl00_conteudoPagina_objListagemDeDocumentos_autoTipoDeDocumento"]    timeout=30s
 
-    Sleep    1
-    # Clique e escrevo no campo 'Tipo do documento'
-    Wait Until Element Is Visible    
-    ...    css=input[id="ctl00_conteudoPagina_objListagemDeDocumentos_autoTipoDeDocumento"]    timeout=30s
-    Input Text    
-    ...    css=input[id="ctl00_conteudoPagina_objListagemDeDocumentos_autoTipoDeDocumento"]
-    ...    Edital - PE
-    Sleep    2
-    Wait Until Element Is Visible    //li[text()="Edital - PE"]    timeout=30s
-    Click Element    //li[text()="Edital - PE"]
+        ${tipo_doc} =    Set Variable    Edital - PE
+        ${li_doc} =    Set Variable    //li[text()="Edital - PE"]
 
+        # Ajustar os localizadores e o tipo de documento para a segunda execução
+        IF    ${index} == 1
+            ${tipo_doc} =    Set Variable    Edital
+            ${li_doc} =    Set Variable    //li[text()="Edital"]
+        END
 
-    # Clique no botão 'Anexar' o arquivo
-    Capture Page Screenshot
-    Click Element    //input[@value='Anexar']
-    Handle Alert    ACCEPT
+        Input Text    
+        ...    css=input[id="ctl00_conteudoPagina_objListagemDeDocumentos_autoTipoDeDocumento"]
+        ...    ${tipo_doc}
+        Sleep    2
+        Wait Until Element Is Visible    ${li_doc}    timeout=30s
+        Click Element    ${li_doc}
+
+        # Clique no botão 'Anexar' o arquivo
+        Capture Page Screenshot
+        Click Element    //input[@value='Anexar']
+        Handle Alert    ACCEPT
+    END
 
 
 E seleciono assino o documento do tipo Edital
-    Switch Window    NEW
 
+    Switch Window    NEW
     # Clique na aba documentos
     Wait Until Element Is Visible    //a[contains(.,'Documentos do processo')]    timeout=30s
     Click Element    //a[contains(.,'Documentos do processo')]
 
-    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+    FOR    ${index}    IN RANGE    2
 
-    # Selecionar o doc do tipo Edital
-    Wait Until Element Is Visible
-    ...    //table[@id= "ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Edital - PE']]//td[10]//input    timeout=30s
-    Select Checkbox
-    ...    //table[@id= "ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Edital - PE']]//td[10]//input
+        Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    # Clicar no botão 'Assinar Documento'
-    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    timeout=30s
-    Click Element    xpath=//a[contains(.,'Assinar documento')]
+        # Selecionar o documento do tipo Edital
+        ${doc_locator} =    Set Variable    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Edital - PE']]//td[10]//input
 
+        # Ajustar o localizador para a segunda execução
+        IF    ${index} == 1
+            ${doc_locator} =    Set Variable    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Edital']]//td[10]//input
+        END
 
-    # E Preencho os campos de assinatura
-    Sleep    2
-    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    timeout=30s
+        Wait Until Element Is Visible    ${doc_locator}    timeout=30s
+        Select Checkbox    ${doc_locator}
 
-    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    timeout=30s
-    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+        # Clicar no botão 'Assinar Documento'
+        Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    timeout=30s
+        Click Element    xpath=//a[contains(.,'Assinar documento')]
 
-    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
-    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+        # Preencher os campos de assinatura
+        Sleep    2
+        Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    timeout=30s
 
-    # E clico no botão assinar
-    Capture Page Screenshot
-    Click Element    xpath=//a[text()= 'Assinar']
-    Sleep    5
+        Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    timeout=30s
+        Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+        Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
+        Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+
+        # Clicar no botão 'Assinar'
+        Capture Page Screenshot
+        Click Element    xpath=//a[text()='Assinar']
+        Sleep    5
+    END
+
 
 E solicito o parecer para o Ordenador -OPD
 
@@ -770,6 +789,7 @@ E acesso a tela com filtro todas as Licitações
    # Clique no botão Pesquisar
    Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    timeout=30s
    Click Element    xpath=//input[@value= "Pesquisar"]
+   Sleep    2
    Capture Page Screenshot
 
 

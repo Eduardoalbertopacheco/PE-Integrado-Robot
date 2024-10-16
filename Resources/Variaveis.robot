@@ -53,45 +53,45 @@ Configurar Variáveis de ARP
 
 
 Configurar variável fechado_aberto_item
-    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_fechado_aberto_item_01
+    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_fechado_aberto_item_01_Teste_Auto
 
 Configurar variável fechado_aberto_lote
-    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_fechado_aberto_lote_01
+    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_fechado_aberto_lote_01_Teste_Auto
 
 Configurar variável aberto_fechado_lote
-    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_fechado_lote_01
+    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_fechado_lote_01_Teste_Auto
 
 Configurar variável aberto_fechado_item
-    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_fechado_item_01
+    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_fechado_item_01_Teste_Auto
 
 Configurar variável aberto_lote
-    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_lote_01
+    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_lote_01_Teste_Auto
 
 Configurar variável aberto_item
-    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_item_01
+    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_item_01_Teste_Auto
 
 Configurar variável aberto_lote_OPD
-    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_lote_OPD_01
+    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_lote_OPD_01_Teste_Auto
 
 
 
 Configurar variável Conc_aberto_fechado_item
-    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_fechado_item_01
+    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_fechado_item_01_Teste_Auto
 
 Configurar variável Conc_aberto_fechado_lote
-    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_fechado_lote_01
+    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_fechado_lote_01_Teste_Auto
 
  Configurar variável Conc_fechado_aberto_lote
-    Set Global Variable    ${OBJETO_PREGAO}    Conc_fechado_aberto_lote_01
+    Set Global Variable    ${OBJETO_PREGAO}    Conc_fechado_aberto_lote_01_Teste_Auto
 
 Configurar variável Conc_fechado_aberto_item
-    Set Global Variable    ${OBJETO_PREGAO}    Conc_fechado_aberto_item_01
+    Set Global Variable    ${OBJETO_PREGAO}    Conc_fechado_aberto_item_01_Teste_Auto
 
 Configurar variável Conc_aberto_lote_01
-    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_lote_01
+    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_lote_01_Teste_Auto
 
 Configurar variável Conc_aberto_item_01
-    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_item_01           
+    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_item_01   _Teste_Auto        
 
 
 

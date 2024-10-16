@@ -3,9 +3,6 @@ Library    SeleniumLibrary
 Resource    ../../Resources/Resource_login.robot
 Resource    ../../Resources/Resource_Almoxarifado.robot
 
-*** Keywords ***
-
-
 
 *** Test Cases ***
 

@@ -1217,6 +1217,7 @@ E seleciono o filtro SC em Planejamento - Ordenador
 E seleciono a SC
 
     ${start_time}    Get Time    epoch
+    # ${element_found}=    Set Variable    False
     FOR    ${i}    IN RANGE    ${timeout}
         Sleep    1
         Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -1225,6 +1226,7 @@ E seleciono a SC
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
         Run Keyword If    ${element_found}    Exit For Loop
         
+    
         Execute JavaScript    window.location.reload()
         Sleep    ${interval} sec
 
@@ -1653,6 +1655,17 @@ Então atribuo a Comissão Permanente de Licitação
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    3
     SeleniumLibrary.Close Browser
+
+
+E clico na SC da lista no Homol03
+    Sleep    1
+    # Select Frame    //iframe[contains(@name,'frmConteudo')]
+    Sleep    2
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a    timeout=30s
+    Sleep    2
+    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a
+    Sleep    2
+
 
 
 E seleciono a SC da lista

@@ -6,7 +6,7 @@ Library           OperatingSystem
 
 *** Variables ***
 
-${NOME_ALMOX}    Almoxarifado 10/09 - Teste 02
+${NOME_ALMOX}    Novo_almoxarifado_Teste_Auto
 @{CODIGOS_PRODUTOS}    1000241    1000268
 ${data_atual}    Get Current Date    result_format=%Y/%m/%d
 ${INPUT_REQ}    //*[@id="ctl00_ContentPrincipal_tbxNumero"]

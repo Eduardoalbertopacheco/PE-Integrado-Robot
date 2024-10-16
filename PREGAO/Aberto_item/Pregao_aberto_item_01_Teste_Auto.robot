@@ -41,7 +41,7 @@ CT02 - Incluir SC ao Pregão
 
 CT03 - Incluir Documento - Edital
     Configurar Variáveis de Pregão
-
+    
     [Tags]    Incluir_doc_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
