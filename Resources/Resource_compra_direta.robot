@@ -20,7 +20,7 @@ ${MOD_DISPENSA}    (//li[@tabindex='-1'][contains(.,'Dispensa')])[1]
 ${MOD_INEXIGIBILIDADE}     //li[contains(.,'Inexigibilidade')]
 ${CRITERIO_DISPENSA}   //li[@tabindex='-1'][contains(.,'LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA')]
 ${CRITERIO_INEXIGIBILIDADE}    //li[text() = "LEI FEDERAL Nº 14.133/2021, ART. 74, CAPUT - INEXIGIBILIDADE QUANDO INVIÁVEL A COMPETIÇÃO"]
-${timeout}=        300    
+${timeout}=        360    
 ${interval}=       5 
 
 
@@ -389,8 +389,8 @@ Então faço o agendamento da compra Direta
 E configuro o agendamento
 
     # Data inicial dos lances
-   ${hora_atual+03min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=4)).strftime('%d-%m-%Y %H:%M:%S')    datetime
-    Log    ${hora_atual+03min}
+   ${hora_atual+06min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=6)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+    Log    ${hora_atual+06min}
 
     # Data final dos lances
     ${hora_atual+300min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=300)).strftime('%d-%m-%Y %H:%M:%S')    datetime
@@ -414,7 +414,7 @@ E configuro o agendamento
 
     Wait Until Element Is Visible    //input[contains(@name,'tbxDataInicialProposta')]    timeout=30s
     # Clear Text    //input[contains(@name,'tbxDataInicialProposta')]
-    Input Text    //input[contains(@name,'tbxDataInicialProposta')]    ${hora_atual+03min}
+    Input Text    //input[contains(@name,'tbxDataInicialProposta')]    ${hora_atual+06min}
 
     
     Wait Until Element Is Visible    //input[contains(@name,'tbxDataEncerramento')]    timeout=30s

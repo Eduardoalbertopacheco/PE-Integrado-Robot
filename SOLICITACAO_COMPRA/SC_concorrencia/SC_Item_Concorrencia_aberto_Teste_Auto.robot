@@ -69,7 +69,7 @@ CT06 - Planejamento com Solicitante
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
-    Então faço planejamento da SC para Pregão eletronico
+    Então faço planejamento da SC para Concorrencia - Solicitante
 
 CT07 - Definir Natureza de despesa com o Financeiro
     Configurar Variáveis de SC

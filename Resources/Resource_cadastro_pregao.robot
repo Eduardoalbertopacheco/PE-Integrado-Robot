@@ -79,7 +79,7 @@ ${SELECAO_MENU_NEGOCIACAO}    LICITACAO=//td[@class='label'][contains(.,'Licita�
 &{NOVA_LICITACAO}    //td[@class='label'][contains(.,'Nova licitação eletrönica')]
 ${LICITACOES_ELERONICAS}    //td[@class='label'][contains(.,'Licitações eletrônicas')]
 
-${timeout}=        300    
+${timeout}=        370   
 ${interval}=       5     
 ${start_time}=    Get Time    epoch
 
@@ -528,8 +528,8 @@ Então incluo a SC Por Lote ao Pregão
     # Selecionar a SC para Incluir
     ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
-        Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${resumo_sc}']]//td[5]//input
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[5]//input
+        Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[5]//input
         Run Keyword If    ${element_found}    Exit For Loop
         
         Execute JavaScript    window.location.reload()
@@ -966,8 +966,8 @@ E seleciono a licitação para agendamento
 
 Então faço o reagendamento
 
-    ${hora_atual+3min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=4)).strftime('%d-%m-%Y %H:%M:%S')    datetime
-    Log    ${hora_atual+3min}
+    ${hora_atual+6min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=6)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+    Log    ${hora_atual+6min}
 
     ${hora_atual+300min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=300)).strftime('%d-%m-%Y %H:%M:%S')    datetime
     Log    ${hora_atual+300min}
@@ -991,7 +991,7 @@ Então faço o reagendamento
     # Data inicial de propostas
     Wait Until Element Is Visible    //input[contains(@name,'tbxDataInicialProposta')]    timeout=30s
     Clear Element Text    //input[contains(@name,'tbxDataInicialProposta')]
-    Input Text    //input[contains(@name,'tbxDataInicialProposta')]    ${hora_atual+3min}
+    Input Text    //input[contains(@name,'tbxDataInicialProposta')]    ${hora_atual+6min}
 
     # Data Fianl de propostas
     Wait Until Element Is Visible    //input[contains(@name,'tbxDataEncerramento')]    timeout=30s

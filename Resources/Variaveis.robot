@@ -91,88 +91,83 @@ Configurar variável Conc_aberto_lote_01
     Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_lote_01_Teste_Auto
 
 Configurar variável Conc_aberto_item_01
-    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_item_01   _Teste_Auto        
-
+    Set Global Variable    ${OBJETO_PREGAO}    Conc_aberto_item_01_Teste_Auto        
 
 
 
 Configurar variável Compra_direta_disp_item
-    Set Global Variable    ${OBJETO_COMPRA}    Compra_direta_disp_item
+    Set Global Variable    ${OBJETO_COMPRA}    Compra_direta_disp_item_Teste_Auto
 
 Configurar variável Compra_direta_disp_lote
-    Set Global Variable    ${OBJETO_COMPRA}    Compra_direta_disp_lote
+    Set Global Variable    ${OBJETO_COMPRA}    Compra_direta_disp_lote_Teste_Auto
 
 Configurar Variável de Adesão
-    Set Global Variable    ${OBJETO_ATA}    Compra_direta_disp_item    
-
-
+    Set Global Variable    ${OBJETO_ATA}    Compra_direta_disp_item_Teste_Auto    
 
 Usar SC_Item_Compra_Disp_Emerg
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_Emerg
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_Emerg_Teste_Auto
 
 Usar SC_Item_Compra_Disp_OPD
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_OPD
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_OPD_Teste_Auto
 
 Usar SC_Item_Compra_Disp
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_Teste_Auto
 
 Usar SC_Item_Compra_Inex
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Inex
-
-
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Inex_Teste_Auto
 
 Usar SC_Item_Concorrencia_aberto
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Concorrencia_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Concorrencia_aberto_Teste_Auto
 
 Usar SC_Item_Concorrencia_aberto_fechado
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Concorrencia_aberto_fechado
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Concorrencia_aberto_fechado_Teste_Auto
 
 Usar SC_Lote_Concorrencia_aberto_fechado
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Concorrencia_aberto_fechado
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Concorrencia_aberto_fechado_Teste_Auto
 
 Usar SC_Item_Concorrencia_fechado_aberto
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Concorrencia_fechado_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Concorrencia_fechado_aberto_Teste_Auto
 
 Usar SC_Lote_Concorrencia_fechado_aberto
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Concorrencia_fechado_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Concorrencia_fechado_aberto_Teste_Auto
 
 SC_Lote_Concorrencia_aberto
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Concorrencia_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Concorrencia_aberto_Teste_Auto
 
 
 
 Usar SC_Lote_Compra_Disp_Emerg
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Compra_Disp_Emerg
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Compra_Disp_Emerg_Teste_Auto
 
 Usar SC_Lote_Compra_Disp
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Compra_Disp
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Compra_Disp_Teste_Auto
 
 Usar SC_Lote_Compra_Inex
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Compra_Inex
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Compra_Inex_Teste_Auto
 
 Usar SC_Lote_Concorrencia
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Concorrencia_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Concorrencia_aberto_Teste_Auto
 
 Usar SC_Lote_Pregao_OPD
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_OPD
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_OPD_Teste_Auto
 
 Usar SC_Lote_Pregao_aberto
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_aberto_Teste_Auto
 
 Usar SC_Item_Pregao_aberto
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_aberto_Teste_Auto
 
 Usar SC_Lote_Pregao_aberto_fechado
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_aberto_fechado
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_aberto_fechado_Teste_Auto
 
 Usar SC_Lote_Pregao_fechado_aberto
-    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_fechado_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_fechado_aberto_Teste_Auto
 
 Usar SC_Item_Pregao_aberto_fechado
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_aberto_fechado
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_aberto_fechado_Teste_Auto
 
 usar SC_Item_Pregao_fechado_aberto
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_fechado_aberto
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_fechado_aberto_Teste_Auto
 
 
 

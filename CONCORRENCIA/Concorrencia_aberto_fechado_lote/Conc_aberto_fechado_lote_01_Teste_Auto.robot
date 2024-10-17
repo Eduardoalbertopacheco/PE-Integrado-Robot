@@ -104,7 +104,7 @@ CT07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    E mostro a auditoria
+
 
 
 CT08 - Aprovar autorização

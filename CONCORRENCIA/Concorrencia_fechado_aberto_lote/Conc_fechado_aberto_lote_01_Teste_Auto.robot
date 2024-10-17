@@ -24,10 +24,9 @@ CT01 - Criar Pregão - Aba Dados Gerais
     E mostro a auditoria
 
 
-CT02 - Incluir SC ao Pregão
+CT02 - Incluir SC à Concorrência
     Configurar Variáveis de Pregão
     Usar SC_Lote_Concorrencia_fechado_aberto
-
 
     [Tags]    incluir_SC
     Dado que acesso o sistema

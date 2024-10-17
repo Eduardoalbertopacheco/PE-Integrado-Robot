@@ -235,6 +235,31 @@ Então incluo uma Nova baixa
     SeleniumLibrary.Close Browser
 
 
+Então concluo a Baixa
+    Select Frame    //iframe[@name='frmConteudo']
+    ${NUM_BAIXA_BEM}    Get File    ${EXECDIR}/test/num_baixa_bem.txt
+
+    # Pesquisa da baixa
+    Wait Until Element Is Visible    //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl02$edtCampo_3']    14
+    Input Text    //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl02$edtCampo_3']    ${NUM_BAIXA_BEM}
+    
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]
+    Capture Page Screenshot
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    1
+
+
+    # Selecionar a Baixa
+    Wait Until Element Is Visible    //tr[td//a[text() = '${NUM_BAIXA_BEM}']]//td[10]//input
+    Click Element    //tr[td//a[text() = '${NUM_BAIXA_BEM}']]//td[10]//input
+
+
+    Wait Until Element Is Visible    //a[contains(.,'Concluir')]
+    Click Element    //a[contains(.,'Concluir')]
+    Sleep    3
+    Capture Page Screenshot
+
+
 
 Então incluo um novo bém móvel
     Select Frame    //iframe[@name='frmConteudo']

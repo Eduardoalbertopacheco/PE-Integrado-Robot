@@ -9,7 +9,6 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
-# Estes cenários só pode ser rodado depois de 15min + Autoencerramento
 CT19 - Abrir Item para disputa Sigilosa 5 min
     Configurar variável Conc_aberto_fechado_item
 

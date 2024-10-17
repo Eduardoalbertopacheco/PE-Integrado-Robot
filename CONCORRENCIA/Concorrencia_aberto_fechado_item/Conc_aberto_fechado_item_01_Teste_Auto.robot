@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Fluxo feliz - Cadastro de Pregão Eletronico
+Documentation    Fluxo feliz - Cadastro de Concorrência Eletronica
 Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
@@ -29,7 +29,6 @@ CT01 - Criar Concorrência Aberto-Fechado Por Item - Aba Dados Gerais
 CT02 - Incluir SC ao Pregão
     Configurar Variáveis de Pregão
     Usar SC_Item_Concorrencia_aberto_fechado
-
 
     [Tags]    incluir_sc_pregao
     Dado que acesso o sistema
@@ -105,7 +104,6 @@ CT07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    E mostro a auditoria
 
 
 CT08 - Aprovar autorização
