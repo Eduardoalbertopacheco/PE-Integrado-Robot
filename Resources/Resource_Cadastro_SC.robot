@@ -19,6 +19,7 @@ ${TIPO_AMS}    //*[@id="td_cORDEM_COMPRA_x_nIdTipoOrdemCompra"]//*[@value='14']
 ${PRIORIDADE}    //*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]
 ${PRIORIDADE_MEDIA}    //*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]//*[@value='2']
 ${EMPRESA_SEDC}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='20']
+${EMPRESA_SAD}     //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='3']
 ${EMPRESA_TJ}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='12']
 ${GESTAO_AD}    //*[@id="td_cORDEM_COMPRA_x_nCdGestao"]//*[@value='1']
 ${APLICACAO_EI}    //*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]//*[@value='1']
@@ -244,6 +245,88 @@ Então preencho os campos da Aba Dados gerais da SC
     SeleniumLibrary.Close Browser
 
 
+Então preencho os campos da Aba Dados gerais - SAD
+
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //a[contains(.,'Incluir')]
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Click Element    ${PRIORIDADE}
+    Sleep    1
+    Click Element    ${PRIORIDADE_MEDIA}
+    
+    Wait Until Element Is Visible    ${TIPO}    timeout=30s
+    Click Element    ${TIPO}
+    Sleep    1
+    Click Element    ${TIPO_AMS}
+    
+    Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
+
+    Click Element  ${LUPA_TIPO_OBJETO}
+    
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
+    Wait Until Element Is Visible    ${INPUT_TIPO}    timeout=30s
+    Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
+    Click Element    //*[@id="tdPesquisar"]
+    Click Element    //input[@value="ANIMAIS VIVOS◘50"]
+    Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Switch Window    ${Janela01}
+    
+    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Click Element    ${EMPRESA}
+    Wait Until Element Is Visible    ${EMPRESA_SAD}    timeout=30s
+    Click Element    ${EMPRESA_SAD}
+    
+    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Click Element    ${GESTAO} 
+    Click Element    ${GESTAO_AD}
+    
+    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Click Element    ${APLICACAO}
+    Sleep    1
+    Click Element    ${APLICACAO_EI}
+    Capture Page Screenshot
+    
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Sleep    1
+    Click Element    ${LUPA_GRUPO_COMPRA}
+
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
+    Input Text    ${INPUT_TIPO}    SECRETARIA DE ADMINISTRAÇÃO	
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    timeout=30s
+    Click Element    //*[@id="ctl00_btnPesquisar"]  
+
+    Wait Until Element Is Visible    
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']   timeout=30s
+    Click Element    
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']
+    Click Element    
+    ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+
+    Switch Window    ${Janela01}
+
+    Capture Page Screenshot
+    
+    Click Element    //*[@id="btnSalvar"]
+    Sleep    1
+    Handle Alert    ACCEPT
+    SeleniumLibrary.Close Browser
 
 
 Então preencho os campos da Aba Dados gerais
@@ -1193,6 +1276,15 @@ E acesso a lista de Planejamento de Compras
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
     # Sleep    2
+
+    # Ocultar Icones de Chat
+    Sleep    2
+    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    Sleep    1
+    Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    
     Capture Page Screenshot
 
 
@@ -1559,6 +1651,15 @@ E acesso a tela de Planejamento de compras
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
     # Sleep    2
+
+    # Ocultar Icones de Chat
+    Sleep    2
+    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    Sleep    1
+    Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    
     Capture Page Screenshot
 
 
@@ -1614,9 +1715,11 @@ E seleciono a SC para atribuir comissão com Gestor Central
 
  
 E seleciono a SC para atribuir comissão com Planejador
+
     
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
+
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
         Run Keyword If    ${element_found}    Exit For Loop

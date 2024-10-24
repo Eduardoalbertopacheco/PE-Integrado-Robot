@@ -8,7 +8,6 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
-# Estes cenários só podem ser rodados após 10min
 CT26 - Não acatar intenção de recursos
     Configurar variável fechado_aberto_lote
 

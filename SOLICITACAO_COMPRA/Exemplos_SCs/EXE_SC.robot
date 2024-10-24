@@ -15,6 +15,12 @@ Dado que acesso o sistema no honologue 03
     Maximize Browser Window
     Capture Page Screenshot
 
+Set Browser Zoom To 80 Percent
+    SeleniumLibrary.Press Keys    NONE    Ctrl+-   
+    Sleep    3
+    SeleniumLibrary.Press Keys    NONE    Ctrl+-
+
+
 *** Test Cases ***
 
 CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
@@ -23,6 +29,9 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     # Abrir navegador
     SeleniumLibrary.Open Browser    ${HOMOLOG03}    browser=chrome
     Maximize Browser Window
+    Sleep    3
+    Set Browser Zoom To 80 Percent
+    Sleep    3
     Capture Page Screenshot
 
     #E faço login com usuário "${usuario}"

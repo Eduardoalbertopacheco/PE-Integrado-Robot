@@ -74,7 +74,7 @@ E seleciono o filtro Compras diretas encerradas
 
 
 E seleciono o filtro Todas as compras diretas
-
+    Sleep    1
     Select Frame    xpath=//iframe[@class='ifrmConteudo']
 
     # Clique no campo exibir
@@ -497,8 +497,8 @@ E preencho os dados do lance na Compra Direta por Lote
 
 
 E preencho os dados do lance na Compra Direta por Item
-
-    Select Frame    ${FRAME_NEGOCIACAO}   
+    Sleep    1
+    Select Frame    ${FRAME_NEGOCIACAO}
     ${start_time}=    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    ${CAMPO_SELECAO_MARCA}
@@ -537,6 +537,7 @@ E preencho os dados do lance na Compra Direta por Item
 
 E preencho os dados do segundo lance na Compra Direta por item
 
+    Sleep    1
     Select Frame    ${FRAME_NEGOCIACAO}   
     ${start_time}=    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
@@ -588,6 +589,8 @@ Então envio o lance na compra direta
 
 
 E clico em prorrogar pregão na compra Direta
+
+    Sleep    1
     Select Frame    //frame[@name='frmDetalheCompraDireta']
 
     Wait Until Element Is Visible    //a[contains(.,'Prorrogar')]    timeout=30s
@@ -631,6 +634,7 @@ Então faço o prorrogamento da compra direta
 
 Então finalizo a Compra Direta
 
+    Sleep    1
     Select Frame    //frame[contains(@name,'frmNegociacao')]   
     ${start_time}=    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
@@ -667,6 +671,8 @@ Então finalizo a Compra Direta
 
 
 Então ratifico a Compra Direta
+
+    Sleep    1
     Select Frame    //frame[contains(@name,'frmNegociacao')]
 
     Wait Until Element Is Visible    //a[contains(.,'Ratificar compra direta')]    timeout=30s

@@ -629,7 +629,7 @@ E seleciono assino o documento do tipo Edital
         # Clicar no botão 'Assinar'
         Capture Page Screenshot
         Click Element    xpath=//a[text()='Assinar']
-        Sleep    5
+        Sleep    7
     END
 
 
@@ -1043,6 +1043,7 @@ E seleciono não para lei 123 e confirmo
 
 
 E preencho os dados do lance por Item
+    Sleep    1
     Select Frame    ${FRAME_NEGOCIACAO}
 
     Log    Executando clique no dropdown
