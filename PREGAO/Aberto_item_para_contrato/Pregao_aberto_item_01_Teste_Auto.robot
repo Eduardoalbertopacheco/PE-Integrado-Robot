@@ -144,7 +144,6 @@ CT10 - Envio de propostas Fornecedor 01
     E seleciono não para lei 123 e confirmo
     E preencho os dados do lance por Item
     Então envio a proposta
-    # E vejo a Auditoria
     
 
 CT11 - Envio de propostas Fornecedor 02
@@ -159,7 +158,6 @@ CT11 - Envio de propostas Fornecedor 02
     E seleciono não para lei 123 e confirmo
     E preencho os dados do lance por Item
     Então envio a proposta
-    # E vejo a Auditoria
 
 
 CT12 - Prorrogar Pregão

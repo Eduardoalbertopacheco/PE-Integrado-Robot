@@ -7,11 +7,10 @@ Resource       ../../../Resources/Resource_login.robot
 Resource        ../../../Resources/Resource_ARP.robot
 
 
-
 *** Test Cases ***
 
 CT01 - Gerar ARP do Pregão
-    Configurar variável aberto_item
+    Configurar Variáveis de Contrato
     
     [Tags]    gerar_ata
     Dado que acesso o sistema
@@ -23,7 +22,7 @@ CT01 - Gerar ARP do Pregão
 
 
 CT02 - Configurar Ata
-    Configurar variável aberto_item
+   Configurar variável aberto_item
 
     [Tags]    configurar_ata
     Dado que acesso o sistema
@@ -35,7 +34,7 @@ CT02 - Configurar Ata
 
 
 CT03 - Inluir Documento
-    Configurar variável aberto_item
+   Configurar variável aberto_item
 
     [Tags]    Incluir_documento
     Dado que acesso o sistema
@@ -47,7 +46,7 @@ CT03 - Inluir Documento
 
 
 CT04 - Assinar Documento
-    Configurar variável aberto_item
+   Configurar variável aberto_item
 
     [Tags]    assinar_documento
     Dado que acesso o sistema
@@ -59,7 +58,7 @@ CT04 - Assinar Documento
 
 
 CT05 - Ativar ARP
-    Configurar variável aberto_item
+   Configurar variável aberto_item
 
     [Tags]    ativar_ata
     Dado que acesso o sistema
@@ -70,7 +69,7 @@ CT05 - Ativar ARP
 
 
 CT06 - Configurar Gestão da Ata
-    Configurar variável aberto_item
+    Configurar Variáveis de Contrato
     
     [Tags]    configurar_gestao_ata
     Dado que acesso o sistema

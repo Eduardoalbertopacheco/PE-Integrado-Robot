@@ -21,6 +21,7 @@ ${PRIORIDADE_MEDIA}    //*[@id="td_cORDEM_COMPRA_x_nCdPrioridade"]//*[@value='2'
 ${EMPRESA_SEDC}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='20']
 ${EMPRESA_SAD}     //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='3']
 ${EMPRESA_TJ}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='12']
+${EMPRESA_SEDUC}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='42']
 ${GESTAO_AD}    //*[@id="td_cORDEM_COMPRA_x_nCdGestao"]//*[@value='1']
 ${APLICACAO_EI}    //*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]//*[@value='1']
 ${CAMPO_RESUMO}             css=textarea[id="_cORDEM_COMPRA_x_sDsOrdemCompra"]
@@ -241,8 +242,92 @@ Então preencho os campos da Aba Dados gerais da SC
     # Salvar o valor em um arquivo de texto
     Create File    ${EXECDIR}/test/num_sc_cotacao.txt    ${NUM_SC_COTACAO}
     Sleep    2
-
     SeleniumLibrary.Close Browser
+
+
+Então preencho os campos da Aba Dados gerais - SEDUC
+
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //a[contains(.,'Incluir')]
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Click Element    ${PRIORIDADE}
+    Sleep    1
+    Click Element    ${PRIORIDADE_MEDIA}
+    
+    Wait Until Element Is Visible    ${TIPO}    timeout=30s
+    Click Element    ${TIPO}
+    Sleep    1
+    Click Element    ${TIPO_AMS}
+    
+    Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
+
+    Click Element  ${LUPA_TIPO_OBJETO}
+    
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
+    Wait Until Element Is Visible    ${INPUT_TIPO}    timeout=30s
+    Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
+    Click Element    //*[@id="tdPesquisar"]
+    Click Element    //input[@value="ANIMAIS VIVOS◘50"]
+    Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Switch Window    ${Janela01}
+    
+    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Click Element    ${EMPRESA}
+    Wait Until Element Is Visible    ${EMPRESA_SEDUC}    timeout=30s
+    Click Element    ${EMPRESA_SEDUC}
+    
+    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Click Element    ${GESTAO} 
+    Click Element    ${GESTAO_AD}
+    
+    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Click Element    ${APLICACAO}
+    Sleep    1
+    Click Element    ${APLICACAO_EI}
+    Capture Page Screenshot
+    
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Sleep    1
+    Click Element    ${LUPA_GRUPO_COMPRA}
+
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
+    Input Text    ${INPUT_TIPO}    SECRETARIA DE EDUCAÇÃO	
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    timeout=30s
+    Click Element    //*[@id="ctl00_btnPesquisar"]  
+
+    Wait Until Element Is Visible    
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE EDUCAÇÃO◘98']   timeout=30s
+    Click Element    
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE EDUCAÇÃO◘98']
+    Click Element    
+    ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+
+    Switch Window    ${Janela01}
+
+    Capture Page Screenshot
+    
+    Click Element    //*[@id="btnSalvar"]
+    Sleep    1
+    Handle Alert    ACCEPT
+    SeleniumLibrary.Close Browser
+
 
 
 Então preencho os campos da Aba Dados gerais - SAD
@@ -1592,7 +1677,7 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
     Click Element    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
     
 
-    # clique em NÂO para pedido de descentralização
+    # clique em NÂO para pedido de descentralização/Centralização
     Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    timeout=30s
     Click Element    //input[@value='0'][contains(@id,'Nao')]
     Capture Page Screenshot
@@ -1871,6 +1956,30 @@ Então atribuo a comissão de Compra Direta - TJ
     # Clique para selecionar a comissão
     Wait Until Element Is Visible    //input[@value='17|Comissão de Compra Direta - TJPE']    timeout=30s
     Click Element    //input[@value='17|Comissão de Compra Direta - TJPE']
+    Capture Page Screenshot
+
+
+    # clique do botão 'Confirma'
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
+    SeleniumLibrary.Close Browser
+
+Então atribuo a comissão de Compra Direta - SEDUC
+   
+    # Clique no botão 'atribuir comissão'
+    Click Element    //a[contains(.,'Atribuir comissão')]
+
+    # Busca pela comissão no campo 'Descrição'
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    timeout=30s
+    Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
+    ...    COMISSÃO DE COMPRA DIRETA
+
+    # Clique no botão pesquisar
+    Click Element    //a[contains(.,'Pesquisar')]
+
+    # Clique para selecionar a comissão
+    Wait Until Element Is Visible    //input[@value='243|COMISSÃO DE COMPRA DIRETA']    timeout=30s
+    Click Element    //input[@value='243|COMISSÃO DE COMPRA DIRETA']
     Capture Page Screenshot
 
 

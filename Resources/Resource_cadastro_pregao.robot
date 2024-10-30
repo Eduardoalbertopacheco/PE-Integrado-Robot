@@ -78,6 +78,7 @@ ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    //option[contains(@value,'7053')]
 ${SELECAO_MENU_NEGOCIACAO}    LICITACAO=//td[@class='label'][contains(.,'Licitação')]
 &{NOVA_LICITACAO}    //td[@class='label'][contains(.,'Nova licitação eletrönica')]
 ${LICITACOES_ELERONICAS}    //td[@class='label'][contains(.,'Licitações eletrônicas')]
+${INPUT_NUM_PROC_PREGAO}    //div[@id='_cP_PREGAO_x_sNrProcessoDisplay']
 
 ${timeout}=        370   
 ${interval}=       5     
@@ -162,6 +163,17 @@ Então preencho a Aba de Dados Gerais
     Handle Alert    ACCEPT
     Sleep    2
     Handle Alert    ACCEPT
+    Sleep    2
+
+
+    # Capturar o valor do campo depois que ele for preenchido
+    ${NUM_PROC_PREGAO}    SeleniumLibrary.Get Text    ${INPUT_NUM_PROC_PREGAO}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/num_proc_pregao.txt    ${NUM_PROC_PREGAO} 
+    Sleep    2
+
+
 
 
 E mostro a auditoria

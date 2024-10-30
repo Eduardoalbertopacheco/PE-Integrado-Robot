@@ -1074,7 +1074,7 @@ Valor Do Input INVENT Deve Ser Preenchido
     Should Not Be Empty    ${NUM_INVENT}
     
     # Salvar o valor em um arquivo de texto
-    Create File    ${EXECDIR}/test/numero_inventario.txt    ${NUM_INVENT}
+    Create File    ${EXECDIR}/test/processos/num_inventario.txt    ${NUM_INVENT}
     Sleep    2
     
 
@@ -1183,7 +1183,7 @@ Valor Do Input TRANSF Deve Ser Preenchido
     Log    O valor do input é: ${NUM_TRANSF}
 
     # Salvar o valor em um arquivo de texto
-    Create File    ${EXECDIR}/test/numero_transferencia.txt    ${NUM_TRANSF}
+    Create File    ${EXECDIR}/test/processos/num_transferencia.txt    ${NUM_TRANSF}
 
 
 Então incluo uma nova riquisição
@@ -1259,7 +1259,7 @@ Valor Do Input REQ Deve Ser Preenchido
     Log    O valor do input é: ${NUM_REQ}
 
     # Salvar o valor em um arquivo de texto
-    Create File    ${EXECDIR}/test/numero_requisicao.txt    ${NUM_REQ}
+    Create File    ${EXECDIR}/test/processos/num_requisicao.txt    ${NUM_REQ}
 
 
 
@@ -1497,7 +1497,7 @@ E Pesquiso pela TRN
 E pesquiso pela baixa
     Select Frame    //iframe[@name='frmConteudo']
 
-    ${NUM_BAIXA}    Get File    ${EXECDIR}/test/numero_baixa.txt
+    ${NUM_BAIXA}    Get File    ${EXECDIR}/test/processos/num_baixa.txt
   
     Wait Until Element Is Visible    //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl01$edtCampo_2']    30
     Input Text        //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl01$edtCampo_2']    ${NUM_BAIXA}
@@ -1511,7 +1511,7 @@ E pesquiso pela baixa
 E pesquiso pelo Inventário
     Select Frame    //iframe[@name='frmConteudo']
 
-    ${NUM_INVENT}    Get File    ${EXECDIR}/test/numero_inventario.txt
+    ${NUM_INVENT}    Get File    ${EXECDIR}/test/processos/num_inventario.txt
 
     Wait Until Element Is Visible    ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl00$edtCampo_1    30
     Input Text        ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl00$edtCampo_1    ${NUM_INVENT}
@@ -1525,7 +1525,7 @@ E pesquiso pelo Inventário
 E pesquiso pela Transferência
     Select Frame    //iframe[@name='frmConteudo']
 
-    ${NUM_TRANSF}    Get File    ${EXECDIR}/test/numero_transferencia.txt
+    ${NUM_TRANSF}    Get File    ${EXECDIR}/test/processos/num_transferencia.txt
     Log    O valor lido é: ${NUM_TRANSF}
 
     Wait Until Element Is Visible    //input[@name='ctl00$oPesquisaAvancada$dtgPesquisaAvancadaControle$ctl01$edtCampo_2']    30
@@ -1538,7 +1538,7 @@ E pesquiso pela Transferência
 
 
 E seleciono a Baixa da lista
-    ${NUM_BAIXA}    Get File    ${EXECDIR}/test/numero_baixa.txt
+    ${NUM_BAIXA}    Get File    ${EXECDIR}/test/processos/num_baixa.txt
     Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td/a[text()='${NUM_BAIXA}']]//td[9]//input    15
     Sleep    1
     Click Element    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td/a[text()='${NUM_BAIXA}']]//td[9]//input
@@ -1548,7 +1548,7 @@ E seleciono a Baixa da lista
 
 E seleciono o inventário da lista
 
-    ${NUM_INVENT}    Get File    ${EXECDIR}/test/numero_inventario.txt
+    ${NUM_INVENT}    Get File    ${EXECDIR}/test/processos/num_inventario.txt
     Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td/a[text()='${NUM_INVENT}']]//td[11]//input[last()]     15
     Sleep    1
     Click Element    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td/a[text()='${NUM_INVENT}']]//td[11]//input[last()]
@@ -1557,7 +1557,7 @@ E seleciono o inventário da lista
 
 
 E seleciono a transferência da lista
-    ${NUM_TRANSF}    Get File    ${EXECDIR}/test/numero_transferencia.txt
+    ${NUM_TRANSF}    Get File    ${EXECDIR}/test/processos/num_transferencia.txt
     Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td/a[text()='${NUM_TRANSF}']]//td[9]//input    15
     Sleep    1
     Click Element    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td/a[text()='${NUM_TRANSF}']]//td[9]//input
@@ -1566,7 +1566,7 @@ E seleciono a transferência da lista
 
 
 E clico na Baixa da lista
-    ${NUM_BAIXA}    Get File    ${EXECDIR}/test/numero_baixa.txt
+    ${NUM_BAIXA}    Get File    ${EXECDIR}/test/processos/num_baixa.txt
     Wait Until Element Is Visible    //a[@class='link-action'][contains(.,'${NUM_BAIXA}')]    15
     Sleep    1
     Click Element    //a[@class='link-action'][contains(.,'${NUM_BAIXA}')]
@@ -1574,7 +1574,7 @@ E clico na Baixa da lista
 
 
 E clico na Transferência da lista
-    ${NUM_TRANSF}    Get File    ${EXECDIR}/test/numero_transferencia.txt
+    ${NUM_TRANSF}    Get File    ${EXECDIR}/test/processos/num_transferencia.txt
     Wait Until Element Is Visible    //a[@class='link-action'][contains(.,'${NUM_TRANSF}')]    15
     Sleep    1
     Click Element    //a[@class='link-action'][contains(.,'${NUM_TRANSF}')]
@@ -1745,7 +1745,7 @@ Valor Do Input BAIXA Deve Ser Preenchido
     Log    O valor do input é: ${NUM_BAIXA}
 
     # Salvar o valor em um arquivo de texto
-    Create File    ${EXECDIR}/test/numero_baixa.txt    ${NUM_BAIXA}
+    Create File    ${EXECDIR}/test/processos/num_baixa.txt    ${NUM_BAIXA}
 
 
 Então agendo o Inventário
@@ -1790,7 +1790,7 @@ Então agendo o Inventário
 
 E clico no inventário Agurdando Aprovação
 
-    ${NUM_INVENT}    Get File    ${EXECDIR}/test/numero_inventario.txt
+    ${NUM_INVENT}    Get File    ${EXECDIR}/test/processos/num_inventario.txt
 
     ${timeout}=        Set Variable    300    
     ${interval}=       Set Variable    5   
@@ -1814,7 +1814,7 @@ E clico no inventário Agurdando Aprovação
 
 E clico no Inventário Aberto
 
-    ${NUM_INVENT}    Get File    ${EXECDIR}/test/numero_inventario.txt
+    ${NUM_INVENT}    Get File    ${EXECDIR}/test/processos/num_inventario.txt
 
     ${timeout}=        Set Variable    300    
     ${interval}=       Set Variable    5   
@@ -1844,7 +1844,7 @@ E clico no Inventário Aberto
 
 E clico no inventário da Lista
 
-    ${NUM_INVENT}    Get File    ${EXECDIR}/test/numero_inventario.txt
+    ${NUM_INVENT}    Get File    ${EXECDIR}/test/processos/num_inventario.txt
     Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[contains(text(), '${NUM_INVENT}')]]//a    20
     Sleep    60
     Click Element    //table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[contains(text(), '${NUM_INVENT}')]]//a

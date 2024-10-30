@@ -9,8 +9,16 @@ ${OBJETO_COMPRA}          None
 ${OBJETO_ATA}             None
 ${OBJETO_IRP}             None
 ${OBJETO_CONCORRENCIA}    None
+${OBJETO_CONTRATO}        Nome
 
 *** Keywords ***
+Configurar Variáveis de Contrato
+    ${nome_arquivo}=    Set Variable    ${SUITE_SOURCE}
+    ${arquivo}=    Split String    ${nome_arquivo}    ${/}
+    ${arquivo}=    Set Variable    ${arquivo}[-1] 
+    ${OBJETO_CONTRATO}=    Replace String    ${arquivo}    .robot    ${EMPTY}
+    Set Global Variable    ${OBJETO_CONTRATO}
+
 Configurar Variáveis de SC
     ${nome_arquivo}=    Set Variable    ${SUITE_SOURCE}
     ${arquivo}=    Split String    ${nome_arquivo}    ${/}
@@ -110,6 +118,8 @@ Usar SC_Item_Compra_Disp_Emerg
 Usar SC_Item_Compra_Disp_OPD
     Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_OPD_Teste_Auto
 
+Usar SC_Item_SEDUC_Compra_Disp
+    Set Global Variable    ${RESUMO_SC}    SC_Item_SEDUC_Compra_Disp_Teste_Auto
 
 Usar SC_Item_SAD_Compra_Disp
     Set Global Variable    ${RESUMO_SC}    SC_Item_SAD_Compra_Disp_Teste_Auto
