@@ -150,7 +150,6 @@ E acesso a lista de Atas de Registro de preços
     Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
     Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
     Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
-
     Sleep    1
 
     # Clique em ata de registro de preços

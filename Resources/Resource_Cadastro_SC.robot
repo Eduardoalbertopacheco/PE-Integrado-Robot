@@ -563,6 +563,7 @@ Então incluo o documento do tipo Termo Referencia
     # Clique no botão 'Anexar' o arquivo
     Capture Page Screenshot
     Click Element    //input[@value='Anexar']
+    Sleep    3
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
 
@@ -1744,6 +1745,8 @@ E acesso a tela de Planejamento de compras
     Sleep    1
     Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
     Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    Sleep    1
     
     Capture Page Screenshot
 
