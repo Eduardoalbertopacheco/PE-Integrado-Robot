@@ -14,6 +14,7 @@ CT01 - Criar SC - Aba dados Gerais
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
+    E clico em 'Incluir'
     Então preencho os campos da Aba Dados gerais da SC
 
 
@@ -25,6 +26,7 @@ CT02 - Incluir Itens na Solicitação de Compras
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
+    E Clico na aba 'Itens'
     Então incluo os itens
 
 
@@ -36,6 +38,7 @@ CT03 - Incluir Documento na Solicitação de Compras
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
+    E Clico na Aba 'Documentos do Processo'
     Então incluo o documento do tipo Termo Referencia
 
 
@@ -47,6 +50,7 @@ CT04 - Assinar documento
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
+    E Clico na Aba 'Documentos do Processo'
     Então assino o documento
 
 

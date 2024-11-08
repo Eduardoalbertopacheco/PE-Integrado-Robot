@@ -88,8 +88,8 @@ ${start_time}=    Get Time    epoch
 
 *** Keywords ***
 E acesso a tela de Licitações Eletrônicas
+
     Select Frame    ${FRAME_MAIN}
-    
     Wait Until Element Is Visible    ${MENU_NEGOCIACAO}    timeout=30s
     Click Element    ${MENU_NEGOCIACAO}
 
@@ -98,20 +98,22 @@ E acesso a tela de Licitações Eletrônicas
     ...    ${LICITACAO}
     Mouse Over    ${elemento}
 
-    # Clique em Nova Licitações eletronicas
+    # Clique em Licitações eletronicas
     Wait Until Element Is Visible    ${LICITACOES_ELERONICAS}    timeout=30s
     Sleep    1
     Click Element    ${LICITACOES_ELERONICAS}
+    Sleep    5
     Capture Page Screenshot
-
-    ${all_windows}=    Get Window Handles
 
 
 E clico em Incluir Processo
-    
     Select Frame    //iframe[contains(@name,'frmConteudo')]
     Wait Until Element Is Visible    //a[contains(.,'Incluir processo')]    timeout=30s
     Click Element    //a[contains(.,'Incluir processo')]
+    Switch Window    NEW
+    Maximize Browser Window
+    Sleep    1
+    Capture Page Screenshot
 
 
 Então preencho a Aba de Dados Gerais
@@ -120,18 +122,15 @@ Então preencho a Aba de Dados Gerais
     Wait Until Element Is Visible    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
     Click Element    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
 
-
     # # Seleção para registro de preço 'Não'
     # Wait Until Element Is Visible    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_1"]
     # Click Element    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_1"]
 
-    
     # Seleção do campo 'Confição de pagamento'
     Click Element    ${CODICAO_PAGAMENTO}
     Wait Until Element Is Visible    ${COD_PAGAMENTO_AVISTA}    timeout=30s
     Capture Page Screenshot
     Click Element    ${COD_PAGAMENTO_AVISTA}
-
 
     # Seleção do campo 'Prazo de entrega'
     Click Element    ${PRAZO_ENTREGA}
@@ -146,7 +145,6 @@ Então preencho a Aba de Dados Gerais
     Click Element    ${UTILIZA_VERBA_FEDERAL_VALUE_NAO}
     Capture Page Screenshot
 
-
     Wait Until Element Is Visible    ${CAMPO_OBJETO}    timeout=30s
     Input Text    ${CAMPO_OBJETO}    ${OBJETO_PREGAO}
     Capture Page Screenshot
@@ -155,7 +153,6 @@ Então preencho a Aba de Dados Gerais
     ${second_window}=    Set Variable    ${all_windows}[1]
     Switch Window    ${second_window}
 
-    
     # Clique no botão 'Salvar'
     Wait Until Element Is Visible    //input[@name='btnSalvar']
     Click Element    //input[@name='btnSalvar']
@@ -165,15 +162,12 @@ Então preencho a Aba de Dados Gerais
     Handle Alert    ACCEPT
     Sleep    2
 
-
     # Capturar o valor do campo depois que ele for preenchido
     ${NUM_PROC_PREGAO}    SeleniumLibrary.Get Text    ${INPUT_NUM_PROC_PREGAO}
 
     # Salvar o valor em um arquivo de texto
     Create File    ${EXECDIR}/test/processos/num_proc_pregao.txt    ${NUM_PROC_PREGAO} 
     Sleep    2
-
-
 
 
 E mostro a auditoria
@@ -213,8 +207,8 @@ E vejo a Auditoria
 E seleciono a modalidade para Pregão Eletrônico
 
     #Seleção do campo 'Modalidade'
-    Switch Window    NEW
-    Maximize Browser Window
+    # Switch Window    NEW
+    # Maximize Browser Window
     Wait Until Element Is Visible    ${MODALIDADE}    timeout=30s
     Click Element    ${MODALIDADE}
     Wait Until Element Is Visible    ${MODAL_PREGAO}    timeout=30s
@@ -508,15 +502,18 @@ Então incluo a SC Por Lote ao Pregão - OPD
     Sleep    2
 
 
-Então incluo a SC Por Lote ao Pregão
-    Switch Window    NEW
+E clico na aba 'Itens'
 
+    Switch Window    NEW
     # Clique na aba 'Itens'
     Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
     Click Element    //a[contains(.,'Itens')]
+    Capture Page Screenshot
 
 
-    # Clique na aba Itens
+E acesso a tela de 'Incluir Itens da Solicitação'
+
+    # Clique de incluir na aba Itens
     Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
@@ -524,10 +521,13 @@ Então incluo a SC Por Lote ao Pregão
     # Cliue no botão Incluir itens da Solicitacçao
     Wait Until Element Is Visible    //a[contains(.,'Incluir item(ns) da solicitação')]    timeout=30s
     Click Element    //a[contains(.,'Incluir item(ns) da solicitação')]
-
     Switch Window    NEW
+    Capture Page Screenshot
+
+Então incluo a SC Por Lote ao Pregão
 
     Wait Until Element Is Visible    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
+    Sleep    1
     Click Element    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}
     Capture Page Screenshot
     Sleep    2
@@ -558,13 +558,16 @@ Então incluo a SC Por Lote ao Pregão
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
 
-
-E incluo um documento do tipo Edital
+E acesso a tela de 'Documentos do Processo'
 
     Switch Window    NEW
     # Clique na aba documentos
     Wait Until Element Is Visible    //a[contains(.,'Documentos do processo')]    timeout=30s
     Click Element    //a[contains(.,'Documentos do processo')]
+    Sleep    1
+    Capture Page Screenshot
+
+Então incluo os Documentos do tipo Edital
 
     FOR    ${index}    IN RANGE    2
    
@@ -603,11 +606,6 @@ E incluo um documento do tipo Edital
 
 
 E seleciono assino o documento do tipo Edital
-
-    Switch Window    NEW
-    # Clique na aba documentos
-    Wait Until Element Is Visible    //a[contains(.,'Documentos do processo')]    timeout=30s
-    Click Element    //a[contains(.,'Documentos do processo')]
 
     FOR    ${index}    IN RANGE    2
 
@@ -706,14 +704,13 @@ E solicito o parecer para o Ordenador -OPD
     Capture Page Screenshot
 
 
-E solicito o parecer para o Ordenador
+E acesso a tela de Solicitar Parecer
 
     Switch Window    NEW
     # Clique no botão 'Parecer'
     Wait Until Element Is Visible    //input[contains(@name,'btnParecer')]    timeout=30s
     Click Element    //input[contains(@name,'btnParecer')]
-    Sleep    2
-    
+
     ${all_windows}=    Get Window Handles
     ${janela_atual}=    Set Variable    ${all_windows}[0]
     Switch Window    ${janela_atual}
@@ -722,7 +719,10 @@ E solicito o parecer para o Ordenador
     Select Frame    ${FRAME_MAIN}
     Select Frame    ${FRAME_FRM_CONTEUDO}
     Select Frame    ${FRAME_PARECER}
-    
+    Capture Page Screenshot
+
+E solicito o parecer para o Ordenador
+
     Wait Until Element Is Visible    //li[contains(@onclick,'OpenWindowUsuarioLookup()')]    timeout=30s
     Click Element    //li[contains(@onclick,'OpenWindowUsuarioLookup()')]
     
@@ -914,22 +914,22 @@ E clico no botão solicitar autorização
 Então solicito autorização central
     Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
     Capture Page Screenshot
+
     Click Element    //a[contains(.,'Sim')]
     Sleep    6
     Handle Alert    ACCEPT
-    # SeleniumLibrary.Close Browser
 
+E acesso a tela de Deliberar Autorização
 
-E clico em Deliberar
     ${all_windows}=    Get Window Handles
     ${segunda_janela}=    Set Variable    ${all_windows}[1]
     Switch Window    ${segunda_janela}
     
     # Clique no botão deliberar
     Wait Until Element Is Visible    //input[@name='btnDeliberar']    timeout=30s
-    Capture Page Screenshot
     Click Element    //input[@name='btnDeliberar']
     Sleep    2
+    Capture Page Screenshot
 
 
 Então aprovo a autorização
@@ -946,9 +946,9 @@ Então aprovo a autorização
 
     # Clique do botao confirmar
     Wait Until Element Is Visible    //a[contains(@onclick,'Confirmar();')]    timeout=30s
+    Capture Page Screenshot
     Click Element    //a[contains(@onclick,'Confirmar();')]
     Sleep    4
-    # SeleniumLibrary.Close Browser
     Handle Alert    ACCEPT
 
 
@@ -972,9 +972,29 @@ E seleciono a licitação para agendamento
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[10]//input
     Sleep    4
 
+
+
+E acesso a tela do agendamento
+
     # Clique no botão agendar
     Wait Until Element Is Visible    //a[contains(.,'Agendar')]    timeout=30s
     Click Element    //a[contains(.,'Agendar')]
+    Sleep    1
+    Capture Page Screenshot
+
+    # Clique para marcar para reagendar
+    Switch Window    NEW
+    Wait Until Element Is Visible    //input[contains(@name,'ckbAgendar')]    timeout=30s
+    Click Element    //input[contains(@name,'ckbAgendar')]
+
+    # Clique no botão SIM
+    Click Element    //input[contains(@value,'Sim')]
+    Sleep    1
+
+    ${all_windows}=    Get Window Handles
+    ${janela}=    Set Variable    ${all_windows}[1]
+    Switch Window    ${janela}
+    Capture Page Screenshot
 
 Então faço o reagendamento
 
@@ -988,17 +1008,17 @@ Então faço o reagendamento
     Log    ${hora_atual+301min}
 
 
-    # Clique para marcar para reagendar
-    Switch Window    NEW
-    Wait Until Element Is Visible    //input[contains(@name,'ckbAgendar')]    timeout=30s
-    Click Element    //input[contains(@name,'ckbAgendar')]
+    # # Clique para marcar para reagendar
+    # Switch Window    NEW
+    # Wait Until Element Is Visible    //input[contains(@name,'ckbAgendar')]    timeout=30s
+    # Click Element    //input[contains(@name,'ckbAgendar')]
 
-    # Clique no botão SIM
-    Click Element    //input[contains(@value,'Sim')]
+    # # Clique no botão SIM
+    # Click Element    //input[contains(@value,'Sim')]
 
-    ${all_windows}=    Get Window Handles
-    ${janela}=    Set Variable    ${all_windows}[1]
-    Switch Window    ${janela}
+    # ${all_windows}=    Get Window Handles
+    # ${janela}=    Set Variable    ${all_windows}[1]
+    # Switch Window    ${janela}
 
     # Data inicial de propostas
     Wait Until Element Is Visible    //input[contains(@name,'tbxDataInicialProposta')]    timeout=30s

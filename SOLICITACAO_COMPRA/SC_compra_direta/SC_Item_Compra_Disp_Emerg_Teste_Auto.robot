@@ -14,6 +14,7 @@ CT01 - Criar SC - Aba dados Gerais
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
+    E clico em 'Incluir'
     Então preencho os campos da Aba Dados gerais
 
 
@@ -25,6 +26,7 @@ CT02 - Incluir Itens na Solicitação de Compras
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
+    E Clico na aba 'Itens'
     Então incluo os itens
 
 CT03 - Incluir Documento na Solicitação de Compras
@@ -35,6 +37,7 @@ CT03 - Incluir Documento na Solicitação de Compras
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
+    E Clico na Aba 'Documentos do Processo'
     Então incluo o documento do tipo Termo Referencia
 
 
@@ -46,6 +49,7 @@ CT04 - Assinar documento
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
+    E Clico na Aba 'Documentos do Processo'
     Então assino o documento
 
 
@@ -78,6 +82,8 @@ CT07 - Definir Natureza de despesa com o Financeiro
     Dado que acesso o sistema
     E faço login com usuário "financeiro.110402"
     E acesso a Tela de Lista de Solicitação de Compras
+    E clico na solicitação da lista
+    E Clico na aba 'Itens'
     Então defino a natureza de despesa
 
 
@@ -87,7 +93,7 @@ CT08 - Aprovação orçamentária
     [Tags]    aprovacao_orcamentaria
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
-    E acesso Minhas tarefas
+    E acesso 'Minhas Tarefas'
     E seleciono a SC para aprovação
     Então Clique no botão Aprovar com orçamento
     
@@ -98,7 +104,7 @@ CT09 - Aprovação com o Ordenador
     [Tags]    aprovacao_ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
-    E acesso Minhas tarefas
+    E acesso 'Minhas Tarefas'
     E seleciono a SC para aprovação
     E Clico em Ciente
     Então Clique no botão Aprovar com ordenador
@@ -111,7 +117,7 @@ CT10 - Liberar SC com autoridade central
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a lista de SC centralizada
-    E pesquiso por SC aguardando liberação
+    E pesquiso por SC 'Aguardando Liberação'
     Então seleciono a SC e aprovo
 
 
@@ -122,7 +128,7 @@ CT11 - Deliberar SC com autoridade da UG
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
     E acesso a Tela de Lista de Solicitação de Compras
-    E pesquiso por SC aguardando deliberação
+    E pesquiso por SC 'Aguardando Deliberação'
     E seleciono a SC e clico
     Então faço a deliberação da SC
 
@@ -148,6 +154,7 @@ CT13 - Atribuir Comissão
     E acesso a tela de Planejamento de compras
     E pesquiso por atribuir comissão com planejador
     E seleciono a SC para atribuir comissão com Planejador
+    E clico em Atribuir Comissão
     Então atribuo a comissão de Compra Direta
 
 

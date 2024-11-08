@@ -65,9 +65,9 @@ E acesso a Tela de Lista de Solicitação de Compras
     ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]    timeout=30s
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]
-    
+    Sleep    4
     Capture Page Screenshot
-    Sleep    2
+
 
 
 Então preencho os campos da Aba Dados gerais - TJ
@@ -413,16 +413,18 @@ Então preencho os campos da Aba Dados gerais - SAD
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
 
-
-Então preencho os campos da Aba Dados gerais
-
+E clico em 'Incluir'
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]
     Click Element    //a[contains(.,'Incluir')]
-    Sleep    2
-
     Switch Window    NEW
+    Sleep    2
+    Capture Page Screenshot
 
+
+Então preencho os campos da Aba Dados gerais
+
+    # Switch Window    NEW
     Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
     Click Element    ${PRIORIDADE}
     Sleep    1
@@ -500,10 +502,12 @@ Então preencho os campos da Aba Dados gerais
 
 Então incluo os itens
     Sleep    2
-    Switch Window    NEW
-    Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
-    Click Element    //a[contains(.,'Itens')]
-
+    # Switch Window    NEW
+    # Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
+    # Click Element    //a[contains(.,'Itens')]
+    # Sleep    1
+    # Capture Page Screenshot
+    
     Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
     Click Element    //a[contains(.,'Incluir')]
     Sleep    5
@@ -537,13 +541,23 @@ Então incluo os itens
     Sleep    4
     SeleniumLibrary.Close Browser
 
-
-Então incluo o documento do tipo Termo Referencia
-
+E Clico na Aba 'Documentos do Processo'
     Switch Window    NEW
 
     Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    timeout=30s
     Click Element        xpath=//a[contains(.,'Documentos do processo')]
+    Sleep    2
+    Capture Page Screenshot
+
+
+Então incluo o documento do tipo Termo Referencia
+
+    # Switch Window    NEW
+
+    # Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    timeout=30s
+    # Click Element        xpath=//a[contains(.,'Documentos do processo')]
+    # Sleep    2
+    # Capture Page Screenshot
 
     Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
     Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
@@ -570,10 +584,12 @@ Então incluo o documento do tipo Termo Referencia
 
 Então assino o documento    
 
-    Switch Window    NEW
+    # Switch Window    NEW
 
-    Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    timeout=30s
-    Click Element        xpath=//a[contains(.,'Documentos do processo')]
+    # Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    timeout=30s
+    # Click Element        xpath=//a[contains(.,'Documentos do processo')]
+    # Sleep    1
+    # Capture Page Screenshot
 
 
     Wait Until Element Is Visible    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input    timeout=30s
@@ -624,6 +640,8 @@ E acesso a Lista de SC em Precificação
    # Clicar no campo Exibir
    Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
+   Sleep    1
+   Capture Page Screenshot
 
    # Clicar na seleção 'SC em precificação'
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='31069']
@@ -1116,20 +1134,31 @@ Então faço planejamento da SC para Concorrencia - Ordenador
     Sleep    1
     SeleniumLibrary.Close Browser
 
-
-Então defino a natureza de despesa
-
+E clico na solicitação da lista
     Select Frame    //iframe[contains(@name,'frmConteudo')]
-
     Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    timeout=30s
     Click Element    //a[text()= "${RESUMO_SC}"]
     Sleep    1
 
-    # Clicque na aba 'Itens'
+E Clico na aba 'Itens'
     Switch Window    NEW
     Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
     Click Element    //a[contains(.,'Itens')]
     Capture Page Screenshot
+
+
+Então defino a natureza de despesa
+    # Select Frame    //iframe[contains(@name,'frmConteudo')]
+
+    # Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    timeout=30s
+    # Click Element    //a[text()= "${RESUMO_SC}"]
+    # Sleep    1
+
+    # # Clicque na aba 'Itens'
+    # Switch Window    NEW
+    # Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
+    # Click Element    //a[contains(.,'Itens')]
+    # Capture Page Screenshot
 
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
     WHILE    ${element_found} == False
@@ -1154,7 +1183,7 @@ Então defino a natureza de despesa
     SeleniumLibrary.Close Browser
     
 
-E acesso Minhas tarefas
+E acesso 'Minhas Tarefas'
 
     Select Frame    //frame[contains(@name,'main')]
 
@@ -1170,8 +1199,9 @@ E acesso Minhas tarefas
     # Clique em 'Minhas tarefas'
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Minhas tarefas')]    timeout=30s
     Click Element    //td[@class='label'][contains(.,'Minhas tarefas')]
-    Capture Page Screenshot
     Sleep    2
+    Capture Page Screenshot
+
 
 E seleciono a SC para aprovação
    
@@ -1190,6 +1220,7 @@ E seleciono a SC para aprovação
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
 
 
 
@@ -1274,13 +1305,14 @@ E acesso a lista de SC centralizada
     Capture Page Screenshot
 
 
-E pesquiso por SC aguardando liberação
+E pesquiso por SC 'Aguardando Liberação'
 
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
    Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
+   Capture Page Screenshot
 
    # Clicar na seleção 'SC em precificação'
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='1010005']
@@ -1301,13 +1333,14 @@ Então seleciono a SC e aprovo
     SeleniumLibrary.Close Browser
 
 
-E pesquiso por SC aguardando deliberação
+E pesquiso por SC 'Aguardando Deliberação'
 
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
    Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
+   Capture Page Screenshot
 
    # Clicar na seleção 'SC em deliberação'
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='31084']
@@ -1320,9 +1353,9 @@ E pesquiso por SC aguardando deliberação
 
 E seleciono a SC e clico
 
-    Wait Until Element Is Visible    (//table)[15]//tr[1]//td[2]    timeout=30s
-    Click Element    (//table)[15]//tr[1]//td[2]
-
+    Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    timeout=30s
+    Click Element    //a[text()= "${RESUMO_SC}"]
+    Sleep    1
 
 Então faço a deliberação da SC
 
@@ -1370,6 +1403,8 @@ E acesso a lista de Planejamento de Compras
     Sleep    1
     Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
     Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    Sleep    1
     
     Capture Page Screenshot
 
@@ -1382,6 +1417,7 @@ E seleciono o filtro SC em Planejamento - Ordenador
    # Clicar no campo Exibir
    Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
+   Capture Page Screenshot
 
    # Clicar na seleção 'SC em precificação'
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='31063']
@@ -1395,7 +1431,6 @@ E seleciono o filtro SC em Planejamento - Ordenador
 E seleciono a SC
 
     ${start_time}    Get Time    epoch
-    # ${element_found}=    Set Variable    False
     FOR    ${i}    IN RANGE    ${timeout}
         Sleep    1
         Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -1413,6 +1448,7 @@ E seleciono a SC
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
 
 Então faço o planejamento para Pregão Eletrônico - OPD
 
@@ -1533,9 +1569,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Orde
 
     ${all_windows}=    Get Window Handles
     ${second_window}=    Set Variable    ${all_windows}[0]
-
     Switch Window    ${all_windows}[0]
-
     Select Frame    //frame[contains(@name,'main')]
 
 
@@ -1596,6 +1630,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
     # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
    Click Element    xpath=//a[contains(.,'Encaminhar')]
+   Capture Page Screenshot
 
     ${all_windows}=    Get Window Handles
     ${second_window}=    Set Variable    ${all_windows}[0]
@@ -1773,6 +1808,7 @@ E pesquiso por atribuir comissão com planejador
    # Clicar no campo Exibir
    Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
+   Capture Page Screenshot
 
    # Clicar na seleção 'SC'
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='31508']
@@ -1870,9 +1906,6 @@ E seleciono a SC da lista
  
 
 Então incluo os itens e agrupo por lote
-    Switch Window    NEW
-    Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
-    Click Element    //a[contains(.,'Itens')]
 
     Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
     Click Element    //a[contains(.,'Incluir')]
@@ -1991,11 +2024,14 @@ Então atribuo a comissão de Compra Direta - SEDUC
     Sleep    3
     SeleniumLibrary.Close Browser
 
+    
+E clico em Atribuir Comissão
+    Click Element    //a[contains(.,'Atribuir comissão')]
+    Sleep    2
+    Capture Page Screenshot
+
 
 Então atribuo a comissão de Compra Direta
-    
-    # Clique no botão 'atribuir comissão'
-    Click Element    //a[contains(.,'Atribuir comissão')]
 
     # Busca pela comissão no campo 'Descrição'
     Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    timeout=30s

@@ -11,5 +11,5 @@ if (Test-Path $testFilePath) {
     Write-Host "Executando teste: $testFilePath"
     robot --exitonfailure -d ./Relatorio/Compras_Diretas/Compra_Dispensa_emerg_lote $testFilePath
 } else {
-    Write-Host "O arquivo .robot não existe: $testFilePath"
+    Write-Host "O arquivo .robot nao existe: $testFilePath"
 }
