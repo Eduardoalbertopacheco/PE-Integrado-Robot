@@ -415,8 +415,6 @@ Então incluo a SC Por Item ao Pregão
     Wait Until Element Is Visible    //a[contains(.,'Incluir item(ns) da solicitação')]    timeout=30s
     Click Element    //a[contains(.,'Incluir item(ns) da solicitação')]
 
-    Log    ${resumo_sc}
-
     Switch Window    NEW
 
     Wait Until Element Is Visible    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
@@ -451,8 +449,8 @@ Então incluo a SC Por Item ao Pregão
     Sleep    2
 
 Então incluo a SC Por Lote ao Pregão - OPD
-    Switch Window    NEW
 
+    Switch Window    NEW
     # Clique na aba 'Itens'
     Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
     Click Element    //a[contains(.,'Itens')]
@@ -644,22 +642,6 @@ E seleciono assino o documento do tipo Edital
 
 
 E solicito o parecer para o Ordenador -OPD
-
-    Switch Window    NEW
-    # Clique no botão 'Parecer'
-    Wait Until Element Is Visible    //input[contains(@name,'btnParecer')]    timeout=30s
-    Click Element    //input[contains(@name,'btnParecer')]
-    Sleep    2
-    
-    ${all_windows}=    Get Window Handles
-    
-    ${janela_atual}=    Set Variable    ${all_windows}[0]
-    Switch Window    ${janela_atual}
-
-    Sleep    5
-    Select Frame    ${FRAME_MAIN}
-    Select Frame    ${FRAME_FRM_CONTEUDO}
-    Select Frame    ${FRAME_PARECER}
     
     Wait Until Element Is Visible    //li[contains(@onclick,'OpenWindowUsuarioLookup()')]    timeout=30s
     Click Element    //li[contains(@onclick,'OpenWindowUsuarioLookup()')]
@@ -720,6 +702,7 @@ E acesso a tela de Solicitar Parecer
     Select Frame    ${FRAME_FRM_CONTEUDO}
     Select Frame    ${FRAME_PARECER}
     Capture Page Screenshot
+
 
 E solicito o parecer para o Ordenador
 

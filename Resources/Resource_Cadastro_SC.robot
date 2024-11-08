@@ -72,13 +72,6 @@ E acesso a Tela de Lista de Solicitação de Compras
 
 Então preencho os campos da Aba Dados gerais - TJ
 
-    Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //a[contains(.,'Incluir')]
-    Click Element    //a[contains(.,'Incluir')]
-    Sleep    2
-
-    Switch Window    NEW
-
     Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
     Click Element    ${PRIORIDADE}
     Sleep    2
@@ -498,20 +491,17 @@ Então preencho os campos da Aba Dados gerais
     Sleep    1
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
-    
 
-Então incluo os itens
+E acesso a tela de incluir Itens
     Sleep    2
-    # Switch Window    NEW
-    # Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
-    # Click Element    //a[contains(.,'Itens')]
-    # Sleep    1
-    # Capture Page Screenshot
-    
     Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
     Click Element    //a[contains(.,'Incluir')]
     Sleep    5
-    
+    Capture Page Screenshot
+
+
+Então incluo os itens
+  
     Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000241
     Click Element    //*[@id="ctl00_ContentPrincipal_btnPesquisarProduto"]
     
@@ -1148,17 +1138,6 @@ E Clico na aba 'Itens'
 
 
 Então defino a natureza de despesa
-    # Select Frame    //iframe[contains(@name,'frmConteudo')]
-
-    # Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    timeout=30s
-    # Click Element    //a[text()= "${RESUMO_SC}"]
-    # Sleep    1
-
-    # # Clicque na aba 'Itens'
-    # Switch Window    NEW
-    # Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
-    # Click Element    //a[contains(.,'Itens')]
-    # Capture Page Screenshot
 
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
     WHILE    ${element_found} == False
@@ -1906,10 +1885,6 @@ E seleciono a SC da lista
  
 
 Então incluo os itens e agrupo por lote
-
-    Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
-    Click Element    //a[contains(.,'Incluir')]
-    Sleep    5
     
     #Campo Descrição
     Wait Until Element Is Visible    //input[contains(@name,'txtDescricao')]    timeout=30s

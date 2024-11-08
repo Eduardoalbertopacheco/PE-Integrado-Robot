@@ -29,6 +29,7 @@ CT02 - Incluir Itens na Solicitação de Compras
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
+    E acesso a tela de incluir Itens
     Então incluo os itens
 
 

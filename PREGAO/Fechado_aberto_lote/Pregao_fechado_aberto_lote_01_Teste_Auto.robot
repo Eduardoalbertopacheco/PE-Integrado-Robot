@@ -15,7 +15,6 @@ CT01 - Criar Pregão - Aba Dados Gerais
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E clico em Incluir Processo
-
     E seleciono a modalidade para Pregão Eletrônico
     E Seleciono o Critério de Pregão Eletrônico
     E insiro as datas para agendamento
@@ -29,13 +28,14 @@ CT02 - Incluir SC ao Pregão
     Configurar Variáveis de Pregão
     Usar SC_Lote_Pregao_fechado_aberto
 
-
     [Tags]    incluir_sc_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
+    E clico na aba 'Itens'
+    E acesso a tela de 'Incluir Itens da Solicitação'
     Então incluo a SC Por Lote ao Pregão
     E mostro a auditoria
 
@@ -49,7 +49,7 @@ CT03 - Incluir Documento - Edital
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
-    E incluo um documento do tipo Edital
+    Então incluo os Documentos do tipo Edital
     E mostro a auditoria
 
 
@@ -115,7 +115,7 @@ CT08 - Aprovar autorização
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação Aguardando autorização da Lista
-    E clico em Deliberar
+    E acesso a tela de Deliberar Autorização
     Então aprovo a autorização
     E mostro a auditoria
 

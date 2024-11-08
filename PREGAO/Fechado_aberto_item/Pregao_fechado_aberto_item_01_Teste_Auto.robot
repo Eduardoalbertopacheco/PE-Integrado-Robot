@@ -36,6 +36,8 @@ CT02 - Incluir SC ao Pregão
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
+    E clico na aba 'Itens'
+    E acesso a tela de 'Incluir Itens da Solicitação'
     Então incluo a SC Por Item ao Pregão
     E mostro a auditoria
 
@@ -49,7 +51,8 @@ CT03 - Incluir Documento - Edital
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
-    E incluo um documento do tipo Edital
+    E acesso a tela de 'Documentos do Processo'
+    Então incluo os Documentos do tipo Edital
     E mostro a auditoria
 
 
@@ -62,6 +65,7 @@ CT04 - Assinar Documento
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
+    E acesso a tela de 'Documentos do Processo'
     E seleciono assino o documento do tipo Edital
     E mostro a auditoria
 
@@ -75,6 +79,7 @@ CT05 - Solicitar Parecer para Ordenador
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
+    E acesso a tela de Solicitar Parecer
     E solicito o parecer para o Ordenador
     Então encaminho o Parecer para o ordenador
 
@@ -88,7 +93,7 @@ CT06 - Aprovar parecer Ordenador
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
-    E Clique no botão Parecer
+    E acesso a tela de Solicitar Parecer
     E seleciono o parecer
     Então finalizo o parecer
 
@@ -106,7 +111,7 @@ CT07 - Solicitar Autorização
     Então solicito autorização central
 
 
-CT08 - Aprovar autorização
+CT08 - Deliberar autorização
     Configurar Variáveis de Pregão
 
     [Tags]    aprovar_autorizacao
@@ -115,7 +120,7 @@ CT08 - Aprovar autorização
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação Aguardando autorização da Lista
-    E clico em Deliberar
+    E acesso a tela de Deliberar Autorização
     Então aprovo a autorização
     # E mostro a auditoria
 
@@ -128,6 +133,7 @@ CT09 - Agendar Pregão eletrônico
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E seleciono a licitação para agendamento
+    E acesso a tela do agendamento
     Então faço o reagendamento
     # E clico na licitação da lista
     # E mostro a auditoria
