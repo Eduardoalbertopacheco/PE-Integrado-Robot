@@ -445,12 +445,12 @@ E preencho os dados do segundo lance na Compra Direta por Lote
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
     Log    Aguardando a visibilidade do item na lista
-    Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
+    Wait Until Element Is Visible    ${ITEM_LOTE_CATETER}    timeout=30s
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
-    Click Element    ${ITEM_LOTE}
+    Click Element    ${ITEM_LOTE_CATETER}
     Sleep    2s
 
 
@@ -480,12 +480,14 @@ E preencho os dados do lance na Compra Direta por Lote
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
     Log    Aguardando a visibilidade do item na lista
-    Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
+    # Wait Until Element Is Visible    ${ITEM_LOTE}    20
+    Wait Until Element Is Visible    ${ITEM_LOTE_CATETER}    20
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
-    Click Element    ${ITEM_LOTE}
+    # Click Element    ${ITEM_LOTE}
+    Click Element    ${ITEM_LOTE_CATETER}
     Sleep    2s
 
 
@@ -630,6 +632,29 @@ Então faço o prorrogamento da compra direta
     Handle Alert    ACCEPT
     Sleep    2
     SeleniumLibrary.Close Browser
+
+Então encerro os Itens/Lotes
+
+    Sleep    1
+    Select Frame    //frame[contains(@name,'frmNegociacao')]   
+    ${start_time}=    Get Time    epoch
+    FOR    ${i}    IN RANGE    ${timeout}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //a[contains(.,'Encerrar ')]
+        Run Keyword If    ${element_found}    Click Element    //input[@title=' Selecione']
+        Sleep    1 
+        Run Keyword If    ${element_found}    Click Element    //a[contains(.,'Encerrar ')]
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    END
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Sleep    3
+
 
 
 Então finalizo a Compra Direta

@@ -8,13 +8,10 @@ Resource        ../../Resources/Resource_Contrato.robot
 
 *** Keywords ***
 
-
-
-
-
 *** Test Cases ***
 CT01 - Criar uma Nova Solicitação de GC
     Dado que acesso o sistema
     E faço login com usuário "gestor.contrato.120101"
     E Acesso a lista de Geração de Contratos
+    E acesso a tela de 'Incluir Novo GC'
     Então incluo uma nova Solicitação de GC

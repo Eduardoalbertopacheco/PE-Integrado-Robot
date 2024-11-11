@@ -30,10 +30,15 @@ ${INPUT_NUM_ARP}               //span[@id='lbl_ctl00_ContentPrincipal_tbxNumeroA
 
 *** Keywords ***
 
-Então gero a ARP
+E acesso a tela de Gerar ARP
     Select Frame    //frame[contains(@name,'frmNegociacao')]
     Wait Until Element Is Visible    //a[@onclick='GerarARP();']    timeout=30s
     Click Element    //a[@onclick='GerarARP();']
+    Sleep    3
+    Capture Page Screenshot
+
+
+Então gero a ARP
 
     # Selecionar todos o itens
     Wait Until Element Is Visible    //input[contains(@title,'Selecionar todos')]    timeout=30s
@@ -48,8 +53,8 @@ Então gero a ARP
     Capture Page Screenshot
     Click Element    //a[contains(.,'Sim')]
     Sleep    4
-
     Click Element    //a[contains(.,'Fechar')]
+
 
 E acesso a lista de todas as solicitações de Adesão
     Select Frame    //frame[@name='main']
@@ -169,6 +174,7 @@ E acesso a lista de Atas de Registro de preços
     ...    xpath=//td[@class='label'][contains(.,'Todas as Atas de Registro de Preços')]
     Sleep    2
     Capture Page Screenshot
+
 
 E clico na Ata de Pregão da lista
     Select Frame    //iframe[@name='frmConteudo']
@@ -352,6 +358,7 @@ Então salvo os dados
     Wait Until Element Is Visible    //a[contains(.,'Salvar e fechar')]
     Click Element    //a[contains(.,'Salvar e fechar')]
     Sleep    3
+
 
 Então ativo a ARP
     Wait Until Element Is Visible    //a[contains(.,'Ativar')]
@@ -1271,7 +1278,7 @@ E acesso a lista de Licitações
     ...    xpath=//td[@class='label'][contains(.,'Licitações eletrônicas')]    timeout=30s
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Licitações eletrônicas')]
-    # Sleep    2
+    Sleep    4
     Capture Page Screenshot
 
 E seleciono o filtro Licitações Homologadas

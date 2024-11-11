@@ -20,16 +20,20 @@ CT01 - Criar SC - Aba dados Gerais
 
 
 CT02 - Incluir Itens na Solicitação de Compras
+    Configurar Variáveis de SC
+
     [Tags]    incluir_itens
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
+    E acesso a tela de incluir Itens
     Então incluo os itens e agrupo por lote
 
 
 CT03 - Incluir Documento na Solicitação de Compras
+    Configurar Variáveis de SC
     [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -40,6 +44,7 @@ CT03 - Incluir Documento na Solicitação de Compras
 
 
 CT04 - Assinar documento
+    Configurar Variáveis de SC
     [Tags]    assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -50,6 +55,7 @@ CT04 - Assinar documento
 
 
 CT05 - Encaminhar SC para precificação
+    Configurar Variáveis de SC
     [Tags]    encaminhar_SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -59,6 +65,7 @@ CT05 - Encaminhar SC para precificação
     
 
 CT06 - Planejamento com Solicitante
+    Configurar Variáveis de SC
     [Tags]    planejamento_solicitante
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
@@ -68,6 +75,7 @@ CT06 - Planejamento com Solicitante
    
 
 CT07 - Definir Natureza de despesa com o Financeiro
+    Configurar Variáveis de SC
     [Tags]    definir_natureza
     Dado que acesso o sistema
     E faço login com usuário "financeiro.110402"
@@ -78,6 +86,7 @@ CT07 - Definir Natureza de despesa com o Financeiro
 
 
 CT08 - Aprovação orçamentária
+    Configurar Variáveis de SC
     [Tags]    aprovacao_orcamentaria
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
@@ -87,6 +96,7 @@ CT08 - Aprovação orçamentária
     
 
 CT09 - Aprovação com o Ordenador
+    Configurar Variáveis de SC
     [Tags]    aprovacao_ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
@@ -97,6 +107,7 @@ CT09 - Aprovação com o Ordenador
 
 
 CT10 - Liberar SC com autoridade central
+    Configurar Variáveis de SC
     [Tags]    liberacao_autoridade
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
@@ -106,6 +117,7 @@ CT10 - Liberar SC com autoridade central
 
 
 CT11 - Deliberar SC com autoridade da UG
+    Configurar Variáveis de SC
     [Tags]    deliberar_autoridade_ug
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
@@ -116,7 +128,7 @@ CT11 - Deliberar SC com autoridade da UG
 
 
 CT12 - Planejamento com Ordenador
-    Usar SC_Lote_Pregao_aberto
+    Configurar Variáveis de SC
 
     [Tags]    planejar_ordenador
     Dado que acesso o sistema
@@ -127,7 +139,7 @@ CT12 - Planejamento com Ordenador
     Então faço o planejamento para Pregão Eletrônico
 
 CT13 - Atribuir Comissão
-    Usar SC_Lote_Pregao_aberto
+    Configurar Variáveis de SC
 
     [Tags]    atribuir_comissao
     Dado que acesso o sistema
@@ -138,7 +150,7 @@ CT13 - Atribuir Comissão
     Então atribuo a Comissão Permanente de Licitação
 
 CT14 - Aprovar SC com Pregoeiro Central
-    Usar SC_Lote_Pregao_aberto
+    Configurar Variáveis de SC
     
     [Tags]    aprovacao_pregoeiro_central
     Dado que acesso o sistema

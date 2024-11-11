@@ -3,20 +3,21 @@ Documentation    Cenário: Criar um contrato Legado não relaizado no PE-Itegrad
 Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_Contrato.robot
 
-*** Test Cases ***
 
+*** Test Cases ***
 CT01 - Criar um novo contrato Legado PE ARP
+
    Configurar Variáveis de Contrato
-   
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
    E Acesso a lista de contratos
+   E acesso a tela de criar contrato
    Então crio um novo contrato PE ARP
 
 
 CT02 - Configurar Partes do contrato
-   Configurar Variáveis de Contrato
 
+   Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
    E Acesso a lista de contratos
@@ -25,8 +26,8 @@ CT02 - Configurar Partes do contrato
 
 
 CT03 - Definir Índice dos Itens
-   Configurar Variáveis de Contrato
 
+   Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
    E Acesso a lista de contratos
@@ -36,8 +37,8 @@ CT03 - Definir Índice dos Itens
 
 
 CT04 - Incluir Gestores e Fiscais
-   Configurar Variáveis de Contrato
 
+   Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
    E Acesso a lista de contratos
@@ -46,8 +47,8 @@ CT04 - Incluir Gestores e Fiscais
 
 
 CT05 - Incluir Documentos Obrigatórios
-   Configurar Variáveis de Contrato
 
+   Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
    E Acesso a lista de contratos
@@ -56,8 +57,8 @@ CT05 - Incluir Documentos Obrigatórios
 
 
 CT06 - Encaminhar Contrato
+
    Configurar Variáveis de Contrato
-   
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
    E Acesso a lista de contratos

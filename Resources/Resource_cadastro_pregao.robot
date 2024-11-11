@@ -18,7 +18,9 @@ ${JURIDICO}    //span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]//*[@valu
 ${ITEM_LIST}       //ul[@id='dtgPesquisaItens_ctl01_ddlMarca_listbox']
 ${ITEM_LIST_LOTE}    //ul[@id='dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaItens_ctl01_ddlMarca_listbox']
 ${ITEM_TEXT}      12V 3AH
+${ITEM_TEXT_CATETER}   NENHUMA MARCA REGISTRADA
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
+${ITEM_CATETER}    ${ITEM_LIST}//li[text()="NENHUMA MARCA REGISTRADA"]
 ${ITEM_LOTE}    ${ITEM_LIST_LOTE}//li[text()="12V 3AH"]
 ${CAMPO_DT_INICIAL_PROP}       //input[contains(@name,'tDtInicialProposta')]
 ${CAMPO_DT_FINAL_PROP}        id=_cP_PREGAO_x_tDtFinalProposta
@@ -218,8 +220,6 @@ E seleciono a modalidade para Pregão Eletrônico
 E seleciono a modalidade para Concorrência Eletrônica
 
     #Seleção do campo 'Modalidade'
-    Switch Window    NEW
-    Maximize Browser Window
     Wait Until Element Is Visible    ${MODALIDADE}    timeout=30s
     Click Element    ${MODALIDADE}
     Wait Until Element Is Visible    ${MODAL_PREGAO}    timeout=30s
@@ -399,32 +399,17 @@ E insiro a Comissão e Salvo
 
 
 Então incluo a SC Por Item ao Pregão
-    Switch Window    NEW
-
-    # Clique na aba 'Itens'
-    Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
-    Click Element    //a[contains(.,'Itens')]
-
-
-    # Clique na aba Itens
-    Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
-    Click Element    //a[contains(.,'Incluir')]
-    Sleep    2
-
-    # Cliue no botão Incluir itens da Solicitacçao
-    Wait Until Element Is Visible    //a[contains(.,'Incluir item(ns) da solicitação')]    timeout=30s
-    Click Element    //a[contains(.,'Incluir item(ns) da solicitação')]
-
-    Switch Window    NEW
 
     Wait Until Element Is Visible    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    timeout=30s
+    Sleep    1
     Click Element    ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}
-    Capture Page Screenshot
     Sleep    2
+    Capture Page Screenshot
 
     # Clique no campo exibir
     Wait Until Element Is Visible    ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    timeout=30s
     Click Element    ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}
+    Sleep    2
 
     # Selecionar a SC para Incluir
     ${start_time}    Get Time    epoch
@@ -520,7 +505,9 @@ E acesso a tela de 'Incluir Itens da Solicitação'
     Wait Until Element Is Visible    //a[contains(.,'Incluir item(ns) da solicitação')]    timeout=30s
     Click Element    //a[contains(.,'Incluir item(ns) da solicitação')]
     Switch Window    NEW
+    Sleep    1
     Capture Page Screenshot
+
 
 Então incluo a SC Por Lote ao Pregão
 
@@ -1067,17 +1054,17 @@ E preencho os dados do lance por Item
     Log    Dropdown expandido, aguardando item
 
     Log    Aguardando a visibilidade do item na lista
-    Wait Until Element Is Visible    ${ITEM}    timeout=30s
+    Wait Until Element Is Visible    ${ITEM_CATETER}    timeout=30s
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
-    Click Element    ${ITEM}
+    Click Element    ${ITEM_CATETER}
     Sleep    2s
     Log    Verificando valor do dropdown
     ${dropdown_value}=    Execute JavaScript    return document.querySelector("span.k-input").innerText
     Log    Valor do dropdown: ${dropdown_value}
-    Should Be Equal As Strings    ${dropdown_value}    ${ITEM_TEXT}
+    Should Be Equal As Strings    ${dropdown_value}    ${ITEM_TEXT_CATETER} 
 
 
     # Valor do lance
@@ -1095,12 +1082,12 @@ E preencho os dados do lance por Lote
     Log    Dropdown expandido, aguardando item
 
     Log    Aguardando a visibilidade do item na lista
-    Wait Until Element Is Visible    ${ITEM_LOTE}    timeout=30s
+    Wait Until Element Is Visible    ${ITEM_CATETER}    timeout=30s
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
-    Click Element    ${ITEM_LOTE}
+    Click Element    ${ITEM_CATETER}
     Sleep    2s
 
     # Valor do lance

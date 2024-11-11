@@ -10,8 +10,17 @@ ${OBJETO_ATA}             None
 ${OBJETO_IRP}             None
 ${OBJETO_CONCORRENCIA}    None
 ${OBJETO_CONTRATO}        Nome
+${OBJETO_GC}              Nome
 
 *** Keywords ***
+Configurar Variáveis de GC
+    ${nome_arquivo}=    Set Variable    ${SUITE_SOURCE}
+    ${arquivo}=    Split String    ${nome_arquivo}    ${/}
+    ${arquivo}=    Set Variable    ${arquivo}[-1] 
+    ${OBJETO_GC}=    Replace String    ${arquivo}    .robot    ${EMPTY}
+    Set Global Variable    ${OBJETO_GC}
+
+
 Configurar Variáveis de Contrato
     ${nome_arquivo}=    Set Variable    ${SUITE_SOURCE}
     ${arquivo}=    Split String    ${nome_arquivo}    ${/}

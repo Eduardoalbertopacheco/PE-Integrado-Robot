@@ -87,7 +87,18 @@ CT06 - Prorrogar Compra direta
     Então faço o prorrogamento da compra direta
 
 
-CT07 - Finalizar Compra Direta
+CT07 - Encerrar Itens
+    Configurar Variáveis Compra Direta
+   
+    Dado que acesso o sistema
+    E faço login com usuário "mi.comprador.110402"
+    E acesso a lista de todas as Compras Direta
+    E seleciono o filtro Todas as compras diretas
+    E clico na Compra Direta da lista
+    Então encerro os Itens/Lotes
+
+
+CT08 - Finalizar Compra Direta
     Configurar Variáveis Compra Direta
 
   [Tags]    finalizar_compra_direta
@@ -99,7 +110,7 @@ CT07 - Finalizar Compra Direta
     Então finalizo a Compra Direta
 
 
-CT08 - Ratificar compra Direta
+CT09 - Ratificar compra Direta
     Configurar Variáveis Compra Direta
 
   [Tags]    ratificar_compra_direta

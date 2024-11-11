@@ -6,13 +6,11 @@ Library          DateTime
 Library          OperatingSystem
 Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_cadastro_pregao.robot
-     
 
 *** Test Cases ***
 CT01 - Criar Pregão - Aba Dados Gerais
-    Configurar Variáveis de Pregão
 
-    [Tags]    criar_pregao
+    Configurar Variáveis de Pregão
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
     E acesso a tela de Licitações Eletrônicas
@@ -27,10 +25,9 @@ CT01 - Criar Pregão - Aba Dados Gerais
 
 
 CT02 - Incluir SC ao Pregão
+
     Configurar Variáveis de Pregão
     Usar SC_Lote_Pregao_OPD
-
-    [Tags]    incluir_sc_pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
     E acesso a tela de Licitações Eletrônicas
@@ -43,9 +40,8 @@ CT02 - Incluir SC ao Pregão
 
 
 CT03 - Incluir Documento - Edital
-    Configurar Variáveis de Pregão
 
-    [Tags]    Incluir_doc_pregao
+    Configurar Variáveis de Pregão
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
     E acesso a tela de Licitações Eletrônicas
@@ -57,9 +53,8 @@ CT03 - Incluir Documento - Edital
 
 
 CT04 - Assinar Documento
-    Configurar Variáveis de Pregão
 
-    [Tags]    assinar_doc_pregao
+    Configurar Variáveis de Pregão
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
     E acesso a tela de Licitações Eletrônicas
@@ -71,9 +66,8 @@ CT04 - Assinar Documento
 
 
 CT05 - Solicitar Parecer para Ordenador
-    Configurar Variáveis de Pregão
 
-    [Tags]    solicitar_parecer_pregao
+    Configurar Variáveis de Pregão
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
     E acesso a tela de Licitações Eletrônicas
@@ -85,9 +79,8 @@ CT05 - Solicitar Parecer para Ordenador
 
 
 CT06 - Aprovar parecer Ordenador
-    Configurar Variáveis de Pregão
 
-    [Tags]    aprovar_parecer
+    Configurar Variáveis de Pregão
     Dado que acesso o sistema
     E faço login com usuário "ordenador.070001"
     E acesso a tela de Licitações Eletrônicas
@@ -99,9 +92,8 @@ CT06 - Aprovar parecer Ordenador
 
 
 CT07 - Solicitar Autorização
-    Configurar Variáveis de Pregão
 
-    [Tags]    solicitar_autorizacao
+    Configurar Variáveis de Pregão
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.070001"
     E acesso a tela de Licitações Eletrônicas
@@ -109,13 +101,11 @@ CT07 - Solicitar Autorização
     E clico na licitação da lista
     E clico no botão solicitar autorização
     Então solicito autorização central
-    # E mostro a auditoria
 
 
 CT08 - Aprovar autorização
-    Configurar Variáveis de Pregão
 
-    [Tags]    aprovar_autorizacao
+    Configurar Variáveis de Pregão
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a tela de Licitações Eletrônicas

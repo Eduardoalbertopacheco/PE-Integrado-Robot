@@ -10,9 +10,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 CT23 - Encerrar disputa
-    Configurar Variáveis de Pregão
 
-    [Tags]    encerrar_disputa
+    Configurar variável Conc_fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -22,9 +21,8 @@ CT23 - Encerrar disputa
     
 
 CT24 - Abrir Item/Lote para Lei 123
-    Configurar Variáveis de Pregão
 
-    [Tags]    abrir_lei_123
+    Configurar variável Conc_fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -34,21 +32,20 @@ CT24 - Abrir Item/Lote para Lei 123
 
 
 CT25 - Encerrar Item/Lote para Lei 123
-    Configurar Variáveis de Pregão
 
-    [Tags]    encerrar_lei_123
+    Configurar variável Conc_fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
     Então encerro Lote para Lei 123
+    Então encerro Lote para Lei 123
 
 
 CT26 - Convocar vencedor
-    Configurar Variáveis de Pregão
 
-    [Tags]    convocar_vencedor
+    Configurar variável Conc_fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -58,9 +55,8 @@ CT26 - Convocar vencedor
 
 
 CT27 - Anexar documento - Vencedor
-    Configurar Variáveis de Pregão
 
-    [Tags]    anexar_documento_vencedor
+    Configurar variável Conc_fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
@@ -70,21 +66,19 @@ CT27 - Anexar documento - Vencedor
 
 
 CT28 - Habilitar fornecedor vencedor
-    Configurar Variáveis de Pregão
 
-    [Tags]    habilitar_fornecedor
+    Configurar variável Conc_fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor (Aberto_item)
+    Então habilito o fonecedor vencedor (Aberto_Fechado_item)
 
 
 CT29 - Encerrar etapa
-    Configurar Variáveis de Pregão
 
-    [Tags]    encerrar_etapa
+    Configurar variável Conc_fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -94,9 +88,8 @@ CT29 - Encerrar etapa
 
 
 CT30 - Registrar intenção de recursos
-    Configurar Variáveis de Pregão
-    
-    [Tags]    registrar_recurso
+
+    Configurar variável Conc_fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas

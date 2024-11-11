@@ -1,6 +1,5 @@
 
 
-
 $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\SOLICITACAO_COMPRA\SC_pregao"
 

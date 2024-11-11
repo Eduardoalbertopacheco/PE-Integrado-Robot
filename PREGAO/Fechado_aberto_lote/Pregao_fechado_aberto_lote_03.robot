@@ -9,9 +9,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 CT26 - Não acatar intenção de recursos
-    Configurar variável fechado_aberto_lote
 
-    [Tags]    nao_acatar_recurso
+    Configurar variável fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -21,9 +20,8 @@ CT26 - Não acatar intenção de recursos
 
 
 CT27 - Gravar preço dos Lotes
-    Configurar variável fechado_aberto_lote
 
-    [Tags]    Reajuste_Lote
+    Configurar variável fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -33,9 +31,8 @@ CT27 - Gravar preço dos Lotes
 
 
 CT28 - Adjudicar Pregão
-    Configurar variável fechado_aberto_lote
 
-    [Tags]    adjudicar_pregao
+    Configurar variável fechado_aberto_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -43,10 +40,10 @@ CT28 - Adjudicar Pregão
     E clico na licitação em Adjudicação da lista
     Então adjudico o pregão eletrônico
 
+
 CT29 - Homologar Pregão
+
     Configurar variável fechado_aberto_lote
-    
-    [Tags]    homologar_pregao
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"
     E acesso a tela de Licitações Eletrônicas

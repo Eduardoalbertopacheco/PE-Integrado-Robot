@@ -10,11 +10,9 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
-# Estes cenários só podem ser rodados após 10min
 CT29 - Não acatar intenção de recursos
-    Configurar variável aberto_fechado_item
 
-    [Tags]    nao_acatar_recurso
+    Configurar variável aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -22,10 +20,10 @@ CT29 - Não acatar intenção de recursos
     E seleciono a licitação da lista
     Então não acato a intenção de recurso
 
-CT30 - Adjudicar Pregão
-    Configurar variável aberto_fechado_item
 
-    [Tags]    adjudicar_pregao
+CT30 - Adjudicar Pregão
+
+    Configurar variável aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -33,10 +31,10 @@ CT30 - Adjudicar Pregão
     E clico na licitação em Adjudicação da lista
     Então adjudico o pregão eletrônico
 
+
 CT31 - Homologar Pregão
+
     Configurar variável aberto_fechado_item
-    
-    [Tags]    homologar_pregao
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"
     E acesso a tela de Licitações Eletrônicas

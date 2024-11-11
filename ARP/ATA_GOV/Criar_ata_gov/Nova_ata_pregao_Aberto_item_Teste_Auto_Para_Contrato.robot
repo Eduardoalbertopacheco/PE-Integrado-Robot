@@ -10,21 +10,20 @@ Resource        ../../../Resources/Resource_ARP.robot
 *** Test Cases ***
 
 CT01 - Gerar ARP do Pregão
+
     Configurar Variáveis de Contrato
-    
-    [Tags]    gerar_ata
     Dado que acesso o sistema
     E faço login com usuário "gestorata.120101"
     E acesso a lista de Licitações
     E seleciono o filtro Licitações Homologadas
     E clico no Licitação da lista para gerar ARP
+    E acesso a tela de Gerar ARP
     Então gero a ARP
 
 
 CT02 - Configurar Ata
-   Configurar variável aberto_item
 
-    [Tags]    configurar_ata
+   Configurar variável aberto_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
@@ -34,9 +33,8 @@ CT02 - Configurar Ata
 
 
 CT03 - Inluir Documento
-   Configurar variável aberto_item
 
-    [Tags]    Incluir_documento
+   Configurar variável aberto_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
@@ -46,9 +44,8 @@ CT03 - Inluir Documento
 
 
 CT04 - Assinar Documento
-   Configurar variável aberto_item
 
-    [Tags]    assinar_documento
+   Configurar variável aberto_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
@@ -58,9 +55,8 @@ CT04 - Assinar Documento
 
 
 CT05 - Ativar ARP
-   Configurar variável aberto_item
 
-    [Tags]    ativar_ata
+   Configurar variável aberto_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
@@ -69,9 +65,8 @@ CT05 - Ativar ARP
 
 
 CT06 - Configurar Gestão da Ata
+
     Configurar Variáveis de Contrato
-    
-    [Tags]    configurar_gestao_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços

@@ -10,21 +10,19 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 CT19 - Abrir Item para disputa Sigilosa 5 min
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    abrir_item-disputa_sigilosa
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então abro Item para Lei 123
+    Então abro Item para disputa sigilosa
 
 
 CT18 - Enviar disputa sigilosa Forn01
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    enviar_disputa_sigilosa01
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
@@ -34,9 +32,8 @@ CT18 - Enviar disputa sigilosa Forn01
 
 
 CT19 - Enviar disputa sigilosa Forn02
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    enviar_disputa_sigilosa02
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
@@ -46,9 +43,8 @@ CT19 - Enviar disputa sigilosa Forn02
    
 
 CT20 - Encerrar Disputa
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    encerrar_disputa_sigilosa
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -59,8 +55,6 @@ CT20 - Encerrar Disputa
 
 CT21 - Abrir Itens para Lei 123
     Configurar variável Conc_aberto_fechado_item
-
-    [Tags]    abrir_item_lei_123
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -70,9 +64,8 @@ CT21 - Abrir Itens para Lei 123
 
 
 CT22 - Encerrar Itens para Lei 123
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    encerrar_item_lei_123
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -82,9 +75,8 @@ CT22 - Encerrar Itens para Lei 123
 
 
 CT21 - Convocar vencedor
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    convocar_vencedor
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -94,9 +86,8 @@ CT21 - Convocar vencedor
 
 
 CT22 - Anexar documento - Vencedor
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    anexar_documento_vencedor
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
@@ -104,21 +95,21 @@ CT22 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
-CT23 - Habilitar fornecedor vencedor
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    habilitar_fornecedor
+CT23 - Habilitar fornecedor vencedor
+
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então habilito o fonecedor vencedor (Aberto_item)
+    Então habilito o fonecedor vencedor (Aberto_Fechado_item)
+
 
 CT24 - Encerrar etapa
-    Configurar variável Conc_aberto_fechado_item
 
-    [Tags]    encerrar_etapa
+    Configurar variável Conc_aberto_fechado_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -126,10 +117,10 @@ CT24 - Encerrar etapa
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
 
+
 CT25 - Registrar intenção de recursos
+
     Configurar variável Conc_aberto_fechado_item
-    
-    [Tags]    registrar_recurso
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas

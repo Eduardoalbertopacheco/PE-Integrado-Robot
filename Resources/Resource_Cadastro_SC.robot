@@ -32,6 +32,7 @@ ${INPUT_TIPO}            //input[@field="normal"]
 ${LUPA_GRUPO_COMPRA}     (//img[@id='img'])[3]
 ${INPUT_NUM_SC}          //div[@id='_cORDEM_COMPRA_x_sCdOrdemCompraEmpresa']
 
+
 ${timeout}       300    
 ${interval}      5    
 ${start_time}    Get Time    epoch 
@@ -502,7 +503,8 @@ E acesso a tela de incluir Itens
 
 Então incluo os itens
   
-    Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000241
+    # Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000241
+    Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000268
     Click Element    //*[@id="ctl00_ContentPrincipal_btnPesquisarProduto"]
     
     Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[1]    timeout=30s
@@ -1134,6 +1136,7 @@ E Clico na aba 'Itens'
     Switch Window    NEW
     Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
     Click Element    //a[contains(.,'Itens')]
+    Sleep    1
     Capture Page Screenshot
 
 
@@ -1149,9 +1152,12 @@ Então defino a natureza de despesa
 
 
     # Clique para selecionar a natureza de despesa da seleção
-    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'33903036 - MATERIAL HOSPITALAR')]    timeout=30s
+    # Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'33903036 - MATERIAL HOSPITALAR')]    timeout=30s
+    Wait Until Element Is Visible    //li[contains(.,'33909231 - PREMIAÇÕES CULT/ARTIST/CIENT/DESPORTIV/OUTRAS')]    20
     Capture Page Screenshot
-    Click Element    //li[@tabindex='-1'][contains(.,'33903036 - MATERIAL HOSPITALAR')]
+    Sleep    1
+    # Click Element    //li[@tabindex='-1'][contains(.,'33903036 - MATERIAL HOSPITALAR')]
+    Click Element    //li[contains(.,'33909231 - PREMIAÇÕES CULT/ARTIST/CIENT/DESPORTIV/OUTRAS')]
     Capture Page Screenshot
 
     # Clique no botão 'Salvar e fechar'
@@ -1887,8 +1893,10 @@ E seleciono a SC da lista
 Então incluo os itens e agrupo por lote
     
     #Campo Descrição
-    Wait Until Element Is Visible    //input[contains(@name,'txtDescricao')]    timeout=30s
-    Input Text    //input[contains(@name,'txtDescricao')]    TUBO DE SILICONE
+    # Wait Until Element Is Visible    //input[contains(@name,'txtDescricao')]    timeout=30s
+    Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000268    15
+    # Input Text    //input[contains(@name,'txtDescricao')]    TUBO DE SILICONE
+
     #Pesquisar Item
     Click Element    //a[contains(@onclick,'AtualizarPesquisaProduto()')]
 

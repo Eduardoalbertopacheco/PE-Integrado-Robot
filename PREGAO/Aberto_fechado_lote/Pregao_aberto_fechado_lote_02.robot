@@ -9,11 +9,9 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
-# Estes cenários só pode ser rodado depois de 15min + autoencerramento
 CT18 - Abrir Lote para disputa Sigilosa 5 min
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    abrir_item-disputa_sigilosa
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -23,9 +21,8 @@ CT18 - Abrir Lote para disputa Sigilosa 5 min
 
 
 CT19 - Enviar disputa sigilosa Forn01
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    enviar_disputa_sigilosa01
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
@@ -35,9 +32,8 @@ CT19 - Enviar disputa sigilosa Forn01
 
 
 CT20 - Enviar disputa sigilosa Forn02
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    enviar_disputa_sigilosa02
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
@@ -47,9 +43,8 @@ CT20 - Enviar disputa sigilosa Forn02
 
 
 CT21 - Encerrar disputa
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    encerrar_disputa
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -59,9 +54,8 @@ CT21 - Encerrar disputa
     
 
 CT22 - Abrir Item/Lote para Lei 123
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    abrir_lei_123
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -70,9 +64,8 @@ CT22 - Abrir Item/Lote para Lei 123
     Então abros os Lotes
 
 CT23 - Encerrar Item/Lote para Lei 123
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    encerrar_lei_123
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -80,10 +73,10 @@ CT23 - Encerrar Item/Lote para Lei 123
     E seleciono a licitação da lista
     Então encerro Lote para Lei 123
 
-CT24 - Convocar vencedor
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    convocar_vencedor
+CT24 - Convocar vencedor
+
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -93,9 +86,8 @@ CT24 - Convocar vencedor
 
 
 CT25 - Anexar documento - Vencedor
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    anexar_documento_vencedor
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256" 
     E acesso a tela de Licitações Eletrônicas
@@ -103,10 +95,10 @@ CT25 - Anexar documento - Vencedor
     E seleciono a licitação da lista
     Então anexo o documento
 
-CT26 - Habilitar fornecedor vencedor
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    habilitar_fornecedor
+CT26 - Habilitar fornecedor vencedor
+
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -116,9 +108,8 @@ CT26 - Habilitar fornecedor vencedor
 
 
 CT27 - Encerrar etapa
-    Configurar variável aberto_fechado_lote
 
-    [Tags]    encerrar_etapa
+    Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -126,10 +117,10 @@ CT27 - Encerrar etapa
     E seleciono a licitação da lista
     Então encerro a etapa de pregão eletrônico
 
+
 CT28 - Registrar intenção de recursos
+
     Configurar variável aberto_fechado_lote
-    
-    [Tags]    registrar_recurso
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas

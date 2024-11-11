@@ -10,11 +10,9 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
-# Estes cenários só podem ser rodados após 10min
 CT26 - Não acatar intenção de recursos
-    Configurar Variáveis de Pregão
 
-    [Tags]    nao_acatar_recurso
+    Configurar variável Conc_aberto_item_01
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -24,9 +22,8 @@ CT26 - Não acatar intenção de recursos
 
 
 CT27 - Adjudicar Pregão
-    Configurar Variáveis de Pregão
 
-    [Tags]    adjudicar_pregao
+    Configurar variável Conc_aberto_item_01
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -34,10 +31,10 @@ CT27 - Adjudicar Pregão
     E seleciono a licitação da lista
     Então adjudico o pregão eletrônico
 
+
 CT28 - Homologar Pregão
-    Configurar Variáveis de Pregão
-    
-    [Tags]    homologar_pregao
+
+    Configurar variável Conc_aberto_item_01
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"
     E acesso a tela de Licitações Eletrônicas

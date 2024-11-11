@@ -9,11 +9,9 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 
-# Estes cenários só podem ser rodados após 10min
 CT26 - Não acatar intenção de recursos
-    Configurar Variáveis de Pregão
 
-    [Tags]    nao_acatar_recurso
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -23,32 +21,30 @@ CT26 - Não acatar intenção de recursos
 
 
 CT27 - Reajustar preço dos Lotes
-    Configurar Variáveis de Pregão
 
-    [Tags]    Reajuste_Lote
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
-    E seleciono a licitação da lista
+    E seleciono a licitação em ajuste de preços da lista
     Então gravo o valor do lote
 
 
-CT27 - Adjudicar Pregão
-    Configurar Variáveis de Pregão
+CT27 - Adjudicar Concorrencia
 
-    [Tags]    adjudicar_pregao
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
-    E seleciono a licitação da lista
+    E clico na licitação em Adjudicação da lista
     Então adjudico o pregão eletrônico
 
-CT28 - Homologar Pregão
-    Configurar Variáveis de Pregão
-    
-    [Tags]    homologar_pregao
+
+CT28 - Homologar Concorrencia
+
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"
     E acesso a tela de Licitações Eletrônicas
