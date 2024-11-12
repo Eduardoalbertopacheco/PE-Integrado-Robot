@@ -89,6 +89,7 @@ CT06 - Aprovar parecer Ordenador
     E clico na licitação da lista
     E acesso a tela de Solicitar Parecer
     E seleciono o parecer
+    Então finalizo o parecer
 
 
 CT07 - Solicitar Autorização
@@ -115,7 +116,7 @@ CT08 - Aprovar autorização
     Então aprovo a autorização
 
 
-CT09 - Agendar Pregão eletrônico
+CT09 - Agendar Concorrencia Eletrônica
 
     Configurar variável Conc_fechado_aberto_item
     Dado que acesso o sistema
@@ -153,8 +154,8 @@ CT11 - Envio de propostas Fornecedor 02
 
 
 CT12 - Prorrogar Pregão
-    Configurar variável Conc_fechado_aberto_item
 
+    Configurar variável Conc_fechado_aberto_item
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas

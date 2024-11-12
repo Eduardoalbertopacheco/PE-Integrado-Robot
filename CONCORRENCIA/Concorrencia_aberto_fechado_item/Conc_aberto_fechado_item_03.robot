@@ -31,6 +31,7 @@ CT27 - Adjudicar Pregão
     E clico na licitação em Adjudicação da lista
     Então adjudico o pregão eletrônico
 
+
 CT28 - Homologar Pregão
 
     Configurar variável Conc_aberto_fechado_item

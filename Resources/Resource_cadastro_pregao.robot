@@ -20,6 +20,7 @@ ${ITEM_LIST_LOTE}    //ul[@id='dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaIten
 ${ITEM_TEXT}      12V 3AH
 ${ITEM_TEXT_CATETER}   NENHUMA MARCA REGISTRADA
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
+${LOTE_CATETER}    ${ITEM_LIST_LOTE}//li[text()="NENHUMA MARCA REGISTRADA"]
 ${ITEM_CATETER}    ${ITEM_LIST}//li[text()="NENHUMA MARCA REGISTRADA"]
 ${ITEM_LOTE}    ${ITEM_LIST_LOTE}//li[text()="12V 3AH"]
 ${CAMPO_DT_INICIAL_PROP}       //input[contains(@name,'tDtInicialProposta')]
@@ -1082,12 +1083,12 @@ E preencho os dados do lance por Lote
     Log    Dropdown expandido, aguardando item
 
     Log    Aguardando a visibilidade do item na lista
-    Wait Until Element Is Visible    ${ITEM_CATETER}    timeout=30s
+    Wait Until Element Is Visible    ${LOTE_CATETER}    timeout=30s
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
-    Click Element    ${ITEM_CATETER}
+    Click Element    ${LOTE_CATETER}
     Sleep    2s
 
     # Valor do lance
@@ -1271,7 +1272,9 @@ Então abros os itens
 
     Click Element    //input[@value='Sim']
     Sleep    2
+    SeleniumLibrary.Close Browser
  
+
 Então abros os Lotes
 
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    timeout=30s

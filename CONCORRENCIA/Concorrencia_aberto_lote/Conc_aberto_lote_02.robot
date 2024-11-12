@@ -10,9 +10,8 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 
 CT18 - Encerrar disputa
-    Configurar variável Conc_aberto_lote_01
 
-    [Tags]    encerrar_disputa
+    Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -22,8 +21,8 @@ CT18 - Encerrar disputa
     
 
 CT19 - Abrir Item/Lote para Lei 123
-    Configurar variável Conc_aberto_lote_01
 
+    Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -32,8 +31,8 @@ CT19 - Abrir Item/Lote para Lei 123
     Então abros os Lotes
 
 CT20 - Encerrar Item/Lote para Lei 123
-    Configurar variável Conc_aberto_lote_01
 
+    Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -42,8 +41,8 @@ CT20 - Encerrar Item/Lote para Lei 123
     Então encerro Lote para Lei 123
 
 CT21 - Convocar vencedor
-    Configurar variável Conc_aberto_lote_01
 
+    Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -53,8 +52,8 @@ CT21 - Convocar vencedor
 
 
 CT22 - Anexar documento - Vencedor
-    Configurar variável Conc_aberto_lote_01
 
+    Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
@@ -64,8 +63,8 @@ CT22 - Anexar documento - Vencedor
 
 
 CT23 - Habilitar fornecedor vencedor
-    Configurar variável Conc_aberto_lote_01
 
+    Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -75,8 +74,8 @@ CT23 - Habilitar fornecedor vencedor
 
 
 CT24 - Encerrar etapa
-    Configurar variável Conc_aberto_lote_01
 
+    Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -86,8 +85,8 @@ CT24 - Encerrar etapa
 
 
 CT25 - Registrar intenção de recursos
+
     Configurar variável Conc_aberto_lote_01
-    
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas

@@ -11,7 +11,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 *** Test Cases ***
 CT01 - Criar Pregão - Aba Dados Gerais
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -27,7 +27,7 @@ CT01 - Criar Pregão - Aba Dados Gerais
 
 CT02 - Incluir SC ao Pregão
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Usar SC_Lote_Concorrencia_aberto_fechado
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -42,7 +42,7 @@ CT02 - Incluir SC ao Pregão
 
 CT03 - Incluir Documento - Edital
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -55,7 +55,7 @@ CT03 - Incluir Documento - Edital
 
 CT04 - Assinar Documento
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -67,7 +67,7 @@ CT04 - Assinar Documento
 
 CT05 - Solicitar Parecer para Ordenador
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -80,7 +80,7 @@ CT05 - Solicitar Parecer para Ordenador
 
 CT06 - Aprovar parecer Ordenador
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "ordenador.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -93,7 +93,7 @@ CT06 - Aprovar parecer Ordenador
 
 CT07 - Solicitar Autorização
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -105,7 +105,7 @@ CT07 - Solicitar Autorização
 
 CT08 - Deliberar autorização
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a tela de Licitações Eletrônicas
@@ -117,7 +117,8 @@ CT08 - Deliberar autorização
 
 
 CT09 - Agendar Pregão eletrônico
-    Configurar Variáveis de Pregão
+
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -128,7 +129,7 @@ CT09 - Agendar Pregão eletrônico
 
 CT10 - Envio de propostas Fornecedor 01
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
@@ -141,7 +142,7 @@ CT10 - Envio de propostas Fornecedor 01
 
 CT11 - Envio de propostas Fornecedor 02
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
@@ -154,7 +155,7 @@ CT11 - Envio de propostas Fornecedor 02
 
 CT12 - Prorrogar Pregão
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -167,7 +168,7 @@ CT12 - Prorrogar Pregão
 
 CT13 - Abertura das propostas
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -178,7 +179,7 @@ CT13 - Abertura das propostas
 
 CT14 - Iniciar disputa
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -189,7 +190,7 @@ CT14 - Iniciar disputa
 
 CT15 - Abrir Itens/Lotes para disputa
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -200,7 +201,7 @@ CT15 - Abrir Itens/Lotes para disputa
 
 CT16 - Enviar disputa Fornecedor 01
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
@@ -211,7 +212,7 @@ CT16 - Enviar disputa Fornecedor 01
 
 CT17 - Enviar disputa Fornecedor 02
 
-    Configurar Variáveis de Pregão
+    Configurar variável Conc_aberto_fechado_lote
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas

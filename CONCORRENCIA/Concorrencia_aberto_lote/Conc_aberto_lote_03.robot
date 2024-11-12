@@ -35,7 +35,6 @@ CT27 - Gravar valor do Lote
 CT27 - Adjudicar Concorrência
 
     Configurar variável Conc_aberto_lote_01
-
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -47,7 +46,6 @@ CT27 - Adjudicar Concorrência
 CT28 - Homologar Concorrência
 
     Configurar variável Conc_aberto_lote_01
-    
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"
     E acesso a tela de Licitações Eletrônicas
