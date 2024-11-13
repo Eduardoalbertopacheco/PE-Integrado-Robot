@@ -326,13 +326,6 @@ Então preencho os campos da Aba Dados gerais - SEDUC
 
 Então preencho os campos da Aba Dados gerais - SAD
 
-    Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //a[contains(.,'Incluir')]
-    Click Element    //a[contains(.,'Incluir')]
-    Sleep    2
-
-    Switch Window    NEW
-
     Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
     Click Element    ${PRIORIDADE}
     Sleep    1
@@ -408,6 +401,7 @@ Então preencho os campos da Aba Dados gerais - SAD
     SeleniumLibrary.Close Browser
 
 E clico em 'Incluir'
+
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]
     Click Element    //a[contains(.,'Incluir')]
@@ -418,13 +412,12 @@ E clico em 'Incluir'
 
 Então preencho os campos da Aba Dados gerais
 
-    # Switch Window    NEW
-    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
     Click Element    ${PRIORIDADE}
     Sleep    1
     Click Element    ${PRIORIDADE_MEDIA}
     
-    Wait Until Element Is Visible    ${TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TIPO}    30
     Click Element    ${TIPO}
     Sleep    1
     Click Element    ${TIPO_AMS}
@@ -438,24 +431,24 @@ Então preencho os campos da Aba Dados gerais
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
-    Wait Until Element Is Visible    ${INPUT_TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
     Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
     Click Element    //*[@id="tdPesquisar"]
     Click Element    //input[@value="ANIMAIS VIVOS◘50"]
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Switch Window    ${Janela01}
     
-    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA}    30
     Click Element    ${EMPRESA}
-    Wait Until Element Is Visible    ${EMPRESA_SEDC}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA_SEDC}    30
     Click Element    ${EMPRESA_SEDC}
     
-    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Wait Until Element Is Visible    ${GESTAO}     30
     Click Element    ${GESTAO} 
     Click Element    ${GESTAO_AD}
     
-    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Wait Until Element Is Visible    ${APLICACAO}     30
     Click Element    ${APLICACAO}
     Sleep    1
     Click Element    ${APLICACAO_EI}
@@ -463,7 +456,7 @@ Então preencho os campos da Aba Dados gerais
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    30
     Sleep    1
     Click Element    ${LUPA_GRUPO_COMPRA}
 
@@ -472,13 +465,13 @@ Então preencho os campos da Aba Dados gerais
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
     Input Text    ${INPUT_TIPO}    SECRETARIA EXECUTIVA DE DEFESA CIVIL	
-    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    timeout=30s
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
     Click Element    //*[@id="ctl00_btnPesquisar"]  
 
     Wait Until Element Is Visible    
-    ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]    timeout=30s
+    ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]    30
     Click Element    
     ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]
     Click Element    
@@ -544,13 +537,6 @@ E Clico na Aba 'Documentos do Processo'
 
 Então incluo o documento do tipo Termo Referencia
 
-    # Switch Window    NEW
-
-    # Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    timeout=30s
-    # Click Element        xpath=//a[contains(.,'Documentos do processo')]
-    # Sleep    2
-    # Capture Page Screenshot
-
     Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
     Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
 
@@ -588,7 +574,7 @@ Então assino o documento
     Select Checkbox     //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input
 
     # Clicar no botão 'Assinar Documento'
-    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    30
     Click Element    xpath=//a[contains(.,'Assinar documento')]
 
 
@@ -1382,14 +1368,14 @@ E acesso a lista de Planejamento de Compras
     # Sleep    2
 
     # Ocultar Icones de Chat
-    Sleep    2
-    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
-    Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
-    Sleep    1
-    Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
-    Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
-    Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
-    Sleep    1
+    # Sleep    2
+    # Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    # Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    # Sleep    1
+    # Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    # Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    # Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    # Sleep    1
     
     Capture Page Screenshot
 
@@ -1756,17 +1742,17 @@ E acesso a tela de Planejamento de compras
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
-    # Sleep    2
+    Sleep    3
 
     # Ocultar Icones de Chat
-    Sleep    2
-    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
-    Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
-    Sleep    1
-    Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
-    Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
-    Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
-    Sleep    1
+    # Sleep    2
+    # Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    # Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    # Sleep    1
+    # Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    # Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    # Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    # Sleep    1
     
     Capture Page Screenshot
 

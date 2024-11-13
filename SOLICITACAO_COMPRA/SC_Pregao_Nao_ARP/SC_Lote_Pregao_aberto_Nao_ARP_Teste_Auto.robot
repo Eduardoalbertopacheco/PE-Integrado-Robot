@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Cenário: Criar Um Solicitação de Compras Por Item e Encaminhar Para Compra Direta - Dispensa - Fluxo Feliz
+Documentation    Cenário: Criar Um Solicitação de Compras Por Lote e Encaminhar Para Pregão Eletrônico - Fluxo Feliz
 Library          SeleniumLibrary
 Library          Browser
 Library          OperatingSystem
@@ -9,32 +9,34 @@ Resource        ../../Resources/Resource_Cadastro_SC.robot
 *** Test Cases ***
 
 CT01 - Criar SC - Aba dados Gerais
-
     Configurar Variáveis de SC
+    
+    [Tags]    criar_sc
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.120101"
+    E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E clico em 'Incluir'
-    Então preencho os campos da Aba Dados gerais - SAD
+    Então preencho os campos da Aba Dados gerais
 
 
 CT02 - Incluir Itens na Solicitação de Compras
-
     Configurar Variáveis de SC
+
+    [Tags]    incluir_itens
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.120101"
+    E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
     E acesso a tela de incluir Itens
-    Então incluo os itens
+    Então incluo os itens e agrupo por lote
 
 
 CT03 - Incluir Documento na Solicitação de Compras
-
     Configurar Variáveis de SC
+    [Tags]    incluir_documento
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.120101"
+    E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na Aba 'Documentos do Processo'
@@ -42,10 +44,10 @@ CT03 - Incluir Documento na Solicitação de Compras
 
 
 CT04 - Assinar documento
-
     Configurar Variáveis de SC
+    [Tags]    assinar_documento
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.120101"
+    E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na Aba 'Documentos do Processo'
@@ -53,30 +55,30 @@ CT04 - Assinar documento
 
 
 CT05 - Encaminhar SC para precificação
-
     Configurar Variáveis de SC
+    [Tags]    encaminhar_SC
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.120101"
+    E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     Então encaminho a Solicitação de compra para precificação
     
 
 CT06 - Planejamento com Solicitante
-
     Configurar Variáveis de SC
+    [Tags]    planejamento_solicitante
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.120101"
+    E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
-    Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
+    Então faço planejamento da SC para Pregão eletronico
    
 
 CT07 - Definir Natureza de despesa com o Financeiro
-
     Configurar Variáveis de SC
+    [Tags]    definir_natureza
     Dado que acesso o sistema
-    E faço login com usuário "financeiro.120101"
+    E faço login com usuário "financeiro.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
@@ -84,20 +86,20 @@ CT07 - Definir Natureza de despesa com o Financeiro
 
 
 CT08 - Aprovação orçamentária
-
     Configurar Variáveis de SC
+    [Tags]    aprovacao_orcamentaria
     Dado que acesso o sistema
-    E faço login com usuário "orcamento.120101"
+    E faço login com usuário "orcamento.110402"
     E acesso 'Minhas Tarefas'
     E seleciono a SC para aprovação
     Então Clique no botão Aprovar com orçamento
     
 
 CT09 - Aprovação com o Ordenador
-
     Configurar Variáveis de SC
+    [Tags]    aprovacao_ordenador
     Dado que acesso o sistema
-    E faço login com usuário "ordenador.120101"
+    E faço login com usuário "ordenador.110402"
     E acesso 'Minhas Tarefas'
     E seleciono a SC para aprovação
     E Clico em Ciente
@@ -105,8 +107,8 @@ CT09 - Aprovação com o Ordenador
 
 
 CT10 - Liberar SC com autoridade central
-
     Configurar Variáveis de SC
+    [Tags]    liberacao_autoridade
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a lista de SC centralizada
@@ -115,10 +117,10 @@ CT10 - Liberar SC com autoridade central
 
 
 CT11 - Deliberar SC com autoridade da UG
-
     Configurar Variáveis de SC
+    [Tags]    deliberar_autoridade_ug
     Dado que acesso o sistema
-    E faço login com usuário "autoridade.120101"
+    E faço login com usuário "autoridade.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E pesquiso por SC 'Aguardando Deliberação'
     E seleciono a SC e clico
@@ -126,26 +128,36 @@ CT11 - Deliberar SC com autoridade da UG
 
 
 CT12 - Planejamento com Ordenador
-
     Configurar Variáveis de SC
+
+    [Tags]    planejar_ordenador
     Dado que acesso o sistema
-    E faço login com usuário "ordenador.120101"
+    E faço login com usuário "ordenador.110402"
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC
-    Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
-
+    Então faço o planejamento para Pregão Eletrônico
 
 CT13 - Atribuir Comissão
-
     Configurar Variáveis de SC
-    Dado que acesso o sistema
-    E faço login com usuário "planejador.120101"
-    E acesso a tela de Planejamento de compras
-    E pesquiso por atribuir comissão com planejador
-    E seleciono a SC para atribuir comissão com Planejador
-    Então atribuo a comissão de Compra Direta
 
+    [Tags]    atribuir_comissao
+    Dado que acesso o sistema
+    E Faço login com usuário "gestorlicitacaocentral.120101"
+    E acesso a tela de Solicitação de compras centralizadas
+    E pesquiso por SC aguradando atribuir comissão
+    E seleciono a SC para atribuir comissão com Gestor Central
+    Então atribuo a Comissão Permanente de Licitação
+
+CT14 - Aprovar SC com Pregoeiro Central
+    Configurar Variáveis de SC
+    
+    [Tags]    aprovacao_pregoeiro_central
+    Dado que acesso o sistema
+    E faço login com usuário "pregoeiro.120101"
+    E acesso 'Minhas Tarefas'
+    E seleciono a SC para aprovação
+    Então Clique no botão Aprovar com orçamento
 
 
 

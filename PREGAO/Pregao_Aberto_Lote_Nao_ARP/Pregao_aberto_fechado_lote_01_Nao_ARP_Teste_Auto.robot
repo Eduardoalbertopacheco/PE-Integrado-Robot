@@ -7,6 +7,7 @@ Library          OperatingSystem
 Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_cadastro_pregao.robot
      
+
 *** Test Cases ***
 CT01 - Criar Pregão - Aba Dados Gerais
 
@@ -20,14 +21,14 @@ CT01 - Criar Pregão - Aba Dados Gerais
     E insiro as datas para agendamento
     E insiro a Comissão e Salvo
     E Seleciono o Modo de Disputa Aberto-Fechado
-    Então preencho a Aba de Dados Gerais
+    Então preencho a Aba de Dados Gerais - Não ARP
     E mostro a auditoria
 
 
 CT02 - Incluir SC ao Pregão
 
     Configurar Variáveis de Pregão
-    Usar SC_Item_Pregao_aberto_fechado
+    Usar SC_Lote_Pregao_aberto_fechado
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -35,7 +36,7 @@ CT02 - Incluir SC ao Pregão
     E clico na licitação da lista
     E clico na aba 'Itens'
     E acesso a tela de 'Incluir Itens da Solicitação'
-    Então incluo a SC Por Item ao Pregão
+    Então incluo a SC Por Lote ao Pregão
     E mostro a auditoria
 
 
@@ -60,7 +61,6 @@ CT04 - Assinar Documento
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
-    E acesso a tela de 'Documentos do Processo'
     E seleciono assino o documento do tipo Edital
     E mostro a auditoria
 
@@ -92,7 +92,6 @@ CT06 - Aprovar parecer Ordenador
 
 
 CT07 - Solicitar Autorização
-
     Configurar Variáveis de Pregão
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
@@ -131,13 +130,12 @@ CT10 - Envio de propostas Fornecedor 01
 
     Configurar Variáveis de Pregão
     Dado que acesso o sistema
-    E faço login com usuário "06268154000145"
-    # E faço login com usuário "29219904403.256"
+    E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a SC Em propotas da lista
     E seleciono não para lei 123 e confirmo
-    E preencho os dados do lance por Item
+    E preencho os dados do lance por Lote
     Então envio a proposta
     
 
@@ -150,7 +148,7 @@ CT11 - Envio de propostas Fornecedor 02
     E seleciono todos os pregões
     E seleciono a licitação da lista
     E seleciono não para lei 123 e confirmo
-    E preencho os dados do lance por Item
+    E preencho os dados do lance por Lote
     Então envio a proposta
 
 
@@ -197,15 +195,14 @@ CT15 - Abrir Itens/Lotes para disputa
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
     E seleciono a licitação da lista
-    Então abros os itens
+    Então abros os Lotes
 
 
 CT16 - Enviar disputa Fornecedor 01
 
     Configurar Variáveis de Pregão
     Dado que acesso o sistema
-    E faço login com usuário "06268154000145"
-    # E faço login com usuário "29219904403.256"
+    E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista

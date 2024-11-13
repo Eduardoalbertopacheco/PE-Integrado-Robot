@@ -32,8 +32,8 @@ CT03 - Definir Índice dos Itens
    E faço login com usuário "analista.contrato.120101"
    E Acesso a lista de contratos
    E acesso o Contrato da Lista
+   E acesso a tela de 'Definir Índice'
    Então defino os índices dos itens
-   # Então incluo os itens no Contrato
 
 
 CT04 - Incluir Gestores e Fiscais

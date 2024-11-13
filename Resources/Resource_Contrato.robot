@@ -5,7 +5,7 @@ Library          DateTime
 Library          OperatingSystem
 Library          Collections
 Resource         ../Resources/Variaveis.robot
-   
+  
 *** Variables ***
 
 ${USUARIO}    Eduardo Alberto
@@ -17,10 +17,10 @@ ${USUARIO}    Eduardo Alberto
 @{UNIDADES_MEDIDA}    TBO 6 M    CX 50 UNIDADES    
 @{VALORES_UNITARIOS}    9    12    
 ${INPUT_NUM_GC}          //span[@id='lbl_ctl00_ContentPrincipal_tbxNrSolicitacaoContrato']
-
+${INPTU_NUM_CONTRATO}          //span[@id='lbl_ctl00_ContentPrincipal_tbxNumero']
+${OBJETO_CONTRATO_NOVO}    Contrato Novo Teste Auto
 
 *** Keywords ***
-
 E acesso a GC da lista
 
     ${NUM_GC}    Get File    ${EXECDIR}/test/processos/num_gc.txt
@@ -30,6 +30,18 @@ E acesso a GC da lista
     Click Element    //a[contains(.,'${NUM_GC}')]
     Sleep    2
     Capture Page Screenshot
+
+
+E acesso a GC ARP da lista
+
+    ${NUM_GC_ARP}    Get File    ${EXECDIR}/test/processos/Num_GC_ARP.txt
+    Select Frame    //iframe[@name='frmConteudo']
+    # Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td[contains(text(), 'Nao_ARP_Nao_PE_Teste_Auto')]]/td[1]//a    15
+    Wait Until Element Is Visible    //a[contains(.,'${NUM_GC_ARP}')]    15
+    Click Element    //a[contains(.,'${NUM_GC_ARP}')]
+    Sleep    2
+    Capture Page Screenshot
+
 
 Então Encaminho a GC
     Switch Window
@@ -78,7 +90,21 @@ E Acesso a lista de Geração de Contratos
     Sleep    3
     Capture Page Screenshot
     
+E acesso a Lista de 'Meus Contratos'
+    Select Frame    xpath=//frame[contains(@name,'main')]
 
+    # Clique de Contrato
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Contrato')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Contrato')]
+    Sleep    1
+
+    # Clique em Lista de Contratos
+    Wait Until Element Is Visible    
+    ...    xpath=//td[@class='label'][contains(.,'Meus Contratos')]    timeout=30s
+    Click Element    
+    ...    xpath=//td[@class='label'][contains(.,'Meus Contratos')]
+    Sleep    5
+    Capture Page Screenshot
 
 
 E Acesso a lista de contratos
@@ -101,6 +127,7 @@ E Acesso a lista de contratos
     Sleep    5
     Capture Page Screenshot
 
+
 E acesso a tela de 'Incluir Novo GC'
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]    30
@@ -109,6 +136,84 @@ E acesso a tela de 'Incluir Novo GC'
     Select Frame    //frame[contains(@name,'main')]
     Sleep    3
     Capture Page Screenshot
+
+
+Então incluo um Novo GC Não ARP e SIM PE
+
+    # Genero - termo de adesão
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlGenero_listbox')]    15
+    Click Element    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlGenero_listbox')]
+    Sleep    1
+    ${all}    Get WebElements    //li[@tabindex='-1'][contains(.,'Padrão')]
+    ${gen_padrao}    Set Variable    ${all}[0]
+    Wait Until Element Is Visible    ${gen_padrao}
+    Click Element    ${gen_padrao}
+
+    # Oriundo de ARP - NÂO
+    Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtOriundoARP_0']    15
+    Click Element    //input[@id='ctl00_ContentPrincipal_rbtOriundoARP_1']
+    Sleep    1
+
+    # Processo no PE - Sim
+    Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtProcessoPE_0']    15
+    Click Element    //input[@id='ctl00_ContentPrincipal_rbtProcessoPE_0']
+    Sleep    1
+
+    # Modalidade
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlModalidade_listbox']    15
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlModalidade_listbox']
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Pregão eletrônico')]    10
+    Click Element    //li[@tabindex='-1'][contains(.,'Pregão eletrônico')]
+    Sleep    1
+
+    # Grupo de Compras
+    Wait Until Element Is Visible    //input[@name='ctl00$ContentPrincipal$autGrupoCompras']    15
+    Input Text    //input[@name='ctl00$ContentPrincipal$autGrupoCompras']    Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO')]
+    ${elementos}    Get WebElements    //li[@tabindex='-1'][contains(.,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO')]
+    ${sad}    Set Variable    ${elementos}[0]
+    Sleep    1
+    Click Element    ${sad}
+    Sleep    2
+    Capture Page Screenshot
+
+    # Lupa de Número Processo
+    Wait Until Element Is Visible    //a[contains(@onclick,'abrirJanelaNumeroProcesso();')]    10
+    Click Element    //a[contains(@onclick,'abrirJanelaNumeroProcesso();')]
+
+    
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Execute Javascript    document.body.style.zoom='80%'
+
+    ${NUM_PREGAO}    Get File    ${EXECDIR}/test/processos/num_proc_pregao.txt
+    Wait Until Element Is Visible    //input[@name='ctl00$ContentPrincipal$numeroProcesso']    10
+    Input Text    //input[@name='ctl00$ContentPrincipal$numeroProcesso']    ${NUM_PREGAO}
+
+    # Clique para pesquisar o processo
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    15
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    1
+
+    # clique para selecionar o processo
+    Wait Until Element Is Visible    //input[@name='radioProcesso']    15
+    Click Element    //input[@name='radioProcesso']
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    15
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
+    # Contratada Principal
+    Wait Until Element Is Visible    //input[contains(@name,'autContratadaPrincipal')]    15
+    Input Text    //input[contains(@name,'autContratadaPrincipal')]    C. MARTINS COMERCIAL LTDA - ME
+    Sleep    2
+    Wait Until Element Is Visible    //li[contains(.,'C. MARTINS COMERCIAL LTDA - ME')]    15
+    Click Element    //li[contains(.,'C. MARTINS COMERCIAL LTDA - ME')]
+    Sleep    1
+
 
 
 Então incluo um Novo GC Não ARP e Não PE
@@ -194,7 +299,7 @@ Então incluo um Novo GC Não ARP e Não PE
     Capture Page Screenshot
     Close Browser
 
-Então incluo uma nova Solicitação de GC
+Então incluo uma nova Solicitação de GC SIM ARP
 
     # Genero - termo de adesão
     Wait Until Element Is Visible    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlGenero_listbox')]    15
@@ -208,6 +313,174 @@ Então incluo uma nova Solicitação de GC
     # Oriundo de ARP - SIM
     Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtOriundoARP_0']    15
     Click Element    //input[@id='ctl00_ContentPrincipal_rbtOriundoARP_0']
+
+    # Modalidade
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlModalidade_listbox']    15
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlModalidade_listbox']
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Pregão eletrônico')]    10
+    Click Element    //li[@tabindex='-1'][contains(.,'Pregão eletrônico')]
+    Sleep    1
+
+
+    # Lupa de Ata Registro Preço
+    Wait Until Element Is Visible    //a[contains(@onclick,'abrirJanelaAtaRegistroPrecos();')]    10
+    Click Element    //a[contains(@onclick,'abrirJanelaAtaRegistroPrecos();')]
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Execute Javascript    document.body.style.zoom='80%'
+
+    ${NUM_ARP}    Get File    ${EXECDIR}/test/processos/num_ARP.txt
+    Wait Until Element Is Visible    //input[@name='ctl00$ContentPrincipal$tbxNumeroAta']    10
+    Input Text    //input[@name='ctl00$ContentPrincipal$tbxNumeroAta']    ${NUM_ARP}
+
+    # Clique para pesquisar o processo
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    15
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    1
+
+    # clique para selecionar o processo
+    Wait Until Element Is Visible    //input[contains(@id,'radARP')]    15
+    Click Element    //input[contains(@id,'radARP')]
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[@onclick='confirmarARP(this)'][contains(@id,'btnConfirmar')][contains(.,'Confirmar')]    15
+    Click Element    //a[@onclick='confirmarARP(this)'][contains(@id,'btnConfirmar')][contains(.,'Confirmar')]
+    Sleep    2
+
+
+    # Contratada Principal
+    Execute Javascript    document.body.style.zoom='100%'
+    Sleep    2
+    Wait Until Element Is Visible    //input[contains(@name,'autContratadaPrincipal')]    10
+    Input Text    //input[contains(@name,'autContratadaPrincipal')]    A B S TRANSPORTES E TURISMO LTDA EPP
+    Sleep    2
+    Click Element    //li[contains(.,'A B S TRANSPORTES E TURISMO LTDA EPP')]
+
+    # Grupo de compras
+    Wait Until Element Is Visible    //input[contains(@name,'autGrupoCompras')]    10
+    Input Text    //input[contains(@name,'autGrupoCompras')]    SECRETARIA DE ADMINISTRAÇÃO
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO')]    10
+    Click Element    //li[@tabindex='-1'][contains(.,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO')]
+
+    # Salvar
+    Wait Until Element Is Visible    //a[contains(@onclick,'salvar(false);')]    15
+    Click Element    //a[contains(@onclick,'salvar(false);')]
+    Sleep    3
+    
+    Scroll Element Into View    //span[@id='lbl_ctl00_ContentPrincipal_tbxNrSolicitacaoContrato']
+    Sleep    1
+
+    # Capturar o valor do campo depois que ele for preenchido
+    ${NUM_GC_ARP}    SeleniumLibrary.Get Text    ${INPUT_NUM_GC}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/Num_GC_ARP.txt    ${NUM_GC_ARP}
+    Capture Page Screenshot
+    Close Browser
+
+
+Então crio um Contrato Novo
+
+    ${Dt_inicio_cont}=    Get Current Date    result_format=%d-%m-%Y    # increment=-1d
+    ${Dt_enc_cont}=    Get Current Date    result_format=%d-%m-%Y    increment=+180d
+    Log    Data futura: ${Dt_enc_cont}
+
+    # Tipo de contrato - Novo
+    Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtContrato_0']    20
+    Click Element    //input[@id='ctl00_ContentPrincipal_rbtContrato_0']
+
+
+    # Lupa de Número da GC
+    Wait Until Element Is Visible    //a[@onclick='abrirJanelaNrSolicitacaoContrato();']    10
+    Click Element    //a[@onclick='abrirJanelaNrSolicitacaoContrato();']
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    ${NUM_GC}    Get File    ${EXECDIR}/test/processos/num_gc.txt
+
+    Execute Javascript    document.body.style.zoom='80%'
+    Sleep    2
+    Wait Until Element Is Visible    //input[@name='ctl00$ContentPrincipal$numeroSolicitacao']    10
+    Input Text    //input[@name='ctl00$ContentPrincipal$numeroSolicitacao']    ${NUM_GC}
+
+    # Clique para pesquisar o processo
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    15
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    1
+
+    # clique para selecionar o processo
+    Wait Until Element Is Visible    //input[@name='checkSolicitacao']    15
+    Click Element    //input[@name='checkSolicitacao']
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    15
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
+
+    # Tipo de contrato
+    Execute Javascript    document.body.style.zoom='100%'
+    Sleep    2
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlTipoContrato_listbox']    10
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlTipoContrato_listbox']
+    Sleep    1
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Fornecimento')]    10
+    Click Element    //li[@tabindex='-1'][contains(.,'Fornecimento')]
+    Capture Page Screenshot
+
+    # Objeto
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtObjeto')]    10
+    Sleep    1
+    Clear Element Text    //textarea[contains(@name,'txtObjeto')]
+    Sleep    1
+    Input Text    //textarea[contains(@name,'txtObjeto')]    ${OBJETO_CONTRATO_NOVO}
+
+    # Data Inico contrato
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_tDtInicio
+    Click Element    id=ctl00_ContentPrincipal_tDtInicio
+    Sleep    2
+    Set Focus To Element    id=ctl00_ContentPrincipal_tDtInicio
+    Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_tDtInicio").value="${Dt_inicio_cont}";
+    Sleep    2
+    
+    # Data Encerramento
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_tDtEncerramento
+    Click Element    id=ctl00_ContentPrincipal_tDtEncerramento
+    Sleep    2
+    Set Focus To Element    id=ctl00_ContentPrincipal_tDtEncerramento
+    Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_tDtEncerramento").value="${Dt_enc_cont}";
+    Sleep    2
+
+    # Tipo Garantia
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlTipoGarantia_listbox']    10
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlTipoGarantia_listbox']
+    Sleep    1
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Nenhum')]    10
+    Click Element    //li[@tabindex='-1'][contains(.,'Nenhum')]
+    Capture Page Screenshot
+
+    # Salvar
+    Wait Until Element Is Visible    //a[@onclick='Salvar(false);']    15
+    Click Element    //a[@onclick='Salvar(false);']
+    Sleep    3
+
+    # Capturar o valor do campo depois que ele for preenchido
+    Scroll Element Into View    ${INPTU_NUM_CONTRATO}
+    Sleep    1
+    ${NUM_CONTRATO}    SeleniumLibrary.Get Text    ${INPTU_NUM_CONTRATO}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/Num_Contrato.txt    ${NUM_CONTRATO}
+    Capture Page Screenshot
+
+    Close Browser
+
+
+
 
 
 Então crio um novo contrato PE ARP
@@ -348,6 +621,7 @@ Então crio um novo contrato PE ARP
 
 
 Então crio um novo contrato PE não ARP
+
     ${Dt_inicio_cont}=    Get Current Date    result_format=%d-%m-%Y    increment=-1d
     ${Dt_enc_cont}=    Get Current Date    result_format=%d-%m-%Y    increment=+180d
     Log    Data futura: ${Dt_enc_cont}
@@ -616,7 +890,27 @@ Então crio um novo contrato não PE
     Sleep    3
     Close Browser
    
+
+E acesso o contrato novo da Lista
+
+    ${NUM_CONTRATO}    Get File    ${EXECDIR}/test/processos/Num_Contrato.txt
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td//a[contains(text(), '${NUM_CONTRATO}')]]//td[2]//a    15
+    Click Element        //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td//a[contains(text(), '${NUM_CONTRATO}')]]//td[2]//a
+    Sleep    2
+
+E acesso a aba 'Docs. assinatura'
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Wait Until Element Is Visible    //span[contains(.,'Docs. assinatura')]    10
+    Click Element    //span[contains(.,'Docs. assinatura')]
+    Sleep    2
+    Capture Page Screenshot
+
+
 E acesso o Contrato da Lista
+
+    ${NUM_ARP}    Get File    ${EXECDIR}/test/processos/num_ARP.txt
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td[contains(text(), '${OBJETO_CONTRATO}')]]//td[2]//a    15
     Click Element        //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td[contains(text(), '${OBJETO_CONTRATO}')]]//td[2]//a
@@ -675,9 +969,9 @@ Então configuro a aba Partes do contrato
 
     # Representante da Contratante
     Sleep    2
-    ${ELEMENTOS}    Get WebElements    //span[@unselectable='on'][contains(.,'Selecione')]
-    ${DROP_LIST}    Set Variable    ${ELEMENTOS}[3]
-    Sleep    1
+    ${ELEMENTOS}    Get WebElements    //span[@class='k-widget k-dropdown k-header'][contains(.,'Selecione')]
+    ${DROP_LIST}    Set Variable    ${ELEMENTOS}[2]
+    Sleep    2
     Click Element    ${DROP_LIST}
     Sleep    2
 
@@ -688,8 +982,9 @@ Então configuro a aba Partes do contrato
     Sleep    1
 
     # Representante da Contratada
-    ${ELEMENTOS}    Get WebElements    //span[@unselectable='on'][contains(.,'Selecione')]
-    ${DROP_LIST3}    Set Variable    ${ELEMENTOS}[4]
+    ${ELEMENTOS}    Get WebElements    //span[@class='k-widget k-dropdown k-header'][contains(.,'Selecione')]
+    Sleep    1
+    ${DROP_LIST3}    Set Variable    ${ELEMENTOS}[2]
     Sleep    1
     Click Element    ${DROP_LIST3}
     Sleep    2
@@ -770,6 +1065,7 @@ E acesso a aba 'Itens'
     Click Element    //span[contains(.,'Itens')]
     Sleep    2
     Capture Page Screenshot
+    Execute Javascript    document.body.style.zoom='80%'
 
 
 E acesso a tela de Incluir Itens no Contrato
@@ -779,6 +1075,29 @@ E acesso a tela de Incluir Itens no Contrato
     Click Element    //a[contains(.,'Incluir')]
     Sleep    3
     Capture Page Screenshot
+
+E acesso a tela de selecionar Itens GC ARP
+
+    Wait Until Element Is Visible    //a[contains(.,'Incluir')]    20
+    Click Element    //a[contains(.,'Incluir')]
+    Sleep    2
+    Capture Page Screenshot
+    
+    Switch Window
+    Select Frame    //frame[contains(@name,'main')]
+    Execute Javascript    document.body.style.zoom='90%'
+    Sleep    2
+
+
+Então incluo os itens na GC ARP
+
+    Wait Until Element Is Visible    //input[@name='chbItemProcesso']    10
+    Click Element    //input[@name='chbItemProcesso']
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
 
 
 Então incluo os itens no Contrato Não ARP e Não PE
@@ -991,6 +1310,90 @@ Então incluo os itens no Contrato
     Sleep    3
     Close Browser
 
+E volta para aba 'Contrato/Termos'
+    Wait Until Element Is Visible    //span[contains(.,'Contrato/Termos')]    10
+   Click Element    //span[contains(.,'Contrato/Termos')]
+   Sleep    2
+
+E volta para aba 'Gestores/Fiscais'
+    Wait Until Element Is Visible    //span[contains(.,'Gestores/Fiscais')]    10
+   Click Element    //span[contains(.,'Gestores/Fiscais')]
+   Sleep    2
+
+
+Então concluo a Análise Jurídica
+
+    Wait Until Element Is Visible    //input[contains(@name,'ckb_nCdTermo')]    10
+    Click Element    //input[contains(@name,'ckb_nCdTermo')]
+    Sleep    1
+
+    Wait Until Element Is Visible    //a[contains(.,'Concluir análise jurídica')]    10
+    Click Element    //a[contains(.,'Concluir análise jurídica')]
+    Sleep    2
+
+    # Incluir anexo
+    Wait Until Element Is Visible    //img[contains(@src,'anexo.gif')]    10
+    Click Element    //img[contains(@src,'anexo.gif')]
+    Sleep    1
+    Wait Until Element Is Visible    //input[contains(@type,'file')]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+    Sleep    1
+    Wait Until Element Is Visible    //input[@value='Anexar']    10
+    Click Element    //input[@value='Anexar']
+    Sleep    2
+
+    # Ok no Popup
+    Wait Until Element Is Visible    //a[@href='javascript:void(0);'][contains(@id,'mbxAnexo')][contains(.,'OK')]    10
+    Capture Page Screenshot
+    Click Element    //a[@href='javascript:void(0);'][contains(@id,'mbxAnexo')][contains(.,'OK')]
+
+    Sleep    2
+    ${elementos}    Get WebElements    //a[@onclick='FecharJanelaAtual(this);'][contains(@id,'btnFechar')][contains(.,'Fechar')]
+    ${elemento}    Set Variable    ${elementos}[2]
+    Sleep    1
+    Click Element    ${elemento}
+    Sleep        2
+
+    # Justificativa
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    10
+    Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
+    Capture Page Screenshot
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
+
+
+
+
+
+
+Então Solicito a Análise Jurídica
+
+    Wait Until Element Is Visible    //input[contains(@name,'ckb_nCdTermo')]    10
+    Click Element    //input[contains(@name,'ckb_nCdTermo')]
+    Sleep    1
+    Wait Until Element Is Visible    //a[contains(.,'Solicitar análise jurídica')]    10
+    Click Element    //a[contains(.,'Solicitar análise jurídica')]
+    Sleep    2
+
+    # Justificativa
+    Wait Until Element Is Visible    //textarea[@name='txtJustificativaSolicitarAnalise']    10
+    Input Text    //textarea[@name='txtJustificativaSolicitarAnalise']    Justificativa
+    Capture Page Screenshot
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
+
+
+E acesso a aba 'Contratos/Termos'
+    
+   Switch Window
+   Select Frame    //frame[@name='main']
+   Wait Until Element Is Visible    //span[contains(.,'Contrato/Termos')]    10
+   Click Element    //span[contains(.,'Contrato/Termos')]
+   Sleep    2
+   Capture Page Screenshot
+
 
 E acesso a aba 'Gestores/Fiscais'
     
@@ -1000,6 +1403,32 @@ E acesso a aba 'Gestores/Fiscais'
    Click Element    //span[contains(.,'Gestores/Fiscais')]
    Sleep    2
    Capture Page Screenshot
+
+Então faço os aceites
+
+    # Aceite do Gestor
+    Wait Until Element Is Visible    //a[@onclick='justificativaAceite(1191, 1)']    10
+    Click Element    //a[@onclick='justificativaAceite(1191, 1)']
+    Wait Until Element Is Visible    //textarea[@name='txtJustificativaAceite']    10
+    Input Text    //textarea[@name='txtJustificativaAceite']    Juatificativa de Aceite
+    Capture Page Screenshot
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+    E volta para aba 'Gestores/Fiscais'
+
+    # Aceite do Gestor
+    Wait Until Element Is Visible    //a[contains(@onclick,'justificativaAceite(1192, 1)')]    10
+    Click Element    //a[contains(@onclick,'justificativaAceite(1192, 1)')]
+    Wait Until Element Is Visible    //textarea[@name='txtJustificativaAceite']    10
+    Input Text    //textarea[@name='txtJustificativaAceite']    Juatificativa de Aceite
+    Capture Page Screenshot
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+    Close Browser
+    
 
 
 Então Incluo os Gestortes de Fiscais ao Contrato
@@ -1085,6 +1514,30 @@ Então incluos os docs obrigatórios
     Handle Alert    ACCEPT
     Sleep    1
 
+E incluo o Documento do Tipo 'Empenho'
+
+    Wait Until Element Is Visible    css=input[type="file"]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+
+
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    css=input[id="ctl00_ContentPrincipal_objListagemDeDocumentos_autoTipoDeDocumento"]    30
+    Input Text    
+    ...    css=input[id="ctl00_ContentPrincipal_objListagemDeDocumentos_autoTipoDeDocumento"]
+    ...    Empenho
+    Sleep    2
+    Wait Until Element Is Visible    //li[text()="Empenho"]    30
+    Click Element    //li[text()="Empenho"]
+
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Sleep    3
+    Handle Alert    ACCEPT
+
+
 
 E acesso a aba 'Documentos do Processo'
    Switch Window
@@ -1094,6 +1547,62 @@ E acesso a aba 'Documentos do Processo'
    Click Element    //span[@class='k-link'][contains(.,'Documentos do processo')]
    Sleep    2
    Capture Page Screenshot
+
+
+Então assino o contrato
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridDocAssinatura"]//tr[td[contains(text(), 'Contrato')]]//td[6]//input    10
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridDocAssinatura"]//tr[td[contains(text(), 'Contrato')]]//td[6]//input
+
+    # Clicar no botão 'Assinar Documento'
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    30
+    Click Element    xpath=//a[contains(.,'Assinar documento')]
+
+    # E Preencho os campos de assinatura
+    Sleep    2
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    30
+
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    30
+    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    30
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+
+    # E clico no botão assinar
+    Capture Page Screenshot
+    Click Element    xpath=//a[text()= 'Assinar']
+    Sleep    3
+    SeleniumLibrary.Close Browser
+
+
+
+E anexo o documento para assinatura
+
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Contrato']]//td[10]//input    10
+    Click Element    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Contrato']]//td[10]//input
+
+    Wait Until Element Is Visible    //a[contains(.,'Anexar para assinatura')]    10
+    Click Element    //a[contains(.,'Anexar para assinatura')]
+    Sleep    2
+
+    # Clique Sim no popup
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+
+E acesso a aba 'Dados Gerais'
+    Wait Until Element Is Visible    //span[contains(.,'Dados gerais')]    10
+    Click Element    //span[contains(.,'Dados gerais')]
+    Sleep    2
+
+Então solicito assinatura
+    Wait Until Element Is Visible    //a[contains(.,'Solicitar assinatura')]    10
+    Click Element    //a[contains(.,'Solicitar assinatura')]
+    Sleep    2
+
+    Wait Until Element Is Visible     //a[@href='javascript:void(0);'][contains(@id,'mbxContrato')][contains(.,'Sim')]    10
+    Click Element     //a[@href='javascript:void(0);'][contains(@id,'mbxContrato')][contains(.,'Sim')]
+    Sleep    3
 
 
 Então incluo os documentos obrigatórios

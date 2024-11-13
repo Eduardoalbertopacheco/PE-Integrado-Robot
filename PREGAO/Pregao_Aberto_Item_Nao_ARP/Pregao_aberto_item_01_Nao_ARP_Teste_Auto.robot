@@ -6,7 +6,7 @@ Library          DateTime
 Library          OperatingSystem
 Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_cadastro_pregao.robot
-     
+
 *** Test Cases ***
 CT01 - Criar Pregão - Aba Dados Gerais
 
@@ -19,15 +19,15 @@ CT01 - Criar Pregão - Aba Dados Gerais
     E Seleciono o Critério de Pregão Eletrônico
     E insiro as datas para agendamento
     E insiro a Comissão e Salvo
-    E Seleciono o Modo de Disputa Aberto-Fechado
-    Então preencho a Aba de Dados Gerais
+    E Seleciono o Modo de Disputa Aberto
+    Então preencho a Aba de Dados Gerais - Não ARP
     E mostro a auditoria
 
 
 CT02 - Incluir SC ao Pregão
 
     Configurar Variáveis de Pregão
-    Usar SC_Item_Pregao_aberto_fechado
+    Usar SC_Item_Pregao_aberto
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -125,14 +125,13 @@ CT09 - Agendar Pregão eletrônico
     E seleciono a licitação para agendamento
     E acesso a tela do agendamento
     Então faço o reagendamento
-
+    
 
 CT10 - Envio de propostas Fornecedor 01
 
     Configurar Variáveis de Pregão
     Dado que acesso o sistema
-    E faço login com usuário "06268154000145"
-    # E faço login com usuário "29219904403.256"
+    E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a SC Em propotas da lista
@@ -188,7 +187,6 @@ CT14 - Iniciar disputa
     E seleciono a licitação da lista
     Então inicio a disputa
 
-
 CT15 - Abrir Itens/Lotes para disputa
 
     Configurar Variáveis de Pregão
@@ -204,8 +202,7 @@ CT16 - Enviar disputa Fornecedor 01
 
     Configurar Variáveis de Pregão
     Dado que acesso o sistema
-    E faço login com usuário "06268154000145"
-    # E faço login com usuário "29219904403.256"
+    E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista

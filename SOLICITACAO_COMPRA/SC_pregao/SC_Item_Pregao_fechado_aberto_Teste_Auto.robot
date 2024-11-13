@@ -84,7 +84,7 @@ CT07 - Definir Natureza de despesa com o Financeiro
 
     [Tags]    definir_natureza
     Dado que acesso o sistema
-    E faço login com usuário "edu.financeiro.110402"
+    E faço login com usuário "financeiro.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
