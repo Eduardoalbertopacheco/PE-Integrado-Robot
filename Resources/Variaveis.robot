@@ -84,6 +84,9 @@ Configurar variável aberto_fechado_item
 Configurar variável aberto_lote
     Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_lote_01_Teste_Auto
 
+Configurar variável aberto_item Não ARP
+    Set Global Variable    ${OBJETO_PREGAO}    Pregao_aberto_item_01_Nao_ARP_Teste_Auto
+
 Configurar variável aberto_item
     Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_item_01_Teste_Auto
 
@@ -175,8 +178,18 @@ Usar SC_Lote_Concorrencia
 Usar SC_Lote_Pregao_OPD
     Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_OPD_Teste_Auto
 
+Usar SC_Lote_Pregao_aberto_EXE
+    Set Global Variable    ${RESUMO_SC}    EXE_SC_Lote_Teste_Auto
+
 Usar SC_Lote_Pregao_aberto
     Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_aberto_Teste_Auto
+
+Usar SC_Item_Pregao_aberto_Nao_ARP
+    Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_aberto_Nao_ARP_Teste_Auto
+
+Usar SC_Lote_Pregao_aberto_Nao_ARP
+    Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_aberto_Nao_ARP_Teste_Auto
+
 
 Usar SC_Item_Pregao_aberto
     Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_aberto_Teste_Auto

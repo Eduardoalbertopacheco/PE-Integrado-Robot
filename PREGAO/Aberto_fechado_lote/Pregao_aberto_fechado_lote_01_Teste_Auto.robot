@@ -61,6 +61,7 @@ CT04 - Assinar Documento
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
+    E acesso a tela de 'Documentos do Processo'
     E seleciono assino o documento do tipo Edital
     E mostro a auditoria
 

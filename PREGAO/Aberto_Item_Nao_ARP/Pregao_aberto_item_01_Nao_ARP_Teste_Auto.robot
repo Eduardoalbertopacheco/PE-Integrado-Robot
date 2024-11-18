@@ -27,7 +27,7 @@ CT01 - Criar Pregão - Aba Dados Gerais
 CT02 - Incluir SC ao Pregão
 
     Configurar Variáveis de Pregão
-    Usar SC_Item_Pregao_aberto
+    Usar SC_Item_Pregao_aberto_Nao_ARP
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas

@@ -5,7 +5,6 @@ Library          Browser
 Library          OperatingSystem
 Library          DateTime
 Resource         ./Variaveis.robot
-# Suite Teardown    Run Keyword If Test Failed    Abort Execution
 
 
 *** Variables ***
@@ -32,12 +31,9 @@ ${INPUT_TIPO}            //input[@field="normal"]
 ${LUPA_GRUPO_COMPRA}     (//img[@id='img'])[3]
 ${INPUT_NUM_SC}          //div[@id='_cORDEM_COMPRA_x_sCdOrdemCompraEmpresa']
 
-
 ${timeout}       300    
 ${interval}      5    
 ${start_time}    Get Time    epoch 
-
-
 
 *** Keywords ***
 
@@ -240,13 +236,6 @@ Então preencho os campos da Aba Dados gerais da SC
 
 
 Então preencho os campos da Aba Dados gerais - SEDUC
-
-    Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //a[contains(.,'Incluir')]
-    Click Element    //a[contains(.,'Incluir')]
-    Sleep    2
-
-    Switch Window    NEW
 
     Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
     Click Element    ${PRIORIDADE}
@@ -697,6 +686,84 @@ Então faço o planejamento da SC para Cotação
     Sleep    1
     SeleniumLibrary.Close Browser
 
+
+Então faço planejamento da SC para Pregão Eletronico - Ambiente Treinamento
+
+
+    ${start_time}    Get Time    epoch
+    FOR    ${i}    IN RANGE    ${timeout}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
+        Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
+        Run Keyword If    ${element_found}    Exit For Loop
+        
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+
+        ${current_time}=    Get Time    epoch
+        ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    END
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+
+   # Clique no botão Encaminhar
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Click Element    xpath=//a[contains(.,'Encaminhar')]
+
+
+    ${all_windows}=    Get Window Handles
+    ${second_window}=    Set Variable    ${all_windows}[0]
+
+    Switch Window    ${all_windows}[0]
+
+    Select Frame    //frame[contains(@name,'main')]
+
+
+    # Seleção Modalidade pregão eletronico
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
+    Sleep    1
+    Wait Until Element Is Visible    //li[contains(.,'Pregao Eletronico')]
+    Click Element    //li[contains(.,'Pregao Eletronico')]
+
+
+    # Seleção critério  - Pregão eletronico LEI FEDERAL 14.133/21
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[3]/td[2]/span[1]/span[1]/span[1]    timeout=30s
+    Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[3]/td[2]/span[1]/span[1]/span[1]
+    Sleep    1
+    Wait Until Element Is Visible    //li[contains(.,'LEI FEDERAL Nº 14.133/2021, ART. 28, INCISO I - PREGÃO ELETRÔNICO')]    timeout=30s
+    Click Element    //li[contains(.,'LEI FEDERAL Nº 14.133/2021, ART. 28, INCISO I - PREGÃO ELETRÔNICO')]
+    Sleep    1
+    Capture Page Screenshot
+
+    # Clique no botão 'Salvar e Fechar'
+    Wait Until Element Is Visible    //input[contains(@value,'Salvar e fechar')]
+    Click Element    //input[contains(@value,'Salvar e fechar')]
+    Sleep    2
+    Capture Page Screenshot
+    Sleep    2
+
+    
+    # Clique no botão de confirmação
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    2
+    Capture Page Screenshot
+    Sleep    1
+
+    # Campo justificativa
+    # Switch Window
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
+    Capture Page Screenshot
+
+
+    # Clique no botão confirmar justificativa
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    4
+    Capture Page Screenshot
+    Sleep    1
+    SeleniumLibrary.Close Browser
 
 
 
@@ -1346,6 +1413,35 @@ Então faço a deliberação da SC
     Sleep    3
     SeleniumLibrary.Close Browser
 
+E acesso a lista de Planejamento de Compras - Ambiente Treinamento
+
+    Select Frame    xpath=//frame[contains(@name,'main')]
+
+    # Clique em negociação
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
+
+    # mouse over em Solicitação de Compras
+    ${elemento}    Get WebElement    
+    ...    xpath=//td[@class='label'][contains(.,'Solicitação de compra')]
+    Mouse Over    ${elemento}
+    
+    # Clique em planejamento de Compras
+    Wait Until Element Is Visible    
+    ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
+    Click Element    
+    ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
+
+    # Ocultar Icones de Chat
+    # Sleep    2
+    # Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    # Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    # Sleep    1
+    # Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    # Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    # Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    Sleep    3
+
 
 E acesso a lista de Planejamento de Compras
 
@@ -1365,25 +1461,24 @@ E acesso a lista de Planejamento de Compras
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
-    # Sleep    2
 
     # Ocultar Icones de Chat
-    # Sleep    2
-    # Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
-    # Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
-    # Sleep    1
-    # Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
-    # Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
-    # Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
-    # Sleep    1
+    Sleep    2
+    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    Sleep    1
+    Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    Sleep    3
     
     Capture Page Screenshot
 
 
 E seleciono o filtro SC em Planejamento - Ordenador
+
     Capture Page Screenshot
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
-
 
    # Clicar no campo Exibir
    Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
@@ -1398,28 +1493,58 @@ E seleciono o filtro SC em Planejamento - Ordenador
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
+E navego para a última página
+
+    ${page_numbers} =    Get WebElements    //a[@class='aPagina']
+    ${last_page} =       Set Variable    //a[@class='aPagina'][last()]
+    Log    Número da última página: ${last_page}
+    Click Element    ${last_page}
+    sleep    2
+    # Wait Until Page Contains Element    xpath=//table[contains(@class, 'listagem')]
+
+E seleciono a SC - Ambiente Treinamento
+    ${start_time}    Get Time    epoch
+    ${element_found}    Set Variable    False
+    
+    FOR    ${i}    IN RANGE    ${TIMEOUT}
+        Sleep    ${INTERVAL}
+        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input   
+        Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
+        Run Keyword If    ${element_found}    Set Variable    ${element_found}    True
+        Run Keyword If    ${element_found}    Exit For Loop
+
+        # Só recarrega a página se o elemento não foi encontrado
+        Execute JavaScript    window.location.reload()
+        Sleep    ${INTERVAL}
+
+        ${current_time}    Get Time    epoch
+        ${elapsed_time}    Evaluate    ${current_time} - ${start_time}
+        Run Keyword If    ${elapsed_time} > ${TIMEOUT}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    END
+
+    # Verificação final para garantir que o elemento foi encontrado
+    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+    Capture Page Screenshot
 
 E seleciono a SC
 
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
-        Sleep    1
+        Sleep    ${interval}
         Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
         Sleep    1
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input   
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
         Run Keyword If    ${element_found}    Exit For Loop
-        
-    
+
         Execute JavaScript    window.location.reload()
-        Sleep    ${interval} sec
+        Sleep    ${interval}
 
         ${current_time}=    Get Time    epoch
         ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
-    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-    Capture Page Screenshot
+    
 
 Então faço o planejamento para Pregão Eletrônico - OPD
 
@@ -1657,6 +1782,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
 Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
 
     # Clique no botão Encaminhar
+    Sleep    2
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 

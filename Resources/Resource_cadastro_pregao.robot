@@ -157,9 +157,6 @@ Então preencho a Aba de Dados Gerais - Não ARP
     Sleep    2
     Handle Alert    ACCEPT
     Sleep    2
-    Handle Alert    ACCEPT
-    Sleep    2
-
 
 Então preencho a Aba de Dados Gerais
 
@@ -981,6 +978,16 @@ E seleciono a licitação para agendamento
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[10]//input
     Sleep    4
 
+Então faço o agendamento do pregão
+
+    # Clique no botão agendar
+    Wait Until Element Is Visible    //a[contains(.,'Agendar')]    timeout=30s
+    Click Element    //a[contains(.,'Agendar')]
+    Sleep    1
+    Switch Window    NEW
+    # Clique no botão SIM
+    Click Element    //input[contains(@value,'Sim')]
+    Sleep    3
 
 
 E acesso a tela do agendamento
@@ -1237,16 +1244,24 @@ E clico na licitação em Adjudicação da lista
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
+E seleciono a licitação da lista - Varios Pregão
+
+    ${NUM_PROCESSO}=    Set Variable    ${LISTA_PROCESSOS}[0]  # Sempre pega o primeiro item da lista
+    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${NUM_PROCESSO}')]]//td[2]    20
+    Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${NUM_PROCESSO}')]]//td[2]
+    Sleep    4
+    Capture Page Screenshot
+
 
 E seleciono a licitação da lista
 
     ${all_windows}=    Get Window Handles
     # Clique na SC selecionada
-    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]    timeout=30s
+    Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]    20
     Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
     Sleep    4
     Capture Page Screenshot
-
+   
 
 Então abro as proposta
 

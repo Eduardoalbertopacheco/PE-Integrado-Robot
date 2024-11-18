@@ -9,9 +9,8 @@ Resource        ../../Resources/Resource_Cadastro_SC.robot
 *** Test Cases ***
 
 CT01 - Criar SC - Aba dados Gerais
+
     Configurar Variáveis de SC
-    
-    [Tags]    criar_sc
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -20,9 +19,8 @@ CT01 - Criar SC - Aba dados Gerais
 
 
 CT02 - Incluir Itens na Solicitação de Compras
-    Configurar Variáveis de SC
 
-    [Tags]    incluir_itens
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -33,8 +31,8 @@ CT02 - Incluir Itens na Solicitação de Compras
 
 
 CT03 - Incluir Documento na Solicitação de Compras
+
     Configurar Variáveis de SC
-    [Tags]    incluir_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -44,8 +42,8 @@ CT03 - Incluir Documento na Solicitação de Compras
 
 
 CT04 - Assinar documento
+
     Configurar Variáveis de SC
-    [Tags]    assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -55,8 +53,8 @@ CT04 - Assinar documento
 
 
 CT05 - Encaminhar SC para precificação
+
     Configurar Variáveis de SC
-    [Tags]    encaminhar_SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -65,8 +63,8 @@ CT05 - Encaminhar SC para precificação
     
 
 CT06 - Planejamento com Solicitante
+
     Configurar Variáveis de SC
-    [Tags]    planejamento_solicitante
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -75,8 +73,8 @@ CT06 - Planejamento com Solicitante
    
 
 CT07 - Definir Natureza de despesa com o Financeiro
+
     Configurar Variáveis de SC
-    [Tags]    definir_natureza
     Dado que acesso o sistema
     E faço login com usuário "financeiro.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -86,8 +84,8 @@ CT07 - Definir Natureza de despesa com o Financeiro
 
 
 CT08 - Aprovação orçamentária
+
     Configurar Variáveis de SC
-    [Tags]    aprovacao_orcamentaria
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
     E acesso 'Minhas Tarefas'
@@ -96,8 +94,8 @@ CT08 - Aprovação orçamentária
     
 
 CT09 - Aprovação com o Ordenador
+
     Configurar Variáveis de SC
-    [Tags]    aprovacao_ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
     E acesso 'Minhas Tarefas'
@@ -107,8 +105,8 @@ CT09 - Aprovação com o Ordenador
 
 
 CT10 - Liberar SC com autoridade central
+
     Configurar Variáveis de SC
-    [Tags]    liberacao_autoridade
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a lista de SC centralizada
@@ -117,8 +115,8 @@ CT10 - Liberar SC com autoridade central
 
 
 CT11 - Deliberar SC com autoridade da UG
+
     Configurar Variáveis de SC
-    [Tags]    deliberar_autoridade_ug
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -128,9 +126,8 @@ CT11 - Deliberar SC com autoridade da UG
 
 
 CT12 - Planejamento com Ordenador
-    Configurar Variáveis de SC
 
-    [Tags]    planejar_ordenador
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
     E acesso a lista de Planejamento de Compras
@@ -139,9 +136,8 @@ CT12 - Planejamento com Ordenador
     Então faço o planejamento para Pregão Eletrônico
 
 CT13 - Atribuir Comissão
-    Configurar Variáveis de SC
 
-    [Tags]    atribuir_comissao
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E Faço login com usuário "gestorlicitacaocentral.120101"
     E acesso a tela de Solicitação de compras centralizadas
@@ -149,10 +145,10 @@ CT13 - Atribuir Comissão
     E seleciono a SC para atribuir comissão com Gestor Central
     Então atribuo a Comissão Permanente de Licitação
 
+
 CT14 - Aprovar SC com Pregoeiro Central
+
     Configurar Variáveis de SC
-    
-    [Tags]    aprovacao_pregoeiro_central
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso 'Minhas Tarefas'

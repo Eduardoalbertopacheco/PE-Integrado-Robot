@@ -45,6 +45,7 @@ CT03 - Incluir Documento - Edital
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
+    E acesso a tela de 'Documentos do Processo'
     Então incluo os Documentos do tipo Edital
     E mostro a auditoria
 
@@ -57,6 +58,7 @@ CT04 - Assinar Documento
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
+    E acesso a tela de 'Documentos do Processo'
     E seleciono assino o documento do tipo Edital
     E mostro a auditoria
 
@@ -118,6 +120,7 @@ CT09 - Agendar Pregão eletrônico
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E seleciono a licitação para agendamento
+    E acesso a tela do agendamento
     Então faço o reagendamento
 
 

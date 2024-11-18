@@ -209,7 +209,7 @@ E acesso a lista de preparação
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Preparação')]    20
     Sleep    1
     Click Element    //td[@class='label'][contains(.,'Preparação')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
 
 
@@ -228,7 +228,7 @@ E acesso a lista de Guias de Remessas
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Guias de remessa do meu almoxarifado')]    20
     Sleep    1
     Click Element    //td[@class='label'][contains(.,'Guias de remessa do meu almoxarifado')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
 
 
@@ -251,7 +251,7 @@ E acesso a lista de Baixas
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Lista de baixas')]    20
     Sleep    1
     Click Element    //td[@class='label'][contains(.,'Lista de baixas')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
 
 
@@ -270,9 +270,8 @@ E acesso a lista de inventários
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Lista de inventários')]    20
     Sleep    1
     Click Element    //td[@class='label'][contains(.,'Lista de inventários')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
-
 
 
 E acesso a lista de Transferências
@@ -294,9 +293,8 @@ E acesso a lista de Transferências
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Lista de transferências')]    20
     Sleep    1
     Click Element    //td[@class='label'][contains(.,'Lista de transferências')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
-
 
 
 E acesso a lista de requisições
@@ -314,7 +312,7 @@ E acesso a lista de requisições
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Lista de requisições de material')]    20
     Sleep    1
     Click Element    //td[@class='label'][contains(.,'Lista de requisições de material')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
 
 
@@ -330,6 +328,7 @@ E acesso a lista de Almoxarifados
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Lista de almoxarifados')]    timeout=30s
     Sleep    1
     Click Element    //td[@class='label'][contains(.,'Lista de almoxarifados')]
+    Sleep    3
     Capture Page Screenshot
 
 
@@ -411,6 +410,7 @@ E pesquiso pelo Almoxarifado
 
     Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    15
     Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
     Capture Page Screenshot
 
 
@@ -491,6 +491,7 @@ E acesso a lista de Recebimento
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Lista de recebimentos')]    timeout=30s
     Sleep    2
     Click Element    //td[@class='label'][contains(.,'Lista de recebimentos')]
+    Sleep    3
     Capture Page Screenshot
 
 
@@ -1078,12 +1079,6 @@ Valor Do Input INVENT Deve Ser Preenchido
     Sleep    2
     
 
-
-
-
-
-
-
 Então incluo uma nova Transferências
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]    30
@@ -1378,15 +1373,13 @@ E acesso a tela de Guias de Remessa
 
     #Mouse over em Guia de remessa
     Mouse Over    //td[@class='label'][contains(.,'Guias de remessa')]
-    Sleep    2
-    Capture Page Screenshot
+    Sleep    1
 
     # Clique de Guias de remessa do meu almoxarifadp
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Guias de remessa do meu almoxarifado')]    15
     Click Element    //td[@class='label'][contains(.,'Guias de remessa do meu almoxarifado')]
-    Sleep    1
-
-
+    Sleep    3
+    Capture Page Screenshot
 
 
 E acesso a tela de preparação
@@ -1401,7 +1394,7 @@ E acesso a tela de preparação
     Wait Until Element Is Visible    //td[@class='label'][contains(.,'Preparação')]    20
     Sleep    1
     Click Element    //td[@class='label'][contains(.,'Preparação')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
 
 
@@ -1462,7 +1455,6 @@ Então aprovo a Guia de Remessa
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Close Browser
-
 
 E pesquiso pela BX
     Select Frame    //iframe[@name='frmConteudo']
@@ -1760,11 +1752,8 @@ Então agendo o Inventário
     #${hora_atual+1min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=1)).strftime('%d-%m-%Y %H:%M:%S')    datetime
     ${hora_atual}=    Evaluate    datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')    datetime
 
-
-
     # Data final
     ${hora_atual+120min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=120)).strftime('%d-%m-%Y %H:%M:%S')    datetime
-
 
     Wait Until Element Is Visible    id=ctl00_ContentPrincipal_tbxDtInicio
     Click Element    id=ctl00_ContentPrincipal_tbxDtInicio
@@ -1819,13 +1808,9 @@ E clico no Inventário Aberto
     ${timeout}=        Set Variable    300    
     ${interval}=       Set Variable    5   
 
-    
-
     ${start_time}    Get Time    epoch 
+
     FOR    ${i}    IN RANGE    ${timeout}
-
-        # Select Frame    //iframe[@name='frmConteudo']
-
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[contains(text(), '${NUM_INVENT}')]]//td[9]//img[contains(@title,'Aberto')]
         Run Keyword If    ${element_found}    Click Element    //table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[contains(text(), '${NUM_INVENT}')]]//a
         Run Keyword If    ${element_found}    Exit For Loop
@@ -1841,14 +1826,12 @@ E clico no Inventário Aberto
     Capture Page Screenshot
 
 
-
 E clico no inventário da Lista
 
     ${NUM_INVENT}    Get File    ${EXECDIR}/test/processos/num_inventario.txt
     Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[contains(text(), '${NUM_INVENT}')]]//a    20
     Sleep    60
     Click Element    //table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[contains(text(), '${NUM_INVENT}')]]//a
-
 
 Então abro o inventário
     Switch Window    
@@ -1860,14 +1843,12 @@ Então abro o inventário
     Sleep    1
     Capture Page Screenshot
 
-
     # Clique de SIM no popup
     Wait Until Element Is Visible    //a[contains(.,'Sim')]    15
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
     Close Browser
-
 
 Então Encerro o Inventário
    Switch Window    

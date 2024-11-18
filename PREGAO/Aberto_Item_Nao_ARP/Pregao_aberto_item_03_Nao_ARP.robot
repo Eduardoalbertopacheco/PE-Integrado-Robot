@@ -12,7 +12,7 @@ Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 CT26 - Não acatar intenção de recursos
 
-    Configurar variável aberto_item
+    Configurar variável aberto_item Não ARP
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -23,7 +23,7 @@ CT26 - Não acatar intenção de recursos
 
 CT27 - Adjudicar Pregão
 
-    Configurar variável aberto_item
+    Configurar variável aberto_item Não ARP
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
@@ -34,7 +34,7 @@ CT27 - Adjudicar Pregão
 
 CT28 - Homologar Pregão
 
-    Configurar variável aberto_item
+    Configurar variável aberto_item Não ARP
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"
     E acesso a tela de Licitações Eletrônicas
