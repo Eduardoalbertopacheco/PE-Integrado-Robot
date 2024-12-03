@@ -217,7 +217,7 @@ CT16 - Enviar disputa Fornecedor 01
     Configurar Variáveis de Pregão
     Usar SC_Lote_Pregao_aberto
     Dado que acesso o sistema
-    E faço login com usuário "29219904403.256"
+    E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista
@@ -229,7 +229,7 @@ CT17 - Enviar disputa Fornecedor 02
     Configurar Variáveis de Pregão
     Usar SC_Lote_Pregao_aberto
     Dado que acesso o sistema
-    E faço login com usuário "02355633000148"
+    E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista

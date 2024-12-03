@@ -131,10 +131,10 @@ Usar SC_Item_Compra_Disp_OPD
     Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_OPD_Teste_Auto
 
 Usar SC_Item_SEDUC_Compra_Disp
-    Set Global Variable    ${RESUMO_SC}    SC_Item_SEDUC_Compra_Disp_Teste_Auto
+    Set Global Variable    ${RESUMO_SC}    SEDUC_SC_Item_Compra_Disp_Teste_Auto
 
 Usar SC_Item_SAD_Compra_Disp
-    Set Global Variable    ${RESUMO_SC}    SC_Item_SAD_Compra_Disp_Teste_Auto
+    Set Global Variable    ${RESUMO_SC}    SAD_SC_Item_Compra_Disp_Teste_Auto
 
 
 Usar SC_Item_Compra_Disp

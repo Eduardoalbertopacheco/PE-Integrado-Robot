@@ -18,6 +18,8 @@ ${USUARIO}    Eduardo Alberto
 @{VALORES_UNITARIOS}    9    12    
 ${INPUT_NUM_GC}          //span[@id='lbl_ctl00_ContentPrincipal_tbxNrSolicitacaoContrato']
 ${INPTU_NUM_CONTRATO}          //span[@id='lbl_ctl00_ContentPrincipal_tbxNumero']
+${INPUT_TERMO_ACRESS_SUP}      ctl00_ContentPrincipal_lblNumeroContrato
+${INPTU_NUM_ADITIVO}           //span[@id='ctl00_ContentPrincipal_lblNumeroAditivo']
 ${OBJETO_CONTRATO_NOVO}    Contrato Novo Teste Auto
 
 *** Keywords ***
@@ -111,7 +113,7 @@ E Acesso a lista de contratos
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique de Contrato
-    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Contrato')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Contrato')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Contrato')]
 
     # mouse over em Contratos
@@ -129,6 +131,7 @@ E Acesso a lista de contratos
 
 
 E acesso a tela de 'Incluir Novo GC'
+
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]    30
     Click Element    //a[contains(.,'Incluir')]
@@ -476,11 +479,7 @@ Então crio um Contrato Novo
     # Salvar o valor em um arquivo de texto
     Create File    ${EXECDIR}/test/processos/Num_Contrato.txt    ${NUM_CONTRATO}
     Capture Page Screenshot
-
     Close Browser
-
-
-
 
 
 Então crio um novo contrato PE ARP
@@ -507,14 +506,6 @@ Então crio um novo contrato PE ARP
     # Processo oriundo de ARP - SIM
     Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtOriundoARP_0']    15
     Click Element    //input[@id='ctl00_ContentPrincipal_rbtOriundoARP_0']
-
-    # # Modalidade - Pregão Eletronico
-    # Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlModalidade_listbox']    10
-    # Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlModalidade_listbox']
-    # Sleep    2
-    # Wait Until Element Is Visible    //li[contains(.,'Pregão eletrônico')]    10
-    # Click Element    //li[contains(.,'Pregão eletrônico')]
-
 
     # Lupa de Ata Registro Preço
     Wait Until Element Is Visible    //a[contains(@onclick,'abrirJanelaAtaRegistroPrecos();')]    10
@@ -625,13 +616,6 @@ Então crio um novo contrato PE não ARP
     ${Dt_inicio_cont}=    Get Current Date    result_format=%d-%m-%Y    increment=-1d
     ${Dt_enc_cont}=    Get Current Date    result_format=%d-%m-%Y    increment=+180d
     Log    Data futura: ${Dt_enc_cont}
-
-    # Select Frame    //iframe[@name='frmConteudo']
-    # Wait Until Element Is Visible    //a[contains(.,'Incluir')]    30
-    # Click Element    //a[contains(.,'Incluir')]
-
-    # Switch Window    
-    # Select Frame    //frame[contains(@name,'main')]
 
     # Tipo de contrato - Legado
     Wait Until Element Is Visible    //input[@id='ctl00_ContentPrincipal_rbtContrato_1']    20
@@ -888,6 +872,16 @@ Então crio um novo contrato não PE
     Wait Until Element Is Visible    //a[@onclick='Salvar(false);']    15
     Click Element    //a[@onclick='Salvar(false);']
     Sleep    3
+
+
+    # Capturar o valor do campo depois que ele for preenchido
+    Scroll Element Into View    ${INPTU_NUM_CONTRATO}
+    Sleep    1
+    ${NUM_CONTRATO}    SeleniumLibrary.Get Text    ${INPTU_NUM_CONTRATO}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/Num_Contrato_Termo.txt    ${NUM_CONTRATO}
+    Capture Page Screenshot
     Close Browser
    
 
@@ -906,6 +900,14 @@ E acesso a aba 'Docs. assinatura'
     Click Element    //span[contains(.,'Docs. assinatura')]
     Sleep    2
     Capture Page Screenshot
+
+E acesso o Contrato Legado da Lista
+
+    ${NUM_CONTRATO_TERMO}    Get File    ${EXECDIR}/test/processos/Num_Contrato_Termo.txt
+    Select Frame    //iframe[@name='frmConteudo']
+    Wait Until Element Is Visible    //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td//a[contains(text(), '${NUM_CONTRATO_TERMO}')]]//td[2]//a    15
+    Click Element        //table[@id='ctl00_ContentPrincipal_dtgPesquisa']//tr[td//a[contains(text(), '${NUM_CONTRATO_TERMO}')]]//td[2]//a
+    Sleep    2
 
 
 E acesso o Contrato da Lista
@@ -969,8 +971,8 @@ Então configuro a aba Partes do contrato
 
     # Representante da Contratante
     Sleep    2
-    ${ELEMENTOS}    Get WebElements    //span[@class='k-widget k-dropdown k-header'][contains(.,'Selecione')]
-    ${DROP_LIST}    Set Variable    ${ELEMENTOS}[2]
+    ${ELEMENTOS}    Get WebElements    //span[@class='k-widget k-dropdown k-header']//span[@class='k-select']
+    ${DROP_LIST}    Set Variable    ${ELEMENTOS}[10]
     Sleep    2
     Click Element    ${DROP_LIST}
     Sleep    2
@@ -982,9 +984,9 @@ Então configuro a aba Partes do contrato
     Sleep    1
 
     # Representante da Contratada
-    ${ELEMENTOS}    Get WebElements    //span[@class='k-widget k-dropdown k-header'][contains(.,'Selecione')]
+    ${ELEMENTOS}    Get WebElements    //span[@class='k-widget k-dropdown k-header']//span[@class='k-select']
     Sleep    1
-    ${DROP_LIST3}    Set Variable    ${ELEMENTOS}[2]
+    ${DROP_LIST3}    Set Variable    ${ELEMENTOS}[12]
     Sleep    1
     Click Element    ${DROP_LIST3}
     Sleep    2
@@ -1231,6 +1233,12 @@ Então incluo os itens no Contrato
 
     # Quantidade - Unidade - Valor unitário
     # Item 01
+    Sleep    1
+    Execute Javascript    document.body.style.zoom='100%'
+    Sleep    2
+    Execute Javascript    document.body.style.zoom='60%'
+    Sleep    1
+
     Wait Until Element Is Visible    //tbody[1]/tr[1]/td[2]/span[1]/span[1]/input[1]    10
     Input Text    //tbody[1]/tr[1]/td[2]/span[1]/span[1]/input[1]    500
 
@@ -1320,6 +1328,24 @@ E volta para aba 'Gestores/Fiscais'
    Click Element    //span[contains(.,'Gestores/Fiscais')]
    Sleep    2
 
+Então concluo a Análise com o Analista
+    # Aba 'Dados Gerais'
+    ${Elementos}    Get WebElements    //span[@class='k-link'][contains(.,'Dados gerais')]
+    ${Dados_Gerais}    Set Variable    ${Elementos}[1]
+    Click Element    ${Dados_Gerais}
+    Sleep    3
+
+    # Clique do botão 'Concluir Análise'
+    Execute Javascript    document.body.style.zoom='80%'
+    Sleep    2
+    Wait Until Element Is Visible    //a[contains(.,'Concluir análise')]    10
+    Click Element    //a[contains(.,'Concluir análise')]
+    Sleep   2
+
+    # Clique Sim para Confirmar
+    Wait Until Element Is Visible    //a[contains(@id,'mbxContratoAditivoDadosGerais')][contains(.,'Sim')]    10
+    Click Element    //a[contains(@id,'mbxContratoAditivoDadosGerais')][contains(.,'Sim')]
+    Sleep    3
 
 Então concluo a Análise Jurídica
 
@@ -1362,13 +1388,7 @@ Então concluo a Análise Jurídica
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    3
 
-
-
-
-
-
 Então Solicito a Análise Jurídica
-
     Wait Until Element Is Visible    //input[contains(@name,'ckb_nCdTermo')]    10
     Click Element    //input[contains(@name,'ckb_nCdTermo')]
     Sleep    1
@@ -1386,7 +1406,6 @@ Então Solicito a Análise Jurídica
 
 
 E acesso a aba 'Contratos/Termos'
-    
    Switch Window
    Select Frame    //frame[@name='main']
    Wait Until Element Is Visible    //span[contains(.,'Contrato/Termos')]    10
@@ -1395,8 +1414,836 @@ E acesso a aba 'Contratos/Termos'
    Capture Page Screenshot
 
 
-E acesso a aba 'Gestores/Fiscais'
+E clico em 'Gerar Termo'
+    Wait Until Element Is Visible    //a[contains(.,'Gerar termo')]    10
+    Click Element    //a[contains(.,'Gerar termo')]
+    Sleep    1
+    Capture Page Screenshot
+
+
+Seleciono para Termo de 'Prorrogação Contratual'
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ddlTipo_listbox')]    10
+    Click Element    //span[contains(@aria-owns,'ddlTipo_listbox')]
     
+    # Tipo Aditivo
+    Sleep    2
+    ${Elementos}    Get WebElements    //li[@tabindex='-1'][contains(.,'Aditivo')]
+    ${Aditivo}    Set Variable    ${Elementos}[1]
+    Click Element    ${Aditivo}
+
+    # Subtipo - Prorrogação Contratual
+    Sleep    1
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ddlSubtipo_listbox')]    10
+    Click Element    //span[contains(@aria-owns,'ddlSubtipo_listbox')]
+    
+    Sleep    2
+    ${Elementos3}    Get WebElements    //li[@tabindex='-1'][contains(.,'Prorrogação contratual')]
+    Sleep    1
+    ${Prorr_Cont}    Set Variable    ${Elementos3}[0]
+    Sleep    2
+    Click Element    ${Prorr_Cont}
+    Sleep    1
+    Capture Page Screenshot
+
+    # Clique de SIM
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+
+
+E Seleciono para Termo de Reequilíbrio
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ddlTipo_listbox')]    10
+    Click Element    //span[contains(@aria-owns,'ddlTipo_listbox')]
+    
+    # Tipo Aditivo
+    Sleep    2
+    ${Elementos}    Get WebElements    //li[@tabindex='-1'][contains(.,'Aditivo')]
+    ${Aditivo}    Set Variable    ${Elementos}[1]
+    Click Element    ${Aditivo}
+
+    # Subtipo - Reequilíbrio
+    Sleep    1
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ddlSubtipo_listbox')]    10
+    Click Element    //span[contains(@aria-owns,'ddlSubtipo_listbox')]
+    
+    Sleep    2
+    ${Elementos2}    Get WebElements    //li[@tabindex='-1'][contains(.,'Reequilíbrio')]
+    Sleep    1
+    ${Reequlibrio}    Set Variable    ${Elementos2}[1]
+    Sleep    2
+    Click Element    ${Reequlibrio}
+    Sleep    1
+    Capture Page Screenshot
+
+    # Clique de SIM
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+
+E Seleciono para Termo Apostilamento Reajuste
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ddlTipo_listbox')]    10
+    Click Element    //span[contains(@aria-owns,'ddlTipo_listbox')]
+    
+    # Tipo Apostilamento
+    Sleep    2
+    ${Elementos}    Get WebElements    //li[@tabindex='-1'][contains(.,'Apostilamento')]
+    ${Apostilamento}    Set Variable    ${Elementos}[1]
+    Click Element    ${Apostilamento}
+
+    # Subtipo - Reajuste
+    Sleep    1
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ddlSubtipo_listbox')]    10
+    Click Element    //span[contains(@aria-owns,'ddlSubtipo_listbox')]
+    
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Reajuste')]    10
+    Click Element    //li[@tabindex='-1'][contains(.,'Reajuste')]
+    Sleep    1
+    Capture Page Screenshot
+
+    # Clique de SIM
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+
+E Seleciono para Termo Aditivo Acress/Supressão
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ddlTipo_listbox')]    10
+    Click Element    //span[contains(@aria-owns,'ddlTipo_listbox')]
+    
+    # Tipo Aditivo
+    Sleep    2
+    ${Elementos}    Get WebElements    //li[@tabindex='-1'][contains(.,'Aditivo')]
+    ${Aditivo}    Set Variable    ${Elementos}[1]
+    Click Element    ${Aditivo}
+
+    # Subtipo - Acress/Supressão
+    Sleep    1
+    Wait Until Element Is Visible    //span[contains(@aria-owns,'ddlSubtipo_listbox')]    10
+    Click Element    //span[contains(@aria-owns,'ddlSubtipo_listbox')]
+    
+    Sleep    2
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Acréscimo/Supressão')]    10
+    Click Element    //li[@tabindex='-1'][contains(.,'Acréscimo/Supressão')]
+    Sleep    1
+    Capture Page Screenshot
+
+    # Clique de SIM
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+E acesso a aba 'Anexos'
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Wait Until Element Is Visible    //span[contains(.,'Anexos')]    10
+    Click Element    //span[contains(.,'Anexos')]
+    Sleep    2
+    Capture Page Screenshot
+
+Então incluo os Anexos para Concluir Análise
+    FOR    ${index}    IN RANGE    2
+      # Clique do botão 'Escolher Arquivo'
+      Wait Until Element Is Visible    //input[contains(@type,'file')]    30
+      Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+      Sleep    1
+
+      # Clique e escrevo no campo 'Tipo do documento'
+      Wait Until Element Is Visible    
+      ...    //input[@name='ctl00$ContentPrincipal$AnexoAditivo$autoTipoDeDocumento']    15
+
+      ${tipo_doc} =    Set Variable    Termo aditivo
+      ${li_doc}    Set Variable    //li[@tabindex='-1'][contains(.,'Termo aditivo')]
+
+      # Ajustar os localizadores e o tipo de documento para a segunda e terceira execuções
+      IF    ${index} == 1
+
+        ${tipo_doc} =    Set Variable    DDO
+        ${li_doc} =    Set Variable    //li[contains(.,'DDO Aditivo (Declaração de Disponibilidade Orçamentária)')]
+      END
+
+      Input Text    
+      ...    //input[@name='ctl00$ContentPrincipal$AnexoAditivo$autoTipoDeDocumento']
+      ...    ${tipo_doc}    15
+      Sleep    2
+      Wait Until Element Is Visible    ${li_doc}    timeout=30s
+      Click Element    ${li_doc}
+
+      # Clique no botão 'Anexar' o arquivo
+      Capture Page Screenshot
+      Click Element    //input[@value='Anexar']
+      # Clique de Ok no popup
+      Wait Until Element Is Visible    //a[@href='javascript:void(0);'][contains(@id,'mbxAnexo')][contains(.,'OK')]    10
+      Click Element    //a[@href='javascript:void(0);'][contains(@id,'mbxAnexo')][contains(.,'OK')]
+      Sleep    1
+    END
+
+
+
+
+E incluo o Anexo 'DDO'
+    Execute Javascript    document.body.style.zoom='80%'
+    Sleep    2
+
+    Wait Until Element Is Visible    css=input[type="file"]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    30
+    Input Text    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    DDO
+    Sleep    2
+    Wait Until Element Is Visible    //li[text()="DDO Aditivo (Declaração de Disponibilidade Orçamentária)"]    30
+    Click Element    //li[text()="DDO Aditivo (Declaração de Disponibilidade Orçamentária)"]
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Sleep    2
+
+    Wait Until Element Is Visible    //a[contains(@id,'mbxAnexo')][contains(.,'OK')]    10
+    Click Element    //a[contains(@id,'mbxAnexo')][contains(.,'OK')]
+    Sleep    2
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    # Clique do botão fechar
+    ${elementos}    Get WebElements    //a[contains(@id,'btnFechar')][contains(.,'Fechar')]
+    ${Btn_Fechar}    Set Variable    ${elementos}[2]
+    Click Element    ${Btn_Fechar}
+    Sleep    3
+
+
+E incluo o Anexo 'Termo Aditivo' para Concluir Análise
+    Wait Until Element Is Visible    css=input[type="file"]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+
+
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    30
+    Input Text    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    Termo aditivo
+    Sleep    2
+    Wait Until Element Is Visible    //li[text()="Termo aditivo"]    30
+    Click Element    //li[text()="Termo aditivo"]
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Sleep    2
+
+    Wait Until Element Is Visible    //a[contains(@id,'mbxAnexo')][contains(.,'OK')]    10
+    Click Element    //a[contains(@id,'mbxAnexo')][contains(.,'OK')]
+    Sleep    2
+
+
+
+Então incluo o anexo 'Petição'
+    Wait Until Element Is Visible    css=input[type="file"]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+
+
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    30
+    Input Text    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    Petição
+    Sleep    2
+    Wait Until Element Is Visible    //li[text()="Petição"]    30
+    Click Element    //li[text()="Petição"]
+
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Sleep    3
+    Close Browser
+
+
+Então incluo o anexo 'Decl. de essenc.' no termo de Prorrogação
+    Execute Javascript    document.body.style.zoom='80%'
+    Sleep    2
+
+    Wait Until Element Is Visible    css=input[type="file"]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    30
+    Input Text    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    Essencialidade
+    Sleep    2
+    Wait Until Element Is Visible    //li[text()="Declaração de essencialidade"]    30
+    Click Element    //li[text()="Declaração de essencialidade"]
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Sleep    2
+
+    Wait Until Element Is Visible    //a[contains(@id,'mbxAnexo')][contains(.,'OK')]    10
+    Click Element    //a[contains(@id,'mbxAnexo')][contains(.,'OK')]
+    Sleep    2
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    # Clique do botão fechar
+    ${elementos}    Get WebElements    //a[contains(@id,'btnFechar')][contains(.,'Fechar')]
+    ${Btn_Fechar}    Set Variable    ${elementos}[2]
+    Click Element    ${Btn_Fechar}
+    Sleep    3
+
+
+
+Então incluo o anexo 'Declaração de essencialidade'
+    Wait Until Element Is Visible    css=input[type="file"]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+
+
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    30
+    Input Text    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    Declaração de essencialidade
+    Sleep    2
+    Wait Until Element Is Visible    //li[text()="Declaração de essencialidade"]    30
+    Click Element    //li[text()="Declaração de essencialidade"]
+
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Sleep    3
+    Close Browser
+
+
+Então concluo a Análise Jurídica do Termo
+    Wait Until Element Is Visible    //a[contains(.,'Concluir análise jurídica')]    10
+    Click Element    //a[contains(.,'Concluir análise jurídica')]
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    # Clique no icone de anexo
+    Wait Until Element Is Visible    //img[@src='/Core/Images/icones/ic_anexo.gif']    10
+    Click Element    //img[@src='/Core/Images/icones/ic_anexo.gif']
+    Sleep    2
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    css=input[type="file"]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Sleep    2
+
+    # Clique Ok no popup
+    Wait Until Element Is Visible    //a[contains(.,'OK')]    10
+    Click Element    //a[contains(.,'OK')]
+
+    Sleep    2
+    ${elementos}    Get WebElements    //a[@onclick='FecharJanelaAtual(this);'][contains(@id,'btnFechar')][contains(.,'Fechar')]
+    ${elemento}    Set Variable    ${elementos}[2]
+    Sleep    1
+    Click Element    ${elemento}
+    Sleep        2
+
+    # Checkbox - Aprovada
+    Wait Until Element Is Visible    //input[@value='2'][contains(@id,'2')]    10
+    Click Element    //input[@value='2'][contains(@id,'2')]
+    Sleep    1
+
+    # Justificativa
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    10
+    Input Text    //textarea[contains(@name,'txtJustificativa')]    justificativa
+    Capture Page Screenshot
+
+    # Confirma
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
+
+
+Então aprovo o termo com o Ordenador
+    Wait Until Element Is Visible    //a[contains(.,'Deliberar')]    10
+    Click Element    //a[contains(.,'Deliberar')]
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Wait Until Element Is Visible    //input[contains(@id,'rbtResultadoAnalise_0')]    10
+    Click Element    //input[contains(@id,'rbtResultadoAnalise_0')]
+    Sleep    1
+
+    # Justificativa
+    Wait Until Element Is Visible    //textarea[@name='txtMotivoDeliberar']    10
+    Input Text    //textarea[@name='txtMotivoDeliberar']    justificativa
+    Capture Page Screenshot
+
+    # Confirma
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
+
+
+E seleciono o termo de Reequilíbrio da Lista
+    ${Num_Termo_Reeq}    Get File    ${EXECDIR}/test/processos/Num_Termo_Reeq.txt
+
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Reeq}')]]//td[11]//input
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Reeq}')]]//td[11]//input
+    Sleep    2
+    Capture Page Screenshot
+
+
+E seleciono o termo Acress/Supressão da Lista 
+    ${Num_Termo}    Get File    ${EXECDIR}/test/processos/Num_Aditivo.txt
+
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo}')]]//td[11]//input
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo}')]]//td[11]//input
+    Sleep    2
+    Capture Page Screenshot
+
+
+Então Solicito a Análise Jurídica do Termo
+    Wait Until Element Is Visible    //a[contains(.,'Solicitar análise jurídica')]    10
+    Click Element    //a[contains(.,'Solicitar análise jurídica')]
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Sleep    1
+
+    # Justificativa
+    Wait Until Element Is Visible    //textarea[@name='txtJustificativaSolicitarAnalise']    10
+    Input Text    //textarea[@name='txtJustificativaSolicitarAnalise']    justificativa
+    Capture Page Screenshot
+
+    # Confirma
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    4
+
+
+
+Então solicito aprovação do Termo
+    Wait Until Element Is Visible    //a[contains(.,'Solicitar aprovação')]    10
+    Click Element    //a[contains(.,'Solicitar aprovação')]
+
+    # Sim no popup
+    Sleep    1
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+
+Então analiso o termo de Prorrogação
+    Wait Until Element Is Visible    //a[contains(.,'Analisar termo')]    10
+    Click Element    //a[contains(.,'Analisar termo')]
+
+    # Sim no popup
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    2
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+
+    Wait Until Element Is Visible    //input[@id='rbtAceitarCondicoes_0']    10
+    Click Element    //input[@id='rbtAceitarCondicoes_0']
+    Sleep    1
+
+    # Justificativa
+    Wait Until Element Is Visible    //textarea[@name='tbxJustificativaAceitar']    10
+    Input Text    //textarea[@name='tbxJustificativaAceitar']    justificativa
+    Capture Page Screenshot
+
+    # Confirma
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
+
+
+Então analiso o termo Acress/Supressão
+    Wait Until Element Is Visible    //a[contains(.,'Analisar termo')]    10
+    Click Element    //a[contains(.,'Analisar termo')]
+
+    # Sim no popup
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    2
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Wait Until Element Is Visible    //input[contains(@id,'rbtAceitarCondicoesAcrescimoSupressao_0')]    10
+    Click Element    //input[contains(@id,'rbtAceitarCondicoesAcrescimoSupressao_0')]
+    Sleep    1
+
+    # Justificativa
+    Wait Until Element Is Visible    //textarea[@name='tbxJustificativaAceitarAcrescimoSupressao']    10
+    Input Text    //textarea[@name='tbxJustificativaAceitarAcrescimoSupressao']    justificativa
+    Capture Page Screenshot
+
+    # Confirma
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    3
+
+Então confirmo com o Gestor
+    Execute Javascript    document.body.style.zoom='80%'
+    Sleep    2
+
+    Wait Until Element Is Visible    //a[contains(.,'Concluir análise')]    10
+    Click Element    //a[contains(.,'Concluir análise')]
+    Sleep    2
+
+    # Sim do Popup
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+
+E acesso o termo de Reequilíbrio da Lista
+    ${Num_Termo_Reeq}    Get File    ${EXECDIR}/test/processos/Num_Termo_Reeq.txt
+
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Reeq}')]]//a
+    Sleep    1
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Reeq}')]]//a
+    Sleep    2
+    Capture Page Screenshot
+
+E seleciono o termo de Prorrogação da lista
+    ${Num_Termo_Prorrog}    Get File    ${EXECDIR}/test/processos/Num_Termo_Prorrogacao.txt
+    
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Prorrog}')]]//td[11]//input
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Prorrog}')]]//td[11]//input
+    Sleep    2
+    Capture Page Screenshot
+
+E acesso o termo de Prorrogação da Lista
+    ${Num_Termo_Prorrog}    Get File    ${EXECDIR}/test/processos/Num_Termo_Prorrogacao.txt
+
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Prorrog}')]]//a
+    Sleep    1
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Prorrog}')]]//a
+    Sleep    2
+    Capture Page Screenshot
+
+E acesso o termo de Reajuste da lista
+    ${Num_Termo_Reajuste}    Get File    ${EXECDIR}/test/processos/Num_Aditivo_Reajuste.txt
+
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Reajuste}')]]//a
+    Sleep    1
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo_Reajuste}')]]//a
+    Sleep    2
+    Capture Page Screenshot
+
+
+E acesso o termo Acress/Supressão da Lista
+    ${Num_Termo}    Get File    ${EXECDIR}/test/processos/Num_Aditivo.txt
+
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo}')]]//a
+    Sleep    1
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridTermos"]//tr[td//a[contains(text(), '${Num_Termo}')]]//a
+    Sleep    2
+    Capture Page Screenshot
+
+
+Então encaminho o Termo do Contrato
+    Execute Javascript    document.body.style.zoom='80%'
+    Sleep    2
+
+    Wait Until Element Is Visible    //a[contains(.,'Encaminhar')]    10
+    Click Element    //a[contains(.,'Encaminhar')]
+    Sleep    2
+
+    # Sim do Popup
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    10
+    Click Element    //a[contains(.,'Sim')]
+    Sleep    3
+
+
+
+E acesso a aba 'Itens' do termo
+    Switch Window
+    Select Frame    //frame[@name='main']
+    ${Elementos}    Get WebElements    //span[contains(.,'Itens')]
+    ${Item}    Set Variable    ${Elementos}[1]
+    Click Element    ${Item}
+    Sleep    2
+    Capture Page Screenshot
+
+E acesso a tela de Percentual de reequilíbrio
+
+    # Selecionar todos os itens
+    Execute Javascript    document.body.style.zoom='75%'
+    Sleep    2
+    Wait Until Element Is Visible    //input[@title='Selecionar todos']    15
+    Click Element    //input[@title='Selecionar todos']
+
+    # Clique de Aplicar %
+    Wait Until Element Is Visible    //input[@name='btn-porcentagem']    15
+    Capture Page Screenshot
+    Click Element    //input[@name='btn-porcentagem']
+
+    Switch Window
+    Select Frame    //frame[@name='main']
+    Select Frame    //iframe[contains(@id,'modalIframe')]
+    Capture Page Screenshot
+
+
+Então faça as alterações dos valores unitários dos Itens
+    Wait Until Element Is Visible    //input[@name='percentual']    10
+    Input Text    //input[@name='percentual']    10
+    Sleep    2
+
+    # Botão Salvar
+    Unselect Frame
+    Select Frame    //frame[@name='main']
+    Wait Until Element Is Visible    //div[contains(@class, 'box-botoes-rodape-modal')]//button[@id='btnSalvarModalItensPercentual']    10
+    Click Element        //div[contains(@class, 'box-botoes-rodape-modal')]//button[@id='btnSalvarModalItensPercentual']
+    Sleep    3
+
+    Handle Alert    ACCEPT
+    Sleep    1
+    Capture Page Screenshot
+    Wait Until Element Is Visible    //button[@id='btnSalvar']    10
+    Click Element    //button[@id='btnSalvar']
+    Sleep    3
+
+
+
+
+
+
+Então faça as alterações dos Itens
+    ${Elementos1}    Get WebElements    //span[contains(@class,'k-icon k-i-arrow-n')]
+    ${Seta_cima}    Set Variable    ${Elementos1}[2]
+    Double Click Element    ${Elementos1}[2]
+    Sleep    1
+    Double Click Element    ${Elementos1}[2]
+    Sleep    2
+
+    ${Elementos2}    Get WebElements    //span[contains(@class,'k-icon k-i-arrow-s')]
+    ${Seta_baixo}    Set Variable    ${Elementos2}[14]
+    Double Click Element    ${Elementos2}[22]
+    Sleep    1
+    Double Click Element    ${Elementos2}[14]
+    Sleep    2
+
+    # Salvar
+    Wait Until Element Is Visible    //a[@onclick='salvarItens();']    10
+    Click Element    //a[@onclick='salvarItens();']
+    Sleep    3
+    Close Browser
+
+Então preencho a aba 'Dados Gerais' do Termo de Prorrogação
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Capture Page Screenshot
+
+    # Enc_Prorrogacao
+    ${Enc_Prorrogacao}=    Get Current Date    result_format=%d-%m-%Y    increment=+250d
+
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_tDtEncerramentoAditivo
+    Click Element    id=ctl00_ContentPrincipal_tDtEncerramentoAditivo
+    Sleep    2
+    Set Focus To Element    id=ctl00_ContentPrincipal_tDtEncerramentoAditivo
+    Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_tDtEncerramentoAditivo").value="${Enc_Prorrogacao}";
+    Sleep    2
+
+    Execute Javascript    document.body.style.zoom='80%'
+    Sleep    2
+
+    # Criterio Legal
+    Sleep    1
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlCriterioLegalAditivo_listbox']    10
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlCriterioLegalAditivo_listbox']
+
+    Sleep    1
+    ${Elementos}    Get WebElements    //li[@tabindex='-1'][text()='TESTE']
+    ${Criterio}    Set Variable   ${Elementos}[1]
+    Click Element    ${Criterio}
+
+    # jautidicativa
+    Sleep    1
+    Wait Until Element Is Visible    //textarea[@name='ctl00$ContentPrincipal$tbxJustificativaAditivo']    10
+    Input Text    //textarea[@name='ctl00$ContentPrincipal$tbxJustificativaAditivo']    Justificativa
+    Capture Page Screenshot
+
+    # Salvar
+    Wait Until Element Is Visible    //a[@id="ctl00_ContentButtom_btnSalvar"]    10
+    Click Element    //a[@id="ctl00_ContentButtom_btnSalvar"]
+    Sleep    3
+
+    # Capturar o valor do campo depois que ele for preenchido
+    Sleep    1
+    ${NUM_TERMO_PRORROGACAO}    SeleniumLibrary.Get Text    ${INPTU_NUM_ADITIVO}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/Num_Termo_Prorrogacao.txt    ${NUM_TERMO_PRORROGACAO}
+    Close Browser
+
+
+Então preencho a aba 'Dados Gerais' do Termo de Reequilíbrio
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Capture Page Screenshot
+
+    # Inicio Aditivo
+    ${Dt_inicio}=    Get Current Date    result_format=%d-%m-%Y
+
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_txtInicioAditivo
+    Click Element    id=ctl00_ContentPrincipal_txtInicioAditivo
+    Sleep    2
+    Set Focus To Element    id=ctl00_ContentPrincipal_txtInicioAditivo
+    Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_txtInicioAditivo").value="${Dt_inicio}";
+    Sleep    2
+
+    # jautidicativa
+    Sleep    1
+    Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativaAditivo')]    10
+    Input Text    //textarea[contains(@name,'tbxJustificativaAditivo')]    Justificativa
+    Capture Page Screenshot
+
+    Execute Javascript    document.body.style.zoom='80%'
+    Sleep    2
+
+    # Salvar
+    Wait Until Element Is Visible    //a[@id="ctl00_ContentButtom_btnSalvar"]    10
+    Click Element    //a[@id="ctl00_ContentButtom_btnSalvar"]
+    Sleep    3
+
+    # Capturar o valor do campo depois que ele for preenchido
+    Sleep    1
+    ${NUM_TERMO_ACRESS_SUPRESSAO}    SeleniumLibrary.Get Text    ${INPUT_TERMO_ACRESS_SUP}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/Num_Termo_Acress_Sup.txt    ${NUM_TERMO_ACRESS_SUPRESSAO}
+    Close Browser
+
+
+Então preencho a aba 'Dados Gerais' do Termo de Reajuste
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Capture Page Screenshot
+
+    # Inicio Apostilamento
+    ${Dt_inicio_apost}=    Get Current Date    result_format=%d-%m-%Y
+
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_InicioApostilamentoReajuste
+    Click Element    id=ctl00_ContentPrincipal_InicioApostilamentoReajuste
+    Sleep    2
+    Set Focus To Element    id=ctl00_ContentPrincipal_InicioApostilamentoReajuste
+    Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_InicioApostilamentoReajuste").value="${Dt_inicio_apost}";
+    Sleep    2
+
+    # Inicio Periodo abrangido
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_InicioPeriodoAbrangido
+    Click Element    id=ctl00_ContentPrincipal_InicioPeriodoAbrangido
+    Sleep    2
+    Set Focus To Element    id=ctl00_ContentPrincipal_InicioPeriodoAbrangido
+    Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_InicioPeriodoAbrangido").value="${Dt_inicio_apost}";
+    Sleep    2
+
+    # Fim Periodo abrangido
+    ${Dt_fim_abrang}=    Get Current Date    result_format=%d-%m-%Y    increment=+150d
+
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_FimPeriodoAbrangido
+    Click Element    id=ctl00_ContentPrincipal_FimPeriodoAbrangido
+    Sleep    2
+    Set Focus To Element    id=ctl00_ContentPrincipal_FimPeriodoAbrangido
+    Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_FimPeriodoAbrangido").value="${Dt_fim_abrang}";
+    Sleep    2
+
+    # jautidicativa
+    Sleep    1
+    Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativaAditivo')]    10
+    Input Text    //textarea[contains(@name,'tbxJustificativaAditivo')]    Justificativa
+    Capture Page Screenshot
+
+    Execute Javascript    document.body.style.zoom='90%'
+    Sleep    2
+
+    # Salvar
+    Wait Until Element Is Visible    //a[contains(@onclick,'salvarApostilamentoReajuste(this, false);')]    10
+    Click Element    //a[contains(@onclick,'salvarApostilamentoReajuste(this, false);')]
+    Sleep    3
+
+    # Capturar o valor do campo depois que ele for preenchido
+    Sleep    1
+    ${NUM_ADITIVO_REAJUSTE}    SeleniumLibrary.Get Text    ${INPTU_NUM_ADITIVO}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/Num_Aditivo_Reajuste.txt    ${NUM_ADITIVO_REAJUSTE}
+    Close Browser
+
+
+
+Então preencho a aba 'Dados Gerais' do Termo de Acrésssimo/Supressão
+    Switch Window    
+    Select Frame    //frame[contains(@name,'main')]
+    Capture Page Screenshot
+    
+    # Tipificação - Acress/Supressão
+    Wait Until Element Is Visible    //select[contains(@name,'Tipificacao')]    10
+    Click Element    //select[contains(@name,'Tipificacao')]
+
+    Sleep    1
+    Wait Until Element Is Visible    //option[contains(.,'Acréscimo e Supressão')]    10
+    Click Element    //option[contains(.,'Acréscimo e Supressão')]
+
+    # Inicio Aditivo
+    ${Dt_inicio}=    Get Current Date    result_format=%d-%m-%Y
+
+    Wait Until Element Is Visible    id=ctl00_ContentPrincipal_InicioAcrescimoSupressao
+    Click Element    id=ctl00_ContentPrincipal_InicioAcrescimoSupressao
+    Sleep    2
+    Set Focus To Element    id=ctl00_ContentPrincipal_InicioAcrescimoSupressao
+    Execute JavaScript    document.getElementById("ctl00_ContentPrincipal_InicioAcrescimoSupressao").value="${Dt_inicio}";
+    Sleep    2
+
+    # Criterio Legal
+    Sleep    1
+    Wait Until Element Is Visible    //span[@aria-owns='ctl00_ContentPrincipal_ddlCriterioLegalAditivo_listbox']    10
+    Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlCriterioLegalAditivo_listbox']
+
+    Sleep    1
+    ${Elementos}    Get WebElements    //li[@tabindex='-1'][text()='TESTE']
+    ${Criterio}    Set Variable   ${Elementos}[1]
+    Click Element    ${Criterio}
+
+    # jautidicativa
+    Sleep    1
+    Wait Until Element Is Visible    //textarea[contains(@name,'tbxJustificativaAditivo')]    10
+    Input Text    //textarea[contains(@name,'tbxJustificativaAditivo')]    Justificativa
+    Capture Page Screenshot
+
+    Execute Javascript    document.body.style.zoom='90%'
+    Sleep    2
+
+    # Salvar
+    Wait Until Element Is Visible    //a[@onclick='salvarAditivoAcrescimoSupressao(this, false);']    10
+    Click Element    //a[@onclick='salvarAditivoAcrescimoSupressao(this, false);']
+    Sleep    3
+
+    # Capturar o valor do campo depois que ele for preenchido
+    Sleep    1
+    ${NUM_ADITIVO}    SeleniumLibrary.Get Text    ${INPTU_NUM_ADITIVO}
+
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/Num_Aditivo.txt    ${NUM_ADITIVO}
+    Close Browser
+
+
+E acesso a aba 'Gestores/Fiscais'
+
    Switch Window
    Select Frame    //frame[@name='main']
    Wait Until Element Is Visible    //span[contains(.,'Gestores/Fiscais')]    10
@@ -1405,7 +2252,6 @@ E acesso a aba 'Gestores/Fiscais'
    Capture Page Screenshot
 
 Então faço os aceites
-
     # Aceite do Gestor
     Wait Until Element Is Visible    //a[@onclick='justificativaAceite(1191, 1)']    10
     Click Element    //a[@onclick='justificativaAceite(1191, 1)']
@@ -1432,7 +2278,6 @@ Então faço os aceites
 
 
 Então Incluo os Gestortes de Fiscais ao Contrato
-
    # Datas
    ${Dt_inicio}=    Get Current Date    result_format=%d-%m-%Y
    ${Dt_termino}=    Get Current Date    result_format=%d-%m-%Y    increment=+180d
@@ -1481,13 +2326,6 @@ Então Incluo os Gestortes de Fiscais ao Contrato
 
 
 Então incluos os docs obrigatórios
-#    Switch Window
-#    Select Frame    //frame[@name='main']
-
-#    # Clique na aba documentos
-#    Wait Until Element Is Visible    //span[@class='k-link'][contains(.,'Documentos do processo')]    15
-#    Click Element    //span[@class='k-link'][contains(.,'Documentos do processo')]
-
     # Clique do botão 'Escolher Arquivo'
     Wait Until Element Is Visible    //input[contains(@type,'file')]    timeout=30s
     Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
@@ -1514,8 +2352,30 @@ Então incluos os docs obrigatórios
     Handle Alert    ACCEPT
     Sleep    1
 
-E incluo o Documento do Tipo 'Empenho'
+E incluo o Documento do Tipo 'Empenho' no Termo
+    Wait Until Element Is Visible    css=input[type="file"]    10
+    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
 
+
+    # Clique e escrevo no campo 'Tipo do documento'
+    Wait Until Element Is Visible    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]    30
+    Input Text    
+    ...    //input[contains(@name,'autoTipoDeDocumento')]
+    ...    Empenho
+    Sleep    2
+    Wait Until Element Is Visible    //li[text()="Empenho"]    30
+    Click Element    //li[text()="Empenho"]
+
+
+    # Clique no botão 'Anexar' o arquivo
+    Capture Page Screenshot
+    Click Element    //input[@value='Anexar']
+    Sleep    3
+    Close Browser
+
+
+E incluo o Documento do Tipo 'Empenho'
     Wait Until Element Is Visible    css=input[type="file"]    10
     Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
 
@@ -1574,9 +2434,7 @@ Então assino o contrato
     SeleniumLibrary.Close Browser
 
 
-
 E anexo o documento para assinatura
-
     Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Contrato']]//td[10]//input    10
     Click Element    //table[@id="ctl00_ContentPrincipal_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Contrato']]//td[10]//input
 
@@ -1595,7 +2453,45 @@ E acesso a aba 'Dados Gerais'
     Click Element    //span[contains(.,'Dados gerais')]
     Sleep    2
 
+
+Então assino o Documento com a Contratada Principal
+    # Selecioanr o Docuemto do tipo contrato
+    Wait Until Element Is Visible    //table[@id="ctl00_ContentPrincipal_gridDocAssinatura"]//tr[td[contains(text(), 'Contrato')]]//td[6]//input    10
+    Click Element    //table[@id="ctl00_ContentPrincipal_gridDocAssinatura"]//tr[td[contains(text(), 'Contrato')]]//td[6]//input
+
+    # Clicar no botão 'Assinar Documento'
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    30
+    Click Element    xpath=//a[contains(.,'Assinar documento')]
+
+    # Preencher os campos de assinatura
+    Sleep    2
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    30
+
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    30
+    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    30
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+
+    # Clicar no botão 'Assinar'
+    Capture Page Screenshot
+    Click Element    xpath=//a[text()='Assinar']
+    Sleep    7
+    
+
+Então solicito assinatura do termo
+
+    Execute Javascript    document.body.style.zoom='80%'
+
+    Wait Until Element Is Visible    //a[contains(.,'Solicitar assinatura')]    10
+    Click Element    //a[contains(.,'Solicitar assinatura')]
+    Sleep    2
+
+
 Então solicito assinatura
+
+    Execute Javascript    document.body.style.zoom='80%'
+
     Wait Until Element Is Visible    //a[contains(.,'Solicitar assinatura')]    10
     Click Element    //a[contains(.,'Solicitar assinatura')]
     Sleep    2

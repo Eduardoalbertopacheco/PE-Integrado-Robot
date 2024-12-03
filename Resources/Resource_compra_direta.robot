@@ -266,21 +266,21 @@ Então preencho todos os campos da Aba Dados gerais
 E clico na compra direta em recebimento de lances
 
     ${start_time}=    Get Time    epoch
-    FOR    ${i}    IN RANGE    ${timeout}
-        ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
+    ${element_found}=    Set Variable    False
+    
+    WHILE    ${element_found} == False
+        ${element_found}=    Run Keyword And Return Status    Element Should Be Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[8]//img[contains(@title,'Recebimento de lances')]
         Sleep    20
         Run Keyword If    ${element_found}    Click Element    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td/label[text()='${OBJETO_COMPRA}']]//td[2]//a
         Run Keyword If    ${element_found}    Exit For Loop
-        
-        Execute JavaScript    window.location.reload()
-        Sleep    ${interval} sec
 
         ${current_time}=    Get Time    epoch
         ${elapsed_time}=    Evaluate    ${current_time} - ${start_time}
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
-    END
-    Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
+        Execute JavaScript    window.location.reload()
+        Sleep    ${interval} sec
+    END
 
 E clico na Compra Direta da lista Aguardando ratificação
    
@@ -360,11 +360,11 @@ Então incluo a SC Item na compra Direta
     Switch Window    NEW
 
     # Clique no campo exibir
-    Wait Until Element Is Visible    //select[contains(@name,'ctl00$ddlVisoes')]    timeout=30s
+    Wait Until Element Is Visible    //select[contains(@name,'ctl00$ddlVisoes')]    30
     Click Element    //select[contains(@name,'ctl00$ddlVisoes')]
     Sleep    1
     Wait Until Element Is Visible    //option[contains(@value,'7000')]
-    Sleep    1
+    Sleep    2
     Click Element    //option[contains(@value,'7000')]
 
 
@@ -389,8 +389,8 @@ Então faço o agendamento da compra Direta
 E configuro o agendamento
 
     # Data inicial dos lances
-   ${hora_atual+06min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=6)).strftime('%d-%m-%Y %H:%M:%S')    datetime
-    Log    ${hora_atual+06min}
+   ${hora_atual+05min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=5)).strftime('%d-%m-%Y %H:%M:%S')    datetime
+    Log    ${hora_atual+05min}
 
     # Data final dos lances
     ${hora_atual+300min}=    Evaluate    (datetime.datetime.now() + datetime.timedelta(minutes=300)).strftime('%d-%m-%Y %H:%M:%S')    datetime
@@ -412,13 +412,11 @@ E configuro o agendamento
 
     Switch Window    ${all_windows}[1]
 
-    Wait Until Element Is Visible    //input[contains(@name,'tbxDataInicialProposta')]    timeout=30s
-    # Clear Text    //input[contains(@name,'tbxDataInicialProposta')]
-    Input Text    //input[contains(@name,'tbxDataInicialProposta')]    ${hora_atual+06min}
+    Wait Until Element Is Visible    //input[contains(@name,'tbxDataInicialProposta')]    30
+    Input Text    //input[contains(@name,'tbxDataInicialProposta')]    ${hora_atual+05min}
 
     
-    Wait Until Element Is Visible    //input[contains(@name,'tbxDataEncerramento')]    timeout=30s
-    # Clear Text    //input[contains(@name,'tbxDataEncerramento')]
+    Wait Until Element Is Visible    //input[contains(@name,'tbxDataEncerramento')]    30
     Input Text    //input[contains(@name,'tbxDataEncerramento')]    ${hora_atual+300min}
     Capture Page Screenshot
 
@@ -445,12 +443,12 @@ E preencho os dados do segundo lance na Compra Direta por Lote
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
     Log    Aguardando a visibilidade do item na lista
-    Wait Until Element Is Visible    ${ITEM_LOTE_CATETER}    timeout=30s
+    Wait Until Element Is Visible    ${LOTE_CATETER}    timeout=30s
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
-    Click Element    ${ITEM_LOTE_CATETER}
+    Click Element    ${LOTE_CATETER}
     Sleep    2s
 
 
@@ -481,13 +479,13 @@ E preencho os dados do lance na Compra Direta por Lote
 
     Log    Aguardando a visibilidade do item na lista
     # Wait Until Element Is Visible    ${ITEM_LOTE}    20
-    Wait Until Element Is Visible    ${ITEM_LOTE_CATETER}    20
+    Wait Until Element Is Visible    ${LOTE_CATETER}    20
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
     # Click Element    ${ITEM_LOTE}
-    Click Element    ${ITEM_LOTE_CATETER}
+    Click Element    ${LOTE_CATETER}
     Sleep    2s
 
 
@@ -518,17 +516,17 @@ E preencho os dados do lance na Compra Direta por Item
     Capture Page Screenshot
 
     Log    Aguardando a visibilidade do item na lista
-    Wait Until Element Is Visible    ${ITEM}    timeout=30s
+    Wait Until Element Is Visible    ${ITEM_CATETER}     timeout=30s
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
-    Click Element    ${ITEM}
+    Click Element    ${ITEM_CATETER}
     Sleep    2s
     Log    Verificando valor do dropdown
     ${dropdown_value}=    Execute JavaScript    return document.querySelector("span.k-input").innerText
     Log    Valor do dropdown: ${dropdown_value}
-    Should Be Equal As Strings    ${dropdown_value}    ${ITEM_TEXT}
+    Should Be Equal As Strings    ${dropdown_value}    ${ITEM_TEXT_CATETER}
 
 
     # Valor do lance
@@ -559,17 +557,17 @@ E preencho os dados do segundo lance na Compra Direta por item
 
 
     Log    Aguardando a visibilidade do item na lista
-    Wait Until Element Is Visible    ${ITEM}    timeout=30s
+    Wait Until Element Is Visible    ${ITEM_CATETER}     timeout=30s
 
     Log    Item visível, clicando no item
     Capture Page Screenshot
     
-    Click Element    ${ITEM}
+    Click Element    ${ITEM_CATETER}
     Sleep    2s
     Log    Verificando valor do dropdown
     ${dropdown_value}=    Execute JavaScript    return document.querySelector("span.k-input").innerText
     Log    Valor do dropdown: ${dropdown_value}
-    Should Be Equal As Strings    ${dropdown_value}    ${ITEM_TEXT}
+    Should Be Equal As Strings    ${dropdown_value}    ${ITEM_TEXT_CATETER}
 
 
     # Valor do lance

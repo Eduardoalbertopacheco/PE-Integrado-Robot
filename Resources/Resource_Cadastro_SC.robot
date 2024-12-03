@@ -2129,7 +2129,7 @@ E clico em Atribuir Comissão
 Então atribuo a comissão de Compra Direta
 
     # Busca pela comissão no campo 'Descrição'
-    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    timeout=30s
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    30
     Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
     ...    COMISSÃO DE COMPRA DIRETA
 
@@ -2137,8 +2137,8 @@ Então atribuo a comissão de Compra Direta
     Click Element    //a[contains(.,'Pesquisar')]
 
     # Clique para selecionar a comissão
-    Wait Until Element Is Visible    //input[@value='344|COMISSÃO DE COMPRA DIRETA']    timeout=30s
-    Click Element    //input[@value='344|COMISSÃO DE COMPRA DIRETA']
+    Wait Until Element Is Visible    //input[contains(@id,'radListComissao')]
+    Click Element    //input[contains(@id,'radListComissao')]
     Capture Page Screenshot
 
 

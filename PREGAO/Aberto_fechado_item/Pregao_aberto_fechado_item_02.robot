@@ -24,7 +24,7 @@ CT19 - Enviar disputa sigilosa Forn01
 
     Configurar variável aberto_fechado_item
     Dado que acesso o sistema
-    E faço login com usuário "29219904403.256"
+    E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista
@@ -108,7 +108,6 @@ CT26 - Habilitar fornecedor vencedor
     Então habilito o fonecedor vencedor (Aberto_Fechado_item)
 
 
-
 CT27 - Encerrar etapa
 
     Configurar variável aberto_fechado_item
@@ -124,7 +123,7 @@ CT28 - Registrar intenção de recursos
 
     Configurar variável aberto_fechado_item
     Dado que acesso o sistema
-    E faço login com usuário "29219904403.256"
+    E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista

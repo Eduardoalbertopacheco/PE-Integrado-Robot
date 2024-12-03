@@ -8,9 +8,8 @@ Resource        ../../Resources/Resource_compra_direta.robot
 
 *** Test Cases ***
 CT01 - Cadastro de Compra Direta - Aba dados Gerais
-    Configurar Variáveis Compra Direta
 
-    [Tags]    criar_Compra
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
     E acesso a lista de todas as Compras Direta
@@ -23,10 +22,9 @@ CT01 - Cadastro de Compra Direta - Aba dados Gerais
 
 
 CT02 - Incluir Itens da SC na Compra Direta
+
     Configurar Variáveis Compra Direta
     Usar SC_Item_Compra_Disp_Emerg
-
-    [Tags]    incluir_item_cp
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
     E acesso a lista de todas as Compras Direta
@@ -35,9 +33,8 @@ CT02 - Incluir Itens da SC na Compra Direta
     Então incluo a SC Item na compra Direta
 
 CT03 - Agendar compra Direta
-    Configurar Variáveis Compra Direta
 
-    [Tags]    agendar_CP
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
     E acesso a lista de todas as Compras Direta
@@ -48,9 +45,8 @@ CT03 - Agendar compra Direta
 
 
 CT04 - Enviar lances com Fornecedor 01
-    Configurar Variáveis Compra Direta
 
-    [Tags]    enviar_lance_01
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
     E faço login com usuário "29219904403.256"
     E acesso a lista de todas as Compras Direta
@@ -61,9 +57,8 @@ CT04 - Enviar lances com Fornecedor 01
 
 
 CT05 - Enviar lances com Fornecedor 02
-    Configurar Variáveis Compra Direta
 
-    [Tags]    enviar_lance_02
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
     E faço login com usuário "02355633000148"
     E acesso a lista de todas as Compras Direta
@@ -74,9 +69,8 @@ CT05 - Enviar lances com Fornecedor 02
 
 
 CT06 - Prorrogar Compra direta
-    Configurar Variáveis Compra Direta
 
-    [Tags]    prorrogar_compra_direta
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
     E acesso a lista de todas as Compras Direta
@@ -88,8 +82,8 @@ CT06 - Prorrogar Compra direta
 
 
 CT07 - Encerrar Itens
+
     Configurar Variáveis Compra Direta
-   
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
     E acesso a lista de todas as Compras Direta
@@ -99,9 +93,8 @@ CT07 - Encerrar Itens
 
 
 CT08 - Finalizar Compra Direta
-    Configurar Variáveis Compra Direta
 
-  [Tags]    finalizar_compra_direta
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
     E faço login com usuário "mi.comprador.110402"
     E acesso a lista de todas as Compras Direta
@@ -111,13 +104,11 @@ CT08 - Finalizar Compra Direta
 
 
 CT09 - Ratificar compra Direta
-    Configurar Variáveis Compra Direta
 
-  [Tags]    ratificar_compra_direta
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E clico na Compra Direta da lista
     Então ratifico a Compra Direta
-    # Resource_compra_direta.E acesso a auditoria

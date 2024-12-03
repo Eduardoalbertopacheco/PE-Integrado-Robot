@@ -6,6 +6,7 @@ Resource        ../../Resources/Resource_Contrato.robot
 *** Test Cases ***
 
 CT01 - Criar um novo contrato Legado PE não ARP
+
    Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
@@ -15,6 +16,7 @@ CT01 - Criar um novo contrato Legado PE não ARP
 
 
 CT02 - Configurar Partes do contrato
+
    Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
@@ -25,6 +27,7 @@ CT02 - Configurar Partes do contrato
 
 
 CT03 - Incluir Itens Ao Contrato
+
    Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
@@ -36,6 +39,7 @@ CT03 - Incluir Itens Ao Contrato
 
 
 CT03 - Definir Índice dos Itens
+
    Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
@@ -47,6 +51,7 @@ CT03 - Definir Índice dos Itens
 
 
 CT04 - Incluir Gestores e Fiscais
+
    Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
@@ -57,6 +62,7 @@ CT04 - Incluir Gestores e Fiscais
 
 
 CT05 - Incluir Documentos Obrigatórios
+
    Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
@@ -67,6 +73,7 @@ CT05 - Incluir Documentos Obrigatórios
 
 
 CT06 - Encaminhar Contrato
+
    Configurar Variáveis de Contrato
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"

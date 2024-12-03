@@ -131,8 +131,8 @@ CT10 - Envio de propostas Fornecedor 01
 
     Configurar Variáveis de Pregão
     Dado que acesso o sistema
-    E faço login com usuário "06268154000145"
-    # E faço login com usuário "29219904403.256"
+    # E faço login com usuário "06268154000145"
+    E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a SC Em propotas da lista
@@ -204,8 +204,8 @@ CT16 - Enviar disputa Fornecedor 01
 
     Configurar Variáveis de Pregão
     Dado que acesso o sistema
-    E faço login com usuário "06268154000145"
-    # E faço login com usuário "29219904403.256"
+    # E faço login com usuário "06268154000145"
+    E faço login com usuário "29219904403.256"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista

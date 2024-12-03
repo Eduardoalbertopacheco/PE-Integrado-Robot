@@ -5,6 +5,7 @@ Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_Contrato.robot
 
 *** Test Cases ***
+
 CT01 - Criar uma Nova Solicitação de GC
 
     Configurar Variáveis de GC

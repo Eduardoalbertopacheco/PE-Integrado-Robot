@@ -272,7 +272,7 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
    Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    timeout=30s
    Click Element    xpath=//input[@value= "Pesquisar"]
 
-    # Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Solicitante
+    # Então faço planejamento da SC para Pregão Eletronico - Solicitante
     ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input

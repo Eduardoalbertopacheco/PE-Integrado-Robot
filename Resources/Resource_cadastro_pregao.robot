@@ -1632,11 +1632,12 @@ Então abro Item para Lei 123
 
 
     # Click no chekbox para marca o item
-    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[2]/td[13]/input[1]    timeout=30s
-    Click Element    //table[1]/tbody[1]/tr[2]/td[13]/input[1]
+    Wait Until Element Is Visible    //table[1]//tbody[1]//tr[2]//td[13]//input[1]
+    Click Element    //table[1]//tbody[1]//tr[2]//td[13]//input[1]
 
 
     # clique do botão abrir itens
+    Sleep    1
     Wait Until Element Is Visible    //a[contains(.,'Abrir item')]   timeout=30s
     Click Element    //a[contains(.,'Abrir item')]
     Sleep    2
@@ -1664,8 +1665,8 @@ Então encerro Item para Lei 123
 
 
     # Click no chekbox para marca o item
-    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[2]/td[14]/input[1]    timeout=30s
-    Click Element    //table[1]/tbody[1]/tr[2]/td[14]/input[1]
+    Wait Until Element Is Visible    //table[1]//tbody[1]//tr[2]//td[14]//input[1]    timeout=30s
+    Click Element    //table[1]//tbody[1]//tr[2]//td[14]//input[1]
 
 
     # clique do botão abrir itens

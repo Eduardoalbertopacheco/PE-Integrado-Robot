@@ -24,7 +24,7 @@ CT19 - Enviar disputa sigilosa Forn01
 
     Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
-    E faço login com usuário "29219904403.256"
+    E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista
@@ -122,7 +122,7 @@ CT28 - Registrar intenção de recursos
 
     Configurar variável aberto_fechado_lote
     Dado que acesso o sistema
-    E faço login com usuário "29219904403.256"
+    E faço login com usuário "02355633000148"
     E acesso a tela de Licitações Eletrônicas
     E seleciono todos os pregões
     E seleciono a licitação da lista
