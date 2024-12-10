@@ -1,9 +1,9 @@
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\CONTRATO\Gerar_Contratos"
+$foldersPath = "${EXECDIR}\test\CONTRATO\2_Gerar_Contratos"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "Contrato_Legado_Nao_PE_Teste_Auto.robot"
+$testFileName = "Contrato_Legado_Nao_PE_TERMO_Teste_Auto.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 if (Test-Path $testFilePath) {

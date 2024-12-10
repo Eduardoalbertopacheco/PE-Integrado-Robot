@@ -1,6 +1,7 @@
 *** Settings ***
 Documentation    Ações e Elementos da Página de Login
 Library    SeleniumLibrary
+# Library    Browser
 
 *** Variables ***
 
@@ -13,10 +14,18 @@ ${URL}     https://www.homologpeintegrado.pe.gov.br/
 ${HOMOLOTREI}    http://www.treinapeintegrado.pe.gov.br/core/default.aspx?
 
 *** Keywords ***
+
+# Dado que acesso o sistema
+#     New Browser    browser=chromium    headless=False
+#     New Context     viewport={ "width": 1200, "height": 720 }
+#     New Page    ${URL}
+#     Capture Page Screenshot
+
 Dado que acesso o sistema
     SeleniumLibrary.Open Browser    ${URL}    browser=chrome
     Maximize Browser Window
     Capture Page Screenshot
+
 
 Dado que acesso o sistema no PE Treinamento
     SeleniumLibrary.Open Browser    ${HOMOLOTREI}    browser=chrome

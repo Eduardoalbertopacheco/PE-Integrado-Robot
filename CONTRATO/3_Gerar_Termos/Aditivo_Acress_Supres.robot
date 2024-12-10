@@ -18,7 +18,7 @@ CT01 - Criar Termo de Acress/Supressão
    Então preencho a aba 'Dados Gerais' do Termo de Acrésssimo/Supressão
 
 
-CT02 - Alterar Itens
+CT02 - Alterar Itens do termo
 
    Dado que acesso o sistema
    E faço login com usuário "gestorcontrato.120101"
@@ -30,7 +30,7 @@ CT02 - Alterar Itens
    Então faça as alterações dos Itens
 
 
-CT03 - Anexar Documento Obrigatório para Encaminhat termo
+CT03 - Anexar Documento Obrigatório para Encaminhar termo
 
    Dado que acesso o sistema
    E faço login com usuário "analista.contrato.120101"
@@ -175,6 +175,8 @@ CT14 - Assinar Termo com a Contratada Principal
    E acesso o Contrato Legado da Lista
    E acesso a aba 'Docs. assinatura'
    Então assino o Documento com a Contratada Principal
+
+   # Termo Vigente
    
 
 

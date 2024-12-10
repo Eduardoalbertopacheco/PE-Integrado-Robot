@@ -90,4 +90,95 @@ CT07 - Anexar e Aprovar Termo com Orçamento
    E seleciono o termo de Reequilíbrio da Lista
    Então aprovo o termo com o Ordenador
 
+
+CT09 - Solicitar Aprovação do Ordenador
+
+   Dado que acesso o sistema
+   E faço login com usuário "analista.contrato.120101"
+   E Acesso a lista de contratos
+   E acesso o Contrato Legado da Lista
+   E acesso a aba 'Contratos/Termos'
+   E seleciono o termo de Reequilíbrio da Lista
+   Então solicito aprovação do Termo
+
+
+CT10 - Aprovar com Ordenador
+
+   Dado que acesso o sistema
+   E faço login com usuário "ordenador.120101"
+   E Acesso a lista de contratos
+   E acesso o Contrato Legado da Lista
+   E acesso a aba 'Contratos/Termos'
+   E seleciono o termo de Reequilíbrio da Lista
+   Então aprovo o termo com o Ordenador
+
+
+CT10 - Solicitar Análise Jurídica
+
+   Dado que acesso o sistema
+   E faço login com usuário "analista.contrato.120101"
+   E Acesso a lista de contratos
+   E acesso o Contrato Legado da Lista
+   E acesso a aba 'Contratos/Termos'
+   E seleciono o termo de Reequilíbrio da Lista
+   Então Solicito a Análise Jurídica do Termo
+
+
+CT11 - Concluir Análise Jurídica
+
+   Dado que acesso o sistema
+   E faço login com usuário "juridico.120101"
+   E Acesso a lista de contratos
+   E acesso o Contrato Legado da Lista
+   E acesso a aba 'Contratos/Termos'
+   E seleciono o termo de Reequilíbrio da Lista
+   Então concluo a Análise Jurídica do Termo
+
+
+CT12 - Incluir Documento para Solicitar assinatura
+
+   Dado que acesso o sistema
+   E faço login com usuário "analista.contrato.120101"
+   E Acesso a lista de contratos
+   E acesso o Contrato Legado da Lista
+   E acesso a aba 'Contratos/Termos'
+   E acesso o termo de Reequilíbrio da Lista
+   E acesso a aba 'Anexos'
+   E incluo o Documento do Tipo 'Empenho' no Termo
+
+
+CT13 - Solicitar Assinatura para Contratada Principal
+
+   Dado que acesso o sistema
+   E faço login com usuário "analista.contrato.120101"
+   E Acesso a lista de contratos
+   E acesso o Contrato Legado da Lista
+   E acesso a aba 'Documentos do Processo'
+   E anexo o documento 'termo aditivo' para assinatura
+   E acesso a aba 'Contratos/Termos'
+   E acesso o termo de Reequilíbrio da Lista
+   Então solicito assinatura do termo
+
+
+CT14 - Assinar Termo com a Contratada Principal
+
+   Dado que acesso o sistema
+   E faço login com usuário "29219904403.256"
+   E acesso a Lista de 'Meus Contratos'
+   E acesso o Contrato Legado da Lista
+   E acesso a aba 'Docs. assinatura'
+   Então assino o Documento com a Contratada Principal
+
+
+CT15 - Assinar Termo com a Contratada Principal
+
+   Dado que acesso o sistema
+   E faço login com usuário "autoridade.120101"
+   E Acesso a lista de contratos
+   E acesso o Contrato Legado da Lista
+   E acesso a aba 'Docs. assinatura'
+   Então assino o Documento com a Contratada Principal
+
+   # Termo Vigente
+
   
