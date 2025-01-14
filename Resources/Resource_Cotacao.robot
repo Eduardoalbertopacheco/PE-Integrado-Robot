@@ -6,7 +6,7 @@ Library          OperatingSystem
 Library          String
 
 *** Variables ***
-${DESC_COTACAO}    Cotação Teste Edu
+${DESC_COTACAO}    Cotação Teste_Auto
 
 ${data_atual}    Evaluate    datetime.datetime.now().strftime('%d-%m-%Y %H:%M:%S')    datetime
 
@@ -172,7 +172,7 @@ Então incluo a SC na Cotação
 
     Switch Window    NEW
 
-    ${NUM_SC}    Get File    ${EXECDIR}/test/num_sc_cotacao.txt
+    ${NUM_SC}    Get File    ${EXECDIR}/test/processos/num_sc_cotacao.txt
 
     Wait Until Element Is Visible    //input[contains(@name,'sCdOrdemCompra')]    20
     Input Text    //input[contains(@name,'sCdOrdemCompra')]    ${NUM_SC}

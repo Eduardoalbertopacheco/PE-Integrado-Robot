@@ -4,8 +4,8 @@ Library          SeleniumLibrary
 Library          Browser
 Library          DateTime
 Library          OperatingSystem
-Resource        ../../Resources/Resource_login.robot
-Resource        ../../Resources/Resource_cadastro_pregao.robot
+Resource        ../../../Resources/Resource_login.robot
+Resource        ../../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
 CT01 - Criar Pregão - Aba Dados Gerais
@@ -20,14 +20,14 @@ CT01 - Criar Pregão - Aba Dados Gerais
     E insiro as datas para agendamento
     E insiro a Comissão e Salvo
     E Seleciono o Modo de Disputa Aberto
-    Então preencho a Aba de Dados Gerais - Contrato
-    # E mostro a auditoria
+    Então preencho a Aba de Dados Gerais
+    E mostro a auditoria
 
 
 CT02 - Incluir SC ao Pregão
 
     Configurar Variáveis de Pregão
-    Usar SC_Item_Pregao_aberto
+    Usar SAD_SC_Item_Pregao
     Dado que acesso o sistema
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas

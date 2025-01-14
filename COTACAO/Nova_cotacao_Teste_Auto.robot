@@ -4,12 +4,6 @@ Library          SeleniumLibrary
 Resource        ../Resources/Resource_login.robot
 Resource        ../Resources/Resource_Cotacao.robot
 
-*** Keywords ***
-
-
-
-
-
 *** Test Cases ***
 
 CT01 - Criar uma nova cotação

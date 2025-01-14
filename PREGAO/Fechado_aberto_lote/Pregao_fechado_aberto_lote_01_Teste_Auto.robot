@@ -19,7 +19,7 @@ CT01 - Criar Pregão - Aba Dados Gerais
     E insiro a Comissão e Salvo
     E Seleciono o Modo de Disputa Fechado-Aberto
     Então preencho a Aba de Dados Gerais
-    E mostro a auditoria
+    # E mostro a auditoria
 
 
 CT02 - Incluir SC ao Pregão
@@ -71,6 +71,7 @@ CT05 - Solicitar Parecer para Ordenador
     E acesso a tela de Licitações Eletrônicas
     E acesso a tela com filtro todas as Licitações
     E clico na licitação da lista
+    E Clique no botão Parecer
     E solicito o parecer para o Ordenador
     Então encaminho o Parecer para o ordenador
 

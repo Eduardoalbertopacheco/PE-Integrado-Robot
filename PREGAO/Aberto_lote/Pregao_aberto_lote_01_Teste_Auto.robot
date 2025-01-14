@@ -21,7 +21,7 @@ CT01 - Criar Pregão - Aba Dados Gerais
     E insiro a Comissão e Salvo
     E Seleciono o Modo de Disputa Aberto
     Então preencho a Aba de Dados Gerais
-    E mostro a auditoria
+    # E mostro a auditoria
 
 
 CT02 - Incluir SC ao Pregão

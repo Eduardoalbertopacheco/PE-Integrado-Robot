@@ -129,7 +129,7 @@ CT12 - Planejamento com Ordenador
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "ordenador.110402"
+    E faço login com usuário "planejador.110402"
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC

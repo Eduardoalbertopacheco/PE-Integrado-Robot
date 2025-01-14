@@ -8,7 +8,7 @@ Resource        ../../../Resources/Resource_ARP.robot
 *** Test Cases ***
 
 CT01 - Solicitar Consumo de Ata de Pregão
-    [Tags]    solicitar_adesao
+ 
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de Atas de Registro de preços
@@ -20,7 +20,7 @@ CT01 - Solicitar Consumo de Ata de Pregão
 
 
 CT02 - Selecionar itens para consumo
-    [Tags]    selecionar_itens
+
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -30,7 +30,7 @@ CT02 - Selecionar itens para consumo
 
 
 CT03 - Alterar valor de referência dos itens
-    [Tags]    alterar_valor
+
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -40,7 +40,7 @@ CT03 - Alterar valor de referência dos itens
 
 
 CT03 - Incluir e assinar documento
-    [Tags]    incluir_assinar_documento
+ 
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -50,7 +50,7 @@ CT03 - Incluir e assinar documento
 
 
  CT04 - Encaminhar Adesao
-    [Tags]    encaminhar_adesao
+
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -60,7 +60,7 @@ CT03 - Incluir e assinar documento
 
 
 CT05 - Deliberar com Orçamento
-    [Tags]    Deliberar_adesao
+
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -70,7 +70,7 @@ CT05 - Deliberar com Orçamento
 
 
 CT06 - Deliberar com Ordenador
-    [Tags]    Deliberar_adesao_ordenador
+
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -80,7 +80,7 @@ CT06 - Deliberar com Ordenador
 
 
 CT07 - Concluir análise com Gestor de Ata
-    [Tags]    Concluir_analise
+ 
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -89,7 +89,7 @@ CT07 - Concluir análise com Gestor de Ata
 
 
 CT08 - Deliberar e Assianr Documento com Gestor de Ata
-    [Tags]    Deliberar_adesao_gestor_ata
+  
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de todas as solicitações de Consumo
@@ -99,7 +99,7 @@ CT08 - Deliberar e Assianr Documento com Gestor de Ata
 
 
 CT09 - Deliberar com Autoridade Competente
-    [Tags]    Deliberar_autoridade_central
+
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
     E acesso a lista de todas as solicitações de Consumo

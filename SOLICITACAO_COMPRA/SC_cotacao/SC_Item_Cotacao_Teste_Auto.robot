@@ -8,9 +8,8 @@ Resource        ../../Resources/Resource_Cadastro_SC.robot
 *** Test Cases ***
 
 CT01 - Criar SC - Aba dados Gerais
-    Configurar Variáveis de SC
 
-    [Tags]    criar_sc
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -19,9 +18,8 @@ CT01 - Criar SC - Aba dados Gerais
 
 
 CT02 - Incluir Itens na Solicitação de Compras
-    Configurar Variáveis de SC
 
-    [Tags]    incluir_itens
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -32,9 +30,8 @@ CT02 - Incluir Itens na Solicitação de Compras
 
 
 CT03 - Incluir Documento na Solicitação de Compras
-    Configurar Variáveis de SC
 
-    [Tags]    incluir_documento
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -44,9 +41,8 @@ CT03 - Incluir Documento na Solicitação de Compras
 
 
 CT04 - Assinar documento
-    Configurar Variáveis de SC
 
-    [Tags]    assinar_documento
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -56,9 +52,8 @@ CT04 - Assinar documento
 
 
 CT05 - Encaminhar SC para precificação
-    Configurar Variáveis de SC
 
-    [Tags]    encaminhar_SC
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
@@ -67,9 +62,8 @@ CT05 - Encaminhar SC para precificação
     
 
 CT06 - Planejamento com Solicitante
-    Configurar Variáveis de SC
 
-    [Tags]    planejamento_solicitante
+    Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras

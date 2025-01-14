@@ -190,6 +190,8 @@ Usar SC_Item_Pregao_aberto_Nao_ARP
 Usar SC_Lote_Pregao_aberto_Nao_ARP
     Set Global Variable    ${RESUMO_SC}    SC_Lote_Pregao_aberto_Nao_ARP_Teste_Auto
 
+Usar SAD_SC_Item_Pregao
+    Set Global Variable    ${RESUMO_SC}    SAD_SC_Item_Pregao_Teste_Auto
 
 Usar SC_Item_Pregao_aberto
     Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_aberto_Teste_Auto

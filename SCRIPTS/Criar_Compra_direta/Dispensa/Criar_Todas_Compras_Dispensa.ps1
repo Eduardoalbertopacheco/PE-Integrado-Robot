@@ -1,7 +1,5 @@
 
 
-
-
 $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\COMPRA_DIRETA\Dispensa"
 

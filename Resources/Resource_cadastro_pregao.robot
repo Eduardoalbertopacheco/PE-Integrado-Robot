@@ -158,7 +158,8 @@ Então preencho a Aba de Dados Gerais - Não ARP
     Handle Alert    ACCEPT
     Sleep    2
 
-Então preencho a Aba de Dados Gerais
+
+Então preencho a Aba de Dados Gerais - Contrato
 
     # Seleção para registro de preço 'SIM'
     Wait Until Element Is Visible    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
@@ -175,6 +176,10 @@ Então preencho a Aba de Dados Gerais
     Wait Until Element Is Visible    ${PRAZO_ENTRG_10_DIAS}    timeout=30s
     Capture Page Screenshot
     Click Element    ${PRAZO_ENTRG_10_DIAS}
+
+    # Origem Licitação
+    Wait Until Element Is Visible    //input[contains(@id,'_cP_PREGAO_x_nCdOrigemLicitacao_0')]    15
+    Click Element    //input[contains(@id,'_cP_PREGAO_x_nCdOrigemLicitacao_0')]
 
     Sleep    2
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -201,12 +206,63 @@ Então preencho a Aba de Dados Gerais
     Sleep    2
 
     # Capturar o valor do campo depois que ele for preenchido
-    ${NUM_PROC_PREGAO}    SeleniumLibrary.Get Text    ${INPUT_NUM_PROC_PREGAO}
+    Wait Until Element Is Visible    ${INPUT_NUM_PROC_PREGAO}    30
+    Sleep    1
+    ${SAD_NUM_PREGAO}    SeleniumLibrary.Get Text    ${INPUT_NUM_PROC_PREGAO}
 
     # Salvar o valor em um arquivo de texto
-    Create File    ${EXECDIR}/test/processos/num_proc_pregao.txt    ${NUM_PROC_PREGAO} 
+    Create File    ${EXECDIR}/test/processos/SAD_num_pregao.txt    ${SAD_NUM_PREGAO} 
     Sleep    2
+    SeleniumLibrary.Close Browser
 
+
+
+Então preencho a Aba de Dados Gerais
+
+    # Seleção para registro de preço 'SIM'
+    Wait Until Element Is Visible    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
+    Click Element    //input[@id= "_cP_PREGAO_x_nCdPregaoTipo_0"]
+
+    # Seleção do campo 'Confição de pagamento'
+    Click Element    ${CODICAO_PAGAMENTO}
+    Wait Until Element Is Visible    ${COD_PAGAMENTO_AVISTA}    timeout=30s
+    Capture Page Screenshot
+    Click Element    ${COD_PAGAMENTO_AVISTA}
+
+    # Seleção do campo 'Prazo de entrega'
+    Click Element    ${PRAZO_ENTREGA}
+    Wait Until Element Is Visible    ${PRAZO_ENTRG_10_DIAS}    timeout=30s
+    Capture Page Screenshot
+    Click Element    ${PRAZO_ENTRG_10_DIAS}
+
+    # Origem Licitação
+    Wait Until Element Is Visible    //input[contains(@id,'_cP_PREGAO_x_nCdOrigemLicitacao_0')]    15
+    Click Element    //input[contains(@id,'_cP_PREGAO_x_nCdOrigemLicitacao_0')]
+
+    Sleep    2
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    ${UTILIZA_VERBA_FEDERAL_VALUE_NAO}    timeout=30s
+    Click Element    ${UTILIZA_VERBA_FEDERAL_VALUE_NAO}
+    Capture Page Screenshot
+
+    Wait Until Element Is Visible    ${CAMPO_OBJETO}    timeout=30s
+    Input Text    ${CAMPO_OBJETO}    ${OBJETO_PREGAO}
+    Capture Page Screenshot
+
+    ${all_windows}=    Get Window Handles
+    ${second_window}=    Set Variable    ${all_windows}[1]
+    Switch Window    ${second_window}
+
+    # Clique no botão 'Salvar'
+    Wait Until Element Is Visible    //input[@name='btnSalvar']
+    Click Element    //input[@name='btnSalvar']
+    Sleep    2
+    Handle Alert    ACCEPT
+    Sleep    2
+    Handle Alert    ACCEPT
+    Sleep    2
+    SeleniumLibrary.Close Browser
 
 E mostro a auditoria
  
@@ -729,6 +785,7 @@ E acesso a tela de Solicitar Parecer
 
 E solicito o parecer para o Ordenador
 
+    Sleep    2
     Wait Until Element Is Visible    //li[contains(@onclick,'OpenWindowUsuarioLookup()')]    timeout=30s
     Click Element    //li[contains(@onclick,'OpenWindowUsuarioLookup()')]
     

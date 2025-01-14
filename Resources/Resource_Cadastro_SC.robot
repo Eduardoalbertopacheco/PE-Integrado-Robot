@@ -145,12 +145,6 @@ Então preencho os campos da Aba Dados gerais - TJ
     
 Então preencho os campos da Aba Dados gerais da SC
 
-    Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //a[contains(.,'Incluir')]
-    Click Element    //a[contains(.,'Incluir')]
-    Sleep    2
-
-    Switch Window    NEW
 
     Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
     Click Element    ${PRIORIDADE}
@@ -227,10 +221,12 @@ Então preencho os campos da Aba Dados gerais da SC
 
 
     # Capturar o valor do campo depois que ele for preenchido
+    Wait Until Element Is Visible    ${INPUT_NUM_SC}    20
+    Sleep    1
     ${NUM_SC_COTACAO}    SeleniumLibrary.Get Text    ${INPUT_NUM_SC}
 
     # Salvar o valor em um arquivo de texto
-    Create File    ${EXECDIR}/test/num_sc_cotacao.txt    ${NUM_SC_COTACAO}
+    Create File    ${EXECDIR}/test/processos/num_sc_cotacao.txt    ${NUM_SC_COTACAO}
     Sleep    2
     SeleniumLibrary.Close Browser
 
@@ -392,7 +388,7 @@ Então preencho os campos da Aba Dados gerais - SAD
 E clico em 'Incluir'
 
     Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //a[contains(.,'Incluir')]
+    Wait Until Element Is Visible    //a[contains(.,'Incluir')]    20
     Click Element    //a[contains(.,'Incluir')]
     Switch Window    NEW
     Sleep    2
@@ -441,6 +437,10 @@ Então preencho os campos da Aba Dados gerais
     Click Element    ${APLICACAO}
     Sleep    1
     Click Element    ${APLICACAO_EI}
+
+    # Origem SC - PE
+    Wait Until Element Is Visible    //input[@tb='ORDEM_COMPRA'][contains(@id,'0')]    20
+    Click Element    //input[@tb='ORDEM_COMPRA'][contains(@id,'0')]
     Capture Page Screenshot
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
@@ -1701,7 +1701,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Orde
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
-    Sleep    1
+    Sleep    2
     SeleniumLibrary.Close Browser
 
 

@@ -187,7 +187,6 @@ Então incluo um Novo GC Não ARP e SIM PE
     Wait Until Element Is Visible    //a[contains(@onclick,'abrirJanelaNumeroProcesso();')]    10
     Click Element    //a[contains(@onclick,'abrirJanelaNumeroProcesso();')]
 
-    
     Switch Window
     Select Frame    //frame[@name='main']
     Execute Javascript    document.body.style.zoom='80%'
@@ -296,6 +295,7 @@ Então incluo um Novo GC Não ARP e Não PE
     Sleep    1
 
     # Capturar o valor do campo depois que ele for preenchido
+    Wait Until Element Is Visible    ${INPUT_NUM_GC}    30
     ${NUM_GC}    SeleniumLibrary.Get Text    ${INPUT_NUM_GC}
 
     # Salvar o valor em um arquivo de texto
