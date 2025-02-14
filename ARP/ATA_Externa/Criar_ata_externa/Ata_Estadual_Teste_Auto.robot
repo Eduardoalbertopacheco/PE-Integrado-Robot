@@ -49,6 +49,7 @@ CT03 - Ativar ATA Externa
     Então ativo a ARP
     # E vejo a Auditoria da ARP
 
+
 CT04 - Concluir Análise com Gestor Ata Central
     Configurar Variáveis de ARP
 

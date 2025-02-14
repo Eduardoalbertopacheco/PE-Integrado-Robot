@@ -5,21 +5,15 @@ Library    SeleniumLibrary
 
 *** Variables ***
 
-${URL}     https://www.homologpeintegrado.pe.gov.br/
+# ${URL}     https://www.homologpeintegrado.pe.gov.br/
 # ${URL}     https://www.homolog05.peintegrado.pe.gov.br/Default.aspx
 # ${URL}     https://www.homolog03.peintegrado.pe.gov.br/default.aspx
-# ${URL}     https://www.hotfix.peintegrado.pe.gov.br/core/default.aspx
+${URL}     https://www.hotfix.peintegrado.pe.gov.br/core/default.aspx
 # ${URL}     http://www.treinapeintegrado.pe.gov.br/default.aspx
 
 ${HOMOLOTREI}    http://www.treinapeintegrado.pe.gov.br/core/default.aspx?
 
 *** Keywords ***
-
-# Dado que acesso o sistema
-#     New Browser    browser=chromium    headless=False
-#     New Context     viewport={ "width": 1200, "height": 720 }
-#     New Page    ${URL}
-#     Capture Page Screenshot
 
 Dado que acesso o sistema
     SeleniumLibrary.Open Browser    ${URL}    browser=chrome

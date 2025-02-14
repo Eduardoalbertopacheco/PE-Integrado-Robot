@@ -9,7 +9,6 @@ Resource         ./Variaveis.robot
 
 *** Variables ***
 
-${URL_CRIAR_SC}    https://www.homologpeintegrado.pe.gov.br/ordemcompra/OrdemCompraManutencao.aspx
 ${APLICACAO}    //*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]
 ${GESTAO}    //*[@id="td_cORDEM_COMPRA_x_nCdGestao"]
 ${EMPRESA}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]
@@ -21,8 +20,8 @@ ${EMPRESA_SEDC}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='20']
 ${EMPRESA_SAD}     //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='3']
 ${EMPRESA_TJ}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='12']
 ${EMPRESA_SEDUC}    //*[@id="td_cORDEM_COMPRA_x_nCdEmpresa"]//*[@value='42']
-${GESTAO_AD}    //*[@id="td_cORDEM_COMPRA_x_nCdGestao"]//*[@value='1']
-${APLICACAO_EI}    //*[@id="td_cORDEM_COMPRA_x_nCdAplicacao"]//*[@value='1']
+${GESTAO_AD}    //option[@value='1'][contains(.,'00001 - ADMINISTRAÇÃO DIRETA')]
+${APLICACAO_EI}    //option[@value='1'][contains(.,'Entrega imediata')]
 ${CAMPO_RESUMO}             css=textarea[id="_cORDEM_COMPRA_x_sDsOrdemCompra"]
 ${LUPA_TIPO_OBJETO}        (//*[@id="img"])[1]
 ${URL_SELCT_TIPO}     https://www.homologpeintegrado.pe.gov.br/Core/Pesquisa/ProcurarTipoObjetoCompra.aspx
@@ -30,6 +29,9 @@ ${TITULO_TIPO_OBEJTO}    //*[.='Selecionar tipo de objeto']
 ${INPUT_TIPO}            //input[@field="normal"]
 ${LUPA_GRUPO_COMPRA}     (//img[@id='img'])[3]
 ${INPUT_NUM_SC}          //div[@id='_cORDEM_COMPRA_x_sCdOrdemCompraEmpresa']
+${ELEMENT_EXIST}        //img[contains(@class,'open-launcher')] 
+
+${CONCORRENCIA}        //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='6']
 
 ${timeout}       300    
 ${interval}      5    
@@ -394,25 +396,74 @@ E clico em 'Incluir'
     Sleep    2
     Capture Page Screenshot
 
+Então preencho os campos da Aba Dados gerais - Pregão
 
-Então preencho os campos da Aba Dados gerais
+
+    # Modalidade Pregão
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='5']
+    Sleep    1
+
+    # Tipo
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+
+    # Seleção critério  - Pregão LEI 14.133/2021,
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdCriterioPlanejamento']    30
+    Sleep    1
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdCriterioPlanejamento"]//*[@value='426']
+    Capture Page Screenshot
+
+    # Numero do PCA
+    Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-search')]    20
+    Click Element    //span[contains(@class,'k-icon k-i-search')]
+    Sleep    3
+
+    # Selecionar o PCA - Lupa
+    Wait Until Element Is Visible    //input[@name='ckbItem']    20
+    Click Element    //input[@name='ckbItem']
+
+    # Confirmar PCA
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    20
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
+    # Incluir DFD
+    Wait Until Element Is Visible    //a[contains(.,'Incluir DFD')]    20
+    Click Element    //a[contains(.,'Incluir DFD')]
+
+    # Selecionar DFD
+    Wait Until Element Is Visible    (//input[@id='ckbItem'])[1]    20
+    Click Element    (//input[@id='ckbItem'])[1]
+
+    # Confirmar DFD
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    1
+
 
     Wait Until Element Is Visible    ${PRIORIDADE}    30
     Click Element    ${PRIORIDADE}
     Sleep    1
     Click Element    ${PRIORIDADE_MEDIA}
+    Sleep    1
     
     Wait Until Element Is Visible    ${TIPO}    30
     Click Element    ${TIPO}
-    Sleep    1
     Click Element    ${TIPO_AMS}
+    Sleep    1
     
+   
     Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
 
+    Sleep    1
     Click Element  ${LUPA_TIPO_OBJETO}
     
     ${Janelas}    Get Window Handles
     ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
 
     Switch Window    NEW
 
@@ -423,25 +474,32 @@ Então preencho os campos da Aba Dados gerais
     Click Element    //input[@value="ANIMAIS VIVOS◘50"]
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Switch Window    ${Janela01}
+    Sleep    1
     
     Wait Until Element Is Visible    ${EMPRESA}    30
     Click Element    ${EMPRESA}
     Wait Until Element Is Visible    ${EMPRESA_SEDC}    30
     Click Element    ${EMPRESA_SEDC}
+    Sleep    1
     
     Wait Until Element Is Visible    ${GESTAO}     30
     Click Element    ${GESTAO} 
+    Sleep    1
     Click Element    ${GESTAO_AD}
+    Sleep    1
     
+    # Aplicação
     Wait Until Element Is Visible    ${APLICACAO}     30
     Click Element    ${APLICACAO}
     Sleep    1
     Click Element    ${APLICACAO_EI}
+    Sleep    1
 
     # Origem SC - PE
-    Wait Until Element Is Visible    //input[@tb='ORDEM_COMPRA'][contains(@id,'0')]    20
-    Click Element    //input[@tb='ORDEM_COMPRA'][contains(@id,'0')]
+    Wait Until Element Is Visible    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']    20
+    Click Element    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']
     Capture Page Screenshot
+    Sleep    1
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
@@ -451,13 +509,15 @@ Então preencho os campos da Aba Dados gerais
 
     ${Janelas}    Get Window Handles
     ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
 
     Switch Window    NEW
 
     Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
     Input Text    ${INPUT_TIPO}    SECRETARIA EXECUTIVA DE DEFESA CIVIL	
     Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
-    Click Element    //*[@id="ctl00_btnPesquisar"]  
+    Click Element    //*[@id="ctl00_btnPesquisar"] 
+    Sleep    1 
 
     Wait Until Element Is Visible    
     ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]    30
@@ -465,6 +525,7 @@ Então preencho os campos da Aba Dados gerais
     ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]
     Click Element    
     ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Sleep    1
 
     Switch Window    ${Janela01}
 
@@ -474,6 +535,535 @@ Então preencho os campos da Aba Dados gerais
     Sleep    1
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
+
+Então preencho os campos da Aba Dados gerais - Concorrencia
+
+    # Modalidade
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
+    Click Element    ${CONCORRENCIA}
+
+    # Tipo
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+
+    # Seleção critério  - Concorrencia LEI 14.133/2021
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdCriterioPlanejamento']    30
+    Sleep    1
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdCriterioPlanejamento"]//*[@value='427']
+    # Wait Until Element Is Visible    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]    30
+    # Click Element    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
+    Sleep    1
+    Capture Page Screenshot
+
+
+    # Numero do PCA
+    Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-search')]    20
+    Click Element    //span[contains(@class,'k-icon k-i-search')]
+    Sleep    3
+
+    # Selecionar o PCA - Lupa
+    Wait Until Element Is Visible    //input[@name='ckbItem']    20
+    Click Element    //input[@name='ckbItem']
+
+    # Confirmar PCA
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    20
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
+    # Incluir DFD
+    Wait Until Element Is Visible    //a[contains(.,'Incluir DFD')]    20
+    Click Element    //a[contains(.,'Incluir DFD')]
+
+    # Selecionar DFD
+    Wait Until Element Is Visible    (//input[@id='ckbItem'])[1]    20
+    Click Element    (//input[@id='ckbItem'])[1]
+
+    # Confirmar DFD
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    1
+
+    # Declaro que o PCA e os DFDs vinculados a esta SC estão publicados no PNCP - SIM
+    Wait Until Element Is Visible    //input[@name='ckbDfdPca']    20
+    Click Element    //input[@name='ckbDfdPca']
+    Sleep    1
+
+
+
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
+    Click Element    ${PRIORIDADE}
+    Sleep    1
+    Click Element    ${PRIORIDADE_MEDIA}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+    
+   
+    Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
+
+    Sleep    1
+    Click Element  ${LUPA_TIPO_OBJETO}
+    
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
+    Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
+    Click Element    //*[@id="tdPesquisar"]
+    Click Element    //input[@value="ANIMAIS VIVOS◘50"]
+    Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Switch Window    ${Janela01}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${EMPRESA}    30
+    Click Element    ${EMPRESA}
+    Wait Until Element Is Visible    ${EMPRESA_SEDC}    30
+    Click Element    ${EMPRESA_SAD}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${GESTAO}     30
+    Click Element    ${GESTAO} 
+    Sleep    1
+    Click Element    ${GESTAO_AD}
+    Sleep    1
+    
+    # Aplicação
+    Wait Until Element Is Visible    ${APLICACAO}     30
+    Click Element    ${APLICACAO}
+    Sleep    1
+    Click Element    ${APLICACAO_EI}
+    Sleep    1
+
+    # Origem SC - PE
+    Wait Until Element Is Visible    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']    20
+    Click Element    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']
+    Capture Page Screenshot
+    Sleep    1
+    
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    30
+    Sleep    1
+    Click Element    ${LUPA_GRUPO_COMPRA}
+
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
+    Input Text    ${INPUT_TIPO}      SECRETARIA DE ADMINISTRAÇÃO	
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
+    Click Element    //*[@id="ctl00_btnPesquisar"] 
+    Sleep    1 
+
+    Wait Until Element Is Visible    
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']    30
+    Click Element    
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']
+    Click Element    
+    ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Sleep    1
+
+    Switch Window    ${Janela01}
+
+    Capture Page Screenshot
+    
+    Click Element    //*[@id="btnSalvar"]
+    Sleep    1
+    Handle Alert    ACCEPT
+    SeleniumLibrary.Close Browser
+
+
+Então preencho os campos da Aba Dados gerais - Disp_Emerg
+
+
+    # Modalidade
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='7']
+
+    # Tipo
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+
+    # Seleção critério  - LEI 14.133/2021, ART. 75, VIII
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdCriterioPlanejamento']    30
+    Sleep    1
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdCriterioPlanejamento"]//*[@value='431']
+    # Wait Until Element Is Visible    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]    30
+    # Click Element    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
+    Sleep    1
+    Capture Page Screenshot
+
+    # Numero do PCA
+
+
+
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
+    Click Element    ${PRIORIDADE}
+    Sleep    1
+    Click Element    ${PRIORIDADE_MEDIA}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+    
+   
+    Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
+
+    Sleep    1
+    Click Element  ${LUPA_TIPO_OBJETO}
+    
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
+    Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
+    Click Element    //*[@id="tdPesquisar"]
+    Click Element    //input[@value="ANIMAIS VIVOS◘50"]
+    Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Switch Window    ${Janela01}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${EMPRESA}    30
+    Click Element    ${EMPRESA}
+    Wait Until Element Is Visible    ${EMPRESA_SAD}    30
+    Click Element    ${EMPRESA_SAD}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${GESTAO}     30
+    Click Element    ${GESTAO} 
+    Sleep    1
+    Click Element    ${GESTAO_AD}
+    Sleep    1
+    
+    # Aplicação
+    Wait Until Element Is Visible    ${APLICACAO}     30
+    Click Element    ${APLICACAO}
+    Sleep    1
+    Click Element    ${APLICACAO_EI}
+    Sleep    1
+
+    # Origem SC - PE
+    Wait Until Element Is Visible    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']    20
+    Click Element    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']
+    Capture Page Screenshot
+    Sleep    1
+    
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    30
+    Sleep    1
+    Click Element    ${LUPA_GRUPO_COMPRA}
+
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
+    Input Text    ${INPUT_TIPO}    SECRETARIA DE ADMINISTRAÇÃO	
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
+    Click Element    //*[@id="ctl00_btnPesquisar"] 
+    Sleep    1 
+
+    Wait Until Element Is Visible    
+    ...    //input[contains(@value,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17')]    30
+    Click Element    
+    ...    //input[contains(@value,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17')]
+    Click Element    
+    ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Sleep    1
+
+    Switch Window    ${Janela01}
+
+    Capture Page Screenshot
+    
+    Click Element    //*[@id="btnSalvar"]
+    Sleep    1
+    Handle Alert    ACCEPT
+    SeleniumLibrary.Close Browser
+
+Então preencho os campos da Aba Dados gerais - Inex
+
+    # Modalidade
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='2']
+
+    # Tipo
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+
+    # Seleção critério  - LEI 14.133/2021, ART. 75, VIII
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdCriterioPlanejamento']    30
+    Sleep    1
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdCriterioPlanejamento"]//*[@value='429']
+    # Wait Until Element Is Visible    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]    30
+    # Click Element    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
+    Sleep    1
+    Capture Page Screenshot
+
+    # Numero do PCA - Lupa
+   Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-search')]    20
+    Click Element    //span[contains(@class,'k-icon k-i-search')]
+
+    # Selecionar o PCA
+    Wait Until Element Is Visible    (//input[@name='ckbItem'])[1]    20
+    Click Element    (//input[@name='ckbItem'])[1]
+
+    # Confirmar PCA
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    20
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
+    # Incluir DFD
+    Wait Until Element Is Visible    //a[contains(.,'Incluir DFD')]    20
+    Click Element    //a[contains(.,'Incluir DFD')]
+
+    # Selecionar DFD
+    Wait Until Element Is Visible    (//input[@id='ckbItem'])[1]    20
+    Click Element    (//input[@id='ckbItem'])[1]
+
+    # Confirmar DFD
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    1
+
+    # Declaro que o PCA e os DFDs vinculados a esta SC estão publicados no PNCP. SIM
+    Wait Until Element Is Visible    //input[@name='ckbDfdPca']    20
+    Click Element    //input[@name='ckbDfdPca']
+    Sleep    1
+
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
+    Click Element    ${PRIORIDADE}
+    Sleep    1
+    Click Element    ${PRIORIDADE_MEDIA}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+    
+   
+    Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
+
+    Sleep    1
+    Click Element  ${LUPA_TIPO_OBJETO}
+    
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
+    Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
+    Click Element    //*[@id="tdPesquisar"]
+    Click Element    //input[@value="ANIMAIS VIVOS◘50"]
+    Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Switch Window    ${Janela01}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${EMPRESA}    30
+    Click Element    ${EMPRESA}
+    Wait Until Element Is Visible    ${EMPRESA_SAD}    30
+    Click Element    ${EMPRESA_SAD}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${GESTAO}     30
+    Click Element    ${GESTAO} 
+    Sleep    1
+    Click Element    ${GESTAO_AD}
+    Sleep    1
+    
+    # Aplicação
+    Wait Until Element Is Visible    ${APLICACAO}     30
+    Click Element    ${APLICACAO}
+    Sleep    1
+    Click Element    ${APLICACAO_EI}
+    Sleep    1
+
+    # Origem SC - PE
+    Wait Until Element Is Visible    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']    20
+    Click Element    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']
+    Capture Page Screenshot
+    Sleep    1
+    
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    30
+    Sleep    1
+    Click Element    ${LUPA_GRUPO_COMPRA}
+
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
+    Input Text    ${INPUT_TIPO}    SECRETARIA DE ADMINISTRAÇÃO	
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
+    Click Element    //*[@id="ctl00_btnPesquisar"] 
+    Sleep    1 
+
+    Wait Until Element Is Visible    
+    ...    //input[contains(@value,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17')]    30
+    Click Element    
+    ...    //input[contains(@value,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17')]
+    Click Element    
+    ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Sleep    1
+
+    Switch Window    ${Janela01}
+
+    Capture Page Screenshot
+    
+    Click Element    //*[@id="btnSalvar"]
+    Sleep    1
+    Handle Alert    ACCEPT
+    SeleniumLibrary.Close Browser
+
+Então preencho os campos da Aba Dados gerais
+
+    # Modalidade
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='1']
+
+    # Tipo
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+
+    # Seleção critério  - LEI 14.133/2021, ART. 75, VIII
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdCriterioPlanejamento']    30
+    Sleep    1
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdCriterioPlanejamento"]//*[@value='417']
+    # Wait Until Element Is Visible    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]    30
+    # Click Element    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
+    Sleep    1
+    Capture Page Screenshot
+
+    # Numero do PCA
+
+
+
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
+    Click Element    ${PRIORIDADE}
+    Sleep    1
+    Click Element    ${PRIORIDADE_MEDIA}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+    
+   
+    Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
+
+    Sleep    1
+    Click Element  ${LUPA_TIPO_OBJETO}
+    
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
+    Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
+    Click Element    //*[@id="tdPesquisar"]
+    Click Element    //input[@value="ANIMAIS VIVOS◘50"]
+    Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Switch Window    ${Janela01}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${EMPRESA}    30
+    Click Element    ${EMPRESA}
+    Wait Until Element Is Visible    ${EMPRESA_SAD}    30
+    Click Element    ${EMPRESA_SAD}
+    Sleep    1
+    
+    Wait Until Element Is Visible    ${GESTAO}     30
+    Click Element    ${GESTAO} 
+    Sleep    1
+    Click Element    ${GESTAO_AD}
+    Sleep    1
+    
+    # Aplicação
+    Wait Until Element Is Visible    ${APLICACAO}     30
+    Click Element    ${APLICACAO}
+    Sleep    1
+    Click Element    ${APLICACAO_EI}
+    Sleep    1
+
+    # Origem SC - PE
+    Wait Until Element Is Visible    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']    20
+    Click Element    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']
+    Capture Page Screenshot
+    Sleep    1
+    
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    30
+    Sleep    1
+    Click Element    ${LUPA_GRUPO_COMPRA}
+
+    ${Janelas}    Get Window Handles
+    ${Janela01}=    Set Variable    ${Janelas}[1]
+    Sleep    1
+
+    Switch Window    NEW
+
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
+    Input Text    ${INPUT_TIPO}    SECRETARIA DE ADMINISTRAÇÃO	
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
+    Click Element    //*[@id="ctl00_btnPesquisar"] 
+    Sleep    1 
+
+    Wait Until Element Is Visible    
+    ...    //input[contains(@value,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17')]    30
+    Click Element    
+    ...    //input[contains(@value,'Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17')]
+    Click Element    
+    ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
+    Sleep    1
+
+    Switch Window    ${Janela01}
+
+    Capture Page Screenshot
+    
+    Click Element    //*[@id="btnSalvar"]
+    Sleep    1
+    Handle Alert    ACCEPT
+    SeleniumLibrary.Close Browser
+
 
 E acesso a tela de incluir Itens
     Sleep    2
@@ -575,12 +1165,12 @@ Então assino o documento
     Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
 
     Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
-    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@654321
 
     # E clico no botão assinar
     Capture Page Screenshot
     Click Element    xpath=//a[text()= 'Assinar']
-    Sleep    2
+    Sleep    3
     SeleniumLibrary.Close Browser
 
 
@@ -877,7 +1467,7 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
 
 
     # Seleção Modalidade Dispensa 
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]/span[1]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]/span[1]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]/span[1]/span[1]
     Sleep    1
     Wait Until Element Is Visible    //li[text() = "Dispensa"]
@@ -885,10 +1475,10 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
 
 
     # Seleção critério  - LEI 14.133/2021, ART. 75, VIII
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[3]/td[2]/span[1]/span[1]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[3]/td[2]/span[1]/span[1]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[3]/td[2]/span[1]/span[1]/span[1]
     Sleep    1
-    Wait Until Element Is Visible    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]    timeout=30s
+    Wait Until Element Is Visible    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]    30
     Click Element    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
     Sleep    1
     Capture Page Screenshot
@@ -902,7 +1492,8 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
 
     
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
+    Sleep    1
     Click Element    //a[contains(.,'Sim')]
     Sleep    2
     Capture Page Screenshot
@@ -1443,6 +2034,7 @@ E acesso a lista de Planejamento de Compras - Ambiente Treinamento
     Sleep    3
 
 
+
 E acesso a lista de Planejamento de Compras
 
     Select Frame    xpath=//frame[contains(@name,'main')]
@@ -1451,18 +2043,28 @@ E acesso a lista de Planejamento de Compras
     Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
 
-    # mouse over em Solicitação de Compras
+    # Mouse over em Solicitação de Compras
     ${elemento}    Get WebElement    
     ...    xpath=//td[@class='label'][contains(.,'Solicitação de compra')]
     Mouse Over    ${elemento}
     
-    # Clique em planejamento de Compras
+    # Clique em Planejamento de Compras
     Wait Until Element Is Visible    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
 
-    # Ocultar Icones de Chat
+
+    # Ocultar Icones de Chat, se existirem
+    ${icone_existe}    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//img[contains(@class,'open-launcher')]    5
+    Run Keyword If    ${icone_existe}    Ocultar Icones de Chat
+
+    # # Ocultar Icones de Chat
+    # Sleep    3
+    # Run Keyword If    Element Exists    ${ELEMENT_EXIST}    Ocultar Icones de Chat
+
+
+Ocultar Icones de Chat
     Sleep    2
     Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
     Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
@@ -1471,8 +2073,43 @@ E acesso a lista de Planejamento de Compras
     Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
     Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
     Sleep    3
-    
+
+
+
     Capture Page Screenshot
+
+
+
+
+
+    # Select Frame    xpath=//frame[contains(@name,'main')]
+
+    # # Clique em negociação
+    # Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    # Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
+
+    # # mouse over em Solicitação de Compras
+    # ${elemento}    Get WebElement    
+    # ...    xpath=//td[@class='label'][contains(.,'Solicitação de compra')]
+    # Mouse Over    ${elemento}
+    
+    # # Clique em planejamento de Compras
+    # Wait Until Element Is Visible    
+    # ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
+    # Click Element    
+    # ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
+
+    # # Ocultar Icones de Chat
+    # Sleep    2
+    # Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    # Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    # Sleep    1
+    # Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    # Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    # Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    # Sleep    3
+    
+    # Capture Page Screenshot
 
 
 E seleciono o filtro SC em Planejamento - Ordenador
@@ -1526,13 +2163,14 @@ E seleciono a SC - Ambiente Treinamento
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
 
+
 E seleciono a SC
 
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         Sleep    ${interval}
         Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
-        Sleep    1
+        Sleep    2
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input   
         Run Keyword If    ${element_found}    Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[8]//input
         Run Keyword If    ${element_found}    Exit For Loop
@@ -2131,7 +2769,7 @@ Então atribuo a comissão de Compra Direta
     # Busca pela comissão no campo 'Descrição'
     Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    30
     Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
-    ...    COMISSÃO DE COMPRA DIRETA
+    ...    COMISSÃO DE COMPRAS 120101
 
     # Clique no botão pesquisar
     Click Element    //a[contains(.,'Pesquisar')]

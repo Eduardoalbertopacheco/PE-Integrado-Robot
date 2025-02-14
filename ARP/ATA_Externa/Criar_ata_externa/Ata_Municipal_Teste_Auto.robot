@@ -39,17 +39,7 @@ CT02 - Incluir e Assinar Documento
     E vejo a Auditoria da ARP
 
 
-# CT03 - Assinar Documento
-#     [Tags]    assinar_documento
-#     Dado que acesso o sistema
-#     E faço login com usuário "edu.gestorata.110402"
-#     E acesso a lista de Atas de Registro de preços
-#     E clico na Ata Externa da Lista
-#     Então assino o documento da Ata
-#     E vejo a Auditoria da ARP
-
-
-CT04 - Ativar ATA Externa
+CT03 - Ativar ATA Externa
     Configurar Variáveis de ARP
 
     [Tags]    ativar_ata
@@ -60,7 +50,8 @@ CT04 - Ativar ATA Externa
     Então ativo a ARP
     # E vejo a Auditoria da ARP
 
-CT05 - Concluir Análise com Gestor Ata Central
+
+CT04 - Concluir Análise com Gestor Ata Central
     Configurar Variáveis de ARP
 
     [Tags]    concluir_ata
@@ -71,7 +62,7 @@ CT05 - Concluir Análise com Gestor Ata Central
     Então concluo a análise da Ata
 
 
-CT06 - Deliberar Ata
+CT05 - Deliberar Ata
     Configurar Variáveis de ARP
 
     [Tags]    deliberar_ata
@@ -83,7 +74,7 @@ CT06 - Deliberar Ata
     E vejo a Auditoria da ARP
 
 
-CT07 - Incluir Itens com Gestor Central de ATA
+CT06 - Incluir Itens com Gestor Central de ATA
     Configurar Variáveis de ARP
     
     [Tags]    incluir_item_ata

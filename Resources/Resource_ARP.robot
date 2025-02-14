@@ -12,7 +12,7 @@ Resource         ../Resources/Variaveis.robot
 *** Variables ***
 
 ${SELECAO_MARCA_ATA}    //span[contains(@aria-owns,'ctl00_ContentPrincipal_ddlMarca_listbox')]
-${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
+${ITEM}        ${ITEM_LIST}//li[text()="NÃO SE APLICA"]
 ${ITEM_LIST}       //ul[@id='ctl00_ContentPrincipal_ddlMarca_listbox']
 ${TITULO_ATA_EXTERNA}      Ata Externa Teste
 ${CAMPO_TITULO}          //input[contains(@name,'tbxTitulo')]
@@ -26,6 +26,7 @@ ${INPUT_PESQ_UG_ATA}           //input[contains(@name,'ctl00$ContentPrincipal$tx
 ${LUPA_GESTOR_ATA}             //a[@onclick='abrirJanelaPesquisaOrgaoGestorAta();']
 ${INPUT_PESQ_GESTOR_ATA}       //input[contains(@name,'ctl00$ContentPrincipal$txtNome')]
 ${INPUT_NUM_ARP}               //span[@id='lbl_ctl00_ContentPrincipal_tbxNumeroAta']
+${element}    //img[contains(@class,'open-launcher')]
 
 
 *** Keywords ***
@@ -147,14 +148,24 @@ E acesso a lista de IRPs
 E acesso a lista de Atas de Registro de preços
     Select Frame    //frame[@name='main']
 
-    # Ocultar Icones de Chat
-    Sleep    2
-    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
-    Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
-    Sleep    1
-    Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
-    Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
-    Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+
+#     Sleep    2
+#     ${element_exists}=    Run Keyword And Return Status    Page Should Contain Element    ${element}
+#     Run Keyword If    ${element_exists}    Ocultar Icones de Chat
+#     Sleep    3
+
+
+# Ocultar Icones de Chat
+#     Sleep    2
+#     Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+#     Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+#     Sleep    1
+#     Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+#     Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+#     Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+#     Sleep    3
+
+
     Sleep    1
 
     # Clique em ata de registro de preços
@@ -169,7 +180,7 @@ E acesso a lista de Atas de Registro de preços
 
     # Clique em todas as Atas
     Wait Until Element Is Visible    
-    ...    xpath=//td[@class='label'][contains(.,'Todas as Atas de Registro de Preços')]    timeout=30s
+    ...    xpath=//td[@class='label'][contains(.,'Todas as Atas de Registro de Preços')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Todas as Atas de Registro de Preços')]
     Sleep    2
@@ -178,7 +189,7 @@ E acesso a lista de Atas de Registro de preços
 
 E clico na Ata de Pregão da lista
     Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[2]//a    timeout=30s
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[2]//a    30
     Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_PREGAO}']]//td[2]//a
     Sleep    2
     Capture Page Screenshot
@@ -202,9 +213,9 @@ E clico na Ata de Compra Direta da Lista
 
 E seleciono a Ata Externa da Lista
     Select Frame    //iframe[@name='frmConteudo']
-    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input    timeout=30s
+    Wait Until Element Is Visible    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[12]//input    timeout=30s
     Sleep    1
-    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[11]//input
+    Click Element    //table[@id = "dtgPesquisa"]//tbody//tr[td/a[text()='${OBJETO_ATA}']]//td[12]//input
     Sleep    2
     Capture Page Screenshot
 
@@ -372,16 +383,7 @@ Então ativo a ARP
     Sleep    3
     Capture Page Screenshot
 
-    E clico na Ata de Pregão da lista
-
-    # Capturar o valor do campo depois que ele for preenchido
-    Sleep    2
-    ${NUM_ARP}    SeleniumLibrary.Get Text    ${INPUT_NUM_ARP}
-
-    # Salvar o valor em um arquivo de texto
-    Create File    ${EXECDIR}/test/processos/num_ARP.txt    ${NUM_ARP}
-    Sleep    2
-
+    # E clico na Ata de Pregão da lista
 
 E clico em Incluir Ata
     Select Frame    //iframe[@name='frmConteudo']
@@ -512,7 +514,7 @@ E preencho todos os Dados Gerais
     # Ano
     Wait Until Element Is Visible    //fieldset[1]/table[1]/tbody[1]/tr[2]/td[6]/span[1]/span[1]/input[1]
     Sleep    2
-    Input Text    //fieldset[1]/table[1]/tbody[1]/tr[2]/td[6]/span[1]/span[1]/input[1]    2024
+    Input Text    //fieldset[1]/table[1]/tbody[1]/tr[2]/td[6]/span[1]/span[1]/input[1]    2025
 
     # Numero ATA
     Click Element    //input[@name='ctl00$ContentPrincipal$tbxNumero']
@@ -548,6 +550,10 @@ E preencho todos os Dados Gerais
     Click Element    //input[@value='9|AQUISIÇÃO DE EQUIPAMENTOS EM GERAL']
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    2
+
+    # Campo Id do PNCP
+    Wait Until Element Is Visible    //input[@name='ctl00$ContentPrincipal$txtIdPncp']    10
+    Input Text    //input[@name='ctl00$ContentPrincipal$txtIdPncp']    123.456.789.2025
 
     # Seleção do grupo de compras
     Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA_ATA}
@@ -916,7 +922,7 @@ Então incluo os itens na ATA Externa
 
     # Pesquisar produto pelo código
     Wait Until Element Is Visible    //input[contains(@name,'txtCodigo')]    timeout=30s
-    Input Text    //input[contains(@name,'txtCodigo')]    1000241
+    Input Text    //input[contains(@name,'txtCodigo')]    1000268
 
     Click Element    //a[@onclick='AtualizarPesquisaProduto()']
 
@@ -933,8 +939,8 @@ Então incluo os itens na ATA Externa
     Click Element    //span[@aria-owns='ctl00_ContentPrincipal_ddlUnidadeDeMedida_listbox']
     Sleep    2
 
-    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'BD 1 KG')]    timeout=30s
-    Click Element    //li[@tabindex='-1'][contains(.,'BD 1 KG')]
+    Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'CX 50 UNIDADES')]    timeout=30s
+    Click Element    //li[@tabindex='-1'][contains(.,'CX 50 UNIDADES')]
 
 
     # Qauntidade registrada
@@ -1300,16 +1306,16 @@ E seleciono o filtro Licitações Homologadas
 
 E clico no Licitação da lista para gerar ARP
 
-    ${NUM_PROC_PREGAO}    Get File    ${EXECDIR}/test/processos/num_proc_pregao.txt
+    ${NUM_PREGAO_CONTRATO}    Get File    ${EXECDIR}/test/processos/Num_pregao_contrato.txt
 
     Wait Until Element Is Visible    //input[@name='ctl00$campoPesquisa$sNrProcessoDisplay']    10
-    Input Text    //input[@name='ctl00$campoPesquisa$sNrProcessoDisplay']    ${NUM_PROC_PREGAO}
+    Input Text    //input[@name='ctl00$campoPesquisa$sNrProcessoDisplay']    ${NUM_PREGAO_CONTRATO}
     Wait Until Element Is Visible    //input[@value='Pesquisar']    15
     Click Element    //input[@value='Pesquisar']
     Sleep    2
 
-    Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td[2]//a[contains(text(), '${NUM_PROC_PREGAO}')]]//td[2]//a    timeout=30s
-    Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td[2]//a[contains(text(), '${NUM_PROC_PREGAO}')]]//td[2]//a
+    Wait Until Element Is Visible    //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td[2]//a[contains(text(), '${NUM_PREGAO_CONTRATO}')]]//td[2]//a    30
+    Click Element     //td[@id='ctl00_pesquisaDataGrid_dtgPesquisa_gridTd']//table//tr[td[2]//a[contains(text(), '${NUM_PREGAO_CONTRATO}')]]//td[2]//a
     Capture Page Screenshot
 
 
@@ -1318,7 +1324,7 @@ E clico no Consumo/Adesão da lista
     Select Frame    //frame[@name='main']
     Select Frame    //iframe[@name='frmConteudo']
 
-    Wait Until Element Is Visible    //table[@id= "ctl00_ContentPrincipal_dtgPesquisa"]//tr[td[contains(text(), '${OBJETO_ATA}')]]//td[1]//a    timeout=30s
+    Wait Until Element Is Visible    //table[@id= "ctl00_ContentPrincipal_dtgPesquisa"]//tr[td[contains(text(), '${OBJETO_ATA}')]]//td[1]//a    30
     Click Element     //table[@id= "ctl00_ContentPrincipal_dtgPesquisa"]//tr[td[contains(text(), '${OBJETO_ATA}')]]//td[1]//a
     Capture Page Screenshot
 

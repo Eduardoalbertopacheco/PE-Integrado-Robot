@@ -13,10 +13,10 @@ CT01 - Criar SC - Aba dados Gerais
     
     [Tags]    criar_sc
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E clico em 'Incluir'
-    Então preencho os campos da Aba Dados gerais
+    Então preencho os campos da Aba Dados gerais - Concorrencia
 
 
 CT02 - Incluir Itens na Solicitação de Compras
@@ -24,7 +24,7 @@ CT02 - Incluir Itens na Solicitação de Compras
 
     [Tags]    incluir_itens
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
@@ -37,7 +37,7 @@ CT03 - Incluir Documento na Solicitação de Compras
 
     [Tags]    incluir_documento
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na Aba 'Documentos do Processo'
@@ -49,7 +49,7 @@ CT04 - Assinar documento
 
     [Tags]    assinar_documento
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na Aba 'Documentos do Processo'
@@ -61,7 +61,7 @@ CT05 - Encaminhar SC para precificação
 
     [Tags]    encaminhar_SC
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     Então encaminho a Solicitação de compra para precificação
@@ -72,7 +72,7 @@ CT06 - Planejamento com Solicitante
 
     [Tags]    planejamento_solicitante
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
     Então faço planejamento da SC para Concorrencia - Solicitante
@@ -83,7 +83,7 @@ CT07 - Definir Natureza de despesa com o Financeiro
 
     [Tags]    definir_natureza
     Dado que acesso o sistema
-    E faço login com usuário "financeiro.110402"
+    E faço login com usuário "financeiro.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
@@ -95,7 +95,7 @@ CT08 - Aprovação orçamentária
 
     [Tags]    aprovacao_orcamentaria
     Dado que acesso o sistema
-    E faço login com usuário "orcamento.110402"
+    E faço login com usuário "orcamento.120101"
     E acesso 'Minhas Tarefas'
     E seleciono a SC para aprovação
     Então Clique no botão Aprovar com orçamento
@@ -106,7 +106,7 @@ CT09 - Aprovação com o Ordenador
 
     [Tags]    aprovacao_ordenador
     Dado que acesso o sistema
-    E faço login com usuário "ordenador.110402"
+    E faço login com usuário "ordenador.120101"
     E acesso 'Minhas Tarefas'
     E seleciono a SC para aprovação
     E Clico em Ciente
@@ -129,7 +129,7 @@ CT11 - Deliberar SC com autoridade da UG
 
     [Tags]    deliberar_autoridade_ug
     Dado que acesso o sistema
-    E faço login com usuário "autoridade.110402"
+    E faço login com usuário "autoridade.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E pesquiso por SC 'Aguardando Deliberação'
     E seleciono a SC e clico
@@ -141,7 +141,7 @@ CT12 - Planejamento com Ordenador
 
     [Tags]    planejar_ordenador
     Dado que acesso o sistema
-    E faço login com usuário "ordenador.110402"
+    E faço login com usuário "ordenador.120101"
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC

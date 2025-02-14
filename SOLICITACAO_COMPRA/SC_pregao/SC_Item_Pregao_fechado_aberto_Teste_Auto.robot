@@ -17,7 +17,7 @@ CT01 - Criar SC - Aba dados Gerais
     E faço login com usuário "solicitante.110402"
     E acesso a Tela de Lista de Solicitação de Compras
     E clico em 'Incluir'
-    Então preencho os campos da Aba Dados gerais
+    Então preencho os campos da Aba Dados gerais - Pregão
 
 
 CT02 - Incluir Itens na Solicitação de Compras

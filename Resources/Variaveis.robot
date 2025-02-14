@@ -12,6 +12,7 @@ ${OBJETO_CONCORRENCIA}    None
 ${OBJETO_CONTRATO}        Nome
 ${OBJETO_GC}              Nome
 
+
 *** Keywords ***
 Configurar Variáveis de GC
     ${nome_arquivo}=    Set Variable    ${SUITE_SOURCE}
@@ -89,6 +90,9 @@ Configurar variável aberto_item Não ARP
 
 Configurar variável aberto_item
     Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_item_01_Teste_Auto
+
+Configurar variável aberto_item_contrato
+    Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_item_01_contrato_Teste_Auto
 
 Configurar variável aberto_lote_OPD
     Set Global Variable    ${OBJETO_PREGAO}    	Pregao_aberto_lote_OPD_01_Teste_Auto
@@ -207,6 +211,15 @@ Usar SC_Item_Pregao_aberto_fechado
 
 usar SC_Item_Pregao_fechado_aberto
     Set Global Variable    ${RESUMO_SC}    SC_Item_Pregao_fechado_aberto_Teste_Auto
+
+Usar Ata Estadual
+    Set Global Variable    ${OBJETO_ATA}    Ata_Estadual_Teste_Auto
+
+Usar Ata Federal
+    Set Global Variable    ${OBJETO_ATA}    Ata_Federal_Teste_Auto
+
+Usar Ata Municipal
+    Set Global Variable    ${OBJETO_ATA}    Ata_Municipal_Teste_Auto
 
 
 

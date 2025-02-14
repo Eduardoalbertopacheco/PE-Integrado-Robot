@@ -13,17 +13,17 @@ CT01 - Criar SC - Aba dados Gerais
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E clico em 'Incluir'
-    Então preencho os campos da Aba Dados gerais
+    Então preencho os campos da Aba Dados gerais - Concorrencia
 
 
 CT02 - Incluir Itens na Solicitação de Compras
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
@@ -35,7 +35,7 @@ CT03 - Incluir Documento na Solicitação de Compras
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na Aba 'Documentos do Processo'
@@ -46,7 +46,7 @@ CT04 - Assinar documento
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na Aba 'Documentos do Processo'
@@ -57,7 +57,7 @@ CT05 - Encaminhar SC para precificação
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     Então encaminho a Solicitação de compra para precificação
@@ -67,7 +67,7 @@ CT06 - Planejamento com Solicitante
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "solicitante.110402"
+    E faço login com usuário "solicitante.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E acesso a Lista de SC em Precificação
     Então faço planejamento da SC para Concorrencia - Solicitante
@@ -77,7 +77,7 @@ CT07 - Definir Natureza de despesa com o Financeiro
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "edu.financeiro.110402"
+    E faço login com usuário "edu.financeiro.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'
@@ -88,7 +88,7 @@ CT08 - Aprovação orçamentária
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "orcamento.110402"
+    E faço login com usuário "orcamento.120101"
     E acesso 'Minhas Tarefas'
     E seleciono a SC para aprovação
     Então Clique no botão Aprovar com orçamento
@@ -98,7 +98,7 @@ CT09 - Aprovação com o Ordenador
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "ordenador.110402"
+    E faço login com usuário "ordenador.120101"
     E acesso 'Minhas Tarefas'
     E seleciono a SC para aprovação
     E Clico em Ciente
@@ -119,7 +119,7 @@ CT11 - Deliberar SC com autoridade da UG
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "autoridade.110402"
+    E faço login com usuário "autoridade.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E pesquiso por SC 'Aguardando Deliberação'
     E seleciono a SC e clico
@@ -130,7 +130,7 @@ CT12 - Planejamento com Ordenador
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "ordenador.110402"
+    E faço login com usuário "ordenador.120101"
     E acesso a lista de Planejamento de Compras
     E seleciono o filtro SC em Planejamento - Ordenador
     E seleciono a SC

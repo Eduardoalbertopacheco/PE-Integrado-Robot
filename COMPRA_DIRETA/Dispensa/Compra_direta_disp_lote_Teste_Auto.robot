@@ -8,11 +8,10 @@ Resource        ../../Resources/Resource_compra_direta.robot
 *** Test Cases ***
 
 CT01 - Cadastro de Compra Direta - Aba dados Gerais
-    Configurar Variáveis Compra Direta
 
-    [Tags]    criar_Compra
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
-    E faço login com usuário "mi.comprador.110402"
+    E faço login com usuário "comprador.120101"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E clico em Incluir Processo de Compra Direta
@@ -28,7 +27,7 @@ CT02 - Incluir SC na Compra Direta
 
     [Tags]    incluir_item_cp
     Dado que acesso o sistema
-    E faço login com usuário "mi.comprador.110402"
+    E faço login com usuário "comprador.120101"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E clico na Compra Direta da lista
@@ -36,11 +35,10 @@ CT02 - Incluir SC na Compra Direta
 
 
 CT03 - Agendar compra Direta
-    Configurar Variáveis Compra Direta
 
-    [Tags]    agendar_CP
+    Configurar Variáveis Compra Direta
     Dado que acesso o sistema
-    E faço login com usuário "mi.comprador.110402"
+    E faço login com usuário "comprador.120101"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E seleciono a Compra Direta da lista
@@ -79,7 +77,7 @@ CT06 - Prorrogar Compra direta
 
     [Tags]    prorrogar_compra_direta
     Dado que acesso o sistema
-    E faço login com usuário "mi.comprador.110402"
+    E faço login com usuário "comprador.120101"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E clico na Compra Direta da lista
@@ -92,7 +90,7 @@ CT07 - Encerrar Itens
     Configurar Variáveis Compra Direta
    
     Dado que acesso o sistema
-    E faço login com usuário "mi.comprador.110402"
+    E faço login com usuário "comprador.120101"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E clico na Compra Direta da lista
@@ -104,7 +102,7 @@ CT07 - Finalizar Compra Direta
 
   [Tags]    finalizar_compra_direta
     Dado que acesso o sistema
-    E faço login com usuário "mi.comprador.110402"
+    E faço login com usuário "comprador.120101"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E clico na Compra Direta da lista
@@ -116,7 +114,7 @@ CT08 - Ratificar compra Direta
 
   [Tags]    ratificar_compra_direta
     Dado que acesso o sistema
-    E faço login com usuário "autoridade.110402"
+    E faço login com usuário "autoridade.120101"
     E acesso a lista de todas as Compras Direta
     E seleciono o filtro Todas as compras diretas
     E clico na Compra Direta da lista Aguardando ratificação

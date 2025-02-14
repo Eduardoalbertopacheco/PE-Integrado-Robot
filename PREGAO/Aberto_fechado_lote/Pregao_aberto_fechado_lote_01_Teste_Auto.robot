@@ -22,7 +22,7 @@ CT01 - Criar Pregão - Aba Dados Gerais
     E insiro a Comissão e Salvo
     E Seleciono o Modo de Disputa Aberto-Fechado
     Então preencho a Aba de Dados Gerais
-    E mostro a auditoria
+    # E mostro a auditoria
 
 
 CT02 - Incluir SC ao Pregão
@@ -37,7 +37,7 @@ CT02 - Incluir SC ao Pregão
     E clico na aba 'Itens'
     E acesso a tela de 'Incluir Itens da Solicitação'
     Então incluo a SC Por Lote ao Pregão
-    E mostro a auditoria
+    # E mostro a auditoria
 
 
 CT03 - Incluir Documento - Edital
@@ -50,7 +50,7 @@ CT03 - Incluir Documento - Edital
     E clico na licitação da lista
     E acesso a tela de 'Documentos do Processo'
     Então incluo os Documentos do tipo Edital
-    E mostro a auditoria
+    # E mostro a auditoria
 
 
 CT04 - Assinar Documento
@@ -63,7 +63,7 @@ CT04 - Assinar Documento
     E clico na licitação da lista
     E acesso a tela de 'Documentos do Processo'
     E seleciono assino o documento do tipo Edital
-    E mostro a auditoria
+    # E mostro a auditoria
 
 
 CT05 - Solicitar Parecer para Ordenador

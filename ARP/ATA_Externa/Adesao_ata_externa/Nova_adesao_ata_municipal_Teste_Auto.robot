@@ -7,7 +7,8 @@ Resource        ../../../Resources/Resource_ARP.robot
 
 *** Test Cases ***
 CT01 - Solicitar Adesão de Ata Externa Estadual
-    [Tags]    solicitar_adesao
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de Atas de Registro de preços
@@ -19,7 +20,8 @@ CT01 - Solicitar Adesão de Ata Externa Estadual
 
 
 CT02 - Selecionar itens para adesão
-    [Tags]    selecionar_itens
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -29,7 +31,8 @@ CT02 - Selecionar itens para adesão
 
 
 CT03 - Alterar valor de referência dos itens
-    [Tags]    alterar_valor_referencia
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -39,7 +42,8 @@ CT03 - Alterar valor de referência dos itens
 
 
 CT03 - Incluir e assinar documento
-    [Tags]    assinar_documento
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -49,7 +53,8 @@ CT03 - Incluir e assinar documento
 
 
  CT04 - Encaminhar Adesao
-    [Tags]    encaminhar_adesao
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -59,7 +64,8 @@ CT03 - Incluir e assinar documento
 
 
 CT05 - Deliberar com Orçamento
-    [Tags]    Deliberar_adesao
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -68,7 +74,8 @@ CT05 - Deliberar com Orçamento
     E vejo a Auditoria da ARP
 
 CT06 - Deliberar com Ordenador
-    [Tags]    Deliberar_adesao_ordenador
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -77,7 +84,8 @@ CT06 - Deliberar com Ordenador
     E vejo a Auditoria da ARP
 
 CT07 - Concluir análise com Gestor Central
-    [Tags]    Concluir_analise
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -85,7 +93,8 @@ CT07 - Concluir análise com Gestor Central
     Então concluo a análise da Ata Externa
 
 CT08 - Deliberar e Assianr Documento com Gestor Central
-    [Tags]    Deliberar_adesao_gestor_central
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -94,7 +103,8 @@ CT08 - Deliberar e Assianr Documento com Gestor Central
     E vejo a Auditoria da ARP
 
 CT09 - Encaminhar para autorização
-    [Tags]    Encaminhar_adesao_autorizacao
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -103,7 +113,8 @@ CT09 - Encaminhar para autorização
 
 
 CT10 - Deliberar com Autoridade Central
-    [Tags]    Deliberar_autoridade_central
+    
+    Usar Ata Municipal
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a lista de todas as Solicitaçõe de Adesão

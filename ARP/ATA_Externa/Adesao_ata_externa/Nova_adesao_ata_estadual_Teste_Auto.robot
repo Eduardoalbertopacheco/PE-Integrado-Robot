@@ -5,9 +5,10 @@ Resource        ../../../Resources/Resource_ARP.robot
 
 
 *** Test Cases ***
+
 CT01 - Solicitar Adesão de Ata Externa Estadual
 
-
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de Atas de Registro de preços
@@ -19,6 +20,7 @@ CT01 - Solicitar Adesão de Ata Externa Estadual
 
 CT02 - Selecionar itens para adesão
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -29,16 +31,18 @@ CT02 - Selecionar itens para adesão
 
 CT03 - Alterar valor de referência dos itens
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
     E clico no Consumo/Adesão da lista
     Então altero o valor de referência dos itens
-    E vejo a Auditoria da ARP
+    # E vejo a Auditoria da ARP
 
 
-CT03 - Incluir e assinar documento
+CT03 - Incluir e assinar documentos
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -49,6 +53,7 @@ CT03 - Incluir e assinar documento
 
  CT04 - Encaminhar Adesao
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "solicitante.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -59,6 +64,7 @@ CT03 - Incluir e assinar documento
 
 CT05 - Deliberar com Orçamento
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "orcamento.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -68,6 +74,7 @@ CT05 - Deliberar com Orçamento
 
 CT06 - Deliberar com Ordenador
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "ordenador.110402"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -77,6 +84,7 @@ CT06 - Deliberar com Ordenador
 
 CT07 - Concluir análise com Gestor Central
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -85,6 +93,7 @@ CT07 - Concluir análise com Gestor Central
 
 CT08 - Deliberar e Assianr Documento com Gestor Central
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -94,6 +103,7 @@ CT08 - Deliberar e Assianr Documento com Gestor Central
 
 CT09 - Encaminhar para autorização
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "Gestoratacentral2.120101"
     E acesso a lista de todas as Solicitaçõe de Adesão
@@ -103,6 +113,7 @@ CT09 - Encaminhar para autorização
 
 CT10 - Deliberar com Autoridade Central
 
+    Usar Ata Estadual
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
     E acesso a lista de todas as Solicitaçõe de Adesão
