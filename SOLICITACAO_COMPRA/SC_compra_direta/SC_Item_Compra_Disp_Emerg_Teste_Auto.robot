@@ -1,3 +1,4 @@
+
 *** Settings ***
 Documentation    Cenário: Criar Um Solicitação de Compras Por Item e Encaminhar Para Compra Direta - Dispensa - Fluxo Feliz
 Library          SeleniumLibrary
@@ -15,7 +16,7 @@ CT01 - Criar SC - Aba dados Gerais
     E acesso a Tela de Lista de Solicitação de Compras
     E clico em 'Incluir'
     Então preencho os campos da Aba Dados gerais - Disp_Emerg
-
+ 
 
 CT02 - Incluir Itens na Solicitação de Compras
 
@@ -27,6 +28,7 @@ CT02 - Incluir Itens na Solicitação de Compras
     E Clico na aba 'Itens'
     E acesso a tela de incluir Itens
     Então incluo os itens
+
 
 CT03 - Incluir Documento na Solicitação de Compras
 

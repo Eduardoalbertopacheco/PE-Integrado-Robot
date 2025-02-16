@@ -31,3 +31,25 @@
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     Capture Page Screenshot
+
+
+CT04 - Assinar documento
+    ${tentativas}=    Set Variable    0
+    WHILE    ${tentativas} < 2
+        TRY
+            
+            Configurar Variáveis de SC
+            Dado que acesso o sistema
+            E faço login com usuário "solicitante.120101"
+            E acesso a Tela de Lista de Solicitação de Compras
+            E seleciono a SC da lista
+            E Clico na Aba 'Documentos do Processo'
+            Então assino o documento
+
+            BREAK
+        EXCEPT
+            ${tentativas}=    Evaluate    ${tentativas} + 1
+            Log    Tentativa ${tentativas} falhou, tentando novamente...
+            Sleep    2s
+        END
+    END

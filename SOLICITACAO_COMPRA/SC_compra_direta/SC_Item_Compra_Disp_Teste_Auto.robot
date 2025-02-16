@@ -30,7 +30,7 @@ CT02 - Incluir Itens na Solicitação de Compras
     Então incluo os itens
 
 
-CT03 - Incluir Documento na Solicitação de Compras
+CT03 - Incluir Documento na Solicitacao de Compras
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
@@ -52,7 +52,7 @@ CT04 - Assinar documento
     Então assino o documento
 
 
-CT05 - Encaminhar SC para precificação
+CT05 - Encaminhar SC para precificacao
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
@@ -83,7 +83,7 @@ CT07 - Definir Natureza de despesa com o Financeiro
     Então defino a natureza de despesa
 
 
-CT08 - Aprovação orçamentária
+CT08 - Aprovação orcamentaria
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
@@ -93,7 +93,7 @@ CT08 - Aprovação orçamentária
     Então Clique no botão Aprovar com orçamento
     
 
-CT09 - Aprovação com o Ordenador
+CT09 - Aprovacao com o Ordenador
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
@@ -136,7 +136,7 @@ CT12 - Planejamento com Ordenador
     Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
 
 
-CT13 - Atribuir Comissão
+CT13 - Atribuir Comissao
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
