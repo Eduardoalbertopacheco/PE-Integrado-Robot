@@ -20,7 +20,7 @@ $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\SOLICITACAO_COMPRA\SC_pregao"
 
 # Nome do arquivo de teste
-$testFileName = "SC_Item_Pregao_aberto_fechado_Teste_Auto.robot"
+$testFileName = "SC_Item_Pregao_A_f_Teste_Auto.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 # Diretório para salvar os relatórios

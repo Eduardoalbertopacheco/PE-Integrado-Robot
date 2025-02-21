@@ -10,9 +10,8 @@ Resource        ../../../Resources/Resource_ARP.robot
 *** Test Cases ***
 
 CT01 - Gerar ARP da Compra Direta
-    Configurar variável Compra_direta_disp_item
 
-    [Tags]    gerar_ata
+    Configurar variável Compra_direta_disp_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de todas as Compras Direta
@@ -22,9 +21,8 @@ CT01 - Gerar ARP da Compra Direta
 
 
 CT02 - Configurar Ata - Dados Gerais
-    Configurar variável Compra_direta_disp_item
 
-    [Tags]    configurar_ata
+    Configurar variável Compra_direta_disp_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
@@ -34,9 +32,8 @@ CT02 - Configurar Ata - Dados Gerais
 
 
 CT03 - Inluir Documento
-    Configurar variável Compra_direta_disp_item
 
-    [Tags]    Incluir_documento
+    Configurar variável Compra_direta_disp_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
@@ -46,9 +43,8 @@ CT03 - Inluir Documento
 
 
 CT04 - Assinar Documento
-    Configurar variável Compra_direta_disp_item
 
-    [Tags]    assinar_documento
+    Configurar variável Compra_direta_disp_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
@@ -58,9 +54,8 @@ CT04 - Assinar Documento
 
 
 CT05 - Ativar ARP
-    Configurar variável Compra_direta_disp_item
 
-    [Tags]    ativar_ata
+    Configurar variável Compra_direta_disp_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços
@@ -69,9 +64,8 @@ CT05 - Ativar ARP
 
 
 CT06 - Configurar Gestão da Ata
-    Configurar variável Compra_direta_disp_item
 
-    [Tags]    configurar_gestao_ata
+    Configurar variável Compra_direta_disp_item
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de Atas de Registro de preços

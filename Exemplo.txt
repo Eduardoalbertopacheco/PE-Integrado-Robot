@@ -53,3 +53,14 @@ CT04 - Assinar documento
             Sleep    2s
         END
     END
+
+
+    # Ocultar Icones de Chat
+    Sleep    2
+    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    Sleep    1
+    Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    Sleep    1

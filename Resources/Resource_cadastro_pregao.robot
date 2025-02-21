@@ -18,10 +18,10 @@ ${JURIDICO}    //span[contains(@aria-owns,'nCdTipoParecerMap_listbox')]//*[@valu
 ${ITEM_LIST}       //ul[@id='dtgPesquisaItens_ctl01_ddlMarca_listbox']
 ${ITEM_LIST_LOTE}    //ul[@id='dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaItens_ctl01_ddlMarca_listbox']
 ${ITEM_TEXT}      12V 3AH
-${ITEM_TEXT_CATETER}   NENHUMA MARCA REGISTRADA
+${ITEM_TEXT_CATETER}   NÃO SE APLICA
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
 ${LOTE_CATETER}    ${ITEM_LIST_LOTE}//li[text()="NENHUMA MARCA REGISTRADA"]
-${ITEM_CATETER}    ${ITEM_LIST}//li[text()="NENHUMA MARCA REGISTRADA"]
+${ITEM_CATETER}    ${ITEM_LIST}//li[text()="NÃO SE APLICA"]
 ${ITEM_LOTE}    ${ITEM_LIST_LOTE}//li[text()="12V 3AH"]
 ${CAMPO_DT_INICIAL_PROP}       //input[contains(@name,'tDtInicialProposta')]
 ${CAMPO_DT_FINAL_PROP}        id=_cP_PREGAO_x_tDtFinalProposta
@@ -66,21 +66,9 @@ ${MODO_DISPUTA_FECHADO_ABERTO}    //li[@tabindex='-1'][contains(.,'Fechado-abert
 ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    //option[contains(@value,'7053')]
 ${EXIBIR_INCLUIR_ITEM_SC_POR_LOTE}    //option[contains(@value,'7054')]
 ${EXIBIR_INCLUIR_ITEM_SC_POR_LOTE_OPD}    //option[contains(@value,'7051')]
-# ${MODALIDADE}    //td[@id= "td_cP_PREGAO_x_nCdModalidade"]
-# ${CRITERIO}    //td[@id= "td_cP_PREGAO_x_nCdCriterio"]
-# ${CODICAO_PAGAMENTO}    //td[@id= "td_cP_PREGAO_x_nCdCondicaoPagamento"]
-# ${PRAZO_ENTREGA}    //td[@id= "td_cP_PREGAO_x_nCdPrazoEntrega"]
-# ${MODO_DISPUTA}    //td[@id="td_cP_PREGAO_x_nIdTipoDisputa"]
-# ${CAMPO_EXIBIR_INCLUIR_ITEM_SC}    //select[contains(@name,'ctl00$ddlVisoes')]
-# ${MODAL_PREGAO}    //li[contains(.,'Pregão Eletrônico')]
-# ${CRIT_PREGAO_LEI_14_133}    //li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
-# ${COD_PAGAMENTO_AVISTA}    //li[@tabindex='-1'][contains(.,'Á vista')]
-# ${PRAZO_ENTRG_10_DIAS}    //li[@tabindex='-1'][contains(.,'10 DIAS')]
-# ${MODO_DISPUTA_ABERTO}    (//li[@tabindex='-1'][contains(.,'Aberto')])[1]
-# ${EXIBIR_INCLUIR_ITEM_SC_POR_ITEM}    //option[contains(@value,'7053')]
+
 ${SELECAO_MENU_NEGOCIACAO}    LICITACAO=//td[@class='label'][contains(.,'Licitação')]
-# &{NOVA_LICITACAO}    //td[@class='label'][contains(.,'Nova licitação eletrönica')]
-# ${LICITACOES_ELERONICAS}    //td[@class='label'][contains(.,'Licitações eletrônicas')]
+
 ${INPUT_NUM_PROC_PREGAO}    //td[contains(@id,'td_cP_PREGAO_x_sNrProcessoDisplay')]
 
 ${timeout}=        370   
@@ -205,16 +193,18 @@ Então preencho a Aba de Dados Gerais - Contrato
     Handle Alert    ACCEPT
     Sleep    4
 
+    ${all_windows}=    Get Window Handles
+    ${second_window}=    Set Variable    ${all_windows}[1]
+    Switch Window    ${second_window}
 
-    # # Capturar o valor do campo depois que ele for preenchido
-    # Wait Until Element Is Visible    ${INPUT_NUM_PROC_PREGAO}    30
-    # Sleep    1
-    # ${NUM_PREGAO_CONTRATO}    SeleniumLibrary.Get Text    ${INPUT_NUM_PROC_PREGAO}
+    # Capturar o valor do campo depois que ele for preenchido
+    Wait Until Element Is Visible    ${INPUT_NUM_PROC_PREGAO}    30
+    Sleep    1
+    ${NUM_PREGAO_CONTRATO}    SeleniumLibrary.Get Text    ${INPUT_NUM_PROC_PREGAO}
 
-    # # Salvar o valor em um arquivo de texto
-    # Create File    ${EXECDIR}/test/processos/Num_pregao_contrato.txt    ${NUM_PREGAO_CONTRATO}
-    # Sleep    2
-
+    # Salvar o valor em um arquivo de texto
+    Create File    ${EXECDIR}/test/processos/Num_pregao_contrato.txt    ${NUM_PREGAO_CONTRATO}
+    Sleep    2
 
     SeleniumLibrary.Close Browser
 
@@ -527,6 +517,7 @@ Então incluo a SC Por Item ao Pregão
     # Clique no botão de Incluir SC
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
+    SeleniumLibrary.Close Browser
 
 Então incluo a SC Por Lote ao Pregão - OPD
 
@@ -685,6 +676,7 @@ Então incluo os Documentos do tipo Edital
         Click Element    //input[@value='Anexar']
         Handle Alert    ACCEPT
     END
+    SeleniumLibrary.Close Browser
 
 
     # CÓDIGO PARA INCLUIR 3 DOCUMENTOS
@@ -763,6 +755,7 @@ E seleciono assino o documento do tipo Edital
         Click Element    xpath=//a[text()='Assinar']
         Sleep    7
     END
+    SeleniumLibrary.Close Browser
 
 
 E solicito o parecer para o Ordenador -OPD
@@ -895,6 +888,7 @@ Então encaminho o Parecer para o ordenador
     Sleep    1
     Capture Page Screenshot
     SeleniumLibrary.Close Browser
+
 
 E acesso a tela com filtro todas as Licitações
     Select Frame    ${FRAME_FRM_CONTEUDO}
@@ -1213,10 +1207,10 @@ E preencho os dados do lance por Item
     ${dropdown_value}=    Execute JavaScript    return document.querySelector("span.k-input").innerText
     Log    Valor do dropdown: ${dropdown_value}
     Should Be Equal As Strings    ${dropdown_value}    ${ITEM_TEXT_CATETER} 
-
+    Sleep    1
 
     # Valor do lance
-    Wait Until Element Is Visible    //form[1]/table[1]/tbody[1]/tr[3]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/div[1]/span[3]/span[1]/input[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/table[1]/tbody[1]/tr[3]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/div[1]/span[3]/span[1]/input[1]    30
     Input Text    //form[1]/table[1]/tbody[1]/tr[3]/td[1]/table[1]/tbody[1]/tr[2]/td[2]/div[1]/span[3]/span[1]/input[1]    100
     Capture Page Screenshot
 
@@ -1345,6 +1339,7 @@ E clico na licitação em Adjudicação da lista
         Run Keyword If    ${elapsed_time} > ${timeout}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
     END
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
+
 
 E seleciono a licitação da lista - Varios Pregão
 

@@ -558,19 +558,28 @@ Então preencho os campos da Aba Dados gerais - Concorrencia
     Capture Page Screenshot
 
 
-    # Numero do PCA
+    # Numero do PCA - Lupa
     Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-search')]    20
     Click Element    //span[contains(@class,'k-icon k-i-search')]
     Sleep    3
 
-    # Selecionar o PCA - Lupa
-    Wait Until Element Is Visible    //input[@name='ckbItem']    20
+    # Procurar o PCA
+    Wait Until Element Is Visible    //input[contains(@name,'sNrListaPca')]    20
+    Input Text    //input[contains(@name,'sNrListaPca')]    PCA.001./2032
+
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    10
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
+
+    # Selecionar o PCA
+    Wait Until Element Is Visible    //input[@name='ckbItem']    10
     Click Element    //input[@name='ckbItem']
 
     # Confirmar PCA
     Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    20
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    2
+
 
     # Incluir DFD
     Wait Until Element Is Visible    //a[contains(.,'Incluir DFD')]    20
@@ -626,7 +635,7 @@ Então preencho os campos da Aba Dados gerais - Concorrencia
     
     Wait Until Element Is Visible    ${EMPRESA}    30
     Click Element    ${EMPRESA}
-    Wait Until Element Is Visible    ${EMPRESA_SEDC}    30
+    Wait Until Element Is Visible    ${EMPRESA_SAD}    30
     Click Element    ${EMPRESA_SAD}
     Sleep    1
     
@@ -1079,7 +1088,7 @@ Então incluo os itens
     Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000268
     Click Element    //*[@id="ctl00_ContentPrincipal_btnPesquisarProduto"]
     
-    Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[1]    timeout=30s
+    Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[1]    30
     Click Element    (//input[contains(@id,'ckbListProduto')])[1]
 
     # Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[2]
@@ -1090,25 +1099,29 @@ Então incluo os itens
 
 
     # Implementar aqui a quantidade do item
-    Wait Until Element Is Visible    xpath=(//span[contains(@unselectable,'on')])[10]    timeout=30s
-    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
-    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
-    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
-    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
-    Double Click Element    xpath=(//span[contains(@unselectable,'on')])[10]
+    Wait Until Element Is Visible    xpath=//input[@title='0,00']   30
+    Clear Text    xpath=//input[@title='0,00']
+    Sleep    2
+    Input Text    xpath=//input[@title='0,00']    1000
+    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
+    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
+    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
+    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
+    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
     
     #  Click no botão 'Salvar'
-    Wait Until Element Is Visible    xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]    timeout=30s
+    Wait Until Element Is Visible    xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]    30
     Capture Page Screenshot
     Click Element         xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]
     
     Sleep    4
     SeleniumLibrary.Close Browser
 
+
 E Clico na Aba 'Documentos do Processo'
     Switch Window    NEW
 
-    Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    30
     Click Element        xpath=//a[contains(.,'Documentos do processo')]
     Sleep    2
     Capture Page Screenshot
@@ -1116,62 +1129,123 @@ E Clico na Aba 'Documentos do Processo'
 
 Então incluo o documento do tipo Termo Referencia
 
-    Wait Until Element Is Visible    css=input[type="file"]    timeout=30s
-    Choose File    css=input[type="file"]    ${EXECDIR}\\test\\Fixtures\\Mod03-Locators.pdf
-
+    FOR    ${tipo_doc}    IN    Termo de Referência    Mapa de Riscos
+    # Clique do botão 'Escolher Arquivo'
+    Wait Until Element Is Visible    //input[contains(@type,'file')]    30
+    Scroll Element Into View    css=input[type="file"]
+    Choose File    css=input[type="file"]    ${EXECDIR}/test/Fixtures/Mod03-Locators.pdf
+    Sleep    1
 
     # Clique e escrevo no campo 'Tipo do documento'
-    Wait Until Element Is Visible    
-    ...    css=input[id="ctl00_conteudoPagina_objListagemDeDocumentos_autoTipoDeDocumento"]    timeout=30s
-    Input Text    
-    ...    css=input[id="ctl00_conteudoPagina_objListagemDeDocumentos_autoTipoDeDocumento"]
-    ...    Termo de Referência
+    Wait Until Element Is Visible    //input[@name='ctl00$conteudoPagina$objListagemDeDocumentos$autoTipoDeDocumento']    30
+    Click Element    //input[@name='ctl00$conteudoPagina$objListagemDeDocumentos$autoTipoDeDocumento']
+    Sleep    1
+    Input Text    //input[@name='ctl00$conteudoPagina$objListagemDeDocumentos$autoTipoDeDocumento']    ${tipo_doc}
     Sleep    2
-    Wait Until Element Is Visible    //li[text()="Termo de Referência"]    timeout=30s
-    Click Element    //li[text()="Termo de Referência"]
 
+    ${li_doc} =    Set Variable    //li[contains(.,'${tipo_doc}')]
+    Wait Until Element Is Visible    ${li_doc}    30
+    Click Element    ${li_doc}
 
     # Clique no botão 'Anexar' o arquivo
     Capture Page Screenshot
     Click Element    //input[@value='Anexar']
-    Sleep    3
+
+    # Clique de Ok no popup
+    Sleep    2
     Handle Alert    ACCEPT
-    SeleniumLibrary.Close Browser
+    END
 
 
 Então assino o documento    
 
-    # Switch Window    NEW
-
-    # Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    timeout=30s
-    # Click Element        xpath=//a[contains(.,'Documentos do processo')]
-    # Sleep    1
-    # Capture Page Screenshot
-
-
-    Wait Until Element Is Visible    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input    timeout=30s
+   # Selecionar o documento para assinar
+    Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
+    Wait Until Element Is Visible    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input    30
     Select Checkbox     //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input
 
     # Clicar no botão 'Assinar Documento'
     Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    30
     Click Element    xpath=//a[contains(.,'Assinar documento')]
 
-
+       
     # E Preencho os campos de assinatura
     Sleep    2
-    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    timeout=30s
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    30
 
-    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    timeout=30s
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    30
     Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
 
-    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    30
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@654321
+
+    # E clico no botão assinar
+    Capture Page Screenshot
+    Click Element    xpath=//a[text()= 'Assinar']
+    Sleep    4
+
+
+   # Selecionar o documento 2 para assinar
+    Wait Until Element Is Visible    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Mapa de Riscos']]//td[10]//input    30
+    Sleep    2
+    Select Checkbox     //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Mapa de Riscos']]//td[10]//input
+
+    # Clicar no botão 'Assinar Documento'
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    30
+    Click Element    xpath=//a[contains(.,'Assinar documento')]
+
+       
+    # E Preencho os campos de assinatura
+    Sleep    2
+    Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    30
+
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    30
+    Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    30
     Input Text    css=input[id="tbxSenhaAcesso"]    PE@654321
 
     # E clico no botão assinar
     Capture Page Screenshot
     Click Element    xpath=//a[text()= 'Assinar']
     Sleep    3
-    SeleniumLibrary.Close Browser
+    Capture Page Screenshot
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # Wait Until Element Is Visible    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input    timeout=30s
+    # Select Checkbox     //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input
+
+    # # Clicar no botão 'Assinar Documento'
+    # Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    30
+    # Click Element    xpath=//a[contains(.,'Assinar documento')]
+
+
+    # # E Preencho os campos de assinatura
+    # Sleep    2
+    # Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    30
+
+    # Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    30
+    # Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
+
+    # Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    30
+    # Input Text    css=input[id="tbxSenhaAcesso"]    PE@654321
+
+    # # E clico no botão assinar
+    # Capture Page Screenshot
+    # Click Element    xpath=//a[text()= 'Assinar']
+    # Sleep    3
+    # SeleniumLibrary.Close Browser
 
 
 Então encaminho a Solicitação de compra para precificação
@@ -1179,10 +1253,10 @@ Então encaminho a Solicitação de compra para precificação
     Switch Window    NEW
 
     Sleep    4
-    Wait Until Element Is Visible    xpath=//input[@value = "Encaminhar"]    timeout=30s
+    Wait Until Element Is Visible    xpath=//input[@value = "Encaminhar"]    30
     Click Element    xpath=//input[@value = "Encaminhar"]
 
-    Wait Until Element Is Visible    xpath=//a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//a[contains(.,'Sim')]    30
     Capture Page Screenshot
     Click Element    xpath=//a[contains(.,'Sim')]
     Sleep    4
@@ -1195,7 +1269,7 @@ E acesso a Lista de SC em Precificação
 
 
    # Clicar no campo Exibir
-   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    30
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
    Sleep    1
    Capture Page Screenshot
@@ -1204,7 +1278,7 @@ E acesso a Lista de SC em Precificação
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='31069']
 
    # Clique no botão Pesquisar
-   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    30
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
@@ -1227,7 +1301,7 @@ Então faço o planejamento da SC para Cotação
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
    # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
 
@@ -1238,7 +1312,7 @@ Então faço o planejamento da SC para Cotação
 
 
     # Seleção Modalidade pregão eletronico
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
     Sleep    1
     Wait Until Element Is Visible    //li[@tabindex='-1'][contains(.,'Cotação')]
@@ -1255,7 +1329,7 @@ Então faço o planejamento da SC para Cotação
 
     
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    2
     Capture Page Screenshot
@@ -1263,13 +1337,13 @@ Então faço o planejamento da SC para Cotação
 
     # Campo justificativa
     # Switch Window
-    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    30
     Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
     Capture Page Screenshot
 
 
     # Clique no botão confirmar justificativa
-    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    30
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    5
     Capture Page Screenshot
@@ -1296,7 +1370,7 @@ Então faço planejamento da SC para Pregão Eletronico - Ambiente Treinamento
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
    # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
 
@@ -1309,7 +1383,7 @@ Então faço planejamento da SC para Pregão Eletronico - Ambiente Treinamento
 
 
     # Seleção Modalidade pregão eletronico
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
     Sleep    1
     Wait Until Element Is Visible    //li[contains(.,'Pregao Eletronico')]
@@ -1334,7 +1408,7 @@ Então faço planejamento da SC para Pregão Eletronico - Ambiente Treinamento
 
     
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    2
     Capture Page Screenshot
@@ -1342,13 +1416,13 @@ Então faço planejamento da SC para Pregão Eletronico - Ambiente Treinamento
 
     # Campo justificativa
     # Switch Window
-    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    30
     Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
     Capture Page Screenshot
 
 
     # Clique no botão confirmar justificativa
-    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    30
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    4
     Capture Page Screenshot
@@ -1375,7 +1449,7 @@ Então faço planejamento da SC para Pregão Eletronico
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
    # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
 
@@ -1388,7 +1462,7 @@ Então faço planejamento da SC para Pregão Eletronico
 
 
     # Seleção Modalidade pregão eletronico
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
     Sleep    1
     Wait Until Element Is Visible    //li[contains(.,'Pregao Eletronico')]
@@ -1413,7 +1487,7 @@ Então faço planejamento da SC para Pregão Eletronico
 
     
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    2
     Capture Page Screenshot
@@ -1421,13 +1495,13 @@ Então faço planejamento da SC para Pregão Eletronico
 
     # Campo justificativa
     # Switch Window
-    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    30
     Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
     Capture Page Screenshot
 
 
     # Clique no botão confirmar justificativa
-    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    30
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    4
     Capture Page Screenshot
@@ -1454,8 +1528,7 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
 
 
    # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
-   Click Element    xpath=//a[contains(.,'Encaminhar')]
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
 
 
     ${all_windows}=    Get Window Handles
@@ -1501,13 +1574,13 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
 
     # Campo justificativa
     # Switch Window
-    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    30
     Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
     Capture Page Screenshot
 
 
     # Clique no botão confirmar justificativa
-    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    30
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    4
     Capture Page Screenshot
@@ -1533,7 +1606,7 @@ Então faço planejamento da SC para compra Direta - Inex. - Solicitante
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
    # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
 
@@ -1568,7 +1641,7 @@ Então faço planejamento da SC para compra Direta - Inex. - Solicitante
 
 
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
@@ -1576,8 +1649,7 @@ Então faço planejamento da SC para compra Direta - Inex. - Solicitante
 
 
     # Campo ustificativa
-    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
-    Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    30
     Capture Page Screenshot
 
 
@@ -1592,7 +1664,7 @@ Então faço planejamento da SC para compra Direta - Inex. - Solicitante
 Então faço planejamento da SC para compra Direta - Inex. - Ordenador
 
    # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
 
@@ -1622,7 +1694,7 @@ Então faço planejamento da SC para compra Direta - Inex. - Ordenador
     
 
     # clique em NÂO para pedido de descentralização
-    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    timeout=30s
+    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    30
     Click Element    //input[@value='0'][contains(@id,'Nao')]
     Capture Page Screenshot
 
@@ -1633,7 +1705,7 @@ Então faço planejamento da SC para compra Direta - Inex. - Ordenador
 
 
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
@@ -1659,7 +1731,7 @@ Então faço planejamento da SC para Concorrencia - Solicitante
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
    # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
 
@@ -1695,7 +1767,7 @@ Então faço planejamento da SC para Concorrencia - Solicitante
 
 
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
@@ -1703,7 +1775,7 @@ Então faço planejamento da SC para Concorrencia - Solicitante
 
 
     # Campo ustificativa
-    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    30
     Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
     Capture Page Screenshot
 
@@ -1719,7 +1791,7 @@ Então faço planejamento da SC para Concorrencia - Solicitante
 Então faço planejamento da SC para Concorrencia - Ordenador
 
    # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
 
@@ -1747,23 +1819,28 @@ Então faço planejamento da SC para Concorrencia - Ordenador
     Click Element    //li[text() = "LICITAÇÃO NA MODALIDADE CONCORRÊNCIA ELETRÔNICA - LEI FEDERAL 14.133/21 - DECRETO 54.142/22."]
     Sleep    1
     
+    # Clique em SIM para ARP
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_rblOpcaoArp_Nao"]    30
+    Click Element    //input[@id="ctl00_ContentPrincipal_rblOpcaoArp_Nao"]
+    Sleep    1
+
 
     # clique em NÂO para pedido de descentralização
-    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    timeout=30s
-    Click Element    //input[@value='0'][contains(@id,'Nao')]
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_rblOpcaoProcesso_Nao"]    30
+    Click Element    //input[@id="ctl00_ContentPrincipal_rblOpcaoProcesso_Nao"]
     Capture Page Screenshot
 
 
     # Clique no botão 'Salvar e Fechar'
     Wait Until Element Is Visible    //input[contains(@value,'Salvar e fechar')]
     Click Element    //input[contains(@value,'Salvar e fechar')]
-    Sleep    2
+    Sleep    3
     Capture Page Screenshot
     Sleep    2
 
     
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    2
     Capture Page Screenshot
@@ -1772,13 +1849,13 @@ Então faço planejamento da SC para Concorrencia - Ordenador
 
 E clico na solicitação da lista
     Select Frame    //iframe[contains(@name,'frmConteudo')]
-    Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    timeout=30s
+    Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    30
     Click Element    //a[text()= "${RESUMO_SC}"]
     Sleep    1
 
 E Clico na aba 'Itens'
     Switch Window    NEW
-    Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Itens')]    30
     Click Element    //a[contains(.,'Itens')]
     Sleep    1
     Capture Page Screenshot
@@ -1805,7 +1882,7 @@ Então defino a natureza de despesa
     Capture Page Screenshot
 
     # Clique no botão 'Salvar e fechar'
-    Wait Until Element Is Visible    //a[contains(.,'Salvar e fechar')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Salvar e fechar')]    30
     Capture Page Screenshot
     Click Element    //a[contains(.,'Salvar e fechar')]
     Sleep    3
@@ -1817,7 +1894,7 @@ E acesso 'Minhas Tarefas'
     Select Frame    //frame[contains(@name,'main')]
 
     # Clique no menu 'Arquivo'
-    Wait Until Element Is Visible    //div[@unselectable='on'][contains(.,'Arquivo')]    timeout=30s
+    Wait Until Element Is Visible    //div[@unselectable='on'][contains(.,'Arquivo')]    30
     Click Element    //div[@unselectable='on'][contains(.,'Arquivo')]
 
     # mouse over em Tarefas
@@ -1826,7 +1903,7 @@ E acesso 'Minhas Tarefas'
     Mouse Over    ${elemento}
 
     # Clique em 'Minhas tarefas'
-    Wait Until Element Is Visible    //td[@class='label'][contains(.,'Minhas tarefas')]    timeout=30s
+    Wait Until Element Is Visible    //td[@class='label'][contains(.,'Minhas tarefas')]    30
     Click Element    //td[@class='label'][contains(.,'Minhas tarefas')]
     Sleep    2
     Capture Page Screenshot
@@ -1857,7 +1934,7 @@ Então Clique no botão Aprovar com orçamento
 
     Switch Window    NEW
     Select Frame    //iframe[contains(@name,'frmDetalheWorkflow')]
-    Wait Until Element Is Visible    //a[contains(.,'Aprovar')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Aprovar')]    30
     Capture Page Screenshot
     Click Element    //a[contains(.,'Aprovar')]
     
@@ -1884,7 +1961,7 @@ E Clico em Ciente
 
     Select Frame    //frame[contains(@name,'main')]
    
-    Wait Until Element Is Visible    //a[contains(.,'Ciente')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Ciente')]    30
     Capture Page Screenshot
     Click Element    //a[contains(.,'Ciente')]
     Sleep    3
@@ -1896,7 +1973,7 @@ Então Clique no botão Aprovar com ordenador
 
     Switch Window    NEW
     Select Frame    //iframe[contains(@name,'frmDetalheWorkflow')]
-    Wait Until Element Is Visible    //a[contains(.,'Aprovar')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Aprovar')]    30
     Capture Page Screenshot
     Click Element    //a[contains(.,'Aprovar')]
 
@@ -1917,7 +1994,7 @@ E acesso a lista de SC centralizada
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
-    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
 
     # mouse over em Solicitação de Compras
@@ -1927,7 +2004,7 @@ E acesso a lista de SC centralizada
     
     # Clique em Lista de Solicitaão de Compras
     Wait Until Element Is Visible    
-    ...    xpath=//td[@class='label'][contains(.,'Solicitações de compra centralizadas')]    timeout=30s
+    ...    xpath=//td[@class='label'][contains(.,'Solicitações de compra centralizadas')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Solicitações de compra centralizadas')]
     Sleep    2
@@ -1939,7 +2016,7 @@ E pesquiso por SC 'Aguardando Liberação'
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
-   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    30
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
    Capture Page Screenshot
 
@@ -1947,7 +2024,7 @@ E pesquiso por SC 'Aguardando Liberação'
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='1010005']
 
    # Clique no botão Pesquisar
-   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    30
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
@@ -1967,7 +2044,7 @@ E pesquiso por SC 'Aguardando Deliberação'
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
-   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    30
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
    Capture Page Screenshot
 
@@ -1975,14 +2052,14 @@ E pesquiso por SC 'Aguardando Deliberação'
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='31084']
 
    # Clique no botão Pesquisar
-   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    30
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
 
 E seleciono a SC e clico
 
-    Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    timeout=30s
+    Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    30
     Click Element    //a[text()= "${RESUMO_SC}"]
     Sleep    1
 
@@ -1994,7 +2071,7 @@ Então faço a deliberação da SC
     Wait Until Element Is Visible    //input[contains(@value,'Deliberar')]
     Click Element    //input[contains(@value,'Deliberar')]
 
-    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_resultadoAnalise_0"]    timeout=30s
+    Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_resultadoAnalise_0"]    30
     Click Element    css=input[id="ctl00_ContentPrincipal_resultadoAnalise_0"]
 
     Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
@@ -2009,7 +2086,7 @@ E acesso a lista de Planejamento de Compras - Ambiente Treinamento
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
-    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
 
     # mouse over em Solicitação de Compras
@@ -2019,7 +2096,7 @@ E acesso a lista de Planejamento de Compras - Ambiente Treinamento
     
     # Clique em planejamento de Compras
     Wait Until Element Is Visible    
-    ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
+    ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
 
@@ -2040,7 +2117,7 @@ E acesso a lista de Planejamento de Compras
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
-    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
 
     # Mouse over em Solicitação de Compras
@@ -2050,7 +2127,7 @@ E acesso a lista de Planejamento de Compras
     
     # Clique em Planejamento de Compras
     Wait Until Element Is Visible    
-    ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
+    ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
 
@@ -2073,43 +2150,7 @@ Ocultar Icones de Chat
     Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
     Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
     Sleep    3
-
-
-
     Capture Page Screenshot
-
-
-
-
-
-    # Select Frame    xpath=//frame[contains(@name,'main')]
-
-    # # Clique em negociação
-    # Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
-    # Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
-
-    # # mouse over em Solicitação de Compras
-    # ${elemento}    Get WebElement    
-    # ...    xpath=//td[@class='label'][contains(.,'Solicitação de compra')]
-    # Mouse Over    ${elemento}
-    
-    # # Clique em planejamento de Compras
-    # Wait Until Element Is Visible    
-    # ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
-    # Click Element    
-    # ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
-
-    # # Ocultar Icones de Chat
-    # Sleep    2
-    # Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
-    # Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
-    # Sleep    1
-    # Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
-    # Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
-    # Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
-    # Sleep    3
-    
-    # Capture Page Screenshot
 
 
 E seleciono o filtro SC em Planejamento - Ordenador
@@ -2118,7 +2159,7 @@ E seleciono o filtro SC em Planejamento - Ordenador
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
-   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    30
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
    Capture Page Screenshot
 
@@ -2126,7 +2167,7 @@ E seleciono o filtro SC em Planejamento - Ordenador
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='31063']
 
    # Clique no botão Pesquisar
-   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    30
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
@@ -2137,7 +2178,6 @@ E navego para a última página
     Log    Número da última página: ${last_page}
     Click Element    ${last_page}
     sleep    2
-    # Wait Until Page Contains Element    xpath=//table[contains(@class, 'listagem')]
 
 E seleciono a SC - Ambiente Treinamento
     ${start_time}    Get Time    epoch
@@ -2187,7 +2227,7 @@ E seleciono a SC
 Então faço o planejamento para Pregão Eletrônico - OPD
 
     # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
     ${all_windows}=    Get Window Handles
@@ -2215,7 +2255,7 @@ Então faço o planejamento para Pregão Eletrônico - OPD
 
 
     # clique em NÂO para pedido de descentralização
-    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    timeout=30s
+    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    30
     Click Element    //input[@value='0'][contains(@id,'Nao')]
     Capture Page Screenshot
 
@@ -2225,20 +2265,20 @@ Então faço o planejamento para Pregão Eletrônico - OPD
 
 
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
     Sleep    1
 
     # Campo justificativa
-    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    30
     Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
     Capture Page Screenshot
 
 
     # Clique no botão confirmar justificativa
-    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    30
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    4
     Capture Page Screenshot
@@ -2249,7 +2289,7 @@ Então faço o planejamento para Pregão Eletrônico - OPD
 Então faço o planejamento para Pregão Eletrônico
 
     # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
     ${all_windows}=    Get Window Handles
@@ -2261,7 +2301,7 @@ Então faço o planejamento para Pregão Eletrônico
 
 
     # Seleção Modalidade pregão eletronico
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
     Sleep    1
     Wait Until Element Is Visible    //li[contains(.,'Pregao Eletronico')]
@@ -2277,7 +2317,7 @@ Então faço o planejamento para Pregão Eletrônico
 
 
     # clique em NÂO para pedido de descentralização
-    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    timeout=30s
+    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    30
     Click Element    //input[@value='0'][contains(@id,'Nao')]
     Capture Page Screenshot
 
@@ -2287,7 +2327,7 @@ Então faço o planejamento para Pregão Eletrônico
 
 
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
@@ -2298,7 +2338,7 @@ Então faço o planejamento para Pregão Eletrônico
 Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Ordenador
  
     # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
     ${all_windows}=    Get Window Handles
@@ -2308,7 +2348,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Orde
 
 
     # Seleção Modalidade Dispensa Emergencial
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
     Sleep    1
     Wait Until Element Is Visible    //li[contains(.,'Dispensa Emergencial')]
@@ -2324,7 +2364,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Orde
 
 
     # clique em NÂO para pedido de descentralização
-    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    timeout=30s
+    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    30
     Click Element    //input[@value='0'][contains(@id,'Nao')]
     Capture Page Screenshot
 
@@ -2335,7 +2375,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Orde
 
 
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
@@ -2362,7 +2402,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
     Run Keyword If    not ${element_found}    Fail    Não foi possível encontrar o elemento dentro do tempo limite.
 
     # Clique no botão Encaminhar
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
    Capture Page Screenshot
 
@@ -2375,7 +2415,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
 
 
     # Seleção Modalidade Dispensa Emergencial
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
     Sleep    1
     Wait Until Element Is Visible    //li[contains(.,'Dispensa Emergencial')]
@@ -2397,7 +2437,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
 
 
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
@@ -2405,7 +2445,7 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
 
 
     # Campo justificativa
-    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    timeout=30s
+    Wait Until Element Is Visible    //textarea[contains(@name,'txtJustificativa')]    30
     Input Text    //textarea[contains(@name,'txtJustificativa')]    Justificativa
     Capture Page Screenshot
 
@@ -2421,7 +2461,7 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
 
     # Clique no botão Encaminhar
     Sleep    2
-   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    timeout=30s
+   Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
     ${all_windows}=    Get Window Handles
@@ -2433,7 +2473,7 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
 
 
     # Seleção Modalidade Dispensa
-    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    timeout=30s
+    Wait Until Element Is Visible    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]    30
     Click Element    //form[1]/div[4]/table[1]/tbody[1]/tr[1]/td[2]/span[1]
     Sleep    1
     Wait Until Element Is Visible    //li[text() = "Dispensa"]
@@ -2449,8 +2489,8 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
     
 
     # clique em NÂO para pedido de descentralização/Centralização
-    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    timeout=30s
-    Click Element    //input[@value='0'][contains(@id,'Nao')]
+    Wait Until Element Is Visible    //input[contains(@id,'ctl00_ContentPrincipal_rblOpcaoProcesso_Nao')]    timeout=30s
+    Click Element    //input[contains(@id,'ctl00_ContentPrincipal_rblOpcaoProcesso_Nao')]
     Capture Page Screenshot
 
 
@@ -2460,7 +2500,7 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
 
 
     # Clique no botão de confirmação
-    Wait Until Element Is Visible    //a[contains(.,'Sim')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
     Sleep    3
     Capture Page Screenshot
@@ -2472,7 +2512,7 @@ E acesso a tela de Solicitação de compras centralizadas
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
-    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
 
     # mouse over em Solicitação de Compras
@@ -2482,7 +2522,7 @@ E acesso a tela de Solicitação de compras centralizadas
     
     # Clique em planejamento de Compras
     Wait Until Element Is Visible    
-    ...    xpath=//td[@class='label'][contains(.,'Solicitações de compra centralizadas')]    timeout=30s
+    ...    xpath=//td[@class='label'][contains(.,'Solicitações de compra centralizadas')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Solicitações de compra centralizadas')]
     # Sleep    2
@@ -2493,7 +2533,7 @@ E acesso a tela de Planejamento de compras
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
-    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
 
     # mouse over em Solicitação de Compras
@@ -2503,7 +2543,7 @@ E acesso a tela de Planejamento de compras
 
     # Clique em planejamento de Compras
     Wait Until Element Is Visible    
-    ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    timeout=30s
+    ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
     Sleep    3
@@ -2525,14 +2565,14 @@ E pesquiso por SC aguradando atribuir comissão
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
-   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    30
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
 
    # Clicar na seleção 'SC'
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='1010003']
 
    # Clique no botão Pesquisar
-   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    30
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
@@ -2541,7 +2581,7 @@ E pesquiso por atribuir comissão com planejador
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
-   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    30
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
    Capture Page Screenshot
 
@@ -2549,7 +2589,7 @@ E pesquiso por atribuir comissão com planejador
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]//*[@value='31508']
 
    # Clique no botão Pesquisar
-   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    timeout=30s
+   Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    30
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
@@ -2600,7 +2640,7 @@ Então atribuo a Comissão Permanente de Licitação
     Click Element    //a[contains(.,'Atribuir comissão')]
 
     # Busca pela comissão no campo 'Descrição'
-    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    timeout=30s
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    30
     Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
     ...    COMISSÃO PERMANENTE DE LICITAÇÃO - 120101
 
@@ -2652,7 +2692,7 @@ Então incluo os itens e agrupo por lote
 
 
     # Item 01 - Selecionar
-    Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[1]    timeout=30s
+    Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[1]    30
     Click Element    (//input[contains(@id,'ckbListProduto')])[1]
 
     # Item 02
@@ -2670,13 +2710,13 @@ Então incluo os itens e agrupo por lote
     Click Element    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]
 
     # Clique do botão agrupar por Lote''
-    Wait Until Element Is Visible    //a[contains(.,'Agrupar por lote')]    timeout=30s
+    Wait Until Element Is Visible    //a[contains(.,'Agrupar por lote')]    30
     Click Element    //a[contains(.,'Agrupar por lote')]
 
     ${all_windows}=    Get Window Handles
  
     Switch Window    NEW
-    Wait Until Element Is Visible    //input[contains(@field,'normal')]    timeout=30s
+    Wait Until Element Is Visible    //input[contains(@field,'normal')]    30
     Input Text    //input[contains(@field,'normal')]    Lote Único
     Capture Page Screenshot
 
@@ -2702,7 +2742,7 @@ Então incluo os itens e agrupo por lote
 
 
     #  Click no botão 'Salvar'
-    Wait Until Element Is Visible    xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]    timeout=30s
+    Wait Until Element Is Visible    xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]    30
     Capture Page Screenshot
     Click Element         xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]
     
@@ -2715,7 +2755,7 @@ Então atribuo a comissão de Compra Direta - TJ
     Click Element    //a[contains(.,'Atribuir comissão')]
 
     # Busca pela comissão no campo 'Descrição'
-    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    timeout=30s
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    30
     Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
     ...    COMISSÃO DE COMPRA DIRETA
 
@@ -2723,7 +2763,7 @@ Então atribuo a comissão de Compra Direta - TJ
     Click Element    //a[contains(.,'Pesquisar')]
 
     # Clique para selecionar a comissão
-    Wait Until Element Is Visible    //input[@value='17|Comissão de Compra Direta - TJPE']    timeout=30s
+    Wait Until Element Is Visible    //input[@value='17|Comissão de Compra Direta - TJPE']    30
     Click Element    //input[@value='17|Comissão de Compra Direta - TJPE']
     Capture Page Screenshot
 
@@ -2739,7 +2779,7 @@ Então atribuo a comissão de Compra Direta - SEDUC
     Click Element    //a[contains(.,'Atribuir comissão')]
 
     # Busca pela comissão no campo 'Descrição'
-    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    timeout=30s
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    30
     Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
     ...    COMISSÃO DE COMPRA DIRETA
 
@@ -2747,7 +2787,7 @@ Então atribuo a comissão de Compra Direta - SEDUC
     Click Element    //a[contains(.,'Pesquisar')]
 
     # Clique para selecionar a comissão
-    Wait Until Element Is Visible    //input[@value='243|COMISSÃO DE COMPRA DIRETA']    timeout=30s
+    Wait Until Element Is Visible    //input[@value='243|COMISSÃO DE COMPRA DIRETA']    30
     Click Element    //input[@value='243|COMISSÃO DE COMPRA DIRETA']
     Capture Page Screenshot
 

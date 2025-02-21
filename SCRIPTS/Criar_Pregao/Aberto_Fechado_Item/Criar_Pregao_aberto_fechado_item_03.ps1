@@ -4,7 +4,7 @@ $EXECDIR = (Get-Location).Path
 $foldersPath = "${EXECDIR}\test\PREGAO\Aberto_fechado_item"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "Pregao_aberto_fechado_item_03.robot"
+$testFileName = "Pregao_A_F_item_03.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 if (Test-Path $testFilePath) {

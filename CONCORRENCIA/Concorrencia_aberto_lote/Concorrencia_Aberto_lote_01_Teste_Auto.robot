@@ -8,7 +8,7 @@ Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_cadastro_pregao.robot
 
 *** Test Cases ***
-CT01 - Criar Pregão - Aba Dados Gerais
+CT01 - Criar Concorrência - Aba Dados Gerais
 
     Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
@@ -24,7 +24,7 @@ CT01 - Criar Pregão - Aba Dados Gerais
     # E mostro a auditoria
 
 
-CT02 - Incluir SC ao Pregão
+CT02 - Incluir SC na Concorrência
 
     Configurar variável Conc_aberto_lote_01
     SC_Lote_Concorrencia_aberto
@@ -39,7 +39,7 @@ CT02 - Incluir SC ao Pregão
     # E mostro a auditoria
 
 
-CT03 - Incluir Documento - Edital
+CT03 - Incluir Documento - Editais
 
     Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema
