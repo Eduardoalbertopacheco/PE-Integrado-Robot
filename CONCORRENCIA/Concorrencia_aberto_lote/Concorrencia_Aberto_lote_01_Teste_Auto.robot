@@ -153,7 +153,7 @@ CT11 - Envio de propostas Fornecedor 02
     Então envio a proposta
 
 
-CT12 - Prorrogar Pregão
+CT12 - Prorrogar Concorrência
 
     Configurar variável Conc_aberto_lote_01
     Dado que acesso o sistema

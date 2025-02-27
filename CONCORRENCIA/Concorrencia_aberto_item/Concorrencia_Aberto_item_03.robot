@@ -28,8 +28,9 @@ CT27 - Adjudicar Pregão
     E faço login com usuário "pregoeiro.120101"
     E acesso a tela de Licitações Eletrônicas
     E acesso todos as licitações da lista
-    E seleciono a licitação da lista
+    E clico na licitação em Adjudicação da lista
     Então adjudico o pregão eletrônico
+
 
 
 CT28 - Homologar Pregão

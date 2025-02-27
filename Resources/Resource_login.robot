@@ -1,3 +1,4 @@
+
 *** Settings ***
 Documentation    Ações e Elementos da Página de Login
 Library    SeleniumLibrary
@@ -49,4 +50,9 @@ E faço login com usuário "${usuario}"
     END
 
     Capture Page Screenshot
+
+    # Fecha o popup de alerta
+    Sleep    2
+    Run Keyword And Ignore Error    Handle Alert    ACCEPT
+    Sleep    2
 

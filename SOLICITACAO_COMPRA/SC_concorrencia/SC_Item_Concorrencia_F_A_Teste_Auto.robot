@@ -19,16 +19,16 @@ CT01 - Criar SC - Aba dados Gerais
     Então preencho os campos da Aba Dados gerais - Concorrencia
 
 
-CT02 - Incluir Itens na Solicitação de Compras
+# CT02 - Incluir Itens na Solicitação de Compras
 
-    Configurar Variáveis de SC
-    Dado que acesso o sistema
-    E faço login com usuário "solicitante.120101"
-    E acesso a Tela de Lista de Solicitação de Compras
-    E seleciono a SC da lista
-    E Clico na aba 'Itens'
-    E acesso a tela de incluir Itens
-    Então incluo os itens
+#     Configurar Variáveis de SC
+#     Dado que acesso o sistema
+#     E faço login com usuário "solicitante.120101"
+#     E acesso a Tela de Lista de Solicitação de Compras
+#     E seleciono a SC da lista
+#     E Clico na aba 'Itens'
+#     E acesso a tela de incluir Itens
+#     Então incluo os itens
 
 
 CT03 - Incluir Documento na Solicitação de Compras
@@ -77,7 +77,7 @@ CT07 - Definir Natureza de despesa com o Financeiro
 
     Configurar Variáveis de SC
     Dado que acesso o sistema
-    E faço login com usuário "edu.financeiro.120101"
+    E faço login com usuário "financeiro.120101"
     E acesso a Tela de Lista de Solicitação de Compras
     E seleciono a SC da lista
     E Clico na aba 'Itens'

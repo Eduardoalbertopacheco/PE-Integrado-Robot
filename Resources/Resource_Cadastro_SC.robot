@@ -1,3 +1,4 @@
+
 *** Settings ***
 Documentation    Ações e Elementos do Módulo de Cadastro de Solicitação de Compras
 Library          SeleniumLibrary
@@ -416,19 +417,28 @@ Então preencho os campos da Aba Dados gerais - Pregão
     Click Element    //*[@id="_cORDEM_COMPRA_x_nCdCriterioPlanejamento"]//*[@value='426']
     Capture Page Screenshot
 
-    # Numero do PCA
+    # Numero do PCA - Lupa
     Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-search')]    20
     Click Element    //span[contains(@class,'k-icon k-i-search')]
     Sleep    3
 
-    # Selecionar o PCA - Lupa
-    Wait Until Element Is Visible    //input[@name='ckbItem']    20
+    # Procurar o PCA
+    Wait Until Element Is Visible    //input[contains(@name,'sNrListaPca')]    20
+    Input Text    //input[contains(@name,'sNrListaPca')]    PCA.001./2032
+
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    10
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
+
+    # Selecionar o PCA
+    Wait Until Element Is Visible    //input[@name='ckbItem']    10
     Click Element    //input[@name='ckbItem']
 
     # Confirmar PCA
     Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    20
     Click Element    //a[contains(.,'Confirmar')]
     Sleep    2
+
 
     # Incluir DFD
     Wait Until Element Is Visible    //a[contains(.,'Incluir DFD')]    20
@@ -441,6 +451,11 @@ Então preencho os campos da Aba Dados gerais - Pregão
     # Confirmar DFD
     Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
     Click Element    //a[contains(.,'Confirmar')]
+    Sleep    1
+
+    # Declaro que o PCA e os DFDs vinculados a esta SC estão publicados no PNCP - SIM
+    Wait Until Element Is Visible    //input[@name='ckbDfdPca']    20
+    Click Element    //input[@name='ckbDfdPca']
     Sleep    1
 
 
@@ -478,8 +493,8 @@ Então preencho os campos da Aba Dados gerais - Pregão
     
     Wait Until Element Is Visible    ${EMPRESA}    30
     Click Element    ${EMPRESA}
-    Wait Until Element Is Visible    ${EMPRESA_SEDC}    30
-    Click Element    ${EMPRESA_SEDC}
+    Wait Until Element Is Visible    ${EMPRESA_SAD}    30
+    Click Element    ${EMPRESA_SAD}
     Sleep    1
     
     Wait Until Element Is Visible    ${GESTAO}     30
@@ -514,15 +529,15 @@ Então preencho os campos da Aba Dados gerais - Pregão
     Switch Window    NEW
 
     Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
-    Input Text    ${INPUT_TIPO}    SECRETARIA EXECUTIVA DE DEFESA CIVIL	
+    Input Text    ${INPUT_TIPO}    SECRETARIA DE ADMINISTRAÇÃO	
     Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
     Click Element    //*[@id="ctl00_btnPesquisar"] 
     Sleep    1 
 
     Wait Until Element Is Visible    
-    ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]    30
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']    30
     Click Element    
-    ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']
     Click Element    
     ...    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Sleep    1
@@ -1860,6 +1875,26 @@ E Clico na aba 'Itens'
     Sleep    1
     Capture Page Screenshot
 
+Então agrupo os item por Lote
+
+   # Clique para marcar o checkbox Todos
+    Wait Until Element Is Visible    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]    timeout=30s
+    Click Element    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]
+
+    # Clique do botão agrupar por Lote''
+    Wait Until Element Is Visible    //a[contains(.,'Agrupar por lote')]    30
+    Click Element    //a[contains(.,'Agrupar por lote')]
+
+    ${all_windows}=    Get Window Handles
+ 
+    Switch Window    NEW
+    Wait Until Element Is Visible    //input[contains(@field,'normal')]    30
+    Input Text    //input[contains(@field,'normal')]    Lote Único
+    Capture Page Screenshot
+
+    Click Element    //input[contains(@value,'Salvar')]
+    Sleep    3    
+
 
 Então defino a natureza de despesa
 
@@ -2136,14 +2171,9 @@ E acesso a lista de Planejamento de Compras
     ${icone_existe}    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//img[contains(@class,'open-launcher')]    5
     Run Keyword If    ${icone_existe}    Ocultar Icones de Chat
 
-    # # Ocultar Icones de Chat
-    # Sleep    3
-    # Run Keyword If    Element Exists    ${ELEMENT_EXIST}    Ocultar Icones de Chat
-
-
 Ocultar Icones de Chat
     Sleep    2
-    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
+    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    15
     Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
     Sleep    1
     Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
@@ -2316,20 +2346,30 @@ Então faço o planejamento para Pregão Eletrônico
     Click Element    //li[contains(.,'LICITAÇÃO NA MODALIDADE PREGÃO ELETRÔNICO - LEI FEDERAL 14.133/21 - DECRETO 54.142/22')]
 
 
+    # Clique em SIM para ARP
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_rblOpcaoArp_Nao"]    30
+    Click Element    //input[@id="ctl00_ContentPrincipal_rblOpcaoArp_Nao"]
+    Sleep    1
+
+
     # clique em NÂO para pedido de descentralização
-    Wait Until Element Is Visible    //input[@value='0'][contains(@id,'Nao')]    30
-    Click Element    //input[@value='0'][contains(@id,'Nao')]
+    Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_rblOpcaoProcesso_Nao"]    30
+    Click Element    //input[@id="ctl00_ContentPrincipal_rblOpcaoProcesso_Nao"]
     Capture Page Screenshot
 
+
+    # Clique no botão 'Salvar e Fechar'
     Wait Until Element Is Visible    //input[contains(@value,'Salvar e fechar')]
     Click Element    //input[contains(@value,'Salvar e fechar')]
+    Sleep    3
+    Capture Page Screenshot
     Sleep    2
 
-
+    
     # Clique no botão de confirmação
     Wait Until Element Is Visible    //a[contains(.,'Sim')]    30
     Click Element    //a[contains(.,'Sim')]
-    Sleep    3
+    Sleep    2
     Capture Page Screenshot
     Sleep    1
     SeleniumLibrary.Close Browser

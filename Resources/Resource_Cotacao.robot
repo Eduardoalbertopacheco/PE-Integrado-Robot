@@ -1,3 +1,4 @@
+
 *** Settings ***
 Documentation    Recursos, Ações e Elementos do Módulo de Cotação
 Library          SeleniumLibrary

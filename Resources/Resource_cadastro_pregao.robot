@@ -1,3 +1,4 @@
+
 *** Settings ***
 Documentation    Ações e Elementos do Módulo de Pregão e Concorrencia Eletrônica
 Library          SeleniumLibrary
@@ -20,7 +21,7 @@ ${ITEM_LIST_LOTE}    //ul[@id='dtgPesquisaAgrupada_ctl01_dtgPesquisaAgrupadaIten
 ${ITEM_TEXT}      12V 3AH
 ${ITEM_TEXT_CATETER}   NÃO SE APLICA
 ${ITEM}        ${ITEM_LIST}//li[text()="12V 3AH"]
-${LOTE_CATETER}    ${ITEM_LIST_LOTE}//li[text()="NENHUMA MARCA REGISTRADA"]
+${LOTE_CATETER}    ${ITEM_LIST_LOTE}//li[text()="NÃO SE APLICA"]
 ${ITEM_CATETER}    ${ITEM_LIST}//li[text()="NÃO SE APLICA"]
 ${ITEM_LOTE}    ${ITEM_LIST_LOTE}//li[text()="12V 3AH"]
 ${CAMPO_DT_INICIAL_PROP}       //input[contains(@name,'tDtInicialProposta')]
@@ -293,9 +294,6 @@ E vejo a Auditoria
 
 E seleciono a modalidade para Pregão Eletrônico
 
-    #Seleção do campo 'Modalidade'
-    # Switch Window    NEW
-    # Maximize Browser Window
     Wait Until Element Is Visible    ${MODALIDADE}    30
     Click Element    ${MODALIDADE}
     Wait Until Element Is Visible    ${MODAL_PREGAO}    30
@@ -1069,8 +1067,9 @@ E seleciono a licitação para agendamento
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
+
     # Clique na SC selecionada
-    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[10]//input    timeout=30s
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[10]//input    30
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td[contains(text(), '${OBJETO_PREGAO}')]]//td[10]//input
     Sleep    4
 
@@ -1169,6 +1168,22 @@ E seleciono todos os pregões
    Wait Until Element Is Visible    xpath=//input[@value= "Pesquisar"]    30
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
+
+
+    # Ocultar Icones de Chat, se existirem
+    ${icone_existe}    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//img[contains(@class,'open-launcher')]    10
+    Run Keyword If    ${icone_existe}    Ocultar Icones de Chat
+
+Ocultar Icones de Chat
+    Sleep    2
+    Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    15
+    Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
+    Sleep    1
+    Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
+    Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
+    Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
+    Sleep    3
+    Capture Page Screenshot
 
    
 E seleciono não para lei 123 e confirmo
@@ -1357,8 +1372,13 @@ E seleciono a licitação da lista
     Wait Until Element Is Visible    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]    20
     Click Element    //td[@id="ctl00_pesquisaDataGrid_dtgPesquisa_gridTd"]//tr[td[4][contains(text(), '${OBJETO_PREGAO}')]]//td[2]
     Sleep    4
-    Capture Page Screenshot
-   
+
+    
+    Run Keyword And Ignore Error    Handle Alert    ACCEPT
+    Sleep    2
+
+    # Handle Alert    ACCEPT
+    # Sleep    2
 
 Então abro as proposta
 
@@ -1382,6 +1402,7 @@ Então abro as proposta
     Sleep    2
     Handle Alert    ACCEPT
     Sleep    3
+    SeleniumLibrary.Close Browser
 
 
 Então inicio a disputa
@@ -2001,8 +2022,8 @@ Então não acato a intenção de recurso
     Capture Page Screenshot
 
 
-    Wait Until Element Is Visible    //a[contains(.,'A B S TRANSPORTES E TURISMO LTDA EPP')]    30s
-    Click Element    //a[contains(.,'A B S TRANSPORTES E TURISMO LTDA EPP')]
+    Wait Until Element Is Visible    //a[contains(.,'C. MARTINS COMERCIAL LTDA - ME')]    30s
+    Click Element    //a[contains(.,'C. MARTINS COMERCIAL LTDA - ME')]
 
     Switch Window    NEW
 
@@ -2018,6 +2039,8 @@ Então não acato a intenção de recurso
     Wait Until Element Is Visible    //input[@value='Salvar e fechar']    30s
     Click Element    //input[@value='Salvar e fechar']
     Sleep    2
+    SeleniumLibrary.Close Browser
+
 
 Então gravo o valor do lote
     Wait Until Element Is Visible    ${FRAME_NEGOCIACAO}    30

@@ -7,7 +7,6 @@ Library          OperatingSystem
 Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_cadastro_pregao.robot
      
-
 *** Test Cases ***
 CT01 - Criar Pregão - Aba Dados Gerais
 
