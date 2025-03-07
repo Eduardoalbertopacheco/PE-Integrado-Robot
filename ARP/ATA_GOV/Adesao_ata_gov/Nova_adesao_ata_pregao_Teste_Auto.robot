@@ -8,8 +8,7 @@ Resource        ../../../Resources/Resource_ARP.robot
 
 *** Test Cases ***
 
-CT01 - Solicitar Adesão de Ata de Compra Direta
-    [Tags]    solicitar_adesao
+CT01 - Solicitar Adesão de Ata de Pregão
     Dado que acesso o sistema
     E faço login com usuário "Solicitante.390601"
     E acesso a lista de Atas de Registro de preços
@@ -21,7 +20,6 @@ CT01 - Solicitar Adesão de Ata de Compra Direta
 
 
 CT02 - Selecionar itens para Adesão
-    [Tags]    selecionar_itens
     Dado que acesso o sistema
     E faço login com usuário "Solicitante.390601"
     E acesso a lista de todas as solicitações de Adesão
@@ -31,7 +29,6 @@ CT02 - Selecionar itens para Adesão
 
 
 CT03 - Alterar valor de referência dos itens
-    [Tags]    alterar_valor_referencia
     Dado que acesso o sistema
     E faço login com usuário "Solicitante.390601"
     E acesso a lista de todas as solicitações de Adesão
@@ -41,7 +38,6 @@ CT03 - Alterar valor de referência dos itens
 
 
 CT04 - Incluir e assinar documentos
-    [Tags]    assinar_documento
     Dado que acesso o sistema
     E faço login com usuário "Solicitante.390601"
     E acesso a lista de todas as solicitações de Adesão
@@ -51,7 +47,6 @@ CT04 - Incluir e assinar documentos
 
 
  CT05 - Encaminhar Adesao
-    [Tags]    encaminhar_adesao
     Dado que acesso o sistema
     E faço login com usuário "Solicitante.390601"
     E acesso a lista de todas as solicitações de Adesão
@@ -61,7 +56,6 @@ CT04 - Incluir e assinar documentos
 
 
 CT06 - Concluir análise com Gestor de Ata
-    [Tags]    Concluir_analise
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de todas as solicitações de Adesão
@@ -70,7 +64,6 @@ CT06 - Concluir análise com Gestor de Ata
 
 
 CT07 - Deliberar e Assianr Documento com Gestor de Ata
-    [Tags]    Deliberar_adesao_gestor_ata
     Dado que acesso o sistema
     E faço login com usuário "edu.gestorata.110402"
     E acesso a lista de todas as solicitações de Adesão
@@ -80,7 +73,6 @@ CT07 - Deliberar e Assianr Documento com Gestor de Ata
 
 
 CT08 - Deliberar com Autoridade Competente
-    [Tags]    Deliberar_autoridade_central
     Dado que acesso o sistema
     E faço login com usuário "autoridade.110402"
     E acesso a lista de todas as solicitações de Adesão
@@ -90,7 +82,6 @@ CT08 - Deliberar com Autoridade Competente
 
 
 CT09 - Deliberar com Orçamento
-    [Tags]    Deliberar_adesao
     Dado que acesso o sistema
     E faço login com usuário "orcamento.390601"
     E acesso a lista de todas as solicitações de Adesão
@@ -100,7 +91,6 @@ CT09 - Deliberar com Orçamento
     
 
 CT10 - Deliberar com Ordenador
-    [Tags]    Deliberar_adesao_ordenador
     Dado que acesso o sistema
     E faço login com usuário "ordenador.390601"
     E acesso a lista de todas as solicitações de Adesão

@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation        Fluxo Feliz - Contrato   
+Documentation        Cenário: Criar um Contrato Novo   
 Library          SeleniumLibrary
 Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_Contrato.robot

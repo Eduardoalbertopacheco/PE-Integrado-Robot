@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation    Cenário: Criar um contrato Legado não relaizado no PE-Itegrado
+Documentation    Cenário: Criar um contrato Legado relaizado no PE-Itegrado - ARP
 Resource        ../../Resources/Resource_login.robot
 Resource        ../../Resources/Resource_Contrato.robot
 
