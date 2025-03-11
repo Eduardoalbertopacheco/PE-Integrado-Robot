@@ -9,7 +9,6 @@ Resource        ../../Resources/Resource_Cadastro_SC.robot
 *** Test Cases ***
 
 CT01 - Criar SC - Aba dados Gerais
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.120101"
@@ -19,7 +18,6 @@ CT01 - Criar SC - Aba dados Gerais
  
 
 CT02 - Incluir Itens na Solicitação de Compras
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.120101"
@@ -31,7 +29,6 @@ CT02 - Incluir Itens na Solicitação de Compras
 
 
 CT03 - Incluir Documento na Solicitação de Compras
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.120101"
@@ -42,7 +39,6 @@ CT03 - Incluir Documento na Solicitação de Compras
 
 
 CT04 - Assinar documento
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.120101"
@@ -53,7 +49,6 @@ CT04 - Assinar documento
 
 
 CT05 - Encaminhar SC para precificação
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.120101"
@@ -63,7 +58,6 @@ CT05 - Encaminhar SC para precificação
     
 
 CT06 - Planejamento com Solicitante
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "solicitante.120101"
@@ -73,7 +67,6 @@ CT06 - Planejamento com Solicitante
 
 
 CT07 - Definir Natureza de despesa com o Financeiro
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "financeiro.120101"
@@ -84,7 +77,6 @@ CT07 - Definir Natureza de despesa com o Financeiro
 
 
 CT08 - Aprovação orçamentária
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "orcamento.120101"
@@ -94,7 +86,6 @@ CT08 - Aprovação orçamentária
     
 
 CT09 - Aprovação com o Ordenador
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "ordenador.120101"
@@ -105,7 +96,6 @@ CT09 - Aprovação com o Ordenador
 
 
 CT10 - Liberar SC com autoridade central
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "autoridadecentral"
@@ -115,7 +105,6 @@ CT10 - Liberar SC com autoridade central
 
 
 CT11 - Deliberar SC com autoridade da UG
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "autoridade.120101"
@@ -126,7 +115,6 @@ CT11 - Deliberar SC com autoridade da UG
 
 
 CT12 - Planejamento com Ordenador
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "planejador.120101"
@@ -137,7 +125,6 @@ CT12 - Planejamento com Ordenador
 
 
 CT13 - Atribuir Comissão
-
     Configurar Variáveis de SC
     Dado que acesso o sistema
     E faço login com usuário "planejador.120101"

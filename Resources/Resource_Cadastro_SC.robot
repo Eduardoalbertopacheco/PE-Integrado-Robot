@@ -1099,7 +1099,6 @@ E acesso a tela de incluir Itens
 
 Então incluo os itens
   
-    # Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000241
     Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000268
     Click Element    //*[@id="ctl00_ContentPrincipal_btnPesquisarProduto"]
     
@@ -1115,15 +1114,13 @@ Então incluo os itens
 
     # Implementar aqui a quantidade do item
     Wait Until Element Is Visible    xpath=//input[@title='0,00']   30
-    Clear Text    xpath=//input[@title='0,00']
     Sleep    2
-    Input Text    xpath=//input[@title='0,00']    1000
-    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
-    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
-    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
-    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
-    # Double Click Element    xpath=(//span[contains(@unselectable,'on')])[27]
-    
+
+    FOR    ${i}    IN RANGE    5
+    Double Click Element    xpath=(//span[@class='k-icon k-i-arrow-n'])[1]
+    END
+
+
     #  Click no botão 'Salvar'
     Wait Until Element Is Visible    xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]    30
     Capture Page Screenshot

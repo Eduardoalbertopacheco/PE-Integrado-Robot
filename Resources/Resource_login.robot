@@ -17,7 +17,6 @@ ${HOMOLOTREI}    http://www.treinapeintegrado.pe.gov.br/core/default.aspx?
 *** Keywords ***
 
 Dado que acesso o sistema
-
     SeleniumLibrary.Open Browser    ${URL}    browser=chrome
     Maximize Browser Window
     Capture Page Screenshot
@@ -29,7 +28,6 @@ Dado que acesso o sistema no PE Treinamento
 
 
 E faço login com usuário "${usuario}"
-
     [Arguments]    ${senha1}=PE@654321    ${senha2}=PE@123456
     Wait Until Element Is Visible    css=input[placeholder='Login']    10
     Input Text        css=input[placeholder='Login']    ${usuario}

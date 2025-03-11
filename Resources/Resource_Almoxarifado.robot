@@ -130,7 +130,6 @@ Então incluo um requisitante
 
 
 Então incluo o Endereço de Estoque
-
     Switch Window    
     Select Frame    //frame[contains(@name,'main')]
 
@@ -167,7 +166,6 @@ Então incluo o Endereço de Estoque
 
 
 Então incluo o Endereço de Entrada
-
     Switch Window    
     Select Frame    //frame[contains(@name,'main')]
 
@@ -401,7 +399,6 @@ E vejo a Auditoria do almoxarifado
 
 
 E pesquiso pelo Almoxarifado
-
     Select Frame    //iframe[contains(@name,'frmConteudo')]
 
     Wait Until Element Is Visible
@@ -417,21 +414,19 @@ E pesquiso pelo Almoxarifado
 
 
 E clico no Almoxarifado da lista
- 
     Wait Until Element Is Visible     (//table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[text()='${NOME_ALMOX}']]//td[3]//a)[last()]
     Click Element    (//table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[text()='${NOME_ALMOX}']]//td[3]//a)[last()]
 
 
 E clico em Itens do Almoxarifado
-
     Scroll Element Into View    (//table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[text()='${NOME_ALMOX}']]//td[8]//a)[last()]
     Sleep    2
     Wait Until Element Is Visible    (//table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[text()='${NOME_ALMOX}']]//td[8]//a)[last()]
     Sleep    1
     Click Element    (//table[@id="ctl00_ContentPrincipal_dtgPesquisa"]//tr[td/a[text()='${NOME_ALMOX}']]//td[8]//a)[last()]
 
-Então incluo os Itens no Almoxarifado
 
+Então incluo os Itens no Almoxarifado
     FOR    ${i}    IN RANGE    2
         ${codigo_produto}=    Set Variable    ${CODIGOS_PRODUTOS}[${i}]
         Sleep    2
@@ -481,6 +476,7 @@ Então incluo os Itens no Almoxarifado
         Sleep    2
     END
 
+
 E acesso a lista de Recebimento
     Select Frame    xpath=//frame[contains(@name,'main')]
 
@@ -498,7 +494,6 @@ E acesso a lista de Recebimento
 
 
 Então incluo um novo Recebimento    
-
     [Arguments]    ${date}
     ${year}        Evaluate    '${date}'.split('/')[0]
     ${month}       Evaluate    int('${date}'.split('/')[1])
@@ -639,7 +634,6 @@ E clico no recebimento da lista
 
 
 Então incluo os Itens para recebimento
-
     Switch Window    
     Select Frame    //frame[contains(@name,'main')]
 
@@ -792,7 +786,6 @@ Então incluo a nota fiscal
 
 
 Então respondo a avaliação de conformidade
-
     Switch Window
     Select Frame    //frame[contains(@name,'main')]
     Select Frame    //iframe[@class='ifrmConteudo']
@@ -908,7 +901,6 @@ Então aprovo o recebimento definitivo
 
 
 E seleciono no filtro exibir todos os produtos
-
     Switch Window    
     Select Frame    //frame[contains(@name,'main')]
     Select Frame    //iframe[@name='frmConteudo']
@@ -928,7 +920,6 @@ E seleciono no filtro exibir todos os produtos
 
 
 Então movimento os itens para estoque
-
     # mover itens 1 para Estoque
     FOR    ${i}    IN RANGE    2
 
