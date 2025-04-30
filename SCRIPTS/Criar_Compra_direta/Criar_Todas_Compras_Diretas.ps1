@@ -1,7 +1,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\COMPRA_DIRETA"
+$foldersPath = "${EXECDIR}\test\CRIAR_COMPRAS_DIRETAS"
 
 if (Test-Path $foldersPath) {
     # Usar -Recurse para buscar arquivos em todas as subpastas

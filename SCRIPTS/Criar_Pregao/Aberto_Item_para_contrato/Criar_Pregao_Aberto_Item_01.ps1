@@ -2,7 +2,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\PREGAO\Aberto_item_para_contrato"
+$foldersPath = "${EXECDIR}\test\CRIAR_PREGAO\Aberto_item_para_contrato"
 
 # Nome do arquivo de teste
 $testFileName = "Pregao_Aberto_item_01_contrato_Teste_Auto.robot"

@@ -1,7 +1,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\COMPRA_DIRETA\Inexgibilidade"
+$foldersPath = "${EXECDIR}\test\CRIAR_COMPRAS_DIRETAS\Inexgibilidade"
 
 # Especifique o nome do arquivo .robot que você quer rodar
 $testFileName = "Compra_direta_inex_item_Teste_Auto.robot"

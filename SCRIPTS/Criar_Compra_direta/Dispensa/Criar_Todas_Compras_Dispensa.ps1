@@ -1,7 +1,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\COMPRA_DIRETA\Dispensa"
+$foldersPath = "${EXECDIR}\test\CRIAR_COMPRAS_DIRETAS\Dispensa"
 
 if (Test-Path $foldersPath) {
     $testFiles = Get-ChildItem -Path "$foldersPath\*.robot"

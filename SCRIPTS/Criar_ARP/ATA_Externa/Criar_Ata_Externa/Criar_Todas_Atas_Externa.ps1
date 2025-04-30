@@ -1,6 +1,6 @@
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\ATA_Externa\Criar_ata_externa"
+$foldersPath = "${EXECDIR}\test\CRIAR_ATA_Externa\Criar_ata_externa"
 
 if (Test-Path $foldersPath) {
     $testFiles = Get-ChildItem -Path "$foldersPath\*.robot"

@@ -16,7 +16,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\SOLICITACAO_COMPRA\SC_compra_direta"
+$foldersPath = "${EXECDIR}\test\CRIAR_SOLICITACAO_COMPRAS\SC_compra_direta"
 
 # Nome do arquivo de teste
 $testFileName = "SC_Lote_Compra_Inex_Teste_Auto.robot"

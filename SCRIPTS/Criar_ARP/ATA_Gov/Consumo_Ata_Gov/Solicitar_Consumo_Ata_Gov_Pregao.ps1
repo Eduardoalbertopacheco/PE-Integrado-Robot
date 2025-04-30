@@ -1,7 +1,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\ARP\ATA_GOV\Consumo_ata_gov"
+$foldersPath = "${EXECDIR}\test\CRIAR_ARP\ATA_GOV\Consumo_ata_gov"
 
 # Especifique o nome do arquivo .robot que você quer rodar
 $testFileName = "Novo_consumo_ata_gov_pregao_Teste_Auto.robot"

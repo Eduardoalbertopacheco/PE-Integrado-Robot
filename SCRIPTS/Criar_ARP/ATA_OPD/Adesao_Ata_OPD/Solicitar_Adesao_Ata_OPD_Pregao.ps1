@@ -1,7 +1,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\ARP\ATA_OPD\Adesao_ata_OPD"
+$foldersPath = "${EXECDIR}\test\CRIAR_ARP\ATA_OPD\Adesao_ata_OPD"
 
 # Especifique o nome do arquivo .robot que você quer rodar
 $testFileName = "Nova_adesao_ata_opd_compra_direta_Teste_Auto.robot"

@@ -1,7 +1,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\COMPRA_DIRETA\Inexgibilidade"
+$foldersPath = "${EXECDIR}\test\CRIAR_COMPRAS_DIRETAS\Inexgibilidade"
 
 if (Test-Path $foldersPath) {
     $testFiles = Get-ChildItem -Path "$foldersPath\*.robot"

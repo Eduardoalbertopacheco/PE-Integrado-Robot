@@ -130,7 +130,7 @@ Configurar Variável de Adesão
     Set Global Variable    ${OBJETO_ATA}    Compra_direta_disp_item_Teste_Auto    
 
 Usar SC_Item_Compra_Disp_Emerg
-    Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_Emerg_Teste_Auto
+    Set Global Variable    ${RESUMO_SC}    Teste_SC_Item_Compra_Disp_Emerg_Teste_Auto
 
 Usar SC_Item_Compra_Disp_OPD
     Set Global Variable    ${RESUMO_SC}    SC_Item_Compra_Disp_OPD_Teste_Auto

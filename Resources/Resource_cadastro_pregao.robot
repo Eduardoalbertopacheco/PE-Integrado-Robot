@@ -316,7 +316,7 @@ E Seleciono o Critério de Pregão Eletrônico
     # Seleção do campo 'Critério'
     Wait Until Element Is Visible    ${CRITERIO}    30
     Click Element    ${CRITERIO}
-    Capture Page Screenshot
+    Sleep    1
     Click Element    ${CRIT_PREGAO_LEI_14_133}
 
 
@@ -379,7 +379,7 @@ E Seleciono o Modo de Disputa Fechado-Aberto
 
     Wait Until Element Is Visible    ${MODO_DISPUTA}    30
     Click Element    ${MODO_DISPUTA}
-    Capture Page Screenshot
+    Sleep    1
     Click Element    ${MODO_DISPUTA_FECHADO_ABERTO}
 
     # Input do campo Prazo de habilitação
@@ -465,17 +465,16 @@ E insiro a Comissão e Salvo
     Sleep    1
     Wait Until Element Is Visible    //input[@field='normal'][contains(@id,'sDsProduto')]    30
     Input Text    //input[@field='normal'][contains(@id,'sDsProduto')]
-    ...    COMISSÃO PERMANENTE DE LICITAÇÃO - 120101
+    ...    teste comissão permanente matheus
 
     # Clique no botão pesquisar
     Click Element    //input[contains(@value,'Pesquisar')]
 
     # Clique para selecionar a comissão
-    Wait Until Element Is Visible    //input[contains(@value,'169')]    30
+    Wait Until Element Is Visible    //input[contains(@value,'353')]    30
     Sleep    1
-    Click Element    //input[contains(@value,'169')]
+    Click Element    //input[contains(@value,'353')]
     Capture Page Screenshot
-
 
     # clique do botão 'Confirma' da tela de inserir comissão
     Click Element    //input[contains(@value,'Confirmar')]
@@ -516,6 +515,7 @@ Então incluo a SC Por Item ao Pregão
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
     SeleniumLibrary.Close Browser
+
 
 Então incluo a SC Por Lote ao Pregão - OPD
 
@@ -626,6 +626,7 @@ Então incluo a SC Por Lote ao Pregão
     # Clique no botão de Incluir SC
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
+
 
 E acesso a tela de 'Documentos do Processo'
 

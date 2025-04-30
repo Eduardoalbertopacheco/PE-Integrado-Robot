@@ -1,22 +1,7 @@
 
 
-# $EXECDIR = (Get-Location).Path
-# $foldersPath = "${EXECDIR}\test\CONCORRENCIA\Concorrencia_aberto_fechado_lote"
-
-# # Especifique o nome do arquivo .robot que você quer rodar
-# $testFileName = "Concorrencia_A_F_lote_02.robot"
-# $testFilePath = "${foldersPath}\$testFileName"
-
-# if (Test-Path $testFilePath) {
-#     Write-Host "Executando teste: $testFilePath"
-#     robot --exitonfailure -d ./Relatorio/Concorrencia/Aberto_Fechado_Lote/Conc_aberto_fechado_Lote_02 $testFilePath
-# } else {
-#     Write-Host "O arquivo .robot não existe: $testFilePath"
-# }
-
-
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\CONCORRENCIA\Concorrencia_aberto_fechado_lote"
+$foldersPath = "${EXECDIR}\test\CRIAR_CONCORRENCIAS\Concorrencia_aberto_fechado_lote"
 
 # Nome do arquivo de teste
 $testFileName = "Concorrencia_A_F_lote_02.robot"

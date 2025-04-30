@@ -2,6 +2,7 @@
 *** Settings ***
 Documentation    Ações e Elementos da Página de Login
 Library    SeleniumLibrary
+Library    Browser
 
 
 *** Variables ***
@@ -21,6 +22,12 @@ Dado que acesso o sistema
     Maximize Browser Window
     Capture Page Screenshot
 
+    # Usando a Browser
+    # New Browser    headless=${FALSE}    browser=chromium
+    # New Context    viewport={'width': 1920, 'height': 1080}
+    # New Page    ${URL}
+
+
 Dado que acesso o sistema no PE Treinamento
     SeleniumLibrary.Open Browser    ${HOMOLOTREI}    browser=chrome
     Maximize Browser Window
@@ -28,6 +35,7 @@ Dado que acesso o sistema no PE Treinamento
 
 
 E faço login com usuário "${usuario}"
+
     [Arguments]    ${senha1}=PE@654321    ${senha2}=PE@123456
     Wait Until Element Is Visible    css=input[placeholder='Login']    10
     Input Text        css=input[placeholder='Login']    ${usuario}
@@ -50,7 +58,7 @@ E faço login com usuário "${usuario}"
     Capture Page Screenshot
 
     # Fecha o popup de alerta
-    Sleep    2
+    Sleep    1
     Run Keyword And Ignore Error    Handle Alert    ACCEPT
-    Sleep    2
+    Sleep    1
 

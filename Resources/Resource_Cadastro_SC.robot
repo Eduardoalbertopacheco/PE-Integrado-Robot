@@ -52,7 +52,7 @@ E acesso a Tela de Lista de Solicitação de Compras
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
-    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
 
     # mouse over em Solicitação de Compras
@@ -62,22 +62,21 @@ E acesso a Tela de Lista de Solicitação de Compras
     
     # Clique em Lista de Solicitaão de Compras
     Wait Until Element Is Visible    
-    ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]    timeout=30s
+    ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]
-    Sleep    4
-    Capture Page Screenshot
+    Sleep    1
 
 
 
 Então preencho os campos da Aba Dados gerais - TJ
 
-    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
     Click Element    ${PRIORIDADE}
     Sleep    2
     Click Element    ${PRIORIDADE_MEDIA}
     
-    Wait Until Element Is Visible    ${TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TIPO}    30
     Click Element    ${TIPO}
     Sleep    2
     Click Element    ${TIPO_AMS}
@@ -91,31 +90,31 @@ Então preencho os campos da Aba Dados gerais - TJ
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
-    Wait Until Element Is Visible    ${INPUT_TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
     Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
     Click Element    //*[@id="tdPesquisar"]
     Click Element    //input[@value="ANIMAIS VIVOS◘50"]
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Switch Window    ${Janela01}
     
-    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA}    30
     Click Element    ${EMPRESA}
-    Wait Until Element Is Visible    ${EMPRESA_TJ}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA_TJ}    30
     Click Element    ${EMPRESA_TJ}
     
-    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Wait Until Element Is Visible    ${GESTAO}     30
     Click Element    ${GESTAO} 
     Click Element    ${GESTAO_AD}
     
-    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Wait Until Element Is Visible    ${APLICACAO}     30
     Click Element    ${APLICACAO} 
     Click Element    ${APLICACAO_EI}
     Capture Page Screenshot
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    30
     Click Element    ${LUPA_GRUPO_COMPRA}
 
     ${Janelas}    Get Window Handles
@@ -123,13 +122,13 @@ Então preencho os campos da Aba Dados gerais - TJ
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
     Input Text    ${INPUT_TIPO}    TRIBUNAL DE JUSTIÇA	
-    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    timeout=30s
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
     Click Element    //*[@id="ctl00_btnPesquisar"]  
 
     Wait Until Element Is Visible    
-    ...    //input[@value="Grupo de Compras Padrão - TRIBUNAL DE JUSTIÇA◘2"]    timeout=30s
+    ...    //input[@value="Grupo de Compras Padrão - TRIBUNAL DE JUSTIÇA◘2"]    30
     Click Element    
     ...    //input[@value="Grupo de Compras Padrão - TRIBUNAL DE JUSTIÇA◘2"]
     Click Element    
@@ -147,14 +146,12 @@ Então preencho os campos da Aba Dados gerais - TJ
 
     
 Então preencho os campos da Aba Dados gerais da SC
-
-
-    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
     Click Element    ${PRIORIDADE}
     Sleep    1
     Click Element    ${PRIORIDADE_MEDIA}
     
-    Wait Until Element Is Visible    ${TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TIPO}    30
     Click Element    ${TIPO}
     Sleep    1
     Click Element    ${TIPO_AMS}
@@ -168,24 +165,24 @@ Então preencho os campos da Aba Dados gerais da SC
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
-    Wait Until Element Is Visible    ${INPUT_TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
     Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
     Click Element    //*[@id="tdPesquisar"]
     Click Element    //input[@value="ANIMAIS VIVOS◘50"]
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Switch Window    ${Janela01}
     
-    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA}    30
     Click Element    ${EMPRESA}
-    Wait Until Element Is Visible    ${EMPRESA_SEDC}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA_SEDC}    30
     Click Element    ${EMPRESA_SEDC}
     
-    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Wait Until Element Is Visible    ${GESTAO}     30
     Click Element    ${GESTAO} 
     Click Element    ${GESTAO_AD}
     
-    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Wait Until Element Is Visible    ${APLICACAO}     30
     Click Element    ${APLICACAO}
     Sleep    1
     Click Element    ${APLICACAO_EI}
@@ -193,7 +190,7 @@ Então preencho os campos da Aba Dados gerais da SC
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    30
     Sleep    1
     Click Element    ${LUPA_GRUPO_COMPRA}
 
@@ -202,13 +199,13 @@ Então preencho os campos da Aba Dados gerais da SC
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
     Input Text    ${INPUT_TIPO}    SECRETARIA EXECUTIVA DE DEFESA CIVIL	
-    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    timeout=30s
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
     Click Element    //*[@id="ctl00_btnPesquisar"]  
 
     Wait Until Element Is Visible    
-    ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]    timeout=30s
+    ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]    30
     Click Element    
     ...    //input[@value="Grupo de Compras Padrão - SECRETARIA EXECUTIVA DE DEFESA CIVIL◘46"]
     Click Element    
@@ -235,13 +232,12 @@ Então preencho os campos da Aba Dados gerais da SC
 
 
 Então preencho os campos da Aba Dados gerais - SEDUC
-
-    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
     Click Element    ${PRIORIDADE}
     Sleep    1
     Click Element    ${PRIORIDADE_MEDIA}
     
-    Wait Until Element Is Visible    ${TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TIPO}    30
     Click Element    ${TIPO}
     Sleep    1
     Click Element    ${TIPO_AMS}
@@ -255,24 +251,24 @@ Então preencho os campos da Aba Dados gerais - SEDUC
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
-    Wait Until Element Is Visible    ${INPUT_TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
     Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
     Click Element    //*[@id="tdPesquisar"]
     Click Element    //input[@value="ANIMAIS VIVOS◘50"]
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Switch Window    ${Janela01}
     
-    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA}    30
     Click Element    ${EMPRESA}
-    Wait Until Element Is Visible    ${EMPRESA_SEDUC}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA_SEDUC}    30
     Click Element    ${EMPRESA_SEDUC}
     
-    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Wait Until Element Is Visible    ${GESTAO}     30
     Click Element    ${GESTAO} 
     Click Element    ${GESTAO_AD}
     
-    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Wait Until Element Is Visible    ${APLICACAO}     30
     Click Element    ${APLICACAO}
     Sleep    1
     Click Element    ${APLICACAO_EI}
@@ -280,7 +276,7 @@ Então preencho os campos da Aba Dados gerais - SEDUC
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    30
     Sleep    1
     Click Element    ${LUPA_GRUPO_COMPRA}
 
@@ -289,13 +285,13 @@ Então preencho os campos da Aba Dados gerais - SEDUC
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
     Input Text    ${INPUT_TIPO}    SECRETARIA DE EDUCAÇÃO	
-    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    timeout=30s
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
     Click Element    //*[@id="ctl00_btnPesquisar"]  
 
     Wait Until Element Is Visible    
-    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE EDUCAÇÃO◘98']   timeout=30s
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE EDUCAÇÃO◘98']   30
     Click Element    
     ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE EDUCAÇÃO◘98']
     Click Element    
@@ -313,14 +309,12 @@ Então preencho os campos da Aba Dados gerais - SEDUC
 
 
 Então preencho os campos da Aba Dados gerais - SAD
-
-    Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
+    Wait Until Element Is Visible    ${PRIORIDADE}    30
     Click Element    ${PRIORIDADE}
     Sleep    1
     Click Element    ${PRIORIDADE_MEDIA}
     
-    Wait Until Element Is Visible    ${TIPO}    timeout=30s
-    Click Element    ${TIPO}
+    Wait Until Element Is Visible    ${TIPO}    30
     Sleep    1
     Click Element    ${TIPO_AMS}
     
@@ -333,24 +327,24 @@ Então preencho os campos da Aba Dados gerais - SAD
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    timeout=30s
-    Wait Until Element Is Visible    ${INPUT_TIPO}    timeout=30s
+    Wait Until Element Is Visible    ${TITULO_TIPO_OBEJTO}    30
+    Wait Until Element Is Visible    ${INPUT_TIPO}    30
     Input Text    ${INPUT_TIPO}    ANIMAIS VIVOS	
     Click Element    //*[@id="tdPesquisar"]
     Click Element    //input[@value="ANIMAIS VIVOS◘50"]
     Click Element    //*[@name="ctl00$conteudoBotoes$btnConfirmar"]
     Switch Window    ${Janela01}
     
-    Wait Until Element Is Visible    ${EMPRESA}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA}    30
     Click Element    ${EMPRESA}
-    Wait Until Element Is Visible    ${EMPRESA_SAD}    timeout=30s
+    Wait Until Element Is Visible    ${EMPRESA_SAD}    30
     Click Element    ${EMPRESA_SAD}
     
-    Wait Until Element Is Visible    ${GESTAO}     timeout=30s
+    Wait Until Element Is Visible    ${GESTAO}     30
     Click Element    ${GESTAO} 
     Click Element    ${GESTAO_AD}
     
-    Wait Until Element Is Visible    ${APLICACAO}     timeout=30s
+    Wait Until Element Is Visible    ${APLICACAO}     30
     Click Element    ${APLICACAO}
     Sleep    1
     Click Element    ${APLICACAO_EI}
@@ -358,7 +352,7 @@ Então preencho os campos da Aba Dados gerais - SAD
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
-    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    timeout=30s
+    Wait Until Element Is Visible    ${LUPA_GRUPO_COMPRA}    t30
     Sleep    1
     Click Element    ${LUPA_GRUPO_COMPRA}
 
@@ -367,13 +361,13 @@ Então preencho os campos da Aba Dados gerais - SAD
 
     Switch Window    NEW
 
-    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    timeout=30s
+    Wait Until Element Is Visible    //*[.='Selecionar grupo de compra']    30
     Input Text    ${INPUT_TIPO}    SECRETARIA DE ADMINISTRAÇÃO	
-    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    timeout=30s
+    Wait Until Element Is Visible    //*[@id="tdPesquisar"]    30
     Click Element    //*[@id="ctl00_btnPesquisar"]  
 
     Wait Until Element Is Visible    
-    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']   timeout=30s
+    ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']   30
     Click Element    
     ...    //input[@value='Grupo de Compras Padrão - SECRETARIA DE ADMINISTRAÇÃO◘17']
     Click Element    
@@ -388,8 +382,8 @@ Então preencho os campos da Aba Dados gerais - SAD
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
 
-E clico em 'Incluir'
 
+E clico em 'Incluir'
     Select Frame    //iframe[@name='frmConteudo']
     Wait Until Element Is Visible    //a[contains(.,'Incluir')]    20
     Click Element    //a[contains(.,'Incluir')]
@@ -397,9 +391,8 @@ E clico em 'Incluir'
     Sleep    2
     Capture Page Screenshot
 
+
 Então preencho os campos da Aba Dados gerais - Pregão
-
-
     # Modalidade Pregão
     Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
     Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='5']
@@ -551,8 +544,8 @@ Então preencho os campos da Aba Dados gerais - Pregão
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
 
-Então preencho os campos da Aba Dados gerais - Concorrencia
 
+Então preencho os campos da Aba Dados gerais - Concorrencia
     # Modalidade
     Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
     Click Element    ${CONCORRENCIA}
@@ -613,7 +606,6 @@ Então preencho os campos da Aba Dados gerais - Concorrencia
     Wait Until Element Is Visible    //input[@name='ckbDfdPca']    20
     Click Element    //input[@name='ckbDfdPca']
     Sleep    1
-
 
 
     Wait Until Element Is Visible    ${PRIORIDADE}    30
@@ -710,8 +702,6 @@ Então preencho os campos da Aba Dados gerais - Concorrencia
 
 
 Então preencho os campos da Aba Dados gerais - Disp_Emerg
-
-
     # Modalidade
     Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
     Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='7']
@@ -730,9 +720,6 @@ Então preencho os campos da Aba Dados gerais - Disp_Emerg
     # Click Element    //li[text() = "LEI 14.133/2021, ART. 75, VIII - DISPENSA POR EMERGÊNCIA OU DE CALAMIDADE PÚBLICA"]
     Sleep    1
     Capture Page Screenshot
-
-    # Numero do PCA
-
 
 
     Wait Until Element Is Visible    ${PRIORIDADE}    30
@@ -827,8 +814,8 @@ Então preencho os campos da Aba Dados gerais - Disp_Emerg
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
 
-Então preencho os campos da Aba Dados gerais - Inex
 
+Então preencho os campos da Aba Dados gerais - Inex
     # Modalidade
     Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
     Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='2']
@@ -971,8 +958,8 @@ Então preencho os campos da Aba Dados gerais - Inex
     Handle Alert    ACCEPT
     SeleniumLibrary.Close Browser
 
-Então preencho os campos da Aba Dados gerais
 
+Então preencho os campos da Aba Dados gerais
     # Modalidade
     Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
     Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='1']
@@ -992,10 +979,7 @@ Então preencho os campos da Aba Dados gerais
     Sleep    1
     Capture Page Screenshot
 
-    # Numero do PCA
-
-
-
+ 
     Wait Until Element Is Visible    ${PRIORIDADE}    30
     Click Element    ${PRIORIDADE}
     Sleep    1
@@ -1007,7 +991,6 @@ Então preencho os campos da Aba Dados gerais
     Click Element    ${TIPO_AMS}
     Sleep    1
     
-   
     Input Text    ${CAMPO_RESUMO}    ${RESUMO_SC}
 
     Sleep    1
@@ -1111,13 +1094,12 @@ Então incluo os itens
     Click Element    //*[@id="ctl00_ContentButtom_btnConfirmar"]
     Sleep    3
 
-
     # Implementar aqui a quantidade do item
     Wait Until Element Is Visible    xpath=//input[@title='0,00']   30
     Sleep    2
 
     FOR    ${i}    IN RANGE    5
-    Double Click Element    xpath=(//span[@class='k-icon k-i-arrow-n'])[1]
+        Double Click Element    xpath=(//span[@class='k-icon k-i-arrow-n'])[1]
     END
 
 
@@ -1170,7 +1152,6 @@ Então incluo o documento do tipo Termo Referencia
 
 
 Então assino o documento    
-
    # Selecionar o documento para assinar
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
     Wait Until Element Is Visible    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input    30
@@ -1225,43 +1206,7 @@ Então assino o documento
 
 
 
-
-
-
-
-
-
-
-
-
-
-    # Wait Until Element Is Visible    //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input    timeout=30s
-    # Select Checkbox     //table[@id="ctl00_conteudoPagina_objListagemDeDocumentos_dtgPesquisaNovo"]//tr[td/a[text()='Termo de Referência']]//td[10]//input
-
-    # # Clicar no botão 'Assinar Documento'
-    # Wait Until Element Is Visible    xpath=//a[contains(.,'Assinar documento')]    30
-    # Click Element    xpath=//a[contains(.,'Assinar documento')]
-
-
-    # # E Preencho os campos de assinatura
-    # Sleep    2
-    # Wait Until Element Is Visible    //span[text()="Assinatura Eletrônica"]    30
-
-    # Wait Until Element Is Visible    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    30
-    # Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
-
-    # Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    30
-    # Input Text    css=input[id="tbxSenhaAcesso"]    PE@654321
-
-    # # E clico no botão assinar
-    # Capture Page Screenshot
-    # Click Element    xpath=//a[text()= 'Assinar']
-    # Sleep    3
-    # SeleniumLibrary.Close Browser
-
-
 Então encaminho a Solicitação de compra para precificação
-
     Switch Window    NEW
 
     Sleep    4
@@ -1278,8 +1223,6 @@ Então encaminho a Solicitação de compra para precificação
 E acesso a Lista de SC em Precificação
     Capture Page Screenshot
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
-
-
    # Clicar no campo Exibir
    Wait Until Element Is Visible    xpath=//select[@id= "ctl00_ddlVisoes"]    30
    Click Element    xpath=//select[@id= "ctl00_ddlVisoes"]
@@ -1296,7 +1239,6 @@ E acesso a Lista de SC em Precificação
 
 
 Então faço o planejamento da SC para Cotação
-
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -1363,9 +1305,8 @@ Então faço o planejamento da SC para Cotação
     SeleniumLibrary.Close Browser
 
 
+
 Então faço planejamento da SC para Pregão Eletronico - Ambiente Treinamento
-
-
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -1444,7 +1385,6 @@ Então faço planejamento da SC para Pregão Eletronico - Ambiente Treinamento
 
 
 Então faço planejamento da SC para Pregão Eletronico
-
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -1522,7 +1462,6 @@ Então faço planejamento da SC para Pregão Eletronico
 
 
 Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
-
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -1601,7 +1540,6 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Solicitante
 
 
 Então faço planejamento da SC para compra Direta - Inex. - Solicitante
-
     ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -1674,7 +1612,6 @@ Então faço planejamento da SC para compra Direta - Inex. - Solicitante
 
 
 Então faço planejamento da SC para compra Direta - Inex. - Ordenador
-
    # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
@@ -1726,7 +1663,6 @@ Então faço planejamento da SC para compra Direta - Inex. - Ordenador
 
 
 Então faço planejamento da SC para Concorrencia - Solicitante
-
     ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -1801,7 +1737,6 @@ Então faço planejamento da SC para Concorrencia - Solicitante
 
 
 Então faço planejamento da SC para Concorrencia - Ordenador
-
    # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
@@ -1859,11 +1794,13 @@ Então faço planejamento da SC para Concorrencia - Ordenador
     Sleep    1
     SeleniumLibrary.Close Browser
 
+
 E clico na solicitação da lista
     Select Frame    //iframe[contains(@name,'frmConteudo')]
     Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    30
     Click Element    //a[text()= "${RESUMO_SC}"]
     Sleep    1
+
 
 E Clico na aba 'Itens'
     Switch Window    NEW
@@ -1872,8 +1809,8 @@ E Clico na aba 'Itens'
     Sleep    1
     Capture Page Screenshot
 
-Então agrupo os item por Lote
 
+Então agrupo os item por Lote
    # Clique para marcar o checkbox Todos
     Wait Until Element Is Visible    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]    timeout=30s
     Click Element    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]
@@ -1894,7 +1831,6 @@ Então agrupo os item por Lote
 
 
 Então defino a natureza de despesa
-
     ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    (//span[contains(.,'Selecione')])[3]
     WHILE    ${element_found} == False
         Execute JavaScript    window.location.reload()
@@ -1922,7 +1858,6 @@ Então defino a natureza de despesa
     
 
 E acesso 'Minhas Tarefas'
-
     Select Frame    //frame[contains(@name,'main')]
 
     # Clique no menu 'Arquivo'
@@ -1942,7 +1877,6 @@ E acesso 'Minhas Tarefas'
 
 
 E seleciono a SC para aprovação
-   
     ${start_time}    Get Time    epoch
     Select Frame    //iframe[contains(@name,'frmConteudo')]
     FOR    ${i}    IN RANGE    ${timeout}
@@ -1963,7 +1897,6 @@ E seleciono a SC para aprovação
 
 
 Então Clique no botão Aprovar com orçamento
-
     Switch Window    NEW
     Select Frame    //iframe[contains(@name,'frmDetalheWorkflow')]
     Wait Until Element Is Visible    //a[contains(.,'Aprovar')]    30
@@ -1985,7 +1918,6 @@ Então Clique no botão Aprovar com orçamento
 
 
 E Clico em Ciente
-
     ${all_windows}=    Get Window Handles
     ${second_window}=    Set Variable    ${all_windows}[0]
 
@@ -2002,7 +1934,6 @@ E Clico em Ciente
 
 
 Então Clique no botão Aprovar com ordenador
-
     Switch Window    NEW
     Select Frame    //iframe[contains(@name,'frmDetalheWorkflow')]
     Wait Until Element Is Visible    //a[contains(.,'Aprovar')]    30
@@ -2024,7 +1955,6 @@ Então Clique no botão Aprovar com ordenador
 
 E acesso a lista de SC centralizada
     Select Frame    xpath=//frame[contains(@name,'main')]
-
     # Clique em negociação
     Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
@@ -2044,7 +1974,6 @@ E acesso a lista de SC centralizada
 
 
 E pesquiso por SC 'Aguardando Liberação'
-
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
@@ -2062,7 +1991,6 @@ E pesquiso por SC 'Aguardando Liberação'
 
 
 Então seleciono a SC e aprovo
-
     Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input    timeout=30s
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
     Capture Page Screenshot
@@ -2072,7 +2000,6 @@ Então seleciono a SC e aprovo
 
 
 E pesquiso por SC 'Aguardando Deliberação'
-
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
    # Clicar no campo Exibir
@@ -2090,13 +2017,12 @@ E pesquiso por SC 'Aguardando Deliberação'
 
 
 E seleciono a SC e clico
-
     Wait Until Element Is Visible    //a[text()= "${RESUMO_SC}"]    30
     Click Element    //a[text()= "${RESUMO_SC}"]
     Sleep    1
 
-Então faço a deliberação da SC
 
+Então faço a deliberação da SC
     Switch Window    NEW
     Capture Page Screenshot
 
@@ -2113,8 +2039,8 @@ Então faço a deliberação da SC
     Sleep    3
     SeleniumLibrary.Close Browser
 
-E acesso a lista de Planejamento de Compras - Ambiente Treinamento
 
+E acesso a lista de Planejamento de Compras - Ambiente Treinamento
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
@@ -2131,21 +2057,10 @@ E acesso a lista de Planejamento de Compras - Ambiente Treinamento
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
-
-    # Ocultar Icones de Chat
-    # Sleep    2
-    # Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
-    # Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
-    # Sleep    1
-    # Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
-    # Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
-    # Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
     Sleep    3
 
 
-
 E acesso a lista de Planejamento de Compras
-
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
@@ -2168,6 +2083,7 @@ E acesso a lista de Planejamento de Compras
     ${icone_existe}    Run Keyword And Return Status    Wait Until Element Is Visible    xpath=//img[contains(@class,'open-launcher')]    5
     Run Keyword If    ${icone_existe}    Ocultar Icones de Chat
 
+
 Ocultar Icones de Chat
     Sleep    2
     Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    15
@@ -2181,7 +2097,6 @@ Ocultar Icones de Chat
 
 
 E seleciono o filtro SC em Planejamento - Ordenador
-
     Capture Page Screenshot
     Select Frame    xpath=//iframe[contains(@name,'frmConteudo')]
 
@@ -2198,13 +2113,14 @@ E seleciono o filtro SC em Planejamento - Ordenador
    Click Element    xpath=//input[@value= "Pesquisar"]
    Capture Page Screenshot
 
-E navego para a última página
 
+E navego para a última página
     ${page_numbers} =    Get WebElements    //a[@class='aPagina']
     ${last_page} =       Set Variable    //a[@class='aPagina'][last()]
     Log    Número da última página: ${last_page}
     Click Element    ${last_page}
     sleep    2
+
 
 E seleciono a SC - Ambiente Treinamento
     ${start_time}    Get Time    epoch
@@ -2232,7 +2148,6 @@ E seleciono a SC - Ambiente Treinamento
 
 
 E seleciono a SC
-
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         Sleep    ${interval}
@@ -2252,7 +2167,6 @@ E seleciono a SC
     
 
 Então faço o planejamento para Pregão Eletrônico - OPD
-
     # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
@@ -2314,8 +2228,7 @@ Então faço o planejamento para Pregão Eletrônico - OPD
  
 
 Então faço o planejamento para Pregão Eletrônico
-
-    # Clique no botão Encaminhar
+   # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
 
@@ -2373,7 +2286,6 @@ Então faço o planejamento para Pregão Eletrônico
 
 
 Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Ordenador
- 
     # Clique no botão Encaminhar
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
    Click Element    xpath=//a[contains(.,'Encaminhar')]
@@ -2422,7 +2334,6 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Orde
 
 
 Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Solicitante
-
     ${start_time}    Get Time    epoch 
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -2494,8 +2405,8 @@ Então faço planejamento da SC para compra Direta - Dispensa Emergencial - Soli
     Capture Page Screenshot
     SeleniumLibrary.Close Browser
 
-Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
 
+Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
     # Clique no botão Encaminhar
     Sleep    2
    Wait Until Element Is Visible    xpath=//a[contains(.,'Encaminhar')]    30
@@ -2547,7 +2458,6 @@ Então faço planejamento da SC para Compra Direta - Dispensa - Ordenador
 
 E acesso a tela de Solicitação de compras centralizadas
     Select Frame    xpath=//frame[contains(@name,'main')]
-
     # Clique em negociação
     Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
@@ -2568,7 +2478,6 @@ E acesso a tela de Solicitação de compras centralizadas
 
 E acesso a tela de Planejamento de compras
     Select Frame    xpath=//frame[contains(@name,'main')]
-
     # Clique em negociação
     Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
@@ -2584,17 +2493,6 @@ E acesso a tela de Planejamento de compras
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Planejamento de compra')]
     Sleep    3
-
-    # Ocultar Icones de Chat
-    # Sleep    2
-    # Wait Until Element Is Visible    //img[contains(@class,'open-launcher')]    timeout=10
-    # Execute Javascript    document.querySelector("img.open-launcher").style.display = 'none';
-    # Sleep    1
-    # Wait Until Element Is Visible    //div[@class='tooltip-body'][contains(.,'Olá! Como posso ajudar?')]
-    # Execute Javascript    document.querySelector("div.tooltip-body").style.display = 'none';
-    # Execute JavaScript    document.querySelector('.launcher').style.display = 'none';
-    # Sleep    1
-    
     Capture Page Screenshot
 
 
@@ -2632,7 +2530,6 @@ E pesquiso por atribuir comissão com planejador
 
 
 E seleciono a SC para atribuir comissão com Gestor Central
-
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
         ${element_found} =    Run Keyword And Return Status    Element Should Be Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[9]//input
@@ -2651,8 +2548,6 @@ E seleciono a SC para atribuir comissão com Gestor Central
 
  
 E seleciono a SC para atribuir comissão com Planejador
-
-    
     ${start_time}    Get Time    epoch
     FOR    ${i}    IN RANGE    ${timeout}
 
@@ -2672,21 +2567,20 @@ E seleciono a SC para atribuir comissão com Planejador
 
 
 Então atribuo a Comissão Permanente de Licitação
-    
     # Clique no botão 'atribuir comissão'
     Click Element    //a[contains(.,'Atribuir comissão')]
 
     # Busca pela comissão no campo 'Descrição'
     Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    30
     Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
-    ...    COMISSÃO PERMANENTE DE LICITAÇÃO - 120101
+    ...    	teste comissão permanente matheus
 
     # Clique no botão pesquisar
     Click Element    //a[contains(.,'Pesquisar')]
 
     # Clique para selecionar a comissão
-    Wait Until Element Is Visible    //input[@value='169|COMISSÃO PERMANENTE DE LICITAÇÃO - 120101']    timeout=30s
-    Click Element    //input[@value='169|COMISSÃO PERMANENTE DE LICITAÇÃO - 120101']
+    Wait Until Element Is Visible    //input[@value='353|teste comissão permanente matheus']    timeout=30s
+    Click Element    //input[@value='353|teste comissão permanente matheus']
     Capture Page Screenshot
 
 
@@ -2700,25 +2594,23 @@ E clico na SC da lista no Homol03
     Sleep    1
     # Select Frame    //iframe[contains(@name,'frmConteudo')]
     Sleep    2
-    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a    timeout=30s
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a    30
     Sleep    2
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a
     Sleep    2
-
 
 
 E seleciono a SC da lista
     Sleep    1
     Select Frame    //iframe[contains(@name,'frmConteudo')]
     Sleep    2
-    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a    timeout=30s
+    Wait Until Element Is Visible    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a    30
     Sleep    2
     Click Element    //div[@id='ctl00_pesquisaDataGrid_dtgPesquisa_divScroll']//table//tr[td/a[text()='${RESUMO_SC}']]//td[2]//a
     Sleep    2
  
 
 Então incluo os itens e agrupo por lote
-    
     #Campo Descrição
     # Wait Until Element Is Visible    //input[contains(@name,'txtDescricao')]    timeout=30s
     Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000268    15
@@ -2741,7 +2633,6 @@ Então incluo os itens e agrupo por lote
     # Confirmar Item
     Click Element    //*[@id="ctl00_ContentButtom_btnConfirmar"]
 
-
     # Clique para marcar o checkbox Todos
     Wait Until Element Is Visible    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]    timeout=30s
     Click Element    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]
@@ -2762,15 +2653,24 @@ Então incluo os itens e agrupo por lote
 
    ${second_window}=    Set Variable    ${all_windows}[1]
     Switch Window    ${second_window}
+    Sleep    1
 
     # Implementar aqui a quantidade do item
     # Item 01
-    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]    timeout=30s
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]   30
+    Sleep    2
+
+    FOR    ${i}    IN RANGE    5
+        Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    END
+
+
+    # Wait Until Element Is Visible    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]    30
+    # Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    # Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    # Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    # Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+    # Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
 
     # Item 02
     # Wait Until Element Is Visible    //table[1]/tbody[1]/tr[5]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]    timeout=30s
@@ -2786,8 +2686,8 @@ Então incluo os itens e agrupo por lote
     Sleep    4
     SeleniumLibrary.Close Browser
 
-Então atribuo a comissão de Compra Direta - TJ
 
+Então atribuo a comissão de Compra Direta - TJ
     # Clique no botão 'atribuir comissão'
     Click Element    //a[contains(.,'Atribuir comissão')]
 
@@ -2810,8 +2710,8 @@ Então atribuo a comissão de Compra Direta - TJ
     Sleep    3
     SeleniumLibrary.Close Browser
 
+
 Então atribuo a comissão de Compra Direta - SEDUC
-   
     # Clique no botão 'atribuir comissão'
     Click Element    //a[contains(.,'Atribuir comissão')]
 
@@ -2842,7 +2742,6 @@ E clico em Atribuir Comissão
 
 
 Então atribuo a comissão de Compra Direta
-
     # Busca pela comissão no campo 'Descrição'
     Wait Until Element Is Visible    //input[@id="ctl00_ContentPrincipal_tbxComissao"]    30
     Input Text    //input[@id="ctl00_ContentPrincipal_tbxComissao"]
