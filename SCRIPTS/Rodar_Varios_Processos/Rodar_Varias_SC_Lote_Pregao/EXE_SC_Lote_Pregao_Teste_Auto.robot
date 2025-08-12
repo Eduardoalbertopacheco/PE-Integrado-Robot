@@ -10,7 +10,7 @@ ${HOMOLOG03}    http://www.treinapeintegrado.pe.gov.br/default.aspx
 
 *** Keywords ***
 Dado que acesso o sistema no honologue 03
-    SeleniumLibrary.Open Browser    ${HOMOLOG03}    browser=chrome
+    SeleniumLibrary.Open Browser    ${URL01}    browser=chrome
     Maximize Browser Window
     Capture Page Screenshot
 
@@ -20,14 +20,14 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     Configurar Variáveis de SC
     
     # Abrir navegador
-    SeleniumLibrary.Open Browser    ${HOMOLOG03}    browser=chrome
+    SeleniumLibrary.Open Browser    ${URL01}    browser=chrome
     Maximize Browser Window
     Sleep    2
     Capture Page Screenshot
 
     #E faço login com usuário "${usuario}"
     Input Text        css=input[placeholder='Login']    solicitante.120101
-    Input Text        css=input[placeholder='Senha']    PE@123456
+    Input Text        css=input[placeholder='Senha']    PE@654321
     Capture Page Screenshot
     Click Element     css=input[type='submit']
     Sleep    3
@@ -37,7 +37,7 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     Select Frame    xpath=//frame[contains(@name,'main')]
 
     # Clique em negociação
-    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    timeout=30s
+    Wait Until Element Is Visible    xpath=//div[@unselectable='on'][contains(.,'Negociação')]    30
     Click Element    xpath=//div[@unselectable='on'][contains(.,'Negociação')]
 
     # mouse over em Solicitação de Compras
@@ -47,7 +47,7 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     
     # Clique em Lista de Solicitaão de Compras
     Wait Until Element Is Visible    
-    ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]    timeout=30s
+    ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]    30
     Click Element    
     ...    xpath=//td[@class='label'][contains(.,'Lista de solicitações de compra')]
     Sleep    2
@@ -60,8 +60,69 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     Click Element    //a[contains(.,'Incluir')]
     Sleep    2
 
-
     Switch Window    NEW
+    Sleep    2
+
+    # Modalidade Pregão
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='5']
+    Sleep    1
+
+    # Tipo
+    Wait Until Element Is Visible    ${TIPO}    30
+    Click Element    ${TIPO}
+    Click Element    ${TIPO_AMS}
+    Sleep    1
+
+    # Seleção critério  - Pregão LEI 14.133/2021,
+    Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdCriterioPlanejamento']    30
+    Sleep    1
+    Click Element    //*[@id="_cORDEM_COMPRA_x_nCdCriterioPlanejamento"]//*[@value='426']
+    Capture Page Screenshot
+
+    # Numero do PCA - Lupa
+    Wait Until Element Is Visible    //span[contains(@class,'k-icon k-i-search')]    20
+    Click Element    //span[contains(@class,'k-icon k-i-search')]
+    Sleep    3
+
+    # Procurar o PCA
+    Wait Until Element Is Visible    //input[contains(@name,'sNrListaPca')]    20
+    Input Text    //input[contains(@name,'sNrListaPca')]    PCA.001./2032
+
+    Wait Until Element Is Visible    //a[contains(.,'Pesquisar')]    10
+    Click Element    //a[contains(.,'Pesquisar')]
+    Sleep    2
+
+    # Selecionar o PCA
+    Wait Until Element Is Visible    //input[@name='ckbItem']    10
+    Click Element    //input[@name='ckbItem']
+
+    # Confirmar PCA
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    20
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    2
+
+
+    # Incluir DFD
+    Wait Until Element Is Visible    //a[contains(.,'Incluir DFD')]    20
+    Click Element    //a[contains(.,'Incluir DFD')]
+
+    # Selecionar DFD
+    Wait Until Element Is Visible    (//input[@id='ckbItem'])[1]    20
+    Click Element    (//input[@id='ckbItem'])[1]
+
+    # Confirmar DFD
+    Wait Until Element Is Visible    //a[contains(.,'Confirmar')]    10
+    Click Element    //a[contains(.,'Confirmar')]
+    Sleep    1
+
+    # Declaro que o PCA e os DFDs vinculados a esta SC estão publicados no PNCP - SIM
+    Wait Until Element Is Visible    //input[@name='ckbDfdPca']    20
+    Click Element    //input[@name='ckbDfdPca']
+    Sleep    1
+
+
+    # Switch Window    NEW
     Wait Until Element Is Visible    ${PRIORIDADE}    timeout=30s
     Click Element    ${PRIORIDADE}
     Sleep    1
@@ -101,6 +162,12 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     Click Element    ${APLICACAO}
     Sleep    1
     Click Element    ${APLICACAO_EI}
+
+    # Origem SC - PE
+    Wait Until Element Is Visible    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']    20
+    Click Element    //input[@id='_cORDEM_COMPRA_x_nStOrigemSC_0']
+    Capture Page Screenshot
+    Sleep    1
     
     Execute JavaScript    window.scrollTo(0, document.body.scrollHeight)
 
@@ -137,23 +204,23 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     Wait Until Element Is Visible    //a[contains(.,'Itens')]    timeout=30s
     Click Element    //a[contains(.,'Itens')]
 
-    Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
-    Click Element    //a[contains(.,'Incluir')]
-    Sleep    5
+    # Wait Until Element Is Visible     //a[contains(.,'Incluir')]    timeout=30s
+    # Click Element    //a[contains(.,'Incluir')]
+    # Sleep    5
     
-    #Campo Código do produto
-    Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000268    15
-    #Pesquisar Item
-    Click Element    //a[contains(@onclick,'AtualizarPesquisaProduto()')]
+    # #Campo Código do produto
+    # Input Text     //*[@name="ctl00$ContentPrincipal$txtCodigo"]    1000268    15
+    # #Pesquisar Item
+    # Click Element    //a[contains(@onclick,'AtualizarPesquisaProduto()')]
 
 
-    # Item 01 - Selecionar
-    Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[1]    timeout=30s
-    Click Element    (//input[contains(@id,'ckbListProduto')])[1]
+    # # Item 01 - Selecionar
+    # Wait Until Element Is Visible    (//input[contains(@id,'ckbListProduto')])[1]    timeout=30s
+    # Click Element    (//input[contains(@id,'ckbListProduto')])[1]
    
 
-    # Confirmar Item
-    Click Element    //*[@id="ctl00_ContentButtom_btnConfirmar"]
+    # # Confirmar Item
+    # Click Element    //*[@id="ctl00_ContentButtom_btnConfirmar"]
 
     # Clique para marcar o checkbox Todos
     Wait Until Element Is Visible    //table[3]/tbody[1]/tr[1]/td[1]/div[1]/div[4]/div[1]/input[1]    timeout=30s
@@ -170,28 +237,29 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     Input Text    //input[contains(@field,'normal')]    Lote Único
 
     Click Element    //input[contains(@value,'Salvar')]
-    Sleep    3
+    Sleep    4
 
    ${second_window}=    Set Variable    ${all_windows}[1]
     Switch Window    ${second_window}
 
-    # Implementar aqui a quantidade do item
-    # Item 01
-    Wait Until Element Is Visible    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]    timeout=30s
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
-    Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+#     # Implementar aqui a quantidade do item
+#     # Item 01
+#     Wait Until Element Is Visible    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]    timeout=30s
+#     Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+#     Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+#     Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+#     Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
+#     Double Click Element    //table[1]/tbody[1]/tr[3]/td[1]/span[2]/span[1]/span[1]/span[1]/span[1]
 
-    #  Click no botão 'Salvar'
-    Wait Until Element Is Visible    xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]    timeout=30s
-    Click Element         xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]
-    Sleep    4
+#     #  Click no botão 'Salvar'
+#     Wait Until Element Is Visible    xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]    timeout=30s
+#     Click Element         xpath=//*[@id="ctl00_conteudoBotoes_btSalvar"]
+#     Sleep    4
 
 
     # Incluir Documento na Solicitação de Compras
     # Então incluo o documento do tipo Termo Referencia
+    # Switch Window    NEW
     Wait Until Element Is Visible    xpath=//a[contains(.,'Documentos do processo')]    timeout=30s
     Click Element        xpath=//a[contains(.,'Documentos do processo')]
 
@@ -236,7 +304,7 @@ CT01 - Criar SC - Aba dados Gerais - Ações do Solicitante
     Input Text    css=input[id="ctl00_ContentPrincipal_tbxCargo"]    Teste
 
     Wait Until Element Is Visible    css=input[id="tbxSenhaAcesso"]    timeout=30s
-    Input Text    css=input[id="tbxSenhaAcesso"]    PE@123456
+    Input Text    css=input[id="tbxSenhaAcesso"]    PE@654321
 
     # E clico no botão assinar
     Click Element    xpath=//a[text()= 'Assinar']

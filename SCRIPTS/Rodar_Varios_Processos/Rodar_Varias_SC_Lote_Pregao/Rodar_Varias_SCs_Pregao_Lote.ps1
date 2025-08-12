@@ -1,7 +1,7 @@
 
 
 $EXECDIR = (Get-Location).Path  # Definindo o diretório atual
-$suite = "${EXECDIR}/test\SCRIPTS/Rodar_Varios_Processos/EXE_SC_Lote_Pregao_Teste_Auto.robot"
+$suite = "${EXECDIR}/test\SCRIPTS/Rodar_Varios_Processos/Rodar_Varias_SC_Lote_Pregao/EXE_SC_Lote_Pregao_Teste_Auto.robot"
 
 For ($i = 1; $i -le 1; $i++) {
     Write-Host "Executando a suíte pela $iª vez"

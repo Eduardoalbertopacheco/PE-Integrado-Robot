@@ -24,7 +24,7 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\CRIAR_SOLICITACAO_COMPRAS"
+$foldersPath = "${EXECDIR}\test\CRIAR_SOLICITACAO_COMPRAS\SC_compra_direta"
 $maxTentativas = 2  # Número máximo de tentativas em caso de falha
 
 if (Test-Path $foldersPath) {

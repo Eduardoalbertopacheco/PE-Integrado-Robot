@@ -7,7 +7,7 @@ Resource    ../../Resources/Resource_Almoxarifado.robot
 *** Test Cases ***
 
 CT01 - Incluir um Novo Almoxarifado
-    [Tags]    Incluir
+
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
     E acesso a lista de Almoxarifados
@@ -16,7 +16,7 @@ CT01 - Incluir um Novo Almoxarifado
 
 
 CT02 - Incluir Mascaras de Endereço
-    [Tags]    Mascara
+
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
     E acesso a lista de Almoxarifados
@@ -26,7 +26,7 @@ CT02 - Incluir Mascaras de Endereço
 
 
 CT03 - Incluir Endereço de Entrada
-    [Tags]    Teste
+    
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
     E acesso a lista de Almoxarifados
@@ -36,7 +36,7 @@ CT03 - Incluir Endereço de Entrada
 
 
 CT03 - Incluir Endereço de Estoque
-    [Tags]    Teste
+    
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
     E acesso a lista de Almoxarifados
@@ -46,7 +46,7 @@ CT03 - Incluir Endereço de Estoque
 
 
 CT4 - Incluir Requisitante
-    [Tags]    Incluir_requisitante
+    
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
     E acesso a lista de Almoxarifados
@@ -56,7 +56,7 @@ CT4 - Incluir Requisitante
 
 
 CT05 - Incluir Itens no Almoxarifado
-    [Tags]    Incluir_itens
+    
     Dado que acesso o sistema
     E faço login com usuário "teste_almoxarifado"
     E acesso a lista de Almoxarifados

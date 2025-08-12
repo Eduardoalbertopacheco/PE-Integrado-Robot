@@ -1,10 +1,10 @@
 
 
 $EXECDIR = (Get-Location).Path
-$foldersPath = "${EXECDIR}\test\SOLICITACAO_COMPRA\SC_SAD_Compra_Dispensa"
+$foldersPath = "${EXECDIR}\test\CRIAR_SOLICITACAO_COMPRA\SC_Compra_Dispensa"
 
 # Especifique o nome do arquivo .robot que você quer rodar
-$testFileName = "SAD_SC_Item_Compra_Disp_Teste_Auto.robot"
+$testFileName = "SC_Item_Compra_Disp_Teste_Auto.robot"
 $testFilePath = "${foldersPath}\$testFileName"
 
 if (Test-Path $testFilePath) {

@@ -393,6 +393,7 @@ E clico em 'Incluir'
 
 
 Então preencho os campos da Aba Dados gerais - Pregão
+
     # Modalidade Pregão
     Wait Until Element Is Visible    //select[@name='_cORDEM_COMPRA_x_nCdModalidade']    15
     Click Element    //*[@id="_cORDEM_COMPRA_x_nCdModalidade"]//*[@value='5']
