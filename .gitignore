@@ -1,0 +1,6 @@
+cat > .gitignore <<'EOF'
+/*
+!/test/
+!/test/**
+!.gitignore
+EOF
